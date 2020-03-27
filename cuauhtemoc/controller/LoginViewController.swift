@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import ActivityIndicator
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var scrollGestureRecognizer: UITapGestureRecognizer!
@@ -65,40 +65,36 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let ws = WebServiceClient();
         let pref = UserDefaults();
-        
-        DispatchQueue.main.async {
+        self.showActivityIndicator(color: UIColor(named: "pink")!)
             
             ws.login(mail: self.txtCorreo.text!, pass: self.txtPassword.text!, googleId: self.googleID,  completion: {data in
-                
-                let res = data.object(forKey: "result") as! Int
-                
-                if res > 0 {
-                    let token = data.object(forKey: "token") as? String
+                DispatchQueue.main.async {
+                    self.hideActivityIndicator()
+                    let res = data.object(forKey: "result") as! Int
                     
-                    let res1 = data.object(forKey: "usuario") as! NSDictionary
-                    
-                    let idUsuario =  (res1 as AnyObject).object(forKey: "id")! as? Int
-                    let nombre =  (res1 as AnyObject).object(forKey: "nombre")! as? String
-                    let apellido =  (res1 as AnyObject).object(forKey: "apellido")! as? String
-                    let celular =  (res1 as AnyObject).object(forKey: "celular")! as? String
-                    
-                    pref.setValue(idUsuario, forKey: "idUsuario")
-                    pref.setValue("\(nombre) \(apellido)", forKey: "nombreUsuario")
-                    pref.setValue(self.txtCorreo.text, forKey: "mailUsuario")
-                    pref.setValue(celular, forKey: "celUsuario")
-                    pref.setValue(token, forKey: "token")
-                    pref.setValue("3", forKey: "bandera")
-                    
-                    let controller = self.storyboard!.instantiateViewController(withIdentifier: "menuViewController") as! MenuViewController
-                    
-                    self.present(controller, animated: true, completion: nil)
-                
+                    if res > 0 {
+                        let token = data.object(forKey: "token") as? String
+                        
+                        let res1 = data.object(forKey: "usuario") as! NSDictionary
+                        let idUsuario =  (res1 as AnyObject).object(forKey: "id")! as? Int
+                        let nombre =  (res1 as AnyObject).object(forKey: "nombre")! as? String
+                        let apellido =  (res1 as AnyObject).object(forKey: "apellido")! as? String
+                        let celular =  (res1 as AnyObject).object(forKey: "celular")! as? String
+                        pref.setValue(idUsuario, forKey: "idUsuario")
+                        pref.setValue("\(nombre) \(apellido)", forKey: "nombreUsuario")
+                        pref.setValue(self.txtCorreo.text, forKey: "mailUsuario")
+                        pref.setValue(celular, forKey: "celUsuario")
+                        pref.setValue(token, forKey: "token")
+                        pref.setValue("3", forKey: "bandera")
+                        
+                        let controller = self.storyboard!.instantiateViewController(withIdentifier: "menuViewController") as! MenuViewController
+                        self.present(controller, animated: true, completion: nil)
+                    }else{
+                        print("ocurrio un error",data.object(forKey: "error") as? String ?? "")
+                        self.showAlert(title: "Ups!", message: data.object(forKey: "error") as? String ?? "" )
+                    }
                 }
-                
             })
-            
-        }
-        
         
     }
     

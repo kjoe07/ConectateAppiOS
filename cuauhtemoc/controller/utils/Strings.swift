@@ -11,7 +11,7 @@ import Foundation
 
 class Strings {
     
-    var ws = "conectateyempleate.com"
+    var ws = "http://conectateyempleate.com"
     var appName = "Cuauhtemoc"
     var rutaImagen = "https://pruebaflight.s3.amazonaws.com"
     

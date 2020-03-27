@@ -20,7 +20,7 @@ class WebServiceClient:NSObject{
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
             guard error == nil && data != nil else {                                                          // check for fundamental networking error
-                print("error=\(error)")
+                print("error=\(error?.localizedDescription)")
                 completion("error" as AnyObject)
                 return
             }
