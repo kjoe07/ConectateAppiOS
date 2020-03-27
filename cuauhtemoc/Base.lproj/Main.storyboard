@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="loginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -175,7 +175,7 @@
         <!--Registro View Controller-->
         <scene sceneID="8fT-Zd-V1H">
             <objects>
-                <viewController storyboardIdentifier="registroViewController" id="9WZ-dA-2cF" customClass="RegistroViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registroViewController" modalPresentationStyle="fullScreen" id="9WZ-dA-2cF" customClass="RegistroViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZjJ-P0-Mut">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -455,7 +455,7 @@
                                                 <rect key="frame" x="0.0" y="501" width="350" height="40"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0i-X1-UdW" customClass="CheckBox" customModule="CheckBox">
-                                                        <rect key="frame" x="0.0" y="0.0" width="75.5" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="60.5" height="40"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
@@ -482,7 +482,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="He leído y acepto los términos y condiciones." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4at-ba-OKi">
-                                                        <rect key="frame" x="85.5" y="0.0" width="264.5" height="40"/>
+                                                        <rect key="frame" x="70.5" y="0.0" width="279.5" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="a4T-Hd-6UB"/>
                                                         </constraints>
