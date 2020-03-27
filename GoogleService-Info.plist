@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>608109982158-i02rduqq9c48r65t8ejdgrj170alvc4n.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.608109982158-i02rduqq9c48r65t8ejdgrj170alvc4n</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>608109982158-67pi89btm040sqqc1jj1276a8kofgke3.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDV88oIph7xzC5YtumoH1j9cq968a0bVuA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>608109982158</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.fligthcapital.cuauhtemoc</string>
+	<key>PROJECT_ID</key>
+	<string>cuauhtemoc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cuauhtemoc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:608109982158:ios:471144450b7703a7413b9f</string>
+	<key>DATABASE_URL</key>
+	<string>https://cuauhtemoc.firebaseio.com</string>
+</dict>
+</plist>

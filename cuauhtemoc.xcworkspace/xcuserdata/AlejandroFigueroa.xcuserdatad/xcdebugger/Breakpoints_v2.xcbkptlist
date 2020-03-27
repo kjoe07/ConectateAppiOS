@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "14229543-76B5-466B-A59E-B414AAFD3658"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B13531E-C278-4C43-847A-F14AA30D4EDB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "cuauhtemoc/controller/InteresesViewController.swift"
+            timestampString = "591269033.590941"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "cargarDatos()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "829AAFBB-9823-4DC9-9296-90AEB719517A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "cuauhtemoc/controller/RegistroViewController.swift"
+            timestampString = "591281789.104122"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "RegistroViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "829AAFBB-9823-4DC9-9296-90AEB719517A - 671bd7e317cc4801"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "cuauhtemoc.RegistroViewController.textFields.getter : Swift.Optional&lt;Swift.Array&lt;__C.UITextField&gt;&gt;"
+                  moduleName = "cuauhtemoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AlejandroFigueroa/Documents/iOS/cuauhtemoc/cuauhtemoc/controller/RegistroViewController.swift"
+                  timestampString = "591161227.845533"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "114">
+               </Location>
+               <Location
+                  uuid = "829AAFBB-9823-4DC9-9296-90AEB719517A - 15794a711933b445"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "cuauhtemoc.RegistroViewController.textFields.setter : Swift.Optional&lt;Swift.Array&lt;__C.UITextField&gt;&gt;"
+                  moduleName = "cuauhtemoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AlejandroFigueroa/Documents/iOS/cuauhtemoc/cuauhtemoc/controller/RegistroViewController.swift"
+                  timestampString = "591161227.8897949"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "829AAFBB-9823-4DC9-9296-90AEB719517A - 4a81df0a0da31530"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "cuauhtemoc.RegistroViewController.textFields.modify : Swift.Optional&lt;Swift.Array&lt;__C.UITextField&gt;&gt;"
+                  moduleName = "cuauhtemoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AlejandroFigueroa/Documents/iOS/cuauhtemoc/cuauhtemoc/controller/RegistroViewController.swift"
+                  timestampString = "591161227.892122"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "829AAFBB-9823-4DC9-9296-90AEB719517A - a1bb318b8404a3e0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "cuauhtemoc.RegistroViewController.textFields.modify : Swift.Optional&lt;Swift.Array&lt;__C.UITextField&gt;&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "cuauhtemoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AlejandroFigueroa/Documents/iOS/cuauhtemoc/cuauhtemoc/controller/RegistroViewController.swift"
+                  timestampString = "591161227.894255"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "829AAFBB-9823-4DC9-9296-90AEB719517A - fc55caa24bd570cc"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "cuauhtemoc.RegistroViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; cuauhtemoc.RegistroViewController"
+                  moduleName = "cuauhtemoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AlejandroFigueroa/Documents/iOS/cuauhtemoc/cuauhtemoc/controller/RegistroViewController.swift"
+                  timestampString = "591161227.89661"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "304">
+               </Location>
+               <Location
+                  uuid = "829AAFBB-9823-4DC9-9296-90AEB719517A - 6b66ea3e285ab4ba"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "cuauhtemoc.RegistroViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;cuauhtemoc.RegistroViewController&gt;"
+                  moduleName = "cuauhtemoc"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/AlejandroFigueroa/Documents/iOS/cuauhtemoc/cuauhtemoc/controller/RegistroViewController.swift"
+                  timestampString = "591161227.899112"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "224">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
