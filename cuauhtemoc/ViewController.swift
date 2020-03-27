@@ -58,4 +58,22 @@ class ViewController: UIViewController {
 
 
 }
-
+class AppCordinator{
+    func nextViewController() -> UIViewController{
+        let pref = UserDefaults();
+        if let _ = pref.string(forKey: "token") {
+            if(pref.string(forKey: "bandera") == "0"){
+                return UIStoryboard(name: "Main",bundle:nil).instantiateViewController(withIdentifier: "perfilViewController") as! PerfilViewController
+            } else if (pref.string(forKey: "bandera") == "1"){
+                return UIStoryboard(name: "Main",bundle:nil).instantiateViewController(withIdentifier: "interesesViewController") as! InteresesViewController
+            } else if (pref.string(forKey: "bandera") == "2"){
+                return UIStoryboard(name: "Main",bundle:nil).instantiateViewController(withIdentifier: "personalizadoViewController") as! PersonalizadoViewController
+            } else if (pref.string(forKey: "bandera") == "3"){
+                return UIStoryboard(name: "Main",bundle:nil).instantiateViewController(withIdentifier: "menuViewController") as! MenuViewController
+            }
+        } else {
+            return UIStoryboard(name: "Main",bundle:nil).instantiateViewController(withIdentifier: "loginViewController") as! LoginViewController
+        }
+        return ViewController()
+    }
+}

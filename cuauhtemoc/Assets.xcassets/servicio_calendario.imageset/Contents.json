@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "servicio_calendario.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

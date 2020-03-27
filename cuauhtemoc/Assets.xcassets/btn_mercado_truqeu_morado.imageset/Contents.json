@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "btn_mercado_truqeu_morado.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -15,7 +15,6 @@ target 'cuauhtemoc' do
   pod 'AlamofireImage', '~> 3.5'
   pod 'CheckBox'
   pod 'Firebase/Analytics'
-
   # Pods for cuauhtemoc
 
   target 'cuauhtemocTests' do

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "background_buscador.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

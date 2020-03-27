@@ -9,16 +9,16 @@
 import UIKit
 import Firebase
 import UserNotifications
-
+import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
-
+    let coordinator = AppCordinator()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
@@ -43,6 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Permiso denegado por el usuario")
             }
         }
+        let vc = coordinator.nextViewController()
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
         
         return true
     }

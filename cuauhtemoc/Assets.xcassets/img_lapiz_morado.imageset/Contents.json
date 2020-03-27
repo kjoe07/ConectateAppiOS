@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "img_lapiz_morado.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

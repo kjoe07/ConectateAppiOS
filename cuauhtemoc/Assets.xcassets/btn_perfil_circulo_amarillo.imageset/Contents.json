@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "btn_perfil_circulo_amarillo.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

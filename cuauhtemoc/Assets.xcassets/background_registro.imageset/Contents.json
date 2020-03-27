@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "background_registro.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
