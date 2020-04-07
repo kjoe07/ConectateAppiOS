@@ -63,7 +63,7 @@ class FechaAlertView: UIView, UITextFieldDelegate {
     }
     
     func showAlert(){
-        UIApplication.shared.keyWindow?.addSubview(parentView)
+        UIApplication.shared.windows.first?.rootViewController?.view.addSubview(parentView)
     }
     
     @IBAction func btnRegresar(_ sender: Any) {
@@ -77,7 +77,7 @@ class FechaAlertView: UIView, UITextFieldDelegate {
         
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.parentView.frame.size.height/6, width: self.parentView.frame.size.width, height: 40.0))
         toolBar.layer.position = CGPoint(x: self.parentView.frame.size.width/2, y: self.parentView.frame.size.height-20.0)
-        toolBar.barStyle = UIBarStyle.blackTranslucent
+        toolBar.barStyle = UIBarStyle.black
         toolBar.tintColor = UIColor.white
         toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
         
@@ -115,7 +115,7 @@ class FechaAlertView: UIView, UITextFieldDelegate {
         
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.parentView.frame.size.height/6, width: self.parentView.frame.size.width, height: 40.0))
         toolBar.layer.position = CGPoint(x: self.parentView.frame.size.width/2, y: self.parentView.frame.size.height-20.0)
-        toolBar.barStyle = UIBarStyle.blackTranslucent
+        toolBar.barStyle = UIBarStyle.black
         toolBar.tintColor = UIColor.white
         toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
         

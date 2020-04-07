@@ -76,44 +76,40 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
     }
     
     func registroUsuarioWS(){
-        
-        let ws = WebServiceClient();
-        let pref = UserDefaults();
-        
-        DispatchQueue.main.async {
+        let ws = WebServiceClient()
+        let pref = UserDefaults()
+        ws.registro(mail: self.txtCorreo.text!, pass: self.txtPassword.text!, nombre: self.txtNombre.text!, apellido: self.txtApellido.text!, celular: "52\(self.txtTelefono.text!)", fecha: self.fechaString, cp: self.txtCP.text!, googleId: self.googleID, completion: { data in
             
-            ws.registro(mail: self.txtCorreo.text!, pass: self.txtPassword.text!, nombre: self.txtNombre.text!, apellido: self.txtApellido.text!, celular: "52\(self.txtTelefono.text!)", fecha: self.fechaString, cp: self.txtCP.text!, googleId: self.googleID, completion: { data in
+            let res = data.object(forKey: "result") as? Int
+            
+            if res ?? 0 == 1 {
+                let token = data.object(forKey: "token") as? String
                 
-                let res = data.object(forKey: "result") as! Int
+                let res1 = data.object(forKey: "usuario") as! NSDictionary
                 
-                if res == 1 {
-                    let token = data.object(forKey: "token") as? String
-                    
-                    let res1 = data.object(forKey: "usuario") as! NSDictionary
-                    
-                    let idUsuario =  (res1 as AnyObject).object(forKey: "id")! as? Int
-                    let nombre =  (res1 as AnyObject).object(forKey: "nombre")! as? String
-                    let apellido =  (res1 as AnyObject).object(forKey: "apellido")! as? String
-                    let celular =  (res1 as AnyObject).object(forKey: "celular")! as? String
-                    
-                    pref.setValue(idUsuario, forKey: "idUsuario")
-                    pref.setValue(self.txtNombre.text!, forKey: "nombreUsuario")
-                    pref.setValue(self.txtCorreo.text, forKey: "mailUsuario")
-                    pref.setValue(self.txtTelefono.text!, forKey: "celUsuario")
-                    
-                    pref.setValue(self.txtPassword.text, forKey: "password")
-                    pref.setValue(self.txtCP.text!, forKey: "cp")
-                    
+                let idUsuario =  (res1 as AnyObject).object(forKey: "id")! as? Int
+                let nombre =  (res1 as AnyObject).object(forKey: "nombre")! as? String
+                let apellido =  (res1 as AnyObject).object(forKey: "apellido")! as? String
+                let celular =  (res1 as AnyObject).object(forKey: "celular")! as? String
+                
+                pref.setValue(idUsuario, forKey: "idUsuario")
+                pref.setValue(nombre ?? "", forKey: "nombreUsuario")
+                pref.setValue(apellido ?? "", forKey: "mailUsuario")
+                pref.setValue(celular ?? "", forKey: "celUsuario")
+                pref.setValue(token, forKey: "token")
+                pref.setValue(self.txtPassword.text, forKey: "password")
+                pref.setValue(self.txtCP.text!, forKey: "cp")
+                DispatchQueue.main.async {
                     let controller = self.storyboard!.instantiateViewController(withIdentifier: "validarCodigoViewController") as! ValidarCodigoViewController
                     controller.telefono = "52\(self.txtTelefono.text!)"
                     self.present(controller, animated: true, completion: nil)
-                    
-                    
-                } else {
-                    self.enviarMensaje(titulo: "¡Ups!", mensaje: "Ya existe un usuario registrado con esos datos, intenta iniciar sesión o recuperar contraseña.")
                 }
-            })
-        }
+                
+            } else {
+                self.enviarMensaje(titulo: "¡Ups!", mensaje: "Ya existe un usuario registrado con esos datos, intenta iniciar sesión o recuperar contraseña.")
+            }
+        })
+        
     }
     
     func cargarFecha(){
@@ -122,7 +118,7 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
         
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
         toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        toolBar.barStyle = UIBarStyle.blackTranslucent
+        toolBar.barStyle = UIBarStyle.black
         toolBar.tintColor = UIColor.white
         toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
         
@@ -213,7 +209,6 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
             enviarMensaje(titulo: "Verifica tu información", mensaje: "Debes aceptar términos y coindiciones y la ley de datos personale spara continuar")
             return false
         }
-        return true
     }
     
     func enviarMensaje( titulo:String, mensaje:String){

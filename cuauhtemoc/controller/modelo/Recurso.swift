@@ -11,11 +11,11 @@ import Foundation
 
 class Recurso:Codable {
     
-    var id:Int!
-    var orden:Int!
-    var post:Int!
-    var valor: String!
-    var tipo:Int!
+    var id: Int!
+    var orden: Int!
+    var post: Int!
+    var valor: String!
+    var tipo: Int!
     
     init(id:Int, orden:Int, post:Int, valor:String, tipo:Int) {
         

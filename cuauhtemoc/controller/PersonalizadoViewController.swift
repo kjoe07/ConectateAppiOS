@@ -45,38 +45,22 @@ class PersonalizadoViewController: UIViewController {
         stcDos.isHidden = true
     }
     
-    @IBAction func btnContinuar(_ sender: Any) {
-        
+    @IBAction func btnContinuar(_ sender: Any) {        
         let ws = WebServiceClient()
-        let pref = UserDefaults();
-        
+        let pref = UserDefaults()
         if (!self.edtHashDos.text!.isEmpty){
-            
             let parametros = "tag=\(self.edtHashDos.text!)"
-            
-            DispatchQueue.main.async {
-                
-                ws.wsToken(params: parametros, ws: "/usuarios/agregarExtra/", method: "POST", completion: {data in
-                    
-                    
-                    
-                })
-            }
-            
+            ws.wsToken(params: parametros, ws: "/usuarios/agregarExtra/", method: "POST", completion: {data in
+                DispatchQueue.main.async {
+                }
+            })
         }
-        
         if (!self.edtHashUno.text!.isEmpty){
-            
             let parametros = "tag=\(self.edtHashUno.text!)"
-
-            DispatchQueue.main.async {
-                
-                ws.wsToken(params: parametros, ws: "/usuarios/agregarExtra/", method: "POST", completion: {data in
-                    
-                    
-                    
-                })
-            }
+            ws.wsToken(params: parametros, ws: "/usuarios/agregarExtra/", method: "POST", completion: {data in
+                DispatchQueue.main.async {
+                }
+            })
         }
         
         pref.setValue("3", forKey: "bandera")

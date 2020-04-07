@@ -268,7 +268,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
         toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        toolBar.barStyle = UIBarStyle.blackTranslucent
+        toolBar.barStyle = UIBarStyle.black
         toolBar.tintColor = UIColor.white
         toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
         
@@ -316,7 +316,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
         toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        toolBar.barStyle = UIBarStyle.blackTranslucent
+        toolBar.barStyle = UIBarStyle.black
         toolBar.tintColor = UIColor.white
         toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
         

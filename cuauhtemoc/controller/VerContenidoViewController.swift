@@ -41,7 +41,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         txtBody.text = contenido.body
         self.tableView.maxHeight = 200
         
-        print(contenido.tipo)
+        print(contenido.tipo ?? "")
         if(contenido.tipo == "Empleo"){
             btnActionOtro.setTitle("Quiero aplicar", for: UIControl.State.normal)
             btnActionTrueque.isHidden = true
@@ -159,29 +159,25 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         self.dismiss(animated: true, completion: nil)
     }
     
-    func cargarDatos(){
-        
+    func cargarDatos(){        
         let ws = WebServiceClient()
-        
-        DispatchQueue.main.async {
-            ws.wsTokenArray(params: "", ws: "/contenido/ver_post/\(self.contenido.id!)/", method: "GET", completion: { data in
+        ws.wsTokenArray(params: "", ws: "/contenido/ver_post/\(self.contenido.id!)/", method: "GET", completion: { data in
+            
+            do {
+                self.postCompleto = try JSONDecoder().decode(PostCompleto.self, from: data as! Data)
                 
-                do {
-                    self.postCompleto = try JSONDecoder().decode(PostCompleto.self, from: data as! Data)
+                self.recursos.append(contentsOf: self.postCompleto.recursos)
+                self.acciones.append(contentsOf: self.postCompleto.acciones)
+                
+                DispatchQueue.main.async {
                     
-                    self.recursos.append(contentsOf: self.postCompleto.recursos)
-                    self.acciones.append(contentsOf: self.postCompleto.acciones)
-                    
-                    DispatchQueue.main.async {
-
-                        self.tableView.reloadData()
-                        self.tableView.scrollToRow(at: IndexPath(row:self.postCompleto.recursos.count-1, section:0), at: .top, animated: false)
-                    }
-                } catch let jsonError {
-                    print(jsonError)
+                    self.tableView.reloadData()
+                    self.tableView.scrollToRow(at: IndexPath(row:self.postCompleto.recursos.count-1, section:0), at: .top, animated: false)
                 }
-            })
-        }
+            } catch let jsonError {
+                print(jsonError)
+            }
+        })
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

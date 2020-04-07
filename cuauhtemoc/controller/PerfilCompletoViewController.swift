@@ -131,20 +131,17 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         
         self.present(imagePicker, animated: true, completion: nil)
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let pref = UserDefaults()
         
-            if let image = UIImagePickerController.InfoKey.originalImage as? UIImage{
-                self.imgPerfil.image = image
-                
+        if let image = info[.originalImage] as? UIImage{
+                self.imgPerfil.image = image//UIImagePickerController.InfoKey.originalImage
                 saveImage(imageName:"\(pref.string(forKey: "nombreUsuario")!).png")
             
         }
         self.dismiss(animated: true, completion: nil)
     }
-    
+        
     func saveImage(imageName: String){
         //create an instance of the FileManager
         let fileManager = FileManager.default

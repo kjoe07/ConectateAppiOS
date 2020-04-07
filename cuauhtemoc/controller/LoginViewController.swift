@@ -81,7 +81,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let apellido =  (res1 as AnyObject).object(forKey: "apellido")! as? String
                         let celular =  (res1 as AnyObject).object(forKey: "celular")! as? String
                         pref.setValue(idUsuario, forKey: "idUsuario")
-                        pref.setValue("\(nombre) \(apellido)", forKey: "nombreUsuario")
+                        pref.setValue("\(nombre ?? "") \(apellido ?? "")", forKey: "nombreUsuario")
                         pref.setValue(self.txtCorreo.text, forKey: "mailUsuario")
                         pref.setValue(celular, forKey: "celUsuario")
                         pref.setValue(token, forKey: "token")

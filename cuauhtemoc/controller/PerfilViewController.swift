@@ -97,8 +97,8 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
         cell.imgCell.af_setImage(withURL: imageURL!)
         
         if(self.intereses.count>0){
-            if let index = intereses.firstIndex(of: self.busqueda[indexPath.row].id){
-                print("Valor \(self.busqueda[indexPath.row].id)")
+            if intereses.firstIndex(of: self.busqueda[indexPath.row].id) != nil{
+                print("Valor \(self.busqueda[indexPath.row].id ?? 0)")
                 cell.showIcon()
             } else {
                 cell.hideIcon()

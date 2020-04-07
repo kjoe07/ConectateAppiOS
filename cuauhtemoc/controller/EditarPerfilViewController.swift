@@ -79,7 +79,7 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     func guardarPerfil(){
         
         let ws = WebServiceClient()
-        let pref = UserDefaults();
+       // let pref = UserDefaults()
         
         let parametros = "{nombre:\(self.txtNombre.text!),apellido:\(self.txtApellido.text!)&cp:\(self.txtCP.text!)}"
         print(parametros)
@@ -212,17 +212,18 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
         self.present(imagePicker, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let pref = UserDefaults()
         
-        if let image = UIImagePickerController.InfoKey.originalImage as? UIImage{
+        if let image = info[.originalImage]  as? UIImage{
             self.imgPerfil.image = image
-            
             saveImage(imageName:"\(pref.string(forKey: "nombreUsuario")!).png")
-            
         }
         self.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        
     }
     
     func saveImage(imageName: String){

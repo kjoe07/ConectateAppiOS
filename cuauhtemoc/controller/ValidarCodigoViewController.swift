@@ -88,7 +88,7 @@ class ValidarCodigoViewController: UIViewController, UITextFieldDelegate {
         
         DispatchQueue.main.async {
             
-            let params = "telefono=\(self.telefono)"
+            let params = "telefono=\(self.telefono ?? "")"
             
             ws.wsGenericoPost(params: params, ws: "/usuarios/enviarCodigo/", method: "POST", completion: {data in
                 
