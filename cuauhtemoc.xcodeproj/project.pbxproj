@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11286813243F7D5B00F6BD58 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11286812243F7D5B00F6BD58 /* Colors.xcassets */; };
+		11286815243F997700F6BD58 /* BorderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11286814243F997700F6BD58 /* BorderCardView.swift */; };
+		11286817243FBD5100F6BD58 /* BorderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11286816243FBD5100F6BD58 /* BorderTextField.swift */; };
+		11286819243FCAE200F6BD58 /* ExtensionUIIMage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11286818243FCAE200F6BD58 /* ExtensionUIIMage.swift */; };
 		116F43B4242E8C700041F301 /* ActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 116F43B3242E8C700041F301 /* ActivityIndicator */; };
 		11866E09242E942400D9D3E3 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11866E08242E942400D9D3E3 /* UIViewControllerExtension.swift */; };
 		11FF0921242E7FE200A93AE0 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 11FF0920242E7FE200A93AE0 /* IQKeyboardManagerSwift */; };
@@ -88,6 +92,10 @@
 
 /* Begin PBXFileReference section */
 		10C2007884AD47FACEC77021 /* Pods_cuauhtemocTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemocTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		11286812243F7D5B00F6BD58 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		11286814243F997700F6BD58 /* BorderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCardView.swift; sourceTree = "<group>"; };
+		11286816243FBD5100F6BD58 /* BorderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderTextField.swift; sourceTree = "<group>"; };
+		11286818243FCAE200F6BD58 /* ExtensionUIIMage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIIMage.swift; sourceTree = "<group>"; };
 		11866E08242E942400D9D3E3 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		197DE7B626E4DD4C786595EF /* Pods_cuauhtemoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4370429B21F2FFD717FB8C51 /* Pods_cuauhtemocUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemocUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +232,7 @@
 				574B6390232BDA3100F4A29D /* LaunchScreen.storyboard */,
 				574B6393232BDA3100F4A29D /* Info.plist */,
 				574B63D4232DD15300F4A29D /* GoogleService-Info.plist */,
+				11286812243F7D5B00F6BD58 /* Colors.xcassets */,
 			);
 			path = cuauhtemoc;
 			sourceTree = "<group>";
@@ -291,6 +300,7 @@
 				573B564A2338A8FA00ADB2E3 /* SelfSizedTableView.swift */,
 				57AF9C242346AEE700784B32 /* FechaAlertView.swift */,
 				11866E08242E942400D9D3E3 /* UIViewControllerExtension.swift */,
+				11286818243FCAE200F6BD58 /* ExtensionUIIMage.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -336,6 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				57AF9C222346AD5500784B32 /* FechaAlertView.xib */,
+				11286814243F997700F6BD58 /* BorderCardView.swift */,
+				11286816243FBD5100F6BD58 /* BorderTextField.swift */,
 			);
 			path = customView;
 			sourceTree = "<group>";
@@ -488,6 +500,7 @@
 				574B6392232BDA3100F4A29D /* LaunchScreen.storyboard in Resources */,
 				574B638F232BDA3100F4A29D /* Assets.xcassets in Resources */,
 				57AF9C232346AD5500784B32 /* FechaAlertView.xib in Resources */,
+				11286813243F7D5B00F6BD58 /* Colors.xcassets in Resources */,
 				574B63D5232DD15300F4A29D /* GoogleService-Info.plist in Resources */,
 				574B638D232BDA2F00F4A29D /* Main.storyboard in Resources */,
 			);
@@ -644,6 +657,7 @@
 				573B5653233B674B00ADB2E3 /* Notificacion.swift in Sources */,
 				57BFD1F72337138D002A4EA3 /* ContenidoViewCell.swift in Sources */,
 				573B565B233C578C00ADB2E3 /* OfrecerTruequeViewController.swift in Sources */,
+				11286815243F997700F6BD58 /* BorderCardView.swift in Sources */,
 				574B63D1232DC62E00F4A29D /* MenuViewController.swift in Sources */,
 				573B5659233BF3E400ADB2E3 /* ComentariosTableViewCell.swift in Sources */,
 				573B56412338969300ADB2E3 /* Post.swift in Sources */,
@@ -658,7 +672,9 @@
 				573B5680233D129F00ADB2E3 /* EditarPerfilViewController.swift in Sources */,
 				57BFD1C72334D4C4002A4EA3 /* InteresesViewController.swift in Sources */,
 				57BFD1FF233728E1002A4EA3 /* Usuario.swift in Sources */,
+				11286819243FCAE200F6BD58 /* ExtensionUIIMage.swift in Sources */,
 				573B5645233897CA00ADB2E3 /* Accion.swift in Sources */,
+				11286817243FBD5100F6BD58 /* BorderTextField.swift in Sources */,
 				574B63D8232FF8CA00F4A29D /* PerfilViewController.swift in Sources */,
 				573B5666233CEAF900ADB2E3 /* NotificacionCompleto.swift in Sources */,
 				574B6388232BDA2F00F4A29D /* AppDelegate.swift in Sources */,
