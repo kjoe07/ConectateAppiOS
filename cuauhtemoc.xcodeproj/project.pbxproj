@@ -11,8 +11,10 @@
 		11286815243F997700F6BD58 /* BorderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11286814243F997700F6BD58 /* BorderCardView.swift */; };
 		11286817243FBD5100F6BD58 /* BorderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11286816243FBD5100F6BD58 /* BorderTextField.swift */; };
 		11286819243FCAE200F6BD58 /* ExtensionUIIMage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11286818243FCAE200F6BD58 /* ExtensionUIIMage.swift */; };
+		1128681B244118AE00F6BD58 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1128681A244118AE00F6BD58 /* CustomSegmentedControl.swift */; };
 		116F43B4242E8C700041F301 /* ActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 116F43B3242E8C700041F301 /* ActivityIndicator */; };
 		11866E09242E942400D9D3E3 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11866E08242E942400D9D3E3 /* UIViewControllerExtension.swift */; };
+		118D3DA32444DC48004D92E6 /* BorderCurvedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D3DA22444DC48004D92E6 /* BorderCurvedButton.swift */; };
 		11FF0921242E7FE200A93AE0 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 11FF0920242E7FE200A93AE0 /* IQKeyboardManagerSwift */; };
 		4152B790EE3CFF9705BB8060 /* Pods_cuauhtemocTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10C2007884AD47FACEC77021 /* Pods_cuauhtemocTests.framework */; };
 		552D00359A0D1AB13E65443B /* Pods_cuauhtemoc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 197DE7B626E4DD4C786595EF /* Pods_cuauhtemoc.framework */; };
@@ -96,7 +98,9 @@
 		11286814243F997700F6BD58 /* BorderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCardView.swift; sourceTree = "<group>"; };
 		11286816243FBD5100F6BD58 /* BorderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderTextField.swift; sourceTree = "<group>"; };
 		11286818243FCAE200F6BD58 /* ExtensionUIIMage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIIMage.swift; sourceTree = "<group>"; };
+		1128681A244118AE00F6BD58 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		11866E08242E942400D9D3E3 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		118D3DA22444DC48004D92E6 /* BorderCurvedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCurvedButton.swift; sourceTree = "<group>"; };
 		197DE7B626E4DD4C786595EF /* Pods_cuauhtemoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4370429B21F2FFD717FB8C51 /* Pods_cuauhtemocUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemocUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		573953B22337652A00D36609 /* ContenidoCompleto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContenidoCompleto.swift; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 				57AF9C222346AD5500784B32 /* FechaAlertView.xib */,
 				11286814243F997700F6BD58 /* BorderCardView.swift */,
 				11286816243FBD5100F6BD58 /* BorderTextField.swift */,
+				1128681A244118AE00F6BD58 /* CustomSegmentedControl.swift */,
+				118D3DA22444DC48004D92E6 /* BorderCurvedButton.swift */,
 			);
 			path = customView;
 			sourceTree = "<group>";
@@ -677,9 +683,11 @@
 				11286817243FBD5100F6BD58 /* BorderTextField.swift in Sources */,
 				574B63D8232FF8CA00F4A29D /* PerfilViewController.swift in Sources */,
 				573B5666233CEAF900ADB2E3 /* NotificacionCompleto.swift in Sources */,
+				1128681B244118AE00F6BD58 /* CustomSegmentedControl.swift in Sources */,
 				574B6388232BDA2F00F4A29D /* AppDelegate.swift in Sources */,
 				57BFD1C9233688FB002A4EA3 /* PersonalizadoViewController.swift in Sources */,
 				573B567E233D127400ADB2E3 /* ChatViewController.swift in Sources */,
+				118D3DA32444DC48004D92E6 /* BorderCurvedButton.swift in Sources */,
 				57BFD20123372974002A4EA3 /* Keyword.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
