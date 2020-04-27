@@ -46,3 +46,12 @@ extension UIViewController{
 
     }
 }
+protocol Identifier {
+    static var identifier: String {get}
+}
+extension Identifier{
+    static var indentifier: String{ return String(describing: self)}
+}
+extension UIViewController: Identifier {
+    static var identifier: String {return String(describing: self)}
+}

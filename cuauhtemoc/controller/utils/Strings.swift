@@ -18,7 +18,7 @@ class Strings {
     var titulo_error = "¡Ups!"
     var mensaje_error_campos = "Es necesario ingresar todos los datos para continuar"
     var dispositivo = "ios"
-    var interfaz = "2"
+    static var interfaz = "2"
     
 }
 

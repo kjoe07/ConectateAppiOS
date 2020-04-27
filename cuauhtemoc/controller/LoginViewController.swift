@@ -37,7 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        cargaInit()
+        //cargaInit()
         
         txtCorreo.delegate = self
         txtPassword.delegate = self
@@ -62,53 +62,78 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loginUsuarioWS(){
-        
-        let ws = WebServiceClient();
-        let pref = UserDefaults();
-        self.showActivityIndicator(color: UIColor(named: "pink")!)
-            
-            ws.login(mail: self.txtCorreo.text!, pass: self.txtPassword.text!, googleId: self.googleID,  completion: {data in
-                DispatchQueue.main.async {
-                    self.hideActivityIndicator()
-                    let res = data.object(forKey: "result") as! Int
-                    
-                    if res > 0 {
-                        let token = data.object(forKey: "token") as? String
-                        
-                        let res1 = data.object(forKey: "usuario") as! NSDictionary
-                        let idUsuario =  (res1 as AnyObject).object(forKey: "id")! as? Int
-                        let nombre =  (res1 as AnyObject).object(forKey: "nombre")! as? String
-                        let apellido =  (res1 as AnyObject).object(forKey: "apellido")! as? String
-                        let celular =  (res1 as AnyObject).object(forKey: "celular")! as? String
-                        pref.setValue(idUsuario, forKey: "idUsuario")
-                        pref.setValue("\(nombre ?? "") \(apellido ?? "")", forKey: "nombreUsuario")
-                        pref.setValue(self.txtCorreo.text, forKey: "mailUsuario")
-                        pref.setValue(celular, forKey: "celUsuario")
-                        pref.setValue(token, forKey: "token")
-                        pref.setValue("3", forKey: "bandera")
-                        
-                        let controller = self.storyboard!.instantiateViewController(withIdentifier: "menuViewController") as! MenuViewController
-                        self.present(controller, animated: true, completion: nil)
+        let params = ["email": txtCorreo.text ?? "","password":txtPassword.text ?? "","googleid":googleID,"dispositivo":"ios","interfaz":"1"]
+        self.showActivityIndicator(color: UIColor(named: "green") ?? .green)
+        NetworkLoader.loadData(url: Api.login.url, data: params, method: .post, completion: {[weak self] (result: MyResult<LoginResponse>) in
+            DispatchQueue.main.async {[weak self] in
+                guard let self = self else{return}
+                self.hideActivityIndicator()
+                print("resul:",result)
+                switch result{
+                case .success(let dat):
+                    if dat.result ?? 0 > 0{
+                        print("is greater than 0")
+                        if !KeychainService.savePassword(service: "conectate", account: "token", data: dat.token ?? ""){
+                            KeychainService.updatePassword(service: "conectate", account: "token", data: dat.token ?? "")
+                        }
+                        let encoder = try? JSONEncoder().encode(dat.usuario)
+                        UserDefaults.standard.set(encoder, forKey: "usuario")
+                        self.view.window?.rootViewController = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController()
+                        //self.view.window?.makeKeyAndVisible()
                     }else{
-                        print("ocurrio un error",data.object(forKey: "error") as? String ?? "")
-                        self.showAlert(title: "Ups!", message: data.object(forKey: "error") as? String ?? "" )
+                        self.showAlert(title: "¡Ups!", message: dat.error ?? "")
                     }
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }
-            })
-        
+            }
+        })
+//        let ws = WebServiceClient();
+//        let pref = UserDefaults();
+//
+//
+//            ws.login(mail: self.txtCorreo.text!, pass: self.txtPassword.text!, googleId: self.googleID,  completion: {data in
+//                DispatchQueue.main.async {
+//                    self.hideActivityIndicator()
+//                    let res = data.object(forKey: "result") as! Int
+//
+//                    if res > 0 {
+//                        let token = data.object(forKey: "token") as? String
+//
+//                        let res1 = data.object(forKey: "usuario") as! NSDictionary
+//                        let idUsuario =  (res1 as AnyObject).object(forKey: "id")! as? Int
+//                        let nombre =  (res1 as AnyObject).object(forKey: "nombre")! as? String
+//                        let apellido =  (res1 as AnyObject).object(forKey: "apellido")! as? String
+//                        let celular =  (res1 as AnyObject).object(forKey: "celular")! as? String
+//                        pref.setValue(idUsuario, forKey: "idUsuario")
+//                        pref.setValue("\(nombre ?? "") \(apellido ?? "")", forKey: "nombreUsuario")
+//                        pref.setValue(self.txtCorreo.text, forKey: "mailUsuario")
+//                        pref.setValue(celular, forKey: "celUsuario")
+//                        pref.setValue(token, forKey: "token")
+//                        pref.setValue("3", forKey: "bandera")
+//
+//                        let controller = self.storyboard!.instantiateViewController(withIdentifier: "menuViewController") as! MenuViewController
+//                        self.present(controller, animated: true, completion: nil)
+//                    }else{
+//                        print("ocurrio un error",data.object(forKey: "error") as? String ?? "")
+//                        self.showAlert(title: "Ups!", message: data.object(forKey: "error") as? String ?? "" )
+//                    }
+//                }
+//            })
+//
     }
     
-    func cargaInit(){
-        
-        let center: NotificationCenter = NotificationCenter.default
-        center.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        center.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        scrollGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
-        
-        textFields = [txtCorreo, txtPassword];
-        
-    }
+//    func cargaInit(){
+//
+//        let center: NotificationCenter = NotificationCenter.default
+//        center.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+//
+//        center.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+//        scrollGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+//
+//        textFields = [txtCorreo, txtPassword];
+//
+//    }
     
     @objc func hideKeyBoard(){
         view.endEditing(true)
@@ -121,18 +146,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-    
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        
-        if(UIDevice.current.userInterfaceIdiom == .pad){
-            
-        }else {
-            self.view.layoutIfNeeded()
-        }
-    }
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//
+//    }
+//
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//
+//        if(UIDevice.current.userInterfaceIdiom == .pad){
+//
+//        }else {
+//            self.view.layoutIfNeeded()
+//        }
+//    }
     
     func validarDatos(textFields: [UITextField]) -> Bool{
         
@@ -170,15 +195,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         btnAlert.addAction(okAction)
         self.present(btnAlert, animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

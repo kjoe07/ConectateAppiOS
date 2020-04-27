@@ -48,14 +48,14 @@ class PersonalizadoViewController: UIViewController {
     @IBAction func btnContinuar(_ sender: Any) {        
         let ws = WebServiceClient()
         let pref = UserDefaults()
-        if (!self.edtHashDos.text!.isEmpty){
+        if !(self.edtHashDos.text?.isEmpty ?? true){
             let parametros = "tag=\(self.edtHashDos.text!)"
             ws.wsToken(params: parametros, ws: "/usuarios/agregarExtra/", method: "POST", completion: {data in
                 DispatchQueue.main.async {
                 }
             })
         }
-        if (!self.edtHashUno.text!.isEmpty){
+        if !(self.edtHashUno.text?.isEmpty ?? true){
             let parametros = "tag=\(self.edtHashUno.text!)"
             ws.wsToken(params: parametros, ws: "/usuarios/agregarExtra/", method: "POST", completion: {data in
                 DispatchQueue.main.async {

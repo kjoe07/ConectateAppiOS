@@ -34,10 +34,10 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         
         txtTitulo.text = contenido.titulo
-        txtUsuario.text = contenido.usuario.nombre
-        txtNumTrueques.text = String(contenido.trueques)
-        txtNumPropuestas.text = String(contenido.contrataciones)
-        txtTelefono.text = String(contenido.telefono)
+        txtUsuario.text = contenido.usuario?.nombre
+        txtNumTrueques.text = "\(contenido.trueques ?? 0)"//String()
+        txtNumPropuestas.text = "\(contenido.contrataciones ?? 0)"//String()
+        txtTelefono.text = String(contenido.telefono ?? "")
         txtBody.text = contenido.body
         self.tableView.maxHeight = 200
         
@@ -62,8 +62,8 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        keywords.append(Keyword(id: 0, tipo: 0, tag: contenido.tipo, imagen: ""))
-        keywords.append(contentsOf: self.contenido.keywords)
+        keywords.append(Keyword(id: 0, tipo: 0, tag: contenido.tipo ?? "", imagen: ""))
+        keywords.append(contentsOf: self.contenido.keywords!)
 
         cargarDatos()
         // Do any additional setup after loading the view.

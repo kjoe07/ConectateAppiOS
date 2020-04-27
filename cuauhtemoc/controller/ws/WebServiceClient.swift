@@ -15,7 +15,7 @@ class WebServiceClient:NSObject{
         
         let request = NSMutableURLRequest(url: NSURL(string: "\(strings.ws)/usuarios/login/")! as URL)
         request.httpMethod = "POST"
-        let postString = "email=\(mail)&password=\(pass)&googleid=\(googleId)&dispositivo=\(strings.dispositivo)&interfaz=\(strings.interfaz)"
+        let postString = "email=\(mail)&password=\(pass)&googleid=\(googleId)&dispositivo=\(strings.dispositivo)&interfaz=\(Strings.interfaz)"
         request.httpBody = postString.data(using: String.Encoding.utf8)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
@@ -41,7 +41,7 @@ class WebServiceClient:NSObject{
         
         let request = NSMutableURLRequest(url: NSURL(string: "\(strings.ws)/usuarios/registrar/")! as URL)
         request.httpMethod = "POST"
-        let postString = "email=\(mail)&password=\(pass)&nombre=\(nombre)&apellido=\(apellido)&celular=\(celular)&fecha_nacimiento=\(fecha)&cp=\(cp)&googleid=\(googleId)&dispositivo=\(strings.dispositivo)&interfaz=\(strings.interfaz)"
+        let postString = "email=\(mail)&password=\(pass)&nombre=\(nombre)&apellido=\(apellido)&celular=\(celular)&fecha_nacimiento=\(fecha)&cp=\(cp)&googleid=\(googleId)&dispositivo=\(strings.dispositivo)&interfaz=\(Strings.interfaz)"
         request.httpBody = postString.data(using: String.Encoding.utf8)
         
         print(postString)

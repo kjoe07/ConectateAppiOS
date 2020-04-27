@@ -26,3 +26,9 @@ class ContenidoCompleto:Codable {
 
 
 }
+struct ContentResponse: Codable {
+    let count: Int?
+    let next: String?
+    let previous: String?
+    let results: [Contenido]?
+}

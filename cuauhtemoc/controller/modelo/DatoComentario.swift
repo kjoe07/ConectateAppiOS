@@ -8,18 +8,9 @@
 
 import Foundation
 
-class DatoComentario:Codable {
-    
-    var id:Int!
-    var tipo:Int!
-    var post:Int!
-    var cuerpo:String!
-    
-    init(id:Int, tipo:Int, post:Int, cuerpo:String) {
-        
-        self.id = id
-        self.tipo = tipo
-        self.post = post
-        self.cuerpo = cuerpo
-    }
+struct DatoComentario:Codable {
+    var id: Int?
+    var tipo: Int?
+    var post: Int?
+    var cuerpo: String?
 }

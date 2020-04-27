@@ -47,9 +47,9 @@ class BorderTextField: UITextField {
         }
     }
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return  bounds.insetBy(dx: 13, dy: 0)
+        return  bounds.insetBy(dx: 16, dy: 0)
     }
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: 13, dy: 0)
+        return bounds.insetBy(dx: 16, dy: 0)
     }
 }

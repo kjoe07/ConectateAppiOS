@@ -14,7 +14,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var buscador: UITextField!
     
     var dato:[Intereses] = []
-    var busqueda:[Intereses] = []
+    var busqueda:[Results] = []
     var intereses:[Int] = []
     var contenido:ContenidoCompleto!
     
@@ -29,21 +29,21 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         buscador.delegate = self
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        self.busqueda.removeAll()
-        if(self.buscador.text! == ""){
-            self.busqueda.append(contentsOf: self.dato)
-        } else {
-            for i in 0...self.dato.count-1 {
-                if(self.dato[i].tag.lowercased().contains(self.buscador.text!)){
-                    busqueda.append(self.dato[i])
-                    self.fotosCollectionView.reloadData()
-                }
-            }
-        }
-        return true
-    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        
+//        self.busqueda.removeAll()
+//        if(self.buscador.text! == ""){
+//            self.busqueda.append(contentsOf: self.dato)
+//        } else {
+//            for i in 0...self.dato.count-1 {
+//                if(self.dato[i].tag.lowercased().contains(self.buscador.text!)){
+//                    busqueda.append(self.dato[i])
+//                    self.fotosCollectionView.reloadData()
+//                }
+//            }
+//        }
+//        return true
+//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -53,38 +53,50 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBAction func btnGuardar(_ sender: Any) {
         
         if(self.intereses.count == 5){
-            
-            for i in 0...4 {
-                self.agregarDescripcion(descripcion: String(intereses[i]))
-            }
-            
-            let viewController = self.storyboard?.instantiateViewController(withIdentifier: "personalizadoViewController") as! PersonalizadoViewController
-            self.present(viewController, animated: true, completion: nil)
+            self.agregarDescripcion(values: intereses)
         } else {
-            enviarMensaje(titulo: "¡Ups!", mensaje: "Selecciona 5 hashtags que describan tu perfil para continuar")
+            self.showAlert(title: "¡Ups!", message: "Selecciona 5 hashtags que describan tu perfil para continuar")
         }
     }
     
     
     func cargarDatos(){
-        
-        let ws = WebServiceClient()
-        
-        DispatchQueue.main.async {
-            ws.wsToken(params: "", ws: "/clasificador/listHastTagIntereses/?page_size=300", method: "GET", completion: {data in
-                
-                let algo = data.object(forKey: "results") as! NSArray
-                for val in algo {
-                    
-                    let item = val as! NSDictionary
-                    self.dato.append(Intereses(id: item.object(forKey: "id") as! Int, tipo: item.object(forKey: "tipo") as! Int, tag: item.object(forKey: "tag") as! String, imagen: item.object(forKey: "imagen") as! String))
+        let params = ["page_size":300]
+        showActivityIndicator(color: .green)
+        NetworkLoader.loadData(url: Api.listInterestHashtags.url, data: params, method: .post, completion: {[weak self] (result: MyResult<HashtagProfileResponse>) in
+            DispatchQueue.main.async {
+                guard let self = self else  {return}
+                self.hideActivityIndicator()
+                switch result{
+                case .success(dat: let data):
+                    if data.count ?? 0 > 0 && data.results?.count ?? 0 > 0{
+                        self.busqueda = data.results ?? [Results]()
+                        self.fotosCollectionView.reloadData()
+                    }
+                case .failure(let e):
+                    self.showAlert(title: "¡Ups!", message: e.localizedDescription)
                 }
-                self.busqueda.append(contentsOf: self.dato)
-                DispatchQueue.main.async {
-                    self.fotosCollectionView.reloadData()
-                }
-            })
-        }
+            }
+            
+        })
+        
+//        let ws = WebServiceClient()
+//
+//        DispatchQueue.main.async {
+//            ws.wsToken(params: "", ws: "/clasificador/listHastTagIntereses/?page_size=300", method: "GET", completion: {data in
+//
+//                let algo = data.object(forKey: "results") as! NSArray
+//                for val in algo {
+//
+//                    let item = val as! NSDictionary
+//                    self.dato.append(Intereses(id: item.object(forKey: "id") as! Int, tipo: item.object(forKey: "tipo") as! Int, tag: item.object(forKey: "tag") as! String, imagen: item.object(forKey: "imagen") as! String))
+//                }
+//                self.busqueda.append(contentsOf: self.dato)
+//                DispatchQueue.main.async {
+//                    self.fotosCollectionView.reloadData()
+//                }
+//            })
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -98,7 +110,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         cell.imgCell.af_setImage(withURL: imageURL!)
         
         if(self.intereses.count>0){
-            if intereses.firstIndex(of: self.busqueda[indexPath.row].id) != nil{
+            if intereses.firstIndex(of: self.busqueda[indexPath.row].id ?? 0) != nil{
                 print("Valor \(self.busqueda[indexPath.row].id ?? 0)")
                 cell.showIcon()
             } else {
@@ -130,14 +142,14 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         
         if let cell = collectionView.cellForItem(at: indexPath) as? ImagenesCollectionViewCell {
             
-            if let index = intereses.firstIndex(of: self.busqueda[indexPath.row].id){
+            if let index = intereses.firstIndex(of: self.busqueda[indexPath.row].id ?? 0){
                 intereses.remove(at: index)
                 cell.hideIcon()
             } else {
                 if(self.intereses.count >= 5){
-                    self.enviarMensaje(titulo: "¡Ups!", mensaje: "Solo puedes agregar 5 hashtags")
+                    self.showAlert(title: "¡Ups!", message: "Solo puedes agregar 5 hashtags")
                 } else {
-                    intereses.append(self.busqueda[indexPath.row].id)
+                    intereses.append(self.busqueda[indexPath.row].id ?? 0)
                     cell.showIcon()
                 }
                 
@@ -145,32 +157,37 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
     
-    func enviarMensaje( titulo:String, mensaje:String){
-        
-        let btnAlert = UIAlertController(title: titulo, message:mensaje, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
-        }
-        
-        btnAlert.addAction(okAction)
-        self.present(btnAlert, animated: true, completion: nil)
-    }
-    
-    func agregarDescripcion(descripcion:String){
-        
-        let ws = WebServiceClient()
-        let parametros = "hashtag=\(descripcion)"
-        let pref = UserDefaults();
-        
-        DispatchQueue.main.async {
-            
-            ws.wsToken(params: parametros, ws: "/usuarios/unInteres/", method: "POST", completion: {data in
-                
-                pref.setValue("2", forKey: "bandera")
-                
-            })
-        }
+    func agregarDescripcion(values:[Int]){
+        let params = ["interses":values]
+        showActivityIndicator(color: .green)
+        NetworkLoader.loadData(url: Api.addInterest.url, data: params, method: .post, completion: {[weak self] (resul: MyResult<SendCodeResponse>) in
+            DispatchQueue.main.async {
+                guard let self = self else{return}
+                self.hideActivityIndicator()
+                switch resul{
+                case .success(dat: let data):
+                    if data.result ?? 0 == 1{
+                        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "personalizadoViewController") as! PersonalizadoViewController
+                        self.present(viewController, animated: true, completion: nil)
+
+                    }
+                case .failure(let e):
+                    self.showAlert(title: "", message: e.localizedDescription)
+                }
+            }
+        })
+//        let ws = WebServiceClient()
+//        let parametros = "hashtag=\(descripcion)"
+//        let pref = UserDefaults();
+//
+//        DispatchQueue.main.async {
+//
+//            ws.wsToken(params: parametros, ws: "/usuarios/unInteres/", method: "POST", completion: {data in
+//
+//                pref.setValue("2", forKey: "bandera")
+//
+//            })
+//        }
     }
     
     

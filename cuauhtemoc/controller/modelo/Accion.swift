@@ -39,3 +39,6 @@ class Accion:Codable {
     
     
 }
+
+struct ActionResponse: Codable {
+}

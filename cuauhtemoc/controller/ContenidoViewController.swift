@@ -23,13 +23,13 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
+//        self.collectionView.dataSource = self
+//        self.collectionView.delegate = self
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.buscador.delegate = self
-        self.cargarDatos()
+       // self.buscador.delegate = self
+       // self.cargarDatos()
     }
     
     @IBAction func btnBuscarContenido(_ sender: Any) {
@@ -43,14 +43,14 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             
             for i in 0...self.dato.count-1 {
                 for k in 0...self.busquedaTxt.count-1{
-                    if(self.dato[i].titulo.lowercased().contains(self.busquedaTxt[k].lowercased())
-                    || self.dato[i].body.lowercased().contains(self.busquedaTxt[k].lowercased())){
-                    busqueda.append(self.dato[i])
+                    if(self.dato[i].titulo?.lowercased().contains(self.busquedaTxt[k].lowercased()) ?? false
+                        || ((self.dato[i].body?.lowercased().contains(self.busquedaTxt[k].lowercased())) != nil)){
+                        busqueda.append(self.dato[i])
                     } else {
-                        if (self.dato[i].keywords.count>0){
-                            for j in 0...self.dato[i].keywords.count-1 {
-                            if(self.dato[i].keywords[j].tag.contains(self.busquedaTxt[k].lowercased())){
-                                busqueda.append(self.dato[i])
+                        if (self.dato[i].keywords?.count ?? 0 > 0){
+                            for j in 0...(self.dato[i].keywords?.count ?? 0) - 1 {
+                                if((self.dato[i].keywords?[j].tag.contains(self.busquedaTxt[k].lowercased())) != nil){
+                                    busqueda.append(self.dato[i])
                                 }
                             }
                         }
@@ -91,7 +91,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "contenidoViewCell", for: indexPath) as! ContenidoViewCell
         
         cell.txtTitulo.text = self.busqueda[indexPath.row].titulo!
-        cell.txtNombreUsuario.text = self.busqueda[indexPath.row].usuario.nombre!
+        cell.txtNombreUsuario.text = self.busqueda[indexPath.row].usuario?.nombre!
         cell.txtContenido.text = self.busqueda[indexPath.row].body!
         
         if let _ = busqueda[indexPath.row].img {
@@ -102,12 +102,12 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             cell.imagenContenido.af_setImage(withURL: imageURL!)
         }
         
-        if (self.busqueda[indexPath.row].keywords.count>0){
+        if (self.busqueda[indexPath.row].keywords?.count ?? 0 > 0){
             self.keywords.removeAll()
             cell.keywords.removeAll()
             
             cell.keywords.append(Keyword(id: 0, tipo: 0, tag: self.busqueda[indexPath.row].tipo!, imagen: ""))
-            self.keywords.append(contentsOf: self.busqueda[indexPath.row].keywords)
+            self.keywords.append(contentsOf: self.busqueda[indexPath.row].keywords!)
             cell.keywords.append(contentsOf: self.keywords)            
         }
         
@@ -134,7 +134,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     @objc func btnLike(sender:UIButton){
         
         sender.setBackgroundImage(UIImage(named: "img_like_rosa"), for: UIControl.State.normal)
-        wsAccion(tipo: "1",post: self.busqueda![sender.tag].id,cuerpo: "")
+        wsAccion(tipo: "1",post: self.busqueda![sender.tag].id ?? 0,cuerpo: "")
     }
     
     @objc func btnCompartir(sender:UIButton){
@@ -148,7 +148,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         let okAction = UIAlertAction(title: "Sí", style: UIAlertAction.Style.default) {
             (result : UIAlertAction) -> Void in
             
-            self.wsAccion(tipo: "2",post: self.busqueda![sender.tag].id,cuerpo: "")
+            self.wsAccion(tipo: "2",post: self.busqueda![sender.tag].id ?? 0,cuerpo: "")
         }
         
         btnAlert.addAction(okAction)
@@ -156,31 +156,43 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @objc func btnComentarios(sender:UIButton){
-        
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "comentariosViewController") as! ComentariosViewController
         viewController.post = self.busqueda[sender.tag]
-        
         self.present(viewController, animated: true, completion: nil)
     }
-    
+
     @objc func btnTruques(sender:UIButton){
-        
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ofrecerTruequeViewController") as! OfrecerTruequeViewController
         viewController.post = self.busqueda[sender.tag]
         self.present(viewController, animated: true, completion: nil)
     }
-    
+
     
     func wsAccion(tipo:String, post:Int, cuerpo:String ){
+        let params = ["tipo":tipo,"post":post,"cuerpo":cuerpo] as [String : Any]
+        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .get, completion: {[weak self] (result: MyResult<ActionResponse?>) in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                switch result{
+                case.success(dat: let dat):
+                    if dat != nil {
+                        print("success")
+                    }
+                case .failure(let e):
+                    print(e.localizedDescription)
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+        })
         
-        let ws = WebServiceClient()
-        let params = "tipo=\(tipo)&post=\(post)&cuerpo=\(cuerpo)"
-        
-        DispatchQueue.main.async {
-            ws.wsToken(params: params, ws: "/contenido/acciones/add", method: "POST", completion: { data in
-                
-            })
-        }
+//        let ws = WebServiceClient()
+//        let params = "tipo=\(tipo)&post=\(post)&cuerpo=\(cuerpo)"
+//
+//        DispatchQueue.main.async {
+//            ws.wsToken(params: params, ws: "/contenido/acciones/add", method: "POST", completion: { data in
+//
+//            })
+//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -254,33 +266,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         collectionView.reloadData()
     }
     
-    @IBAction func btnMercado(_ sender: Any) {
-        
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "contenidoViewController") as! ContenidoViewController
-    
-        self.present(viewController, animated: true, completion: nil)
-    }
-
-    @IBAction func btnCargarOferta(_ sender: Any) {
-        
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "cargarOfertaViewController") as! CargarOfertaViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnNotificaciones(_ sender: Any) {
-        
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "notificacionesViewController") as! NotificacionesViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnPerfil(_ sender: Any) {
-    
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "perfilCompletoViewController") as! PerfilCompletoViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
+   
     
     @IBAction func btnEmpelo(_ sender: Any) {
         

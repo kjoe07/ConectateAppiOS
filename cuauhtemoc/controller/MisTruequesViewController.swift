@@ -33,7 +33,7 @@ class MisTruequesViewController: UIViewController, UITableViewDataSource, UITabl
         
         cell.txtTitulo.text = self.dato[indexPath.row].titulo
         cell.txtContenido.text = self.dato[indexPath.row].body
-        cell.txtNombre.text = self.dato[indexPath.row].usuario.nombre
+        cell.txtNombre.text = self.dato[indexPath.row].usuario?.nombre
         
         return cell
     }

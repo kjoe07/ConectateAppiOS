@@ -37,7 +37,7 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
         
         if(validarDatos(textFields: textFields)){
             
-            wsAccion(tipo: "4",post: self.post.id,cuerpo: "\(self.txtOfreces.text!)|\(self.txtCambio.text!)")
+            wsAccion(tipo: "4",post: self.post.id ?? 0,cuerpo: "\(self.txtOfreces.text!)|\(self.txtCambio.text!)")
         }
         
         

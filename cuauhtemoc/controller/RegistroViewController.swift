@@ -43,11 +43,11 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
         txtPassword.delegate = self
         txtPassword2.delegate = self
         txtCP.delegate = self
-       // txtFechaNacimiento.delegate = self
+        txtFechaNacimiento.delegate = self
        // txtEstablecimiento.delegate = self
         
-       // fechaPickerView.datePickerMode = UIDatePicker.Mode.date
-       // fechaPickerView.locale = Locale.init(identifier: "es_MX")
+        fechaPickerView.datePickerMode = UIDatePicker.Mode.date
+        fechaPickerView.locale = Locale.init(identifier: "es_MX")
     
 //        let toolbar = UIToolbar();
 //        toolbar.sizeToFit()
@@ -60,8 +60,7 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
 //        txtTelefono.inputAccessoryView = toolbar
 //        txtCP.inputAccessoryView = toolbar
 //
-//        cargarFecha()
-        // Do any additional setup after loading the view.
+        cargarFecha()
     }
     
     @IBAction func btnLogin(_ sender: Any) {
@@ -69,85 +68,113 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func btnRegistro(_ sender: Any) {
-        
-        if(validarDatos(textFields: textFields)){
+        textFields = [txtNombre,txtTelefono,txtCorreo,txtPassword,txtCP,txtApellido,txtFechaNacimiento]
+        if(chcDatos.isOn && chcTerminos.isOn) && (validarDatos(textFields: textFields)){
             registroUsuarioWS()
+        } else {
+            if !chcDatos.isOn || !chcTerminos.isOn{
+               enviarMensaje(titulo: "Verifica tu información", mensaje: "Debes aceptar términos y coindiciones y la ley de datos personale spara continuar")
+            }else{
+                enviarMensaje(titulo: "¡Ups!", mensaje: "Ingrese todos los campos para continuar")
+            }
         }
     }
     
     func registroUsuarioWS(){
-        let ws = WebServiceClient()
-        let pref = UserDefaults()
-        ws.registro(mail: self.txtCorreo.text!, pass: self.txtPassword.text!, nombre: self.txtNombre.text!, apellido: self.txtApellido.text!, celular: "52\(self.txtTelefono.text!)", fecha: self.fechaString, cp: self.txtCP.text!, googleId: self.googleID, completion: { data in
-            
-            let res = data.object(forKey: "result") as? Int
-            
-            if res ?? 0 == 1 {
-                let token = data.object(forKey: "token") as? String
-                
-                let res1 = data.object(forKey: "usuario") as! NSDictionary
-                
-                let idUsuario =  (res1 as AnyObject).object(forKey: "id")! as? Int
-                let nombre =  (res1 as AnyObject).object(forKey: "nombre")! as? String
-                let apellido =  (res1 as AnyObject).object(forKey: "apellido")! as? String
-                let celular =  (res1 as AnyObject).object(forKey: "celular")! as? String
-                
-                pref.setValue(idUsuario, forKey: "idUsuario")
-                pref.setValue(nombre ?? "", forKey: "nombreUsuario")
-                pref.setValue(apellido ?? "", forKey: "mailUsuario")
-                pref.setValue(celular ?? "", forKey: "celUsuario")
-                pref.setValue(token, forKey: "token")
-                pref.setValue(self.txtPassword.text, forKey: "password")
-                pref.setValue(self.txtCP.text!, forKey: "cp")
-                DispatchQueue.main.async {
-                    let controller = self.storyboard!.instantiateViewController(withIdentifier: "validarCodigoViewController") as! ValidarCodigoViewController
-                    controller.telefono = "52\(self.txtTelefono.text!)"
-                    self.present(controller, animated: true, completion: nil)
+        let params = ["email": self.txtCorreo.text ?? "","password":self.txtPassword.text ?? "","nombre":self.txtNombre.text ?? "", "apellido":txtApellido.text ?? "","celular":"52\(self.txtTelefono.text ?? "")","fecha_nacimiento":fechaString ?? "","interfaz":Strings.interfaz,"cp":txtCP.text ?? "","dispositivo":"ios","googleid":googleID ?? ""] //as [String : Any]
+        showActivityIndicator(color: .green)
+        NetworkLoader.loadData(url: Api.register.url, data: params, method: .post, completion: {[weak self] (result:MyResult<RegisterResponse>) in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                print("result",result)
+                self.hideActivityIndicator()
+                switch result{
+                case .success(let dat):
+                    if dat.result ?? 0 > 0{
+//                        if !KeychainService.savePassword(service: "conectate", account: "token", data: dat.token ?? ""){
+//                            KeychainService.updatePassword(service: "conectate", account: "token", data: dat.token ?? "")
+//                        }
+                        let encoder = try? JSONEncoder().encode(dat.usuario)
+                        UserDefaults.standard.set(encoder, forKey: "usuario")
+                        self.performSegue(withIdentifier: ValidarCodigoViewController.identifier, sender: dat.usuario)
+                    }
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }
-                
-            } else {
-                self.enviarMensaje(titulo: "¡Ups!", mensaje: "Ya existe un usuario registrado con esos datos, intenta iniciar sesión o recuperar contraseña.")
             }
         })
+//        let ws = WebServiceClient()
+//        let pref = UserDefaults()
+//        ws.registro(mail: self.txtCorreo.text!, pass: self.txtPassword.text!, nombre: self.txtNombre.text!, apellido: "", celular: "52\(self.txtTelefono.text!)", fecha: /*self.fechaString*/"", cp: self.txtCP.text!, googleId: self.googleID, completion: { data in
+//
+//            let res = data.object(forKey: "result") as? Int
+//
+//            if res ?? 0 == 1 {
+//                let token = data.object(forKey: "token") as? String
+//
+//                let res1 = data.object(forKey: "usuario") as! NSDictionary
+//
+//                let idUsuario =  (res1 as AnyObject).object(forKey: "id")! as? Int
+//                let nombre =  (res1 as AnyObject).object(forKey: "nombre")! as? String
+//                let apellido =  (res1 as AnyObject).object(forKey: "apellido")! as? String
+//                let celular =  (res1 as AnyObject).object(forKey: "celular")! as? String
+//
+//                pref.setValue(idUsuario, forKey: "idUsuario")
+//                pref.setValue(nombre ?? "", forKey: "nombreUsuario")
+//                pref.setValue(apellido ?? "", forKey: "mailUsuario")
+//                pref.setValue(celular ?? "", forKey: "celUsuario")
+//                pref.setValue(token, forKey: "token")
+//                pref.setValue(self.txtPassword.text, forKey: "password")
+//                pref.setValue(self.txtCP.text!, forKey: "cp")
+//                DispatchQueue.main.async {
+//                    let controller = self.storyboard!.instantiateViewController(withIdentifier: "validarCodigoViewController") as! ValidarCodigoViewController
+//                    controller.telefono = "52\(self.txtTelefono.text!)"
+//                    self.present(controller, animated: true, completion: nil)
+//                }
+//
+//            } else {
+//                self.enviarMensaje(titulo: "¡Ups!", mensaje: "Ya existe un usuario registrado con esos datos, intenta iniciar sesión o recuperar contraseña.")
+//            }
+//        })
         
     }
     
-//    func cargarFecha(){
-//
-//        txtFechaNacimiento.inputView = fechaPickerView
-//
-//        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
-//        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-//        toolBar.barStyle = UIBarStyle.black
-//        toolBar.tintColor = UIColor.white
-//        toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
-//
-//        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(donePressed) )
-//        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
-//
-//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width / 3, height: self.view.frame.size.height))
-//        label.font = UIFont(name: "Helvetica", size: 13)
-//        label.backgroundColor = UIColor.clear
-//        label.textColor = UIColor.white
-//        label.text = "Selecciona una fecha:"
-//        label.textAlignment = NSTextAlignment.center
-//
-//        let textBtn = UIBarButtonItem(customView: label)
-//        toolBar.setItems([textBtn,flexSpace,doneButton], animated: true)
-//        txtFechaNacimiento.inputAccessoryView = toolBar
-//    }
+    func cargarFecha(){
+
+        txtFechaNacimiento.inputView = fechaPickerView
+
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
+        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
+        toolBar.barStyle = UIBarStyle.black
+        toolBar.tintColor = UIColor.white
+        toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
+
+        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(donePressed) )
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width / 3, height: self.view.frame.size.height))
+        label.font = UIFont(name: "Helvetica", size: 13)
+        label.backgroundColor = UIColor.clear
+        label.textColor = UIColor.white
+        label.text = "Selecciona una fecha:"
+        label.textAlignment = NSTextAlignment.center
+
+        let textBtn = UIBarButtonItem(customView: label)
+        toolBar.setItems([textBtn,flexSpace,doneButton], animated: true)
+        txtFechaNacimiento.inputAccessoryView = toolBar
+    }
     
-//    @objc func donePressed() {
-//        txtFechaNacimiento.resignFirstResponder()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = Locale(identifier: "es_MX")
-//        dateFormatter.dateFormat = "dd MMM YYY"
-//        let fechaFormater1 = dateFormatter.string(from: (fechaPickerView.date))
-//        txtFechaNacimiento.text = fechaFormater1
-//
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-//        fechaString = dateFormatter.string(from: (fechaPickerView.date))
-//    }
+    @objc func donePressed() {
+        txtFechaNacimiento.resignFirstResponder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "es_MX")
+        dateFormatter.dateFormat = "dd MMM YYY"
+        let fechaFormater1 = dateFormatter.string(from: (fechaPickerView.date))
+        txtFechaNacimiento.text = fechaFormater1
+
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        fechaString = dateFormatter.string(from: (fechaPickerView.date))
+    }
     
     
 //    func cargaInit(){
@@ -169,10 +196,10 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
 //        view.endEditing(true)
 //    }
 //
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 //
 //    @objc func keyboardWillShow(notification: NSNotification) {
 //
@@ -199,13 +226,8 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
         if(txtPassword.text != txtPassword2.text){
             enviarMensaje(titulo: "Verifica tu información", mensaje: "Las contraseñas deben de coincidir para continuar")
             return false
-        }         
-        if(chcDatos.isOn && chcTerminos.isOn){
-            return true
-        } else {
-            enviarMensaje(titulo: "Verifica tu información", mensaje: "Debes aceptar términos y coindiciones y la ley de datos personale spara continuar")
-            return false
         }
+        return true
     }
     
     func enviarMensaje( titulo:String, mensaje:String){

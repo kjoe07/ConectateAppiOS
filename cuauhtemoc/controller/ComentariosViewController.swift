@@ -37,7 +37,7 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
     
         } else {
             
-           self.wsAccion(tipo: "3",post: self.post.id,cuerpo: txtComentarios.text!)
+           self.wsAccion(tipo: "3",post: self.post.id ?? 0,cuerpo: txtComentarios.text!)
         }
     }
     
