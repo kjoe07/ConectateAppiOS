@@ -11,7 +11,7 @@ import UIKit
 class InteresesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     
     @IBOutlet weak var fotosCollectionView: UICollectionView!
-    @IBOutlet weak var buscador: UITextField!
+    //@IBOutlet weak var buscador: UITextField!
     
     var dato:[Intereses] = []
     var busqueda:[Results] = []
@@ -26,7 +26,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         fotosCollectionView.backgroundColor =  UIColor(white: 1, alpha: 0.0)
         
         cargarDatos()
-        buscador.delegate = self
+        //buscador.delegate = self
     }
     
 //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

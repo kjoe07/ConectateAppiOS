@@ -13,9 +13,9 @@ class NetworkLoader{
         if method == .get{
             var components = URLComponents(string: url)!
             components.queryItems = data.map { (key, value) in
-                URLQueryItem(name: key, value: String(describing: value))
+                    return URLQueryItem(name: key, value: String(describing: value ?? ""))
             }
-            components.percentEncodedQuery = components.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%2B")
+            components.percentEncodedQuery = components.percentEncodedQuery?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)//replacingOccurrences(of: "+", with: "%2B")
             request = URLRequest(url: components.url!)
         }else{
             request = URLRequest(url: URL(string: url)!)
@@ -33,7 +33,7 @@ class NetworkLoader{
         //request.
         if let str = KeychainService.loadPassword(service: "cuauhtemoc", account: "token"){
             print("the request token: \(str)")
-           request.setValue(str, forHTTPHeaderField: "Authorization")
+           request.setValue("Token \(str)", forHTTPHeaderField: "Authorization")
         }
 //        if method.self == .post{
 //

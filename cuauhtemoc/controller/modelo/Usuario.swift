@@ -33,4 +33,5 @@ struct LoginResponse:Codable {
     let token: String?
     let usuario: Usuario?
     let error: String?
+    let code_verification:Int?
 }

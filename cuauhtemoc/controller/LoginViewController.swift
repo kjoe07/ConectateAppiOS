@@ -71,18 +71,31 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("resul:",result)
                 switch result{
                 case .success(let dat):
-                    if dat.result ?? 0 > 0{
+                    if dat.result ?? 0 == 0 {
+                        self.showAlert(title: "¡Ups!", message: dat.error ?? "")
+                    }else if dat.result ?? 0 == 1{
                         print("is greater than 0")
-                        if !KeychainService.savePassword(service: "conectate", account: "token", data: dat.token ?? ""){
-                            KeychainService.updatePassword(service: "conectate", account: "token", data: dat.token ?? "")
+                        if !KeychainService.savePassword(service: "cuauhtemoc", account: "token", data: dat.token ?? ""){
+                            KeychainService.updatePassword(service: "cuauhtemoc", account: "token", data: dat.token ?? "")
                         }
                         let encoder = try? JSONEncoder().encode(dat.usuario)
                         UserDefaults.standard.set(encoder, forKey: "usuario")
                         self.view.window?.rootViewController = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController()
                         //self.view.window?.makeKeyAndVisible()
-                    }else{
-                        self.showAlert(title: "¡Ups!", message: dat.error ?? "")
+                    }else if dat.result ?? 0 == 2{
+                        let vc = self.storyboard?.instantiateViewController(identifier: ValidarCodigoViewController.identifier) as! ValidarCodigoViewController
+                        self.present(vc, animated: true, completion: nil)
+                    }else if dat.result ?? 0 == 3{
+                        let vc = self.storyboard?.instantiateViewController(identifier: PerfilViewController.identifier) as! PerfilViewController
+                        self.present(vc, animated: true, completion: nil)
+                    }else if dat.result ?? 0 == 4 {
+                        let vc = self.storyboard?.instantiateViewController(identifier: InteresesViewController.identifier) as! InteresesViewController
+                        self.present(vc, animated: true, completion: nil)
+                    }else if dat.result ?? 0 == 5{
+                        let vc = self.storyboard?.instantiateViewController(identifier: PersonalizadoViewController.identifier) as! PersonalizadoViewController
+                        self.present(vc, animated: true, completion: nil)
                     }
+                    
                 case .failure(let e):
                     self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }

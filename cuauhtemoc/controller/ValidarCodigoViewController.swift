@@ -60,6 +60,11 @@ class ValidarCodigoViewController: UIViewController, UITextFieldDelegate {
                 switch result{
                 case .success(let dat):
                     if dat.result ?? 0  == 1{
+                        if !KeychainService.savePassword(service: "cuauhtemoc", account: "token", data: dat.token ?? ""){
+                            KeychainService.updatePassword(service: "cuauhtemoc", account: "token", data: dat.token ?? "")
+                        }else{
+                            print("something wrong heppen")
+                        }
                         self.performSegue(withIdentifier: PerfilViewController.identifier, sender: self)
                     }else if dat.result ?? -1 == 0{
                         self.showAlert(title: "¡Ups!", message: "No existe el usuario al que se solicitó este código")

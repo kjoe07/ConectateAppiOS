@@ -90,13 +90,15 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
                 self.hideActivityIndicator()
                 switch result{
                 case .success(let dat):
-                    if dat.result ?? 0 > 0{
+                    if dat.result ?? 0 == 1{
 //                        if !KeychainService.savePassword(service: "conectate", account: "token", data: dat.token ?? ""){
 //                            KeychainService.updatePassword(service: "conectate", account: "token", data: dat.token ?? "")
 //                        }
                         let encoder = try? JSONEncoder().encode(dat.usuario)
                         UserDefaults.standard.set(encoder, forKey: "usuario")
                         self.performSegue(withIdentifier: ValidarCodigoViewController.identifier, sender: dat.usuario)
+                    }else{
+                        self.showAlert(title: "¡Ups!", message: "Ya existe un/a usuario con este/a email.")
                     }
                 case .failure(let e):
                     self.showAlert(title: "Ups!", message: e.localizedDescription)

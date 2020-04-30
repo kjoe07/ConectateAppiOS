@@ -9,58 +9,45 @@
 import UIKit
 import AlamofireImage
 
-class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate,UISearchResultsUpdating,UISearchBarDelegate {
 
     @IBOutlet weak var fotosCollectionView: UICollectionView!
     @IBOutlet weak var buscador: UITextField!
+    @IBOutlet weak var search: UIView!
     
-    var dato:[Intereses] = []
-    var busqueda:[Intereses] = []
+    //var dato:[Intereses] = []
+    var busqueda:[Results]? = []
     var intereses:[Int] = []
     var result: [Results]?
+    let searchController = UISearchController(searchResultsController: nil)
+    var isSearching = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fotosCollectionView.delegate = self
         fotosCollectionView.dataSource = self
         fotosCollectionView.backgroundColor =  UIColor(white: 1, alpha: 0.0)
+        searchController.searchResultsUpdater = self
+        definesPresentationContext = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        search.addSubview(searchController.searchBar)
+        searchController.searchBar.leftAnchor.constraint(equalTo: search.leftAnchor).isActive = true
+        searchController.searchBar.rightAnchor.constraint(equalTo: search.rightAnchor).isActive = true
+        searchController.searchBar.heightAnchor.constraint(equalTo: search.heightAnchor).isActive = true
+        
+        searchController.searchBar.delegate = self
 
         cargarDatos()
-        buscador.delegate = self
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        self.busqueda.removeAll()
-        if(self.buscador.text! == ""){
-            self.busqueda.append(contentsOf: self.dato)
-        } else {
-            for i in 0...self.dato.count-1 {
-                if(self.dato[i].tag.lowercased().contains(self.buscador.text!)){
-                    busqueda.append(self.dato[i])
-                    self.fotosCollectionView.reloadData()
-                }
-            }
-        }
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+       // buscador.delegate = self
     }
     
     @IBAction func btnGuardar(_ sender: Any) {
         
-        if(self.intereses.count == 3){
+        if(self.intereses.count == 5){
             self.agregarDescripcion(descripcion: intereses)
-//            for i in 0...2 {
-//                self.agregarDescripcion(descripcion: intereses[i])
-//            }
-            
-            
         } else {
-            enviarMensaje(titulo: "¡Ups!", mensaje: "Selecciona 3 hashtags que describan tu perfil para continuar")
+            enviarMensaje(titulo: "¡Ups!", mensaje: "Selecciona 5 hashtags que describan tu perfil para continuar")
         }
     }
     
@@ -81,37 +68,20 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
                     self.showAlert(title: "", message: e.localizedDescription)
                 }
             }
-            
         })
-        
-//        let ws = WebServiceClient()
-//
-//        DispatchQueue.main.async {
-//            ws.wsToken(params: "", ws: "/clasificador/listHastTagPerfil/?page_size=300", method: "GET", completion: {data in
-//
-//                let algo = data.object(forKey: "results") as! NSArray
-//                for val in algo {
-//
-//                    let item = val as! NSDictionary
-//                    self.dato.append(Intereses(id: item.object(forKey: "id") as! Int, tipo: item.object(forKey: "tipo") as! Int, tag: item.object(forKey: "tag") as! String, imagen: item.object(forKey: "imagen") as! String))
-//                }
-//                self.busqueda.append(contentsOf: self.dato)
-//                DispatchQueue.main.async {
-//                    self.fotosCollectionView.reloadData()
-//                }
-//            })
-//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fotoCollectionView", for: indexPath) as! ImagenesCollectionViewCell
-        let url = result?[indexPath.row].imagen//busqueda[indexPath.row].imagen!
-        cell.txtNombre.text = "#\(busqueda[indexPath.row].tag!)"
-        cell.imgCell.contentMode = .scaleAspectFit
-        let imageURL = URL(string: url ?? "")
-        cell.imgCell.af_setImage(withURL: imageURL!)
+        let url = !isSearching ?  result?[indexPath.row].imagen : busqueda?[indexPath.row].imagen//busqueda[indexPath.row].imagen!
+        cell.txtNombre.text = "#\(!isSearching ? result?[indexPath.row].tag ?? "" : busqueda?[indexPath.row].tag ?? "")"
+        //cell.imgCell.contentMode = .scaleAspectFit
+        if let imageURL = URL(string: url?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? ""){
+            cell.imgCell.af_setImage(withURL: imageURL)
+        }
+        
         if self.intereses.count > 0 {
-            if intereses.contains(self.result?[indexPath.row].id ?? -1){
+            if intereses.contains( !isSearching ?  self.result?[indexPath.row].id ?? -1 : busqueda?[indexPath.row].id ?? -1){
                 cell.showIcon()
             }else{
                 cell.hideIcon()
@@ -127,12 +97,12 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return result?.count ?? 0//busqueda.count
+        return isSearching ? busqueda?.count ?? 0 :  result?.count ?? 0//busqueda.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: 120, height: 120)
+        let val = (UIScreen.main.bounds.width - 80) / 3
+        return CGSize(width:  val, height: val)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -150,10 +120,10 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
                 intereses.remove(at: index)
                 cell.hideIcon()
             } else {
-                if(self.intereses.count > 2){
-                    self.enviarMensaje(titulo: "¡Ups!", mensaje: "Solo puedes agregar 3 hashtags")
+                if(self.intereses.count > 4){
+                    self.enviarMensaje(titulo: "¡Ups!", mensaje: "Solo puedes agregar 4 hashtags")
                 }else {
-                    intereses.append(self.busqueda[indexPath.row].id)
+                    intereses.append(self.result?[indexPath.row].id ?? 0)
                     cell.showIcon()
                 }                
             }
@@ -173,7 +143,7 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func agregarDescripcion(descripcion:[Int]){
-        let params = ["Descripciones":description]
+        let params = ["intereses":intereses]
         showActivityIndicator(color: .green)
         NetworkLoader.loadData(url: Api.description.url, data: params, method: .post, completion: {[weak self] (result: MyResult<SendCodeResponse>) in
             DispatchQueue.main.async {
@@ -182,8 +152,9 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
                 switch result{
                 case .success(dat: let dat):
                     if dat.result ?? 0 == 1{
-                        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "interesesViewController") as! InteresesViewController
-                        self.present(viewController, animated: true, completion: nil)
+                        self.performSegue(withIdentifier: InteresesViewController.identifier, sender: self)
+                        //let viewController = self.storyboard?.instantiateViewController(withIdentifier: "interesesViewController") as! InteresesViewController
+                        //self.present(viewController, animated: true, completion: nil)
                         //self.showAlert(title: "", message: "los datos se guardaron correctamente")
                     }
                 case .failure(let e):
@@ -205,8 +176,38 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
 //            })
 //        }
     }
-    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchTerm = searchController.searchBar.text
+        if  searchTerm != ""{
+            isSearching = true
+            busqueda =  result?.filter({
+//                guard let val = $0.tag else {return false}
+//                return searchTerm?.contains(val) ?? false
+                $0.tag?.lowercased().contains(searchTerm!.lowercased()) ?? false
+            })
+            self.fotosCollectionView.reloadData()
+        }else{
+            isSearching = false
             
-            
-    
+        }
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+        
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("textchanged")
+        if searchText.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.searchController.resignFirstResponder()
+                self.view.endEditing(true)
+            }
+        }
+    }
 }
