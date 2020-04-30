@@ -56,7 +56,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
     func cargarDatos(){
         let params = ["page_size":300]
         showActivityIndicator(color: .green)
-        NetworkLoader.loadData(url: Api.listInterestHashtags.url, data: params, method: .post, completion: {[weak self] (result: MyResult<HashtagProfileResponse>) in
+        NetworkLoader.loadData(url: Api.listInterestHashtags.url, data: params, method: .get, completion: {[weak self] (result: MyResult<HashtagProfileResponse>) in
             DispatchQueue.main.async {
                 guard let self = self else  {return}
                 self.hideActivityIndicator()
@@ -126,7 +126,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func agregarDescripcion(values:[Int]){
-        let params = ["interses":values]
+        let params = ["intereses":values]
         showActivityIndicator(color: .green)
         NetworkLoader.loadData(url: Api.addInterest.url, data: params, method: .post, completion: {[weak self] (resul: MyResult<SendCodeResponse>) in
             DispatchQueue.main.async {

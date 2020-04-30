@@ -53,32 +53,32 @@ enum Api {
         case .description:
             return "\(server.ws)/usuarios/agregarDescripcion/"
         case .listInterestHashtags:
-            return "\(server.ws)/clasificador/listHastTagIntereses"
+            return "\(server.ws)/clasificador/listHastTagIntereses/"
         case .addInterest:
             return "\(server.ws)/usuarios/agregarIntereses/"
         case .addExtra:
             return "\(server.ws)/usuarios/agregarExtra/"
         case .addComment:
-            return "\(server.ws)/contenido/list_post"
+            return "\(server.ws)/contenido/list_post/"
         case .listContent:
-             return "\(server.ws)/contenido/list_post"
+             return "\(server.ws)/contenido/list_post/"
         case .singleContent:
             return "\(server.ws)/contenido/ver_post/"
         case .createContent:
             return "\(server.ws)/contenido/add_post/"
         case .listHashTagsByKeyword:
-            return "\(server.ws)/clasificador/listHastTagKetwords"
+            return "\(server.ws)/clasificador/listHastTagKetwords/"
         case .seeProfile:
             return "\(server.ws)/usuarios/verPerfil/"
         case .notification:
-            return "\(server.ws)/usuarios/notificaciones"
+            return "\(server.ws)/usuarios/notificaciones/"
         case .updateUser:
             return "\(server.ws)/usuarios/update_usuario/"
         case .sendCode:
             return "\(server.ws)/usuarios/verificarCodigo/"
         
         case .contentAction:
-            return  "\(server.ws)/contenido/acciones/add"
+            return  "\(server.ws)/contenido/acciones/add/"
         }
     }
     

@@ -78,7 +78,7 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
         //cell.imgCell.contentMode = .scaleAspectFit
         if let imageURL = URL(string: url?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? ""){
             cell.imgCell.af_setImage(withURL: imageURL)
-        }        
+        }
         if self.intereses.count > 0 {
             if intereses.contains( !isSearching ?  self.result?[indexPath.row].id ?? -1 : busqueda?[indexPath.row].id ?? -1){
                 cell.showIcon()
@@ -134,7 +134,7 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func agregarDescripcion(descripcion:[Int]){
-        let params = ["intereses":intereses]
+        let params = ["descripciones":intereses]
         showActivityIndicator(color: .green)
         NetworkLoader.loadData(url: Api.description.url, data: params, method: .post, completion: {[weak self] (result: MyResult<SendCodeResponse>) in
             DispatchQueue.main.async {
@@ -144,6 +144,8 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
                 case .success(dat: let dat):
                     if dat.result ?? 0 == 1{
                         self.performSegue(withIdentifier: InteresesViewController.identifier, sender: self)
+                    }else{
+                        self.showAlert(title: "¡Ups!", message: "Ocurrio un error al comunicarnos con el servidor")
                     }
                 case .failure(let e):
                     self.showAlert(title: "", message: e.localizedDescription)
