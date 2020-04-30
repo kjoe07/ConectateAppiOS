@@ -44,7 +44,7 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     @IBAction func btnGuardar(_ sender: Any) {
         
-        if(self.intereses.count == 5){
+        if(self.intereses.count == 3){
             self.agregarDescripcion(descripcion: intereses)
         } else {
             enviarMensaje(titulo: "¡Ups!", mensaje: "Selecciona 5 hashtags que describan tu perfil para continuar")
@@ -78,20 +78,13 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
         //cell.imgCell.contentMode = .scaleAspectFit
         if let imageURL = URL(string: url?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? ""){
             cell.imgCell.af_setImage(withURL: imageURL)
-        }
-        
+        }        
         if self.intereses.count > 0 {
             if intereses.contains( !isSearching ?  self.result?[indexPath.row].id ?? -1 : busqueda?[indexPath.row].id ?? -1){
                 cell.showIcon()
             }else{
                 cell.hideIcon()
             }
-//            if intereses.firstIndex(of: self.result?[indexPath.row].id ?? 0) != nil{
-//                print("Valor \(self.busqueda[indexPath.row].id ?? 0)")
-//                cell.showIcon()
-//            } else {
-//                cell.hideIcon()
-//            }
         }
         return cell
     }
@@ -120,8 +113,8 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
                 intereses.remove(at: index)
                 cell.hideIcon()
             } else {
-                if(self.intereses.count > 4){
-                    self.enviarMensaje(titulo: "¡Ups!", mensaje: "Solo puedes agregar 4 hashtags")
+                if(self.intereses.count > 2){
+                    self.showAlert(title: "¡Ups!", message: "Solo puedes agregar 3 hashtags")
                 }else {
                     intereses.append(self.result?[indexPath.row].id ?? 0)
                     cell.showIcon()
@@ -131,13 +124,11 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func enviarMensaje( titulo:String, mensaje:String){
-        
         let btnAlert = UIAlertController(title: titulo, message:mensaje, preferredStyle: UIAlertController.Style.alert)
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
             (result : UIAlertAction) -> Void in
         }
-        
         btnAlert.addAction(okAction)
         self.present(btnAlert, animated: true, completion: nil)
     }
@@ -153,28 +144,12 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
                 case .success(dat: let dat):
                     if dat.result ?? 0 == 1{
                         self.performSegue(withIdentifier: InteresesViewController.identifier, sender: self)
-                        //let viewController = self.storyboard?.instantiateViewController(withIdentifier: "interesesViewController") as! InteresesViewController
-                        //self.present(viewController, animated: true, completion: nil)
-                        //self.showAlert(title: "", message: "los datos se guardaron correctamente")
                     }
                 case .failure(let e):
                     self.showAlert(title: "", message: e.localizedDescription)
                 }
             }
         })
-        
-//        let ws = WebServiceClient()
-//        let parametros = "hashtag=\(descripcion)"
-//        let pref = UserDefaults();
-//
-//        DispatchQueue.main.async {
-//
-//            ws.wsToken(params: parametros, ws: "/usuarios/unaDescripcion/", method: "POST", completion: {data in
-//
-//                pref.setValue("1", forKey: "bandera")
-//
-//            })
-//        }
     }
     func updateSearchResults(for searchController: UISearchController) {
         let searchTerm = searchController.searchBar.text

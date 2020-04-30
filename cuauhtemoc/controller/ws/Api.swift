@@ -51,11 +51,11 @@ enum Api {
         case .listProfileHashtags:
             return "\(server.ws)/clasificador/listHastTagPerfil/"
         case .description:
-            return "\(server.ws)/usuarios/agregarIntereses/"
+            return "\(server.ws)/usuarios/agregarDescripcion/"
         case .listInterestHashtags:
             return "\(server.ws)/clasificador/listHastTagIntereses"
         case .addInterest:
-            return "\(server.ws)/usuarios/unInteres/"
+            return "\(server.ws)/usuarios/agregarIntereses/"
         case .addExtra:
             return "\(server.ws)/usuarios/agregarExtra/"
         case .addComment:

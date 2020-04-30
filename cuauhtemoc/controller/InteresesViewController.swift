@@ -8,42 +8,36 @@
 
 import UIKit
 
-class InteresesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+class InteresesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchResultsUpdating, UISearchBarDelegate {
     
     @IBOutlet weak var fotosCollectionView: UICollectionView!
+    @IBOutlet weak var search: UIView!
     //@IBOutlet weak var buscador: UITextField!
     
     var dato:[Intereses] = []
-    var busqueda:[Results] = []
+    var busqueda:[Results]? = []
+    var result: [Results]?
     var intereses:[Int] = []
     var contenido:ContenidoCompleto!
-    
+    let searchController = UISearchController(searchResultsController: nil)
+    var isSearching = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fotosCollectionView.delegate = self
         fotosCollectionView.dataSource = self
         fotosCollectionView.backgroundColor =  UIColor(white: 1, alpha: 0.0)
-        
         cargarDatos()
-        //buscador.delegate = self
+        definesPresentationContext = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        search.addSubview(searchController.searchBar)
+        searchController.searchBar.leftAnchor.constraint(equalTo: search.leftAnchor).isActive = true
+        searchController.searchBar.rightAnchor.constraint(equalTo: search.rightAnchor).isActive = true
+        searchController.searchBar.heightAnchor.constraint(equalTo: search.heightAnchor).isActive = true
+        
+        searchController.searchBar.delegate = self
     }
-    
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        
-//        self.busqueda.removeAll()
-//        if(self.buscador.text! == ""){
-//            self.busqueda.append(contentsOf: self.dato)
-//        } else {
-//            for i in 0...self.dato.count-1 {
-//                if(self.dato[i].tag.lowercased().contains(self.buscador.text!)){
-//                    busqueda.append(self.dato[i])
-//                    self.fotosCollectionView.reloadData()
-//                }
-//            }
-//        }
-//        return true
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -59,7 +53,6 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
     
-    
     func cargarDatos(){
         let params = ["page_size":300]
         showActivityIndicator(color: .green)
@@ -70,7 +63,8 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
                 switch result{
                 case .success(dat: let data):
                     if data.count ?? 0 > 0 && data.results?.count ?? 0 > 0{
-                        self.busqueda = data.results ?? [Results]()
+                        self.result = data.results
+                        //self.busqueda = data.results ?? [Results]()
                         self.fotosCollectionView.reloadData()
                     }
                 case .failure(let e):
@@ -79,54 +73,31 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
             }
             
         })
-        
-//        let ws = WebServiceClient()
-//
-//        DispatchQueue.main.async {
-//            ws.wsToken(params: "", ws: "/clasificador/listHastTagIntereses/?page_size=300", method: "GET", completion: {data in
-//
-//                let algo = data.object(forKey: "results") as! NSArray
-//                for val in algo {
-//
-//                    let item = val as! NSDictionary
-//                    self.dato.append(Intereses(id: item.object(forKey: "id") as! Int, tipo: item.object(forKey: "tipo") as! Int, tag: item.object(forKey: "tag") as! String, imagen: item.object(forKey: "imagen") as! String))
-//                }
-//                self.busqueda.append(contentsOf: self.dato)
-//                DispatchQueue.main.async {
-//                    self.fotosCollectionView.reloadData()
-//                }
-//            })
-//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let url = busqueda[indexPath.row].imagen!
-        let imageURL = URL(string: url)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fotoCollectionView", for: indexPath) as! ImagenesCollectionViewCell
-        
-        cell.txtNombre.text = "#\(busqueda[indexPath.row].tag!)"
-        cell.imgCell.contentMode = .scaleAspectFit
-        cell.imgCell.af_setImage(withURL: imageURL!)
-        
-        if(self.intereses.count>0){
-            if intereses.firstIndex(of: self.busqueda[indexPath.row].id ?? 0) != nil{
-                print("Valor \(self.busqueda[indexPath.row].id ?? 0)")
-                cell.showIcon()
-            } else {
-                cell.hideIcon()
-            }
+        cell.txtNombre.text = "#\(isSearching ?  busqueda?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "")"
+        if let url = isSearching ? busqueda?[indexPath.row].imagen?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) : result?[indexPath.row].imagen?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? "", let imageURL = URL(string: url){
+            cell.imgCell.af_setImage(withURL: imageURL)
         }
+       if self.intereses.count > 0 {
+           if intereses.contains( !isSearching ?  self.result?[indexPath.row].id ?? -1 : busqueda?[indexPath.row].id ?? -1){
+               cell.showIcon()
+           }else{
+               cell.hideIcon()
+           }
+       }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return busqueda.count
+        return isSearching ? busqueda?.count ?? 0 : result?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: 120, height: 120)
+        let val = (UIScreen.main.bounds.width - 80) / 3
+        return CGSize(width:  val, height: val)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -139,20 +110,17 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if let cell = collectionView.cellForItem(at: indexPath) as? ImagenesCollectionViewCell {
-            
-            if let index = intereses.firstIndex(of: self.busqueda[indexPath.row].id ?? 0){
+            if let index = intereses.firstIndex(of: isSearching ? self.busqueda?[indexPath.row].id ?? 0 : self.result?[indexPath.row].id ?? 0){
                 intereses.remove(at: index)
                 cell.hideIcon()
             } else {
                 if(self.intereses.count >= 5){
                     self.showAlert(title: "¡Ups!", message: "Solo puedes agregar 5 hashtags")
                 } else {
-                    intereses.append(self.busqueda[indexPath.row].id ?? 0)
+                    intereses.append(isSearching ? self.busqueda?[indexPath.row].id ?? 0 : self.result?[indexPath.row].id ?? 0)
                     cell.showIcon()
                 }
-                
             }
         }
     }
@@ -167,68 +135,44 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
                 switch resul{
                 case .success(dat: let data):
                     if data.result ?? 0 == 1{
-                        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "personalizadoViewController") as! PersonalizadoViewController
-                        self.present(viewController, animated: true, completion: nil)
-
+                        self.performSegue(withIdentifier: PersonalizadoViewController.identifier, sender: self)
                     }
                 case .failure(let e):
                     self.showAlert(title: "", message: e.localizedDescription)
                 }
             }
         })
-//        let ws = WebServiceClient()
-//        let parametros = "hashtag=\(descripcion)"
-//        let pref = UserDefaults();
-//
-//        DispatchQueue.main.async {
-//
-//            ws.wsToken(params: parametros, ws: "/usuarios/unInteres/", method: "POST", completion: {data in
-//
-//                pref.setValue("2", forKey: "bandera")
-//
-//            })
-//        }
     }
     
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchTerm = searchController.searchBar.text
+        if  searchTerm != ""{
+            isSearching = true
+            busqueda =  result?.filter({
+                $0.tag?.lowercased().contains(searchTerm!.lowercased()) ?? false
+            })
+            self.fotosCollectionView.reloadData()
+        }else{
+            isSearching = false
+        }
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
     
-    /*
-     
-     func cargarDatos(){
-     
-     let pref = UserDefaults()
-     let request = NSMutableURLRequest(url: NSURL(string: "\(Strings().ws)/clasificador/listHastTagIntereses/?page_size=300")! as URL)
-     request.httpMethod = "GET"
-     request.setValue("Token \(pref.string(forKey: "token")!)", forHTTPHeaderField: "Authorization")
-     
-     let task = URLSession.shared.dataTask(with: request as URLRequest) { data, response, error in
-     
-     guard error == nil && data != nil else {
-     print(error!.localizedDescription)
-     return
-     }
-     
-     guard let data = data else { return }
-     do {
-     print("Entro")
-     self.contenido = try JSONDecoder().decode(ContenidoCompleto.self, from: data)
-     print("Parseo")
-     print(self.contenido.results.count)
-     self.dato.append(contentsOf: self.contenido.results)
-     self.busqueda.append(contentsOf: self.contenido.results)
-     
-     DispatchQueue.main.async {
-     self.fotosCollectionView.reloadData()
-     
-     }
-     } catch let jsonError {
-     print(jsonError)
-     }
-     }
-     task.resume()
-     }
- 
- */
-    
-    
-    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("textchanged")
+        if searchText.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.searchController.resignFirstResponder()
+                self.view.endEditing(true)
+            }
+        }
+    }
 }

@@ -63,9 +63,10 @@ class PersonalizadoViewController: UIViewController {
             })
         }
         
-        pref.setValue("3", forKey: "bandera")
+        //pref.setValue("3", forKey: "bandera")
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "menuViewController") as! MenuViewController
-        self.present(viewController, animated: true, completion: nil)
+        self.view.window?.rootViewController = viewController
+        //self.present(viewController, animated: true, completion: nil)
         
     }
     
@@ -73,7 +74,7 @@ class PersonalizadoViewController: UIViewController {
     @IBAction func btnAgregarUno(_ sender: Any) {
         
         if edtHashUno.text!.isEmpty{
-            enviarMensaje(titulo: "¡Ups!", mensaje: "El campo no puede estar vacio")
+            showAlert(title: "¡Ups!", message: "El campo no puede estar vacio")
         } else {
             imgUno.isHidden = true
             viewUno.isHidden = false
@@ -84,7 +85,7 @@ class PersonalizadoViewController: UIViewController {
     @IBAction func btnAgregarDOs(_ sender: Any) {
         
         if edtHashDos.text!.isEmpty{
-            enviarMensaje(titulo: "¡Ups!", mensaje: "El campo no puede estar vacio")
+            showAlert(title: "¡Ups!", message: "El campo no puede estar vacio")
         } else {
             imgDos.isHidden = true
             viewDOs.isHidden = false
@@ -113,18 +114,6 @@ class PersonalizadoViewController: UIViewController {
             stcDos.isHidden = true
             varDos = true
         }
-    }
-    
-    func enviarMensaje( titulo:String, mensaje:String){
-        
-        let btnAlert = UIAlertController(title: titulo, message:mensaje, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
-        }
-        
-        btnAlert.addAction(okAction)
-        self.present(btnAlert, animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
