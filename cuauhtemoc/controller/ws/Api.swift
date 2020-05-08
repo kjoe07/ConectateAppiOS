@@ -75,7 +75,7 @@ enum Api {
         case .updateUser:
             return "\(server.ws)/usuarios/update_usuario/"
         case .sendCode:
-            return "\(server.ws)/usuarios/verificarCodigo/"
+            return "\(server.ws)/usuarios/enviarCodigo/"
         
         case .contentAction:
             return  "\(server.ws)/contenido/acciones/add/"

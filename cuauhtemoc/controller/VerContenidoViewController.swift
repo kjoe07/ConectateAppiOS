@@ -10,9 +10,9 @@ import UIKit
 
 class VerContenidoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
    
-    var contenido:Contenido!
+    var contenido: Post?
     var keywords:[Keyword]! = []
-    var post:Post!
+    var post: Post!
     var postCompleto:PostCompleto!
     var recursos:[Recurso]!  = []
     var acciones:[Accion]!  = []
@@ -33,27 +33,27 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        txtTitulo.text = contenido.titulo
-        txtUsuario.text = contenido.usuario?.nombre
-        txtNumTrueques.text = "\(contenido.trueques ?? 0)"//String()
-        txtNumPropuestas.text = "\(contenido.contrataciones ?? 0)"//String()
-        txtTelefono.text = String(contenido.telefono ?? "")
-        txtBody.text = contenido.body
+        txtTitulo.text = contenido?.titulo
+        txtUsuario.text = contenido?.usuario?.nombre
+        txtNumTrueques.text = "\(contenido?.trueques ?? 0)"//String()
+        txtNumPropuestas.text = "\(contenido?.contrataciones ?? 0)"//String()
+        txtTelefono.text = String(contenido?.telefono ?? "")
+        txtBody.text = contenido?.body
         self.tableView.maxHeight = 200
         
-        print(contenido.tipo ?? "")
-        if(contenido.tipo == "Empleo"){
+        print(contenido?.tipo ?? "")
+        if(contenido?.tipo == "Empleo"){
             btnActionOtro.setTitle("Quiero aplicar", for: UIControl.State.normal)
             btnActionTrueque.isHidden = true
-        } else if(contenido.tipo == "Servicio"){
+        } else if(contenido?.tipo == "Servicio"){
             btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
-        } else if(contenido.tipo == "Establecimiento"){
+        } else if(contenido?.tipo == "Establecimiento"){
             btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
             btnActionTrueque.isHidden = true
-        } else if(contenido.tipo == "Evento"){
+        } else if(contenido?.tipo == "Evento"){
             btnActionOtro.setTitle("Quiero asistir", for: UIControl.State.normal)
             btnActionTrueque.isHidden = true
-        } else if(contenido.tipo == "Producto"){
+        } else if(contenido?.tipo == "Producto"){
             btnActionOtro.setTitle("Quiero comprar", for: UIControl.State.normal)
         }
         
@@ -62,8 +62,8 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        keywords.append(Keyword(id: 0, tipo: 0, tag: contenido.tipo ?? "", imagen: ""))
-        keywords.append(contentsOf: self.contenido.keywords!)
+        keywords.append(Keyword(id: 0, tipo: 0, tag: contenido?.tipo ?? "", imagen: ""))
+        keywords.append(contentsOf: self.contenido?.keywords ?? [Keyword]())
 
         cargarDatos()
         // Do any additional setup after loading the view.
@@ -76,23 +76,18 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         cell.lblTexto.text = self.recursos[indexPath.row].valor
         
         if (self.recursos[indexPath.row].tipo == 3){
-            
-           
-            let url = self.recursos[indexPath.row].valor
-            let imageURL = URL(string: url!)
-            cell.imgPost.contentMode = .scaleAspectFit
-            cell.imgPost.af_setImage(withURL: imageURL!)
+            if let url = self.recursos[indexPath.row].valor.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed), let imageURL = URL(string: url){
+                cell.imgPost.contentMode = .scaleToFill
+                cell.imgPost.af_setImage(withURL: imageURL)
+            }
             cell.imgPost.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-            
             cell.lblTexto.isHidden = true
             cell.imgServicio.isHidden = true
             self.tableView.rowHeight = 220
-    
         } else {
             cell.lblTexto.isHidden = false
             cell.imgServicio.isHidden = false
             cell.imgPost.isHidden = true
-            
             self.tableView.rowHeight = 40
         }
         
@@ -161,7 +156,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     
     func cargarDatos(){        
         let ws = WebServiceClient()
-        ws.wsTokenArray(params: "", ws: "/contenido/ver_post/\(self.contenido.id!)/", method: "GET", completion: { data in
+        ws.wsTokenArray(params: "", ws: "/contenido/ver_post/\(self.contenido?.id ?? 0)/", method: "GET", completion: { data in
             
             do {
                 self.postCompleto = try JSONDecoder().decode(PostCompleto.self, from: data as! Data)

@@ -40,8 +40,8 @@ class PersonalizadoViewController: UIViewController {
         let singleTapDos: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.singleTappingDos(recognizer:)))
         singleTap.numberOfTapsRequired = 1
         imgDos.addGestureRecognizer(singleTapDos)
-        
-        stcUno.isHidden = true
+        viewUno.isHidden = true
+       // stcUno.isHidden = true
         stcDos.isHidden = true
     }
     
@@ -62,10 +62,10 @@ class PersonalizadoViewController: UIViewController {
                 }
             })
         }
-        
+        let vc = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController()
         //pref.setValue("3", forKey: "bandera")
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "menuViewController") as! MenuViewController
-        self.view.window?.rootViewController = viewController
+        //let viewController = self.storyboard?.instantiateViewController(withIdentifier: ContenidoViewController.identifier) as! MenuViewController
+        self.view.window?.rootViewController = vc
         //self.present(viewController, animated: true, completion: nil)
         
     }

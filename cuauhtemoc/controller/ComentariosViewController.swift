@@ -13,7 +13,7 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var txtComentarios: UITextField!
     
-    var post:Contenido!
+    var post:Post!
     
     var acciones:[Accion]!  = []
     var comentarios:[Accion]!  = []

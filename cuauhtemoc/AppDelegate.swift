@@ -43,9 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Permiso denegado por el usuario")
             }
         }
-//        let vc = coordinator.nextViewController()
-//        window?.rootViewController = vc
-//        window?.makeKeyAndVisible()
+        if UserDefaults.standard.object(forKey: "usuario") != nil{
+            let vc = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController()
+            self.window?.rootViewController = vc
+            window?.makeKeyAndVisible()
+        }
         
         return true
     }

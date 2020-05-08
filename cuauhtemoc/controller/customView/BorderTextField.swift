@@ -46,10 +46,33 @@ class BorderTextField: UITextField {
             layer.shadowRadius = shadowRadius
         }
     }
+    @IBInspectable var rightImage: UIImage = UIImage(){
+        didSet{
+            let imageView = UIImageView(image: rightImage)
+            self.rightView = imageView
+        }
+    }
+    @IBInspectable var isRightViewVisible: Bool = false{
+        didSet{
+            if isRightViewVisible{
+                rightViewMode = .always
+            }else{
+                rightViewMode = .never
+            }
+        }
+    }
+    @IBInspectable var placeHolderColor: UIColor = .white {
+        didSet{
+            self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[NSAttributedString.Key.foregroundColor: placeHolderColor])
+        }
+    }
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return  bounds.insetBy(dx: 16, dy: 0)
     }
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: 16, dy: 0)
+    }
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        return CGRect(x: bounds.width - 24, y: (bounds.height/2) - 6, width: 18, height: 12)//bounds.insetBy(dx: (bounds.width - 32), dy: 16)
     }
 }

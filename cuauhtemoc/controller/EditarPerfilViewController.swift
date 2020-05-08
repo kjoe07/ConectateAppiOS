@@ -105,9 +105,9 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
                 do {
                     self.perfil = try JSONDecoder().decode(PerfilCompleto.self, from: data as! Data)
                     
-                    self.todos.append(contentsOf: self.perfil.perfil.descripcion)
-                    self.todos.append(contentsOf: self.perfil.perfil.intereses)
-                    self.todos.append(contentsOf: self.perfil.perfil.extras)
+                    self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
+                    self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Intereses]())
+                    self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Intereses]())
                     
                     self.usuario = self.perfil.perfil.usuario
                     

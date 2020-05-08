@@ -14,7 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var scrollGestureRecognizer: UITapGestureRecognizer!
     var textFields: [UITextField]!
     let strings = Strings()
-    var googleID:String!
+    var googleID:String?
     
     @IBOutlet weak var txtCorreo: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
@@ -62,7 +62,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loginUsuarioWS(){
-        let params = ["email": txtCorreo.text ?? "","password":txtPassword.text ?? "","googleid":googleID,"dispositivo":"ios","interfaz":"1"]
+        let params = ["email": txtCorreo.text ?? "","password":txtPassword.text ?? "","googleid":googleID ?? "assdwqdsa","dispositivo":"ios","interfaz":"2"]
         self.showActivityIndicator(color: UIColor(named: "green") ?? .green)
         NetworkLoader.loadData(url: Api.login.url, data: params, method: .post, completion: {[weak self] (result: MyResult<LoginResponse>) in
             DispatchQueue.main.async {[weak self] in
@@ -80,11 +80,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         }
                         let encoder = try? JSONEncoder().encode(dat.usuario)
                         UserDefaults.standard.set(encoder, forKey: "usuario")
+                        UserDefaults.standard.synchronize()
                         self.view.window?.rootViewController = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController()
                         //self.view.window?.makeKeyAndVisible()
                     }else if dat.result ?? 0 == 2{
-                        let vc = self.storyboard?.instantiateViewController(identifier: ValidarCodigoViewController.identifier) as! ValidarCodigoViewController
-                        self.present(vc, animated: true, completion: nil)
+                        let encoder = try? JSONEncoder().encode(dat.usuario)
+                        UserDefaults.standard.set(encoder, forKey: "usuario")
+                        self.performSegue(withIdentifier: ValidarCodigoViewController.identifier, sender: self)
+                        //let vc = self.storyboard?.instantiateViewController(identifier: ValidarCodigoViewController.identifier) as! ValidarCodigoViewController
+                        //self.present(vc, animated: true, completion: nil)
                     }else if dat.result ?? 0 == 3{
                         let vc = self.storyboard?.instantiateViewController(identifier: PerfilViewController.identifier) as! PerfilViewController
                         self.present(vc, animated: true, completion: nil)
@@ -92,8 +96,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         let vc = self.storyboard?.instantiateViewController(identifier: InteresesViewController.identifier) as! InteresesViewController
                         self.present(vc, animated: true, completion: nil)
                     }else if dat.result ?? 0 == 5{
-                        let vc = self.storyboard?.instantiateViewController(identifier: PersonalizadoViewController.identifier) as! PersonalizadoViewController
-                        self.present(vc, animated: true, completion: nil)
+                        self.showAlert(title: "¡Ups!", message: "usuario y/o contraseña incorrectos")
+//                        let vc = self.storyboard?.instantiateViewController(identifier: PersonalizadoViewController.identifier) as! PersonalizadoViewController
+//                        self.present(vc, animated: true, completion: nil)
                     }
                     
                 case .failure(let e):

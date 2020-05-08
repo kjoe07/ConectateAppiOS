@@ -8,20 +8,10 @@
 
 import Foundation
 
-class Keyword:Codable {
+struct Keyword:Codable {
     
-    var id:Int!
-    var tipo:Int!
-    var tag:String!
-    var imagen:String!
-    
-      init(id:Int, tipo:Int, tag:String, imagen:String) {
-        
-        self.id = id
-        self.tipo = tipo
-        self.tag = tag
-        self.imagen = imagen
-    }
-    
-
+    let id:Int?
+    let tipo:Int?
+    let tag:String?
+    let imagen:String?
 }

@@ -126,7 +126,7 @@ class WebServiceClient:NSObject{
     func wsTokenArray(params:String, ws:String, method:String, completion:@escaping (AnyObject) -> Void) {
         let pref = UserDefaults.standard
         let request = NSMutableURLRequest(url: NSURL(string: "\(strings.ws)\(ws)")! as URL)
-        request.addValue("Token \(pref.string(forKey: "token")!)", forHTTPHeaderField: "Authorization")
+        //request.addValue("Token \(pref.string(forKey: "token")!)", forHTTPHeaderField: "Authorization")
         request.httpMethod = method
         let postString = params
         request.httpBody = postString.data(using: String.Encoding.utf8)

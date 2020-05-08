@@ -8,29 +8,43 @@
 
 import Foundation
 
-class Establecimiento:Codable {
+//class Establecimiento:Codable {
+//
+//    let id:Int?
+//    let usuario:Int?
+//    let nombre:String?
+//
+//    let latitud:String?
+//    let longitud:String?
+//    let direccion:String?
+//    let estatus:Bool?
+//    let interfaz:Int?
+//
+//     init(id:Int, usuario:Int, nombre:String, latitud:String, longitud:String, direccion:String, estatus:Bool, interfaz:Int) {
+//
+//        self.id = id
+//        self.usuario = usuario
+//        self.nombre = nombre
+//        self.latitud = latitud
+//        self.longitud = longitud
+//        self.direccion = direccion
+//        self.estatus = estatus
+//        self.interfaz = interfaz
+//
+//    }
+//
+//}
+
+
+struct Establecimiento:Codable {
     
-    var id:Int!
-    var usuario:Int!
-    var nombre:String!
-    
-    var latitud:String!
-    var longitud:String!
-    var direccion:String!
-    var estatus:Bool!
-    var interfaz:Int!
-    
-     init(id:Int, usuario:Int, nombre:String, latitud:String, longitud:String, direccion:String, estatus:Bool, interfaz:Int) {
-        
-        self.id = id
-        self.usuario = usuario
-        self.nombre = nombre
-        self.latitud = latitud
-        self.longitud = longitud
-        self.direccion = direccion
-        self.estatus = estatus
-        self.interfaz = interfaz
-        
-    }
+    let id:Int?
+    let usuario:Int?
+    let nombre:String?    
+    let latitud:String?
+    let longitud:String?
+    let direccion:String?
+    let estatus:Bool?
+    let interfaz:Int?
     
 }

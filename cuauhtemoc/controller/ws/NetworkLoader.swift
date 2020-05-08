@@ -32,8 +32,15 @@ class NetworkLoader{
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         //request.
         if let str = KeychainService.loadPassword(service: "cuauhtemoc", account: "token"){
-            print("the request token: \(str)")
-           request.setValue("Token \(str)", forHTTPHeaderField: "Authorization")
+            print("the request token: \(str):",url)
+            print("contains:",url.contains("registrar"))
+            print("contains:",url.contains("verificarCodigo"))
+            print("contains:",url.contains("login"))
+            print("the if clause:",!(url.contains("registrar")) || !(url.contains("verificarCodigo")) || !(url.contains("login")))
+            if !(url.contains("registrar")) && !(url.contains("Codigo")) && !(url.contains("login")) {
+                print("added token")
+                request.setValue("Token \(str)", forHTTPHeaderField: "Authorization")
+            }
         }
 //        if method.self == .post{
 //

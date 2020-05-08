@@ -191,6 +191,7 @@
                     <connections>
                         <outlet property="txtCorreo" destination="RRD-Jd-62M" id="6Ff-hn-5O4"/>
                         <outlet property="txtPassword" destination="JVK-8f-oPN" id="I63-SM-3RC"/>
+                        <segue destination="ASc-MH-mHD" kind="show" identifier="ValidarCodigoViewController" id="DVH-ec-FaR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -617,7 +618,7 @@
         <!--Validar Codigo View Controller-->
         <scene sceneID="UQb-tJ-lQd">
             <objects>
-                <viewController storyboardIdentifier="validarCodigoViewController" modalPresentationStyle="fullScreen" id="ASc-MH-mHD" customClass="ValidarCodigoViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ValidarCodigoViewController" modalPresentationStyle="fullScreen" id="ASc-MH-mHD" customClass="ValidarCodigoViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ewV-sy-40t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -692,7 +693,7 @@
                                     <color key="titleColor" name="green"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnReenviarCodigo:" destination="ASc-MH-mHD" eventType="touchUpInside" id="Uff-vP-HYd"/>
+                                    <action selector="btnReenviarCodigo:" destination="ASc-MH-mHD" eventType="touchUpInside" id="nrj-R4-Hiw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5J-eW-xSO" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
@@ -728,7 +729,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="btnValidarCodigo:" destination="ASc-MH-mHD" eventType="touchUpInside" id="5dh-CO-Pm6"/>
+                                    <action selector="btnValidarCodigo:" destination="ASc-MH-mHD" eventType="touchUpInside" id="ddw-Q3-hMT"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="conectateLogo" translatesAutoresizingMaskIntoConstraints="NO" id="W65-PU-bai">
@@ -782,7 +783,7 @@
         <!--Perfil View Controller-->
         <scene sceneID="8CY-vw-OuC">
             <objects>
-                <viewController storyboardIdentifier="perfilViewController" modalPresentationStyle="fullScreen" id="96e-Zs-MnH" customClass="PerfilViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PerfilViewController" modalPresentationStyle="fullScreen" id="96e-Zs-MnH" customClass="PerfilViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TLA-LG-gHw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -920,7 +921,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnGuardar:" destination="96e-Zs-MnH" eventType="touchUpInside" id="bTb-nz-k1M"/>
-                                            <action selector="btnValidarCodigo:" destination="ASc-MH-mHD" eventType="touchUpInside" id="atO-jv-UmN"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="1QD-cE-kbg">
@@ -1051,7 +1051,7 @@
         <!--Personalizado View Controller-->
         <scene sceneID="ymP-KK-9gX">
             <objects>
-                <viewController storyboardIdentifier="personalizadoViewController" modalPresentationStyle="fullScreen" id="hyz-XW-KRx" customClass="PersonalizadoViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PersonalizadoViewController" modalPresentationStyle="fullScreen" id="hyz-XW-KRx" customClass="PersonalizadoViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXq-dz-hcY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <subviews>
@@ -1304,7 +1304,6 @@ Crea dos </string>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnContinuar:" destination="hyz-XW-KRx" eventType="touchUpInside" id="7iW-oQ-VkT"/>
-                                            <action selector="btnValidarCodigo:" destination="ASc-MH-mHD" eventType="touchUpInside" id="uWA-bM-rZp"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1358,7 +1357,9 @@ Crea dos </string>
                         <outlet property="edtHashDos" destination="07I-Gz-vfo" id="zei-Z9-tyg"/>
                         <outlet property="edtHashUno" destination="ao0-xg-saO" id="9WE-zl-mgY"/>
                         <outlet property="imgDos" destination="mr2-Ob-jbr" id="UCX-uT-TbS"/>
+                        <outlet property="imgUno" destination="8sL-WK-XSy" id="H6r-7r-A6b"/>
                         <outlet property="stcDos" destination="a6q-Od-YiP" id="1gg-cp-nxr"/>
+                        <outlet property="viewUno" destination="3Wf-Dm-g1t" id="1dd-qu-s46"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GMp-Kn-Hdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1650,7 +1651,6 @@ Crea dos </string>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="btnGuardar:" destination="GHX-Mw-DdG" eventType="touchUpInside" id="yHD-cr-3Lh"/>
-                                            <action selector="btnValidarCodigo:" destination="ASc-MH-mHD" eventType="touchUpInside" id="eAQ-xi-Bsf"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="YXs-dN-gzK">
@@ -1753,6 +1753,9 @@ Crea dos </string>
             <point key="canvasLocation" x="3361" y="-486"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="DVH-ec-FaR"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="checkButton" width="20" height="20"/>
         <image name="conectateLogo" width="194" height="130"/>

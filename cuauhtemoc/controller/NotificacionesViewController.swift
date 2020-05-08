@@ -34,7 +34,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
                 do {
                     self.notificacion = try JSONDecoder().decode(NotificacionCompleto.self, from: data as! Data)
                     
-                    self.notificaciones.append(contentsOf: self.notificacion.results)
+                   // self.notificaciones.append(contentsOf: self.notificacion.results)
                 
                     if(self.notificacion.results.count > 0){
                         DispatchQueue.main.async {

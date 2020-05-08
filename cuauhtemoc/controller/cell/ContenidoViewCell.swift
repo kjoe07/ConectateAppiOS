@@ -10,7 +10,7 @@ import UIKit
 
 class ContenidoViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var keywords:[Keyword]! = []
+    var keywords:[Keyword]? = []
     
     @IBOutlet weak var imagenContenido: UIImageView!
     
@@ -33,6 +33,8 @@ class ContenidoViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBOutlet weak var btnComentarios: UIButton!
     
     @IBOutlet weak var btnTruques: UIButton!
+    @IBOutlet weak var labelSchedule: UILabel!
+    @IBOutlet weak var labelAddress: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -53,12 +55,13 @@ class ContenidoViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     
   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return keywords.count
+        print("the # number is: \(keywords?.count ?? 0)")
+        return keywords?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (collectionView.bounds.width/3.0)-5, height: 40)
+        return CGSize(width: ((UIScreen.main.bounds.width - 54) / 3.0)-5, height: 40)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -68,9 +71,8 @@ class ContenidoViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "simpleHashCollectionViewCell", for: indexPath) as! SimpleHashCollectionViewCell
-        
-        cell.txtHashTags.text = "#\(keywords[indexPath.row].tag!)"
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "simpleHashCollectionViewCell", for: indexPath) as! SimpleHashCollectionViewCell        
+        cell.txtHashTags.text = "#\(keywords?[indexPath.row].tag ?? "")"
         
         return cell
     }

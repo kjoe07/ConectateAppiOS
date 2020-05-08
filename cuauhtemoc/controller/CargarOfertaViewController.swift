@@ -27,10 +27,10 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     var tipoServicio:[String] = ["Empleo","Servicio","Establecimiento", "Evento", "Producto"]
     
-    var dato:[Intereses] = []
-    var busqueda:[Intereses] = []
+    var dato:[Results]? = []
+    var busqueda:[Results]? = []
     var intereses:[Int] = []
-    var guardado:[Intereses] = []
+    var guardado:[Results]? = []
 
     
     override func viewDidLoad() {
@@ -38,10 +38,10 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         lblTipoServicio.delegate = self
         txtNombreServicio.delegate = self
-        txtHasTags.delegate = self
+        //txtHasTags.delegate = self
         txtDescripcion.delegate = self
         txtTelefono.delegate = self
-        txtEstablecimiento.delegate = self
+        //txtEstablecimiento.delegate = self
         
         pickerViewServicio.delegate = self
         pickerViewHashTags.delegate = self
@@ -67,8 +67,8 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                
                 DispatchQueue.main.async {
                     
-                    for i in 0...self.guardado.count-1 {
-                        self.agregarKeyword(post: res,keyword: self.guardado[i].id)
+                    for i in 0...(self.guardado?.count ?? 0 - 1) {
+                        self.agregarKeyword(post: res,keyword: self.guardado?[i].id ?? 0)
                     }
                     
                      for i in 0...self.recursos.count-1 {
@@ -291,20 +291,20 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         
          print("Ingreso")
         
-        if let index = intereses.firstIndex(of: self.busqueda[pickerViewHashTags.selectedRow(inComponent: 0)].id){
+        if let index = intereses.firstIndex(of: self.busqueda?[pickerViewHashTags.selectedRow(inComponent: 0)].id ?? 0){
             print("No hay")
             intereses.remove(at: index)
-            guardado.remove(at: index)
+            guardado?.remove(at: index)
         } else {
             print("Agregando")
             if(self.intereses.count >= 5){
                 self.enviarMensaje(titulo: "¡Ups!", mensaje: "Solo puedes agregar 5 hashtags")
             } else {
-                guardado.append(self.busqueda[pickerViewHashTags.selectedRow(inComponent: 0)])
-                intereses.append(self.busqueda[pickerViewHashTags.selectedRow(inComponent: 0)].id)
+               // guardado?.append(self.busqueda?[pickerViewHashTags.selectedRow(inComponent: 0)] ?? <#default value#>)
+                intereses.append(self.busqueda?[pickerViewHashTags.selectedRow(inComponent: 0)].id ?? 0)
             }
         }
-        print(guardado.count)
+        print(guardado?.count)
         txtHasTags.resignFirstResponder()
         collectionView.reloadData()
         //txtHasTags.text = busqueda[pickerViewHashTags.selectedRow(inComponent: 0)]
@@ -350,7 +350,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             return tipoServicio.count
             
         } else if pickerView == pickerViewHashTags {
-            return busqueda.count
+            return busqueda?.count ?? 0
         }
         return 0
     }
@@ -361,13 +361,13 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             return tipoServicio[row]
             
         } else if pickerView == pickerViewHashTags {
-            return busqueda[row].tag
+            return busqueda?[row].tag
         }
         return nil
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return guardado.count
+        return guardado?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -378,7 +378,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "simpleHashCollectionViewCell", for: indexPath) as! SimpleHashCollectionViewCell
         
-        cell.txtHashTags.text = "#\(guardado[indexPath.row].tag!)"
+        cell.txtHashTags.text = "#\(guardado?[indexPath.row].tag ?? "")"
         
         return cell
     }
@@ -397,49 +397,65 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         intereses.remove(at: indexPath.row)
-        guardado.remove(at: indexPath.row)
+        guardado?.remove(at: indexPath.row)
         self.collectionView.reloadData()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        self.busqueda.removeAll()
-        if(self.txtHasTags.text! == ""){
-            self.busqueda.append(contentsOf: self.dato)
-        } else {
-            for i in 0...self.dato.count-1 {
-                if(self.dato[i].tag.lowercased().contains(self.txtHasTags.text!)){
-                    busqueda.append(self.dato[i])
-                    print("Busqueda \(busqueda.count)")
-                    //self.collectionView.reloadData()
-                    pickerViewHashTags.reloadAllComponents()
-                }
-            }
-        }
+//        self.busqueda?.removeAll()
+//        if(self.txtHasTags?.text! == ""){
+//            self.busqueda?.append(contentsOf: self.dato ?? [Results]())
+//        } else {
+//            for i in 0...(self.dato?.count ?? 0 - 1 ){
+//                if((self.dato?[i].tag?.lowercased().contains(self.txtHasTags.text!)) != nil){
+//                    //busqueda?.append(self.dato?[i] ?? <#default value#>)
+//                    print("Busqueda \(busqueda?.count)")
+//                    //self.collectionView.reloadData()
+//                    pickerViewHashTags.reloadAllComponents()
+//                }
+//            }
+//        }
         return true
     }
     
     func cargarDatos(){
-        
-        let ws = WebServiceClient()
-        
-        DispatchQueue.main.async {
-            ws.wsToken(params: "", ws: "/clasificador/listHastTagKetwords/?page_size=300", method: "GET", completion: {data in
-                
-                let algo = data.object(forKey: "results") as! NSArray
-                for val in algo {
-                    
-                    let item = val as! NSDictionary
-                    self.dato.append(Intereses(id: item.object(forKey: "id") as! Int, tipo: item.object(forKey: "tipo") as! Int, tag: item.object(forKey: "tag") as! String, imagen: item.object(forKey: "imagen") as! String))
+        print("load data:")
+        let params = ["page_size":300]
+        NetworkLoader.loadData(url: Api.listHashTagsByKeyword.url, data: params, method: .get, completion: {[weak self] (result:MyResult<HashtagProfileResponse>) in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                switch result{
+                case .success(dat: let data):
+                    if data.count ?? 0 > 0{
+                        self.dato = data.results
+                        self.collectionView.reloadData()
+                    }
+                case .failure(let e):
+                    self.showAlert(title: "¡Ups!", message: e.localizedDescription)
                 }
-                print(self.dato.count)
-                self.busqueda.append(contentsOf: self.dato)
-                self.cargarHashTags()
-                DispatchQueue.main.async {
-                    
-                }
-            })
-        }
+            }
+        })
+        
+//        let ws = WebServiceClient()
+//
+//        DispatchQueue.main.async {
+//            ws.wsToken(params: "", ws: "/clasificador/listHastTagKetwords/?page_size=300", method: "GET", completion: {data in
+//
+//                let algo = data.object(forKey: "results") as! NSArray
+//                for val in algo {
+//
+//                    let item = val as! NSDictionary
+//                    self.dato.append(Intereses(id: item.object(forKey: "id") as! Int, tipo: item.object(forKey: "tipo") as! Int, tag: item.object(forKey: "tag") as! String, imagen: item.object(forKey: "imagen") as! String))
+//                }
+//                print(self.dato.count)
+//                self.busqueda.append(contentsOf: self.dato)
+//                self.cargarHashTags()
+//                DispatchQueue.main.async {
+//
+//                }
+//            })
+//        }
     }
     
     func enviarMensaje( titulo:String, mensaje:String){
@@ -452,34 +468,6 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         btnAlert.addAction(okAction)
         self.present(btnAlert, animated: true, completion: nil)
-    }
-    
-    
-    
-    
-    
-    @IBAction func btnMercado(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "contenidoViewController") as! ContenidoViewController
-    
-        self.present(viewController, animated: true, completion: nil)
-    }
-
-    @IBAction func btnCargarOferta(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "cargarOfertaViewController") as! CargarOfertaViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnNotificaciones(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "notificacionesViewController") as! NotificacionesViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnPerfil(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "perfilCompletoViewController") as! PerfilCompletoViewController
-        
-        self.present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func btnEmpelo(_ sender: Any) {

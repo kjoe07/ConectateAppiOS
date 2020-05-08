@@ -248,13 +248,13 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
                 
                 do {
                     self.perfil = try JSONDecoder().decode(PerfilCompleto.self, from: data as! Data)
-                    self.descripcion.append(contentsOf: self.perfil.perfil.descripcion)
-                    self.intereses.append(contentsOf: self.perfil.perfil.descripcion)
-                    self.extras.append(contentsOf: self.perfil.perfil.descripcion)
+                    self.descripcion.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
+                    self.intereses.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
+                    self.extras.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
                     
-                    self.todos.append(contentsOf: self.perfil.perfil.descripcion)
-                    self.todos.append(contentsOf: self.perfil.perfil.intereses)
-                    self.todos.append(contentsOf: self.perfil.perfil.extras)
+                    self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
+                    self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Intereses]())
+                    self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Intereses]())
                     
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
@@ -270,10 +270,10 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         
         let ws = WebServiceClient()
         let pref = UserDefaults();
-        print("/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario")!)")
+        print("/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario") ?? 0)")
         
         DispatchQueue.main.async {
-            ws.wsTokenArray(params: "", ws: "/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario")!)", method: "GET", completion: { data in
+            ws.wsTokenArray(params: "", ws: "/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario") ?? "")", method: "GET", completion: { data in
                 
                 do {
                     self.contenido = try JSONDecoder().decode(ContenidoCompleto.self, from: data as! Data)

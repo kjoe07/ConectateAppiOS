@@ -11,7 +11,7 @@ import UIKit
 class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var textFields: [UITextField]!
-    var post:Contenido!
+    var post: Post?
     var perfil:PerfilCompleto!
     var descripcion:[Intereses]! = []
     
@@ -37,7 +37,7 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
         
         if(validarDatos(textFields: textFields)){
             
-            wsAccion(tipo: "4",post: self.post.id ?? 0,cuerpo: "\(self.txtOfreces.text!)|\(self.txtCambio.text!)")
+            wsAccion(tipo: "4",post: self.post?.id ?? 0,cuerpo: "\(self.txtOfreces.text!)|\(self.txtCambio.text!)")
         }
         
         
@@ -121,7 +121,7 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
                 
                 do {
                     self.perfil = try JSONDecoder().decode(PerfilCompleto.self, from: data as! Data)
-                    self.descripcion.append(contentsOf: self.perfil.perfil.descripcion)
+                    self.descripcion.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
                     
                     DispatchQueue.main.async {
                         self.cargarHashTags()

@@ -35,8 +35,6 @@ class ValidarCodigoViewController: UIViewController, UITextFieldDelegate {
         let userdata = UserDefaults.standard.object(forKey: "usuario") as! Data
         let user = try? JSONDecoder().decode(Usuario.self, from: userdata)
         telefono = (user?.celular?.hasPrefix("+52") ?? false) ? (user?.celular?.replacingOccurrences(of: "+52", with: "") ?? "") : ("\(user?.celular ?? "")")
-        print("phone is :",telefono)
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func btnReenviarCodigo(_ sender: Any) {
@@ -65,6 +63,8 @@ class ValidarCodigoViewController: UIViewController, UITextFieldDelegate {
                         }else{
                             print("something wrong heppen")
                         }
+//                        let encoder = try? JSONEncoder().encode()
+//                        UserDefaults.standard.set(encoder, forKey: "usuario")
                         self.performSegue(withIdentifier: PerfilViewController.identifier, sender: self)
                     }else if dat.result ?? -1 == 0{
                         self.showAlert(title: "¡Ups!", message: "No existe el usuario al que se solicitó este código")
