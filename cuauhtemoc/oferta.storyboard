@@ -40,13 +40,13 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ak-w3-JUh">
-                                        <rect key="frame" x="0.0" y="1216" width="414" height="20"/>
+                                        <rect key="frame" x="0.0" y="1126" width="414" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="tfS-7s-VZ3"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hcM-tb-R6n">
-                                        <rect key="frame" x="28" y="36" width="358" height="1180"/>
+                                        <rect key="frame" x="28" y="36" width="358" height="1090"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Qué deseas cargar?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx1-5A-JjC">
                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="22"/>
@@ -151,6 +151,9 @@ con un</string>
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="showSearch:" destination="WFw-ud-5MX" eventType="editingDidBegin" id="uVw-13-x0t"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agrega #Hashtags con los que quieres que te encuentren" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJa-MR-sGp">
                                                 <rect key="frame" x="0.0" y="215" width="358" height="60"/>
@@ -181,8 +184,8 @@ con un</string>
                                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Oo-Ew-CZ7">
-                                                                            <rect key="frame" x="48" y="-5" width="34.5" height="50"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Oo-Ew-CZ7">
+                                                                            <rect key="frame" x="5" y="-5" width="125" height="50"/>
                                                                             <color key="backgroundColor" name="green"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="EQL-II-ZU6"/>
@@ -191,26 +194,49 @@ con un</string>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
                                                                             <size key="shadowOffset" width="0.0" height="0.0"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                    <integer key="value" value="8"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </view>
                                                                 <constraints>
+                                                                    <constraint firstItem="1Oo-Ew-CZ7" firstAttribute="leading" secondItem="NsV-D7-h6n" secondAttribute="leading" constant="5" id="9ug-b4-34h"/>
                                                                     <constraint firstItem="1Oo-Ew-CZ7" firstAttribute="centerX" secondItem="NsV-D7-h6n" secondAttribute="centerX" id="a6T-q7-iUZ"/>
                                                                     <constraint firstItem="1Oo-Ew-CZ7" firstAttribute="centerY" secondItem="NsV-D7-h6n" secondAttribute="centerY" id="txf-HI-5fI"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="1Oo-Ew-CZ7" secondAttribute="trailing" id="yIF-ct-BgC"/>
                                                                 </constraints>
+                                                                <variation key="default">
+                                                                    <mask key="constraints">
+                                                                        <exclude reference="a6T-q7-iUZ"/>
+                                                                    </mask>
+                                                                </variation>
                                                                 <connections>
                                                                     <outlet property="txtHashTags" destination="1Oo-Ew-CZ7" id="V7l-VN-ZjG"/>
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
                                                     </collectionView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bc-ec-hE7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="358" height="108.5"/>
+                                                        <connections>
+                                                            <action selector="showTripple:" destination="WFw-ud-5MX" eventType="touchUpInside" id="RZW-JS-NKG"/>
+                                                            <segue destination="obi-tf-84Q" kind="show" identifier="triple" id="vJn-gH-fnY"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="108.67" id="4wV-6X-wbG"/>
+                                                    <constraint firstItem="1bc-ec-hE7" firstAttribute="top" secondItem="1bZ-4I-P90" secondAttribute="top" id="5yE-K2-lT8"/>
                                                     <constraint firstAttribute="trailing" secondItem="NRj-pr-Z2c" secondAttribute="trailing" id="6x9-Yh-9Ek"/>
+                                                    <constraint firstItem="1bc-ec-hE7" firstAttribute="leading" secondItem="1bZ-4I-P90" secondAttribute="leading" id="IVB-Jc-UQ0"/>
                                                     <constraint firstAttribute="bottom" secondItem="NRj-pr-Z2c" secondAttribute="bottom" id="Kjh-XF-zRf"/>
+                                                    <constraint firstAttribute="trailing" secondItem="1bc-ec-hE7" secondAttribute="trailing" id="S1v-Ro-tNx"/>
                                                     <constraint firstItem="NRj-pr-Z2c" firstAttribute="leading" secondItem="1bZ-4I-P90" secondAttribute="leading" id="SZ2-vo-YnQ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="1bc-ec-hE7" secondAttribute="bottom" id="eio-Fn-k2r"/>
                                                     <constraint firstItem="NRj-pr-Z2c" firstAttribute="top" secondItem="1bZ-4I-P90" secondAttribute="top" id="smg-Ne-wUT"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -276,6 +302,9 @@ con un</string>
                                                         </constraints>
                                                         <color key="onTintColor" name="labelTabbar"/>
                                                         <color key="thumbTintColor" name="green"/>
+                                                        <connections>
+                                                            <action selector="phoneActivated:" destination="WFw-ud-5MX" eventType="valueChanged" id="3xC-79-9U6"/>
+                                                        </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiero usar mi número telefónico" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESw-TY-BAE">
                                                         <rect key="frame" x="40" y="0.0" width="318" height="40"/>
@@ -288,8 +317,8 @@ con un</string>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yk8-ae-KB9" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="608.5" width="358" height="30"/>
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yk8-ae-KB9" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="601" width="358" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="jb7-ib-m8O"/>
@@ -318,7 +347,7 @@ con un</string>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7L5-Kk-6QD">
-                                                <rect key="frame" x="0.0" y="653.5" width="358" height="31"/>
+                                                <rect key="frame" x="0.0" y="608.5" width="358" height="31"/>
                                                 <subviews>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="afs-gQ-rw9">
                                                         <rect key="frame" x="0.0" y="0.0" width="42" height="31"/>
@@ -327,6 +356,9 @@ con un</string>
                                                         </constraints>
                                                         <color key="onTintColor" name="labelTabbar"/>
                                                         <color key="thumbTintColor" name="green"/>
+                                                        <connections>
+                                                            <action selector="locationActivated:" destination="WFw-ud-5MX" eventType="valueChanged" id="VlQ-Rj-UUu"/>
+                                                        </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Cuentas con un local o establecimiento?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKP-Z8-3Cm">
                                                         <rect key="frame" x="40" y="0.0" width="318" height="31"/>
@@ -336,8 +368,8 @@ con un</string>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-ev-pZk" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="699.5" width="358" height="30"/>
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-ev-pZk" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="647" width="358" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="pHA-Jh-0OS"/>
@@ -367,15 +399,18 @@ con un</string>
                                                         <real key="value" value="19"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="setAddress:" destination="WFw-ud-5MX" eventType="editingDidBegin" id="sCW-4E-xzF"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agrega a tu publicación" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAf-md-tXS">
-                                                <rect key="frame" x="0.0" y="744.5" width="358" height="19.5"/>
+                                                <rect key="frame" x="0.0" y="654.5" width="358" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="eqL-nC-k60">
-                                                <rect key="frame" x="0.0" y="779" width="358" height="25"/>
+                                                <rect key="frame" x="0.0" y="689" width="358" height="25"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDs-wE-1xD">
                                                         <rect key="frame" x="0.0" y="0.0" width="34.5" height="25"/>
@@ -447,7 +482,7 @@ con un</string>
                                                 </constraints>
                                             </stackView>
                                             <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sna-lG-cpU" customClass="SelfSizedTableView" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="819" width="358" height="300"/>
+                                                <rect key="frame" x="0.0" y="729" width="358" height="300"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="WMa-ms-Y6u"/>
@@ -503,7 +538,7 @@ con un</string>
                                                 </prototypes>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5G-eQ-P2g" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1134" width="358" height="46"/>
+                                                <rect key="frame" x="0.0" y="1044" width="358" height="46"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="46" id="9AY-LI-lXv"/>
@@ -570,18 +605,55 @@ con un</string>
                     <navigationItem key="navigationItem" id="6fL-fs-MMg"/>
                     <connections>
                         <outlet property="collectionView" destination="NRj-pr-Z2c" id="pGh-lo-Mxq"/>
+                        <outlet property="establismentSwitch" destination="afs-gQ-rw9" id="J64-aX-ZeF"/>
                         <outlet property="lblTipoServicio" destination="WpB-GX-j74" id="8Oa-QT-PHT"/>
+                        <outlet property="mobileSwitch" destination="UHe-GU-3wL" id="9Jq-lL-wZ1"/>
                         <outlet property="tableView" destination="Sna-lG-cpU" id="vg8-fs-VUU"/>
+                        <outlet property="trippleButton" destination="1bc-ec-hE7" id="Ttk-lV-mti"/>
                         <outlet property="txtDescripcion" destination="VzH-rB-Azh" id="Tgg-7R-vTK"/>
+                        <outlet property="txtEstablecimiento" destination="pbU-ev-pZk" id="zmr-f3-JXf"/>
                         <outlet property="txtNombreServicio" destination="6z4-qg-WLQ" id="eQ9-WY-Lwl"/>
                         <outlet property="txtTelefono" destination="Yk8-ae-KB9" id="22R-9F-Xs2"/>
+                        <segue destination="obi-tf-84Q" kind="show" identifier="single" id="yjm-OS-MwF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZC-od-F8h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1897.1014492753625" y="1720.3125"/>
         </scene>
+        <!--Hashtag Table View Controller-->
+        <scene sceneID="pox-If-UVI">
+            <objects>
+                <tableViewController id="obi-tf-84Q" customClass="HashtagTableViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PHG-JL-AY2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="0DW-jc-iL9">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0DW-jc-iL9" id="7ej-EO-Lsd">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="obi-tf-84Q" id="bi6-iT-BtN"/>
+                            <outlet property="delegate" destination="obi-tf-84Q" id="nZ6-Vn-Hgl"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="6pk-Ql-ezc"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kFc-jR-Ruo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2628" y="1720"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yjm-OS-MwF"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="chevronDonw" width="15" height="8"/>
         <image name="plusTab" width="14" height="14"/>

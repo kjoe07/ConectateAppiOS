@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "GooglePlacesSearchController",
+        "repositoryURL": "https://github.com/kjoe07/GooglePlacesSearchController",
+        "state": {
+          "branch": "master",
+          "revision": "652b5c53e39750a7cd54cc152a2b41f52714edda",
+          "version": null
+        }
+      },
+      {
         "package": "IQKeyboardManagerSwift",
         "repositoryURL": "https://github.com/hackiftekhar/IQKeyboardManager.git",
         "state": {

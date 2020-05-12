@@ -37,7 +37,8 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         cargarDatosPost()
         cargarDatos()
         let pref = UserDefaults();
-        getImage(imageName: "\(pref.string(forKey: "nombreUsuario")!).png")
+
+//        getImage(imageName: "\(pref.string(forKey: "nombreUsuario")!).png")
         imgPerfil.layer.cornerRadius = 48.0
         imgPerfil.clipsToBounds = true
     }

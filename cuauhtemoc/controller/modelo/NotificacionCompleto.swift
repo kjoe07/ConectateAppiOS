@@ -9,20 +9,9 @@
 import Foundation
 
 
-class NotificacionCompleto:Codable {
-    
-    var count:Int!
-    var next:String!
-    var previous:String!
-    var results:[Notificacion]!
-    
-    init(count:Int, next:String, previous:String, results:[Notificacion]) {
-        
-        self.count = count
-        self.next = next
-        self.previous = previous
-        self.results = results
-    }
-    
-    
+struct NotificacionCompleto:Codable {    
+    let count:Int?
+    let next:String?
+    let previous:String?
+    let results:[Notificacion]?
 }

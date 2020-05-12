@@ -11,7 +11,7 @@ import UIKit
 class NotificacionesViewController: UIViewController,  UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    var notificacion:NotificacionCompleto!
+    var notificacion:NotificacionCompleto?
     var notificaciones:[Notificacion] = []
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
                     
                    // self.notificaciones.append(contentsOf: self.notificacion.results)
                 
-                    if(self.notificacion.results.count > 0){
+                    if(self.notificacion?.results?.count ?? 0 > 0){
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                         }
@@ -52,33 +52,33 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificacionesTableViewCell", for: indexPath) as! NotificacionesTableViewCell
         
-        cell.txtNotificacion.text = self.notificacion.results[indexPath.row].cuerpo
+        cell.txtNotificacion.text = self.notificacion?.results?[indexPath.row].cuerpo
         
-        if self.notificacion.results[indexPath.row].content_object?.tipo == 1 {
+        if self.notificacion?.results?[indexPath.row].content_object?.tipo == 1 {
             cell.imgTipoNotificacion.image = UIImage(named: "img_like_rosa")
             
-        } else if self.notificacion.results[indexPath.row].content_object?.tipo == 2 {
+        } else if self.notificacion?.results?[indexPath.row].content_object?.tipo == 2 {
             cell.imgTipoNotificacion.image = UIImage(named: "btn_bloqueat")
             
-        } else if self.notificacion.results[indexPath.row].content_object?.tipo == 3 {
+        } else if self.notificacion?.results?[indexPath.row].content_object?.tipo == 3 {
             cell.imgTipoNotificacion.image = UIImage(named: "img_mensaje")
             
-        } else if self.notificacion.results[indexPath.row].content_object?.tipo == 4 {
+        } else if self.notificacion?.results?[indexPath.row].content_object?.tipo == 4 {
             cell.imgTipoNotificacion.image = UIImage(named: "img_trueque_morado")
             
-        } else if self.notificacion.results[indexPath.row].content_object?.tipo == 5 {
+        } else if self.notificacion?.results?[indexPath.row].content_object?.tipo == 5 {
             cell.imgTipoNotificacion.image = UIImage(named: "img_contratar_morado")
             
-        } else if self.notificacion.results[indexPath.row].content_object?.tipo == 6 {
+        } else if self.notificacion?.results?[indexPath.row].content_object?.tipo == 6 {
             cell.imgTipoNotificacion.image = UIImage(named: "btn_add_circulo_amarillo")
             
-        } else if self.notificacion.results[indexPath.row].content_object?.tipo == 7 {
+        } else if self.notificacion?.results?[indexPath.row].content_object?.tipo == 7 {
             cell.imgTipoNotificacion.image = UIImage(named: "img_lapiz_morado")
             
-        } else if self.notificacion.results[indexPath.row].content_object?.tipo == 8 {
+        } else if self.notificacion?.results?[indexPath.row].content_object?.tipo == 8 {
             cell.imgTipoNotificacion.image = UIImage(named: "servicio_precio")
             
-        } else if self.notificacion.results[indexPath.row].content_object?.tipo == 9 {
+        } else if self.notificacion?.results?[indexPath.row].content_object?.tipo == 9 {
             cell.imgTipoNotificacion.image = UIImage(named: "servicio_redes")
         }
         
