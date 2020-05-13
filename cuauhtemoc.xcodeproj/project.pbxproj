@@ -115,7 +115,7 @@
 		11286818243FCAE200F6BD58 /* ExtensionUIIMage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIIMage.swift; sourceTree = "<group>"; };
 		1128681A244118AE00F6BD58 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		1138462A2453AB2E007C4624 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
-		116563BE2448BDB300860795 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Home.storyboard; path = /Users/kjoe/Desktop/ConectateAppiOS/cuauhtemoc/Home.storyboard; sourceTree = "<absolute>"; };
+		116563BE2448BDB300860795 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		116563BF2448BE3000860795 /* perfil.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = perfil.storyboard; sourceTree = "<group>"; };
 		1176FECE2448EE1000648239 /* oferta.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = oferta.storyboard; sourceTree = "<group>"; };
 		1176FED02448EE6700648239 /* Notifications.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
