@@ -21,7 +21,7 @@ class FechaAlertView: UIView, UITextFieldDelegate {
     var pickerViewHora = UIDatePicker()
     var fechaString:String!
     var horaString:String!
-    
+    var selected: ((String,String) -> Void )?
     override init(frame:CGRect){
         super.init(frame:frame)
         
@@ -58,6 +58,7 @@ class FechaAlertView: UIView, UITextFieldDelegate {
     }
     
     @IBAction func btnContinuar() {
+        selected?(fechaString,horaString)
         parentView.removeFromSuperview()
     
     }
@@ -68,7 +69,6 @@ class FechaAlertView: UIView, UITextFieldDelegate {
     
     @IBAction func btnRegresar(_ sender: Any) {
         parentView.removeFromSuperview()
-        
     }
     
     func cargarFecha(){

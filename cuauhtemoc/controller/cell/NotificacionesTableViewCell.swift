@@ -10,11 +10,12 @@ import UIKit
 
 class NotificacionesTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var imgIndicador: UIImageView!
-    @IBOutlet weak var imgTipoNotificacion: UIImageView!
+    @IBOutlet weak var imgIndicador: UIView!
+    @IBOutlet weak var imgTipoNotificacion: UIButton!
     
     @IBOutlet weak var txtNotificacion: UILabel!
     @IBOutlet weak var btnAcciom: UIButton!
+    @IBOutlet weak var name: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

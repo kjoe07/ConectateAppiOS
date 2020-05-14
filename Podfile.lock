@@ -1,13 +1,10 @@
 PODS:
-  - Alamofire (4.9.1)
-  - AlamofireImage (3.6.0):
-    - Alamofire (~> 4.9)
   - AppAuth (1.3.0):
     - AppAuth/Core (= 1.3.0)
     - AppAuth/ExternalUserAgent (= 1.3.0)
   - AppAuth/Core (1.3.0)
   - AppAuth/ExternalUserAgent (1.3.0)
-  - CheckBox (1.0.0)
+  - BadgeControl (1.2.0)
   - FBSDKCoreKit (6.5.0):
     - FBSDKCoreKit/Basics (= 6.5.0)
     - FBSDKCoreKit/Core (= 6.5.0)
@@ -127,8 +124,7 @@ PODS:
   - Protobuf (3.11.4)
 
 DEPENDENCIES:
-  - AlamofireImage (~> 3.5)
-  - CheckBox
+  - BadgeControl
   - FBSDKLoginKit
   - Firebase/Analytics
   - Firebase/Core
@@ -140,10 +136,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Alamofire
-    - AlamofireImage
     - AppAuth
-    - CheckBox
+    - BadgeControl
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -170,10 +164,8 @@ SPEC REPOS:
     - Protobuf
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
-  CheckBox: c6f39d7dd72be096896205584b5943e4743a767b
+  BadgeControl: 9cc4457f5d0114f9ba11eddc7c3ab2266e6fe2fd
   FBSDKCoreKit: bc8ba4b97454bc722823e72584547770b8b48030
   FBSDKLoginKit: 2ab9aac8c26749efbc3c9d09896bb910f5b1311b
   Firebase: 585ae467b3edda6a5444e788fda6888f024d8d6f
@@ -199,6 +191,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
 
-PODFILE CHECKSUM: 9aaab805516533a05e9bae5102809cb3fc69c836
+PODFILE CHECKSUM: 247ce2ba966ffe01954d5cfacc6952284ae6594e
 
 COCOAPODS: 1.9.1

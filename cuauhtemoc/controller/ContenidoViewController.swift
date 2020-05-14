@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class ContenidoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,/* UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,*/ UISearchResultsUpdating {
     
     //var busquedaTxt:[String] = []
@@ -16,6 +16,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     var busqueda: [Post]?  = []
     //var keywords:[Keyword]! = []
     var result: [Post]?
+    var employ: [Post]?
     let searchController = UISearchController(searchResultsController: nil)
     var isSearching = false
     @IBOutlet weak var collectionView: UICollectionView!
@@ -30,13 +31,8 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.automaticallyShowsCancelButton = true
-        
-//        self.collectionView.dataSource = self
-//        self.collectionView.delegate = self
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
-       // self.buscador.delegate = self
         self.cargarDatos()
     }
     
@@ -46,35 +42,6 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         }else{
             tableView.tableHeaderView = nil
         }
-        
-//        self.busqueda.removeAll()
-//        if(self.buscador.text! == ""){
-//            //self.busqueda.append(contentsOf: self.dato)
-//        } else {
-//
-//            self.busquedaTxt.append(self.buscador.text!)
-//
-//            for i in 0...self.dato.count-1 {
-//                for k in 0...self.busquedaTxt.count-1{
-//                    if(self.dato[i].titulo?.lowercased().contains(self.busquedaTxt[k].lowercased()) ?? false
-//                        || ((self.dato[i].body?.lowercased().contains(self.busquedaTxt[k].lowercased())) != nil)){
-//                        busqueda.append(self.dato[i])
-//                    } else {
-//                        if (self.dato[i].keywords?.count ?? 0 > 0){
-//                            for j in 0...(self.dato[i].keywords?.count ?? 0) - 1 {
-//                                if((self.dato[i].keywords?[j].tag.contains(self.busquedaTxt[k].lowercased())) != nil){
-//                                    busqueda.append(self.dato[i])
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            self.buscador.text = ""
-//        }
-//        self.collectionView.reloadData()
-//        self.tableView.reloadData()
-//        print(self.busqueda.count)
     }
     
     func cargarDatos(){
@@ -86,6 +53,9 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                 case .success(let dat):
                     if dat.count ?? 0 > 0{
                         self.result = dat.results
+                        self.employ = dat.results?.filter({
+                            $0.tipo?.lowercased() == "empleo"
+                        })
                         self.tableView.reloadData()
                     }else{
                         self.showAlert(title: "¡Ups!", message: dat.error ?? "")
@@ -95,84 +65,75 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         })
-        
-//        let ws = WebServiceClient()
-//
-//        DispatchQueue.main.async {
-//            ws.wsTokenArray(params: "", ws: "/contenido/list_post/?page_size=300", method: "GET", completion: { data in
-//
-//                do {
-//                    self.contenido = try JSONDecoder().decode(ContenidoCompleto.self, from: data as! Data)
-//                    self.dato.append(contentsOf: self.contenido.results)
-//                    self.busqueda.append(contentsOf: self.contenido.results)
-//
-//                    DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-//                    }
-//                } catch let jsonError {
-//                    print(jsonError)
-//                }
-//            })
-//        }
+    }
+    //MARK: - TableView Functions
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return isSearching ? busqueda?.count ?? 0 : segmented.selectedSegmentIndex == 0 ? result?.count ?? 0 : employ?.count ?? 0
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "verContenidoViewController") as! VerContenidoViewController
+        controller.contenido = isSearching ? busqueda?[indexPath.row] : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row] : employ?[indexPath.row]
+        self.navigationController?.pushViewController(controller, animated: true)
+        //self.present(controller, animated: true, completion: nil)
+    }
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let myCell = cell as! ContenidoViewCell
+        myCell.imagenContenido.image = #imageLiteral(resourceName: "placeholderTrueke")
+        myCell.imagenContenido.kf.cancelDownloadTask()
+        myCell.labelAddress.isHidden = false
+        //myCell.labelSchedule.isHidden = false
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contenidoViewCell", for: indexPath) as! ContenidoViewCell
-        cell.txtTitulo.text = isSearching ?  self.busqueda?[indexPath.row].titulo ?? "": result?[indexPath.row].titulo ?? ""
-        cell.txtNombreUsuario.text = isSearching ?  self.busqueda?[indexPath.row].usuario?.nombre ?? "" : result?[indexPath.row].usuario?.nombre ?? ""
-       // cell.txtContenido.text = isSearching ? self.busqueda?[indexPath.row].body ?? "" : result?[indexPath.row].body ?? ""
-        cell.labelAddress.text = isSearching ? busqueda?[indexPath.row].fecha ?? "" : result?[indexPath.row].fecha
-        cell.labelAddress.text = isSearching ? busqueda?[indexPath.row].establecimiento?.direccion : result?[indexPath.row].establecimiento?.direccion 
-        if let url = URL(string: "\(Strings().rutaImagen)/\(isSearching ? busqueda?[indexPath.row].img?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? "" : result?[indexPath.row].img?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? "")"){
-            cell.imagenContenido.contentMode = .scaleToFill
-            cell.imagenContenido.af_setImage(withURL: url)
+        cell.txtTitulo.text = isSearching ?  self.busqueda?[indexPath.row].titulo ?? "": segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].titulo ?? "" : employ?[indexPath.row].titulo ?? ""
+        cell.txtNombreUsuario.text = isSearching ?  self.busqueda?[indexPath.row].usuario?.nombre ?? "" : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].usuario?.nombre ?? "" : employ?[indexPath.row].usuario?.nombre ?? ""
+        cell.txtCoincidencia.isHidden = true
+        if isSearching ? busqueda?[indexPath.row].establecimiento != nil : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].establecimiento != nil : employ?[indexPath.row].establecimiento != nil{
+            //cell.labelSchedule.text = isSearching ? busqueda?[indexPath.row].fecha ?? "" : result?[indexPath.row].fecha
+            cell.labelAddress.text = isSearching ? busqueda?[indexPath.row].establecimiento?.direccion : result?[indexPath.row].establecimiento?.direccion
+            cell.locationIcon.isHidden = false
+            //cell.scheduleIcon.isHidden = false
+        }else{
+            cell.locationIcon.isHidden = true
+            //cell.scheduleIcon.isHidden = true
+            //cell.labelSchedule.isHidden = true
+            cell.labelAddress.text = isSearching ? busqueda?[indexPath.row].body ?? "" : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].body ?? "" : employ?[indexPath.row].body ?? ""
         }
-        cell.keywords = isSearching ? busqueda?[indexPath.row].keywords : result?[indexPath.row].keywords
+        cell.txtNumComentarios.text = "\(isSearching ? busqueda?[indexPath.row].comments ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].comments ?? 0 : employ?[indexPath.row].comments ?? 0) comentarios "
+        let imagenURlString = isSearching ? busqueda?[indexPath.row].img?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? "" : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].img?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? "" : employ?[indexPath.row].img?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? ""
+        print("imageurlString:",imagenURlString)
+        if imagenURlString != "",  let url = URL(string: "\(Strings().rutaImagen)/\(imagenURlString)"){
+            print("the url:",url.description)
+            cell.imagenContenido.contentMode = .scaleToFill
+            cell.imagenContenido.kf.setImage(with: url)//af_setImage(withURL: url)
+        }
+        cell.keywords = isSearching ? busqueda?[indexPath.row].keywords : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].keywords : employ?[indexPath.row].keywords
         cell.collectionView.dataSource = cell
         cell.collectionView.reloadData()
-//        if (self.busqueda?[indexPath.row].keywords?.count ?? 0 > 0){
-//            self.keywords.removeAll()
-//            cell.keywords.removeAll()
-//
-//            cell.keywords.append(Keyword(id: 0, tipo: 0, tag: self.busqueda[indexPath.row].tipo!, imagen: ""))
-//            self.keywords.append(contentsOf: self.busqueda[indexPath.row].keywords!)
-//            cell.keywords.append(contentsOf: self.keywords)
-//        }
-        
         cell.btnLike.tag = indexPath.row
         cell.btnCompartir.tag = indexPath.row
         cell.btnBloquear.tag = indexPath.row
         cell.btnComentarios.tag = indexPath.row
         cell.btnTruques.tag = indexPath.row
-        
         cell.btnLike.addTarget(self, action:#selector(btnLike(sender:)) , for: .touchUpInside)
-        
         cell.btnCompartir.addTarget(self, action:#selector(btnCompartir(sender:)) , for: .touchUpInside)
-        
         cell.btnBloquear.addTarget(self, action:#selector(btnBloquear(sender:)) , for: .touchUpInside)
-        
         cell.btnComentarios.addTarget(self, action:#selector(btnComentarios(sender:)) , for: .touchUpInside)
-        
         cell.btnTruques.addTarget(self, action:#selector(btnTruques(sender:)) , for: .touchUpInside)
-        
         return cell
     }
-    
+    //MARK: -
     
     @objc func btnLike(sender:UIButton){
-        
-        sender.setBackgroundImage(UIImage(named: "img_like_rosa"), for: UIControl.State.normal)
-        wsAccion(tipo: "1",post: self.busqueda![sender.tag].id ?? 0,cuerpo: "")
+        let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
+        wsAccion(tipo: "1",post: id ,cuerpo: "")
     }
     
     @objc func btnCompartir(sender:UIButton){
-        // let text = UserDefaults.standard.shareCode ?? ""//"Compartir tu Codigo en Redes Sociales."
-        // print("text",text)
-        //let image = QRCreator.generateQR(from: text) ?? UIImage()//generateQRCode(from: text) ?? UIImage()
         let index = IndexPath(row: sender.tag, section: 0)
         let cell = tableView.cellForRow(at: index) as! ContenidoViewCell
         guard let image2 = cell.imagenContenido else{return}//imageSlider.currentSlideshowItem?.imageView.image else {return}
-        // set up activity view controller
         let textToShare = [cell.txtTitulo.text ?? "",image2 ] as [Any]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll,.addToReadingList,.copyToPasteboard,.openInIBooks,.mail,.message,.print ]
@@ -180,28 +141,24 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @objc func btnBloquear(sender:UIButton){
-        
+        let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
         let btnAlert = UIAlertController(title: "Atención", message:"¿Relamente quieres dejar de ver este contenido?", preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "Sí", style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
-            
-            self.wsAccion(tipo: "2",post: self.busqueda![sender.tag].id ?? 0,cuerpo: "")
+        let okAction = UIAlertAction(title: "Sí", style: UIAlertAction.Style.default) {_ in
+            self.wsAccion(tipo: "2",post: id,cuerpo: "")
         }
-        
         btnAlert.addAction(okAction)
         self.present(btnAlert, animated: true, completion: nil)
     }
     
     @objc func btnComentarios(sender:UIButton){
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "comentariosViewController") as! ComentariosViewController
-        viewController.post = isSearching ? self.busqueda?[sender.tag] : result?[sender.tag]
+        viewController.post = isSearching ? self.busqueda?[sender.tag] : segmented.selectedSegmentIndex == 0 ?  result?[sender.tag] : employ?[sender.tag]
         self.present(viewController, animated: true, completion: nil)
     }
 
     @objc func btnTruques(sender:UIButton){
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ofrecerTruequeViewController") as! OfrecerTruequeViewController
-        viewController.post =  isSearching ? self.busqueda?[sender.tag] : result?[sender.tag]
+        viewController.post =  isSearching ? self.busqueda?[sender.tag] :  segmented.selectedSegmentIndex == 0 ?  result?[sender.tag] : employ?[sender.tag]
         self.present(viewController, animated: true, completion: nil)
     }
 
@@ -214,7 +171,6 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                 switch result{
                 case.success(dat: let dat):
                     if dat?.count ?? 0 > 0 {
-                        
                         print("success")
                     }
                 case .failure(let e):
@@ -223,29 +179,6 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                 }
             }
         })
-        
-//        let ws = WebServiceClient()
-//        let params = "tipo=\(tipo)&post=\(post)&cuerpo=\(cuerpo)"
-//
-//        DispatchQueue.main.async {
-//            ws.wsToken(params: params, ws: "/contenido/acciones/add", method: "POST", completion: { data in
-//
-//            })
-//        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ?  busqueda?.count ?? 0 : result?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "verContenidoViewController") as! VerContenidoViewController
-        controller.contenido = isSearching ? busqueda?[indexPath.row] : result?[indexPath.row]//self.dato[indexPath.row]
-        self.present(controller, animated: true, completion: nil)
-    }
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.imageView?.af_cancelImageRequest()
-        cell.imageView?.image = nil
     }
     
     func enviarMensaje( titulo:String, mensaje:String){
@@ -264,55 +197,25 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         return true
     }
     
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return busquedaTxt.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: (collectionView.bounds.width/3.0)-5, height: 40)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "simpleHashCollectionViewCell", for: indexPath) as! SimpleHashCollectionViewCell
-//        cell.txtHashTags.text = "#\(self.busquedaTxt[indexPath.row])"
-//
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets.zero
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 5
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//        self.busquedaTxt.remove(at: indexPath.row)
-//
-//        if(self.busquedaTxt.count <= 0){
-//            self.busqueda.append(contentsOf: self.contenido.results)
-//            self.tableView.reloadData()
-//        }
-//
-//        collectionView.reloadData()
-//    }
     func updateSearchResults(for searchController: UISearchController) {
         if searchController.searchBar.text != ""{
             isSearching = true
-            self.busqueda = result?.filter({
-                $0.titulo?.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") ?? false
-            })
+            if segmented.selectedSegmentIndex == 0 {
+                self.busqueda = result?.filter({
+                    $0.titulo?.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") ?? false
+                })
+            }else{
+                self.busqueda = employ?.filter({
+                    $0.titulo?.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") ?? false
+                })
+            }
         }else{
             isSearching = false
         }
         tableView.reloadData()
     }
     
+    @IBAction func change(_ sender: Any) {
+        tableView.reloadData()
+    }
 }

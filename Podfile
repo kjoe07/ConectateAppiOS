@@ -12,9 +12,10 @@ target 'cuauhtemoc' do
   pod 'GoogleAnalytics'
   pod 'FBSDKLoginKit'
   pod 'GoogleSignIn'
-  pod 'AlamofireImage', '~> 3.5'
-  pod 'CheckBox'
+  #pod 'AlamofireImage', '~> 3.5'
+  #pod 'CheckBox'
   pod 'Firebase/Analytics'
+  pod 'BadgeControl'
   # Pods for cuauhtemoc
 
   target 'cuauhtemocTests' do

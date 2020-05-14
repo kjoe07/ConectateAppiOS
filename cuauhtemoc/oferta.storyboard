@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c1k-Aa-BYY">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -40,13 +40,13 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ak-w3-JUh">
-                                        <rect key="frame" x="0.0" y="1126" width="414" height="20"/>
+                                        <rect key="frame" x="0.0" y="1086" width="414" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="tfS-7s-VZ3"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hcM-tb-R6n">
-                                        <rect key="frame" x="28" y="36" width="358" height="1090"/>
+                                        <rect key="frame" x="28" y="36" width="358" height="1050"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Qué deseas cargar?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx1-5A-JjC">
                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="22"/>
@@ -169,7 +169,7 @@ con un</string>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NRj-pr-Z2c">
                                                         <rect key="frame" x="0.0" y="0.0" width="358" height="108.5"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eBi-zn-1dU">
                                                             <size key="itemSize" width="130" height="40"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -409,8 +409,8 @@ con un</string>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="eqL-nC-k60">
-                                                <rect key="frame" x="0.0" y="689" width="358" height="25"/>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="eqL-nC-k60">
+                                                <rect key="frame" x="0.0" y="681.5" width="358" height="25"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDs-wE-1xD">
                                                         <rect key="frame" x="0.0" y="0.0" width="34.5" height="25"/>
@@ -482,7 +482,7 @@ con un</string>
                                                 </constraints>
                                             </stackView>
                                             <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sna-lG-cpU" customClass="SelfSizedTableView" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="729" width="358" height="300"/>
+                                                <rect key="frame" x="0.0" y="689" width="358" height="300"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="WMa-ms-Y6u"/>
@@ -538,8 +538,8 @@ con un</string>
                                                 </prototypes>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5G-eQ-P2g" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1044" width="358" height="46"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <rect key="frame" x="0.0" y="1004" width="358" height="46"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="46" id="9AY-LI-lXv"/>
                                                 </constraints>
@@ -564,10 +564,10 @@ con un</string>
                                                         <real key="value" value="2"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                        <real key="value" value="21"/>
+                                                        <real key="value" value="0.20999999999999999"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                        <real key="value" value="12"/>
+                                                        <real key="value" value="-12"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>

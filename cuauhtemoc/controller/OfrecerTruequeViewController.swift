@@ -23,7 +23,7 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        txtPerfil.delegate = self
+        //txtPerfil.delegate = self
         txtOfreces.delegate = self
         txtCambio.delegate = self
         

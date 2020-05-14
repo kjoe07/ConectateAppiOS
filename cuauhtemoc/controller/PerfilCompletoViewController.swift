@@ -20,8 +20,8 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     var extras:[Intereses]! = []
     var todos:[Intereses]! = []
     var contenido:ContenidoCompleto!
-    var dato:[Contenido]! = []
-    
+    var dato:[Post]! = []
+    var user: Usuario?
     @IBOutlet weak var imgPerfil: UIImageView!
     let imagePicker = UIImagePickerController()
     
@@ -36,11 +36,15 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         
         cargarDatosPost()
         cargarDatos()
-        let pref = UserDefaults();
+        
+        
+      //  let pref = UserDefaults();
 
 //        getImage(imageName: "\(pref.string(forKey: "nombreUsuario")!).png")
         imgPerfil.layer.cornerRadius = 48.0
         imgPerfil.clipsToBounds = true
+        guard let userData = UserDefaults.standard.object(forKey: "user") as? Data else {return}
+        user = try? JSONDecoder().decode(Usuario.self, from: userData)
     }
     
     @IBAction func btnEditarPerfil(_ sender: Any) {
@@ -268,26 +272,40 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func cargarDatosPost(){
-        
-        let ws = WebServiceClient()
-        let pref = UserDefaults();
-        print("/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario") ?? 0)")
-        
-        DispatchQueue.main.async {
-            ws.wsTokenArray(params: "", ws: "/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario") ?? "")", method: "GET", completion: { data in
-                
-                do {
-                    self.contenido = try JSONDecoder().decode(ContenidoCompleto.self, from: data as! Data)
-                    self.dato.append(contentsOf: self.contenido.results)
-                    
-                    DispatchQueue.main.async {
+        let params = ["page_size":30,"usuario": user?.id ?? 0]
+        NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result:MyResult<PostResponse>) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch result{
+                case .success(dat: let data):
+                    if data.count ?? 0 > 0{
+                        self.dato = data.results
                         self.tableView.reloadData()
                     }
-                } catch let jsonError {
-                    print(jsonError)
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }
-            })
-        }
+            }
+        })
+//        let ws = WebServiceClient()
+//        let pref = UserDefaults();
+//        print("/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario") ?? 0)")
+//
+//        DispatchQueue.main.async {
+//            ws.wsTokenArray(params: "", ws: "/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario") ?? "")", method: "GET", completion: { data in
+//
+//                do {
+//                    self.contenido = try JSONDecoder().decode(ContenidoCompleto.self, from: data as! Data)
+//                    self.dato.append(contentsOf: self.contenido.results)
+//
+//                    DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+//                    }
+//                } catch let jsonError {
+//                    print(jsonError)
+//                }
+//            })
+//        }
     }
     
     @IBAction func btnMercado(_ sender: Any) {

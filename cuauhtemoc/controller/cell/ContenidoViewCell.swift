@@ -37,6 +37,8 @@ class ContenidoViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     @IBOutlet weak var labelAddress: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var scheduleIcon: UIImageView!
+    @IBOutlet weak var locationIcon: UIImageView!
     
     
     override func awakeFromNib() {
@@ -44,6 +46,12 @@ class ContenidoViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         // Initialization code
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        let flow = UICollectionViewFlowLayout()
+        flow.scrollDirection = .horizontal
+        flow.itemSize = CGSize(width: (UIScreen.main.bounds.width - 54 / 3), height: 30)
+        flow.minimumInteritemSpacing = 10
+        flow.minimumLineSpacing = 5
+        collectionView.collectionViewLayout = flow
         
     }
     
@@ -59,13 +67,14 @@ class ContenidoViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         return keywords?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: ((UIScreen.main.bounds.width - 54) / 3.0)-5, height: 40)
-    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        return CGSize(width: ((UIScreen.main.bounds.width - 54) / 3.0), height: 40)
+    }
+//
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        
+
          return 5
     }
     

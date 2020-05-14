@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import AlamofireImage
+//import AlamofireImage
 
 class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate,UISearchResultsUpdating,UISearchBarDelegate {
 
@@ -77,7 +77,7 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
         cell.txtNombre.text = "#\(!isSearching ? result?[indexPath.row].tag ?? "" : busqueda?[indexPath.row].tag ?? "")"
         //cell.imgCell.contentMode = .scaleAspectFit
         if let imageURL = URL(string: url?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? ""){
-            cell.imgCell.af_setImage(withURL: imageURL)
+            cell.imgCell.kf.setImage(with: imageURL)//af_setImage(withURL: imageURL)
         }
         if self.intereses.count > 0 {
             if intereses.contains( !isSearching ?  self.result?[indexPath.row].id ?? -1 : busqueda?[indexPath.row].id ?? -1){

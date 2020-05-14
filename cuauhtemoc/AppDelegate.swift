@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import UserNotifications
 import IQKeyboardManagerSwift
+import GoogleMaps
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -21,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
-        
+        GMSServices.provideAPIKey("AIzaSyADPJdpByqnYJUcFu2FlXKjWGVOARShVMw")
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self

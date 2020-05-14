@@ -27,6 +27,7 @@
 		11CB735C246AD2E200E086DC /* HashtagTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CB735B246AD2E200E086DC /* HashtagTableViewController.swift */; };
 		11CB7361246B285B00E086DC /* GooglePlacesSearchController in Frameworks */ = {isa = PBXBuildFile; productRef = 11CB7360246B285B00E086DC /* GooglePlacesSearchController */; };
 		11CB7363246B3B1E00E086DC /* AddURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CB7362246B3B1E00E086DC /* AddURLResponse.swift */; };
+		11CB7366246C398000E086DC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 11CB7365246C398000E086DC /* Kingfisher */; };
 		11D483142447F0760061FA33 /* BorderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D483132447F0760061FA33 /* BorderImageView.swift */; };
 		11ED64F5245758810037648C /* VerifyCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED64F4245758810037648C /* VerifyCodeResponse.swift */; };
 		11ED64F62457824E0037648C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116563BE2448BDB300860795 /* Home.storyboard */; };
@@ -210,6 +211,7 @@
 				552D00359A0D1AB13E65443B /* Pods_cuauhtemoc.framework in Frameworks */,
 				11FF0921242E7FE200A93AE0 /* IQKeyboardManagerSwift in Frameworks */,
 				11CB7361246B285B00E086DC /* GooglePlacesSearchController in Frameworks */,
+				11CB7366246C398000E086DC /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +450,7 @@
 				11FF0920242E7FE200A93AE0 /* IQKeyboardManagerSwift */,
 				116F43B3242E8C700041F301 /* ActivityIndicator */,
 				11CB7360246B285B00E086DC /* GooglePlacesSearchController */,
+				11CB7365246C398000E086DC /* Kingfisher */,
 			);
 			productName = cuauhtemoc;
 			productReference = 574B6384232BDA2F00F4A29D /* cuauhtemoc.app */;
@@ -532,6 +535,7 @@
 				11FF091F242E7FE200A93AE0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				116F43B2242E8C700041F301 /* XCRemoteSwiftPackageReference "ActivityIndicator" */,
 				11CB735F246B285B00E086DC /* XCRemoteSwiftPackageReference "GooglePlacesSearchController" */,
+				11CB7364246C398000E086DC /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 574B6385232BDA2F00F4A29D /* Products */;
 			projectDirPath = "";
@@ -1113,6 +1117,14 @@
 				kind = branch;
 			};
 		};
+		11CB7364246C398000E086DC /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.14.0;
+			};
+		};
 		11FF091F242E7FE200A93AE0 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -1133,6 +1145,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 11CB735F246B285B00E086DC /* XCRemoteSwiftPackageReference "GooglePlacesSearchController" */;
 			productName = GooglePlacesSearchController;
+		};
+		11CB7365246C398000E086DC /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11CB7364246C398000E086DC /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		11FF0920242E7FE200A93AE0 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

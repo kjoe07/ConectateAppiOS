@@ -45,6 +45,38 @@ extension UIViewController{
         return titleView
 
     }
+    func openWhatsApp(){
+        DispatchQueue.main.async {
+            let urlWhats = "whatsapp://send?phone=+5215579000450&text=Hola, puedes ayudarme con :"
+            var characterSet = CharacterSet.urlQueryAllowed
+             characterSet.insert(charactersIn: "?&")
+             if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: characterSet){
+                 if let whatsappURL = URL(string: urlString) {
+                   if UIApplication.shared.canOpenURL(whatsappURL as URL){
+                        UIApplication.shared.open(whatsappURL)
+                   }else {
+                       print("Install Whatsapp")
+                   }
+                }
+            }
+        }
+    }
+    func openWhatsApp(phone: String){
+        DispatchQueue.main.async {
+            let urlWhats = "whatsapp://send?phone=+\(phone)&text=Hola, :"
+            var characterSet = CharacterSet.urlQueryAllowed
+             characterSet.insert(charactersIn: "?&")
+             if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: characterSet){
+                 if let whatsappURL = URL(string: urlString) {
+                   if UIApplication.shared.canOpenURL(whatsappURL as URL){
+                        UIApplication.shared.open(whatsappURL)
+                   }else {
+                       print("Install Whatsapp")
+                   }
+                }
+            }
+        }
+    }
 }
 protocol Identifier {
     static var identifier: String {get}

@@ -7,16 +7,17 @@
 //
 
 import UIKit
-import CheckBox
+//import CheckBox
 import GooglePlacesSearchController
 import CoreLocation
-class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate,GooglePlacesAutocompleteViewControllerDelegate {
+import Photos
+class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate,GooglePlacesAutocompleteViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     @IBOutlet weak var lblTipoServicio: UITextField!
     @IBOutlet weak var txtNombreServicio: UITextField!
     @IBOutlet weak var txtHasTags: UITextField!
     @IBOutlet weak var txtDescripcion: UITextField!
-    @IBOutlet weak var ckbTelefono: CheckBox!
+   // @IBOutlet weak var ckbTelefono: CheckBox!
     @IBOutlet weak var txtTelefono: UITextField!
     @IBOutlet weak var txtEstablecimiento: UITextField!
     @IBOutlet weak var trippleButton: UIButton!
@@ -34,6 +35,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     var intereses:[Int] = []
     var guardado:[Results]? = []
     var GPSc: GooglePlacesSearchController?
+    let imagePicker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTipoServicio.delegate = self
@@ -52,6 +54,12 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         self.collectionView.delegate = self
         tableView.isHidden = true
         GPSc = GooglePlacesSearchController(delegate: self, apiKey: "AIzaSyADPJdpByqnYJUcFu2FlXKjWGVOARShVMw", placeType: .address, coordinate: CLLocationCoordinate2D(latitude: 23.6345005, longitude: -102.5527878) , radius: .zero, strictBounds: false, searchBarPlaceholder: "Entre la dirección")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     @IBAction func btnAgregar(_ sender: Any) {
@@ -97,6 +105,9 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     @IBAction func btnCalendario(_ sender: Any) {
         FechaAlertView.instance.showAlert()
+        FechaAlertView.instance.selected = { fecha,hora in
+            print("fecha y hora",fecha,hora)
+        }
         tableView.isHidden = false
     }
     
@@ -118,8 +129,72 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     @IBAction func btnImagen(_ sender: Any) {
-        tableView.isHidden = false
+        tableView.isHidden = false    
+        PHPhotoLibrary.requestAuthorization { (status) in
+            
+            switch status{
+            case .authorized:
+                self.loadFromLibrary()
+                break
+            case .denied:
+                self.pedirPermiso(titulo: "Debes habilitar permisos", mensaje: "Para modificar tu foto de perfil es necesario habilites los permisos", aceptar: "Otorgar permiso")
+                break
+            case .notDetermined:
+                break
+                
+            case .restricted:
+                break
+                
+            @unknown default:
+                break
+                
+            }
+        }
     }
+    
+    func pedirPermiso(titulo:String, mensaje:String, aceptar:String){
+        
+        let alertController = UIAlertController (title: titulo, message: mensaje, preferredStyle: UIAlertController.Style.alert)
+        
+        let settingsAction = UIAlertAction(title: aceptar, style: UIAlertAction.Style.default) { (_) -> Void in
+            
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
+        alertController.addAction(settingsAction)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func loadFromLibrary(){
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let pref = UserDefaults()
+        
+        if let image = info[.originalImage] as? UIImage{
+            //self.imgPerfil.image = image//UIImagePickerController.InfoKey.originalImage
+            //saveImage(imageName:"\(pref.string(forKey: "nombreUsuario")!).png")
+            
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     @IBAction func btnMetodoPago(_ sender: Any) {
         tableView.isHidden = false

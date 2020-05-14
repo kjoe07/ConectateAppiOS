@@ -79,7 +79,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fotoCollectionView", for: indexPath) as! ImagenesCollectionViewCell
         cell.txtNombre.text = "#\(isSearching ?  busqueda?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "")"
         if let url = isSearching ? busqueda?[indexPath.row].imagen?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) : result?[indexPath.row].imagen?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? "", let imageURL = URL(string: url){
-            cell.imgCell.af_setImage(withURL: imageURL)
+            cell.imgCell.kf.setImage(with: imageURL)//af_setImage(withURL: imageURL)
         }
        if self.intereses.count > 0 {
            if intereses.contains( !isSearching ?  self.result?[indexPath.row].id ?? -1 : busqueda?[indexPath.row].id ?? -1){
