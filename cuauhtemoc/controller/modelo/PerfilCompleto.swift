@@ -8,13 +8,8 @@
 
 import Foundation
 
-class PerfilCompleto:Codable {
+struct PerfilCompleto:Codable {
     
-    var perfil:Perfil!
-    
-    init(perfil:Perfil) {
-        
-        self.perfil = perfil
-    }
+    let perfil:Perfil?
     
 }

@@ -9,7 +9,6 @@
 import UIKit
 
 class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    
     var textFields: [UITextField]!
     var post: Post?
     var perfil:PerfilCompleto!
@@ -22,11 +21,8 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //txtPerfil.delegate = self
         txtOfreces.delegate = self
         txtCambio.delegate = self
-        
         pickerView.delegate = self
         
         textFields = [txtPerfil, txtOfreces, txtCambio];
@@ -34,103 +30,67 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
     }
     
     @IBAction func btnHacerTrueque(_ sender: Any) {
-        
         if(validarDatos(textFields: textFields)){
-            
             wsAccion(tipo: "4",post: self.post?.id ?? 0,cuerpo: "\(self.txtOfreces.text!)|\(self.txtCambio.text!)")
         }
-        
-        
-        
     }
-    
-    
-    
+
     func validarDatos(textFields: [UITextField]) -> Bool{
-        
         for textField in textFields {
             if (textField.text?.isEmpty)!{
-                enviarMensaje(titulo: "¡Ups!", mensaje: "Todos los campos para continuar")
+                self.showAlert(title: "¡Ups!", message: "Todos los campos para continuar")
                 return false;
             }
         }
         return true
     }
     
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    
-    
     func wsAccion(tipo:String, post:Int, cuerpo:String ){
-        
-        let ws = WebServiceClient()
-        let params = "tipo=\(tipo)&post=\(post)&cuerpo=\(cuerpo)"
-        
-        
-        DispatchQueue.main.async {
-            ws.wsToken(params: params, ws: "/contenido/acciones/add", method: "POST", completion: { data in
-               
-                
-            })
-        }
+        let params = ["tipo":tipo,"post":post,"cuerpo":cuerpo] as [String : Any]
+        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: {[weak self] (result: MyResult<ActionResponse?>) in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                switch result{
+                case.success(dat: let dat):
+                    if dat?.count ?? 0 > 0 {
+                        print("success")
+                    }
+                case .failure(let e):
+                    print(e.localizedDescription)
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+        })
     }
     
     @IBAction func btnRegresar(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    func enviarMensaje( titulo:String, mensaje:String){
-        
-        let btnAlert = UIAlertController(title: titulo, message:mensaje, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
-        }
-        
-        btnAlert.addAction(okAction)
-        self.present(btnAlert, animated: true, completion: nil)
-    }
-    
-    func enviarMensajeVista( titulo:String, mensaje:String){
-        
-        let btnAlert = UIAlertController(title: titulo, message:mensaje, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
-            
-            let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ContenidoViewController") as! ContenidoViewController
-            
-            self.present(viewController, animated: true, completion: nil)
-            
-        }
-        
-        btnAlert.addAction(okAction)
-        self.present(btnAlert, animated: true, completion: nil)
-    }
+
     
     func cargarDatos(){
-        
-        let ws = WebServiceClient()
-        
-        DispatchQueue.main.async {
-            ws.wsTokenArray(params: "", ws: "/usuarios/verPerfil/", method: "GET", completion: { data in
-                
-                do {
-                    self.perfil = try JSONDecoder().decode(PerfilCompleto.self, from: data as! Data)
-                    self.descripcion.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
-                    
-                    DispatchQueue.main.async {
+        showActivityIndicator(color: .green)
+        NetworkLoader.loadData(url: Api.seeProfile.url, data: [:], method: .get, completion:{ [weak self] (result: MyResult<PerfilCompleto>) in
+            DispatchQueue.main.async {
+                guard let self = self else{return}
+                self.hideActivityIndicator()
+                switch result{
+                case .success(dat: let data):
+                    if data.perfil != nil{
+                        self.perfil = data
+                        self.descripcion = data.perfil?.descripcion ?? [Intereses]()
                         self.cargarHashTags()
                     }
-                } catch let jsonError {
-                    print(jsonError)
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }
-            })
-        }
+            }
+        })
     }
     
     func cargarHashTags(){
@@ -178,35 +138,6 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         return self.descripcion![row].tag
-    }
-
-    @IBAction func btnMercado(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "contenidoViewController") as! ContenidoViewController
-    
-        self.present(viewController, animated: true, completion: nil)
-    }
-
-    @IBAction func btnCargarOferta(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "cargarOfertaViewController") as! CargarOfertaViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnNotificaciones(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "notificacionesViewController") as! NotificacionesViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnPerfil(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "perfilCompletoViewController") as! PerfilCompletoViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnEmpelo(_ sender: Any) {
-        
-        
     }
     
     

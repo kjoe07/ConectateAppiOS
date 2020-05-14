@@ -993,7 +993,7 @@
         <!--Ofrece un trueque-->
         <scene sceneID="F5K-2L-din">
             <objects>
-                <viewController storyboardIdentifier="ofrecerTruequeViewController" id="SdE-0h-AXK" customClass="OfrecerTruequeViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ofrecerTruequeViewController" modalPresentationStyle="fullScreen" id="SdE-0h-AXK" customClass="OfrecerTruequeViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXu-U0-BOV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <subviews>
