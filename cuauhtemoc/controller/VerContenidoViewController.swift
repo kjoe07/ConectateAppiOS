@@ -7,7 +7,8 @@
 //
 
 import UIKit
-
+import GoogleMaps
+import BadgeControl
 class VerContenidoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
    
     var contenido: Post?
@@ -29,7 +30,11 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var tableView: SelfSizedTableView!
     @IBOutlet weak var btnActionTrueque: UIButton!
     @IBOutlet weak var btnActionOtro: UIButton!
-
+    @IBOutlet weak var stackPhone: UIStackView!
+    @IBOutlet weak var stackSchedule: UIStackView!
+    @IBOutlet weak var stackLocation: UIStackView!
+    @IBOutlet weak var map: GMSMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let like : UIButton = UIButton.init(type: .custom)
@@ -90,9 +95,15 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         self.collectionView.delegate = self
         
         self.keywords = contenido?.keywords ?? ([Keyword]())
-       // keywords.append(Keyword(id: 0, tipo: 0, tag: contenido?.tipo ?? "", imagen: ""))
-        //keywords.append(contentsOf: self.contenido?.keywords ?? [Keyword]())
-
+        if self.contenido?.establecimiento == nil{
+            self.stackPhone.isHidden = true
+            self.stackLocation.isHidden = true
+            self.stackSchedule.isHidden = true
+            self.map.isHidden = true
+        }
+        if contenido?.trueques ?? 0 > 0{
+            _ = BadgeController(for: btnActionTrueque, in: .upperRightCorner, badgeBackgroundColor: UIColor(named: "green") ?? .green, badgeTextColor: .white, badgeTextFont: nil, borderWidth: 1, borderColor: UIColor(named: "green") ?? .green, animation: nil, badgeHeight: nil, animateOnlyWhenBadgeIsNotYetPresent: true)
+        }
         cargarDatos()
         // Do any additional setup after loading the view.
     }
@@ -188,6 +199,25 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
                         self.recursos = data?.recursos
                         self.acciones = data?.acciones
                         self.tableView.reloadData()
+                        if data?.post?.establecimiento == nil{
+                            self.stackPhone.isHidden = true
+                            self.stackLocation.isHidden = true
+                            self.stackSchedule.isHidden = true
+                            self.map.isHidden = true
+                        }else{
+                            self.stackPhone.isHidden = false
+                            self.stackLocation.isHidden = false
+                            self.stackSchedule.isHidden = false
+                            self.map.isHidden = false
+                            let lat = data?.post?.establecimiento?.latitud ?? "0"
+                            let latDouble = Double(lat)
+                            let lon = data?.post?.establecimiento?.longitud ?? "0"
+                            let long = Double(lon)
+                            let location = CLLocationCoordinate2D(latitude: latDouble ?? 0.0, longitude: long ?? 0.0)//data?.post?.establecimiento.
+                            let marker = GMSMarker(position: location)
+                            marker.icon = #imageLiteral(resourceName: "markerIcon")
+                            self.map.animate(toLocation: location)
+                        }
                         self.collectionView.reloadData()
                     }
                 case .failure(let e):
