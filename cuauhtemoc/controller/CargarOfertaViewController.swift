@@ -189,7 +189,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         if let image = info[.originalImage] as? UIImage{
             //self.imgPerfil.image = image//UIImagePickerController.InfoKey.originalImage
             //saveImage(imageName:"\(pref.string(forKey: "nombreUsuario")!).png")
-            
+            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: image.description, tipo: 3))
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -243,7 +243,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     @IBAction func btnPrecio(_ sender: Any) {
         tableView.isHidden = false
-        let ac = UIAlertController(title: "Ingresa una URL", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: "Ingresa un Precio", message: nil, preferredStyle: .alert)
         ac.addTextField()
         let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0].text!
