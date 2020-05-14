@@ -481,15 +481,54 @@ con un</string>
                                                     <constraint firstAttribute="height" constant="25" id="aUj-sj-VQy"/>
                                                 </constraints>
                                             </stackView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sna-lG-cpU" customClass="SelfSizedTableView" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sna-lG-cpU" customClass="SelfSizedTableView" customModule="cuauhtemoc" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="689" width="358" height="300"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="WMa-ms-Y6u"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" rowHeight="200" id="NNs-wm-DHU" customClass="PostTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="358" height="200"/>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" id="If6-88-Otu" customClass="Post2TableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="28" width="358" height="56"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="If6-88-Otu" id="Ynu-TQ-Wgw">
+                                                            <rect key="frame" x="0.0" y="0.0" width="358" height="56"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7AQ-3B-TtR">
+                                                                    <rect key="frame" x="34" y="16" width="290" height="24"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="servicio_calendario" translatesAutoresizingMaskIntoConstraints="NO" id="Zcl-cW-tgE">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                                                            <color key="tintColor" name="green"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="24" id="k70-Xe-zEm"/>
+                                                                                <constraint firstAttribute="height" constant="24" id="nPx-Zs-W6M"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-Zh-cG4">
+                                                                            <rect key="frame" x="34" y="0.0" width="256" height="24"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="7AQ-3B-TtR" secondAttribute="trailing" constant="34" id="Fpk-BS-rw4"/>
+                                                                <constraint firstItem="7AQ-3B-TtR" firstAttribute="top" secondItem="Ynu-TQ-Wgw" secondAttribute="topMargin" constant="5" id="LDN-Mt-uz6"/>
+                                                                <constraint firstItem="7AQ-3B-TtR" firstAttribute="leading" secondItem="Ynu-TQ-Wgw" secondAttribute="leading" constant="34" id="kY1-Ub-cP4"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="7AQ-3B-TtR" secondAttribute="bottom" constant="5" id="y2c-7X-US0"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="imgServicio" destination="Zcl-cW-tgE" id="PNF-TP-DUR"/>
+                                                            <outlet property="lblTexto" destination="vtr-Zh-cG4" id="9c0-jz-fsn"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" id="NNs-wm-DHU" customClass="PostTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="84" width="358" height="200"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NNs-wm-DHU" id="Gjo-ej-Wi8">
                                                             <rect key="frame" x="0.0" y="0.0" width="358" height="200"/>
@@ -502,37 +541,15 @@ con un</string>
                                                                         <constraint firstAttribute="height" constant="200" id="lfO-mM-rZw"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pd8-5E-BEe">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="358" height="24"/>
-                                                                    <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="servicio_calendario" translatesAutoresizingMaskIntoConstraints="NO" id="o5Y-KT-gOj">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="24" id="Qyw-3t-eMB"/>
-                                                                                <constraint firstAttribute="width" constant="24" id="Rzj-vM-Ydx"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ZX-Zx-gF2">
-                                                                            <rect key="frame" x="34" y="0.0" width="324" height="24"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="10r-G3-hCr" firstAttribute="centerY" secondItem="Gjo-ej-Wi8" secondAttribute="centerY" id="1p4-rO-e7r"/>
-                                                                <constraint firstItem="Pd8-5E-BEe" firstAttribute="top" secondItem="Gjo-ej-Wi8" secondAttribute="top" id="AiZ-T3-jup"/>
-                                                                <constraint firstItem="10r-G3-hCr" firstAttribute="centerX" secondItem="Gjo-ej-Wi8" secondAttribute="centerX" id="KBZ-Fs-v1b"/>
-                                                                <constraint firstAttribute="trailing" secondItem="Pd8-5E-BEe" secondAttribute="trailing" id="KO3-fm-sfR"/>
-                                                                <constraint firstItem="Pd8-5E-BEe" firstAttribute="leading" secondItem="Gjo-ej-Wi8" secondAttribute="leading" id="oTf-1U-maC"/>
+                                                                <constraint firstAttribute="bottom" secondItem="10r-G3-hCr" secondAttribute="bottom" id="Ava-X6-4bq"/>
+                                                                <constraint firstItem="10r-G3-hCr" firstAttribute="top" secondItem="Gjo-ej-Wi8" secondAttribute="top" id="Ui7-2q-YeI"/>
+                                                                <constraint firstItem="10r-G3-hCr" firstAttribute="centerX" secondItem="Gjo-ej-Wi8" secondAttribute="centerX" id="YOw-3c-r1s"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="imgPost" destination="10r-G3-hCr" id="m7U-cB-5vf"/>
-                                                            <outlet property="imgServicio" destination="o5Y-KT-gOj" id="RyV-vA-NyY"/>
-                                                            <outlet property="lblTexto" destination="1ZX-Zx-gF2" id="dIC-Qh-Hmx"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>

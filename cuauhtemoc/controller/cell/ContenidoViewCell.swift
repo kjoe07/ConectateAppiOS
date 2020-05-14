@@ -48,7 +48,7 @@ class ContenidoViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
         self.collectionView.delegate = self
         let flow = UICollectionViewFlowLayout()
         flow.scrollDirection = .horizontal
-        flow.itemSize = CGSize(width: (UIScreen.main.bounds.width - 54 / 3), height: 30)
+        flow.itemSize = CGSize(width: (UIScreen.main.bounds.width - 54 / 3), height: 25)
         flow.minimumInteritemSpacing = 10
         flow.minimumLineSpacing = 5
         collectionView.collectionViewLayout = flow
@@ -70,7 +70,7 @@ class ContenidoViewCell: UITableViewCell, UICollectionViewDelegate, UICollection
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: ((UIScreen.main.bounds.width - 54) / 3.0), height: 40)
+        return CGSize(width: ((UIScreen.main.bounds.width - 54) / 3.0), height: 25)
     }
 //
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

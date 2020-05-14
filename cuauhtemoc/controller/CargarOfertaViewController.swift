@@ -258,7 +258,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         tableView.isHidden = false
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell", for: indexPath) as! PostTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell", for: indexPath) as! Post2TableViewCell
         cell.lblTexto.text = self.recursos[indexPath.row].valor
         if(self.recursos[indexPath.row].tipo == 3){
             cell.imgServicio.image = UIImage(named: "servicio_imagen")

@@ -66,7 +66,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         messageButton.imageInsets = UIEdgeInsets(top: 3, left: 10, bottom: 7, right: 0)
         self.navigationItem.setRightBarButtonItems([messageButton,shareButton,blockButton, likeButton],animated: true) //rightBarButtonItems = [likeButton,blockButton,shareButton,messageButton]
         txtTitulo.text = contenido?.titulo
-        txtUsuario.text = contenido?.usuario?.nombre
+        //txtUsuario.text = contenido?.usuario?.nombre
         txtNumTrueques.text = "\(contenido?.trueques ?? 0)"//String()
         txtNumPropuestas.text = "\(contenido?.contrataciones ?? 0)"//String()
         txtTelefono.text = String(contenido?.telefono ?? "")
@@ -86,7 +86,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
             btnActionOtro.setTitle("Quiero asistir", for: UIControl.State.normal)
             btnActionTrueque.isHidden = true
         } else if(contenido?.tipo == "Producto"){
-            btnActionOtro.setTitle("Quiero comprar", for: UIControl.State.normal)
+            btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
         }
         
         self.tableView.dataSource = self
@@ -98,44 +98,36 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         if self.contenido?.establecimiento == nil{
             self.stackPhone.isHidden = true
             self.stackLocation.isHidden = true
-            self.stackSchedule.isHidden = true
+            
             self.map.isHidden = true
         }
         if contenido?.trueques ?? 0 > 0{
             _ = BadgeController(for: btnActionTrueque, in: .upperRightCorner, badgeBackgroundColor: UIColor(named: "green") ?? .green, badgeTextColor: .white, badgeTextFont: nil, borderWidth: 1, borderColor: UIColor(named: "green") ?? .green, animation: nil, badgeHeight: nil, animateOnlyWhenBadgeIsNotYetPresent: true)
         }
+        tableView.isHidden = true
         cargarDatos()
         // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell", for: indexPath) as! PostTableViewCell
-        
-        cell.lblTexto.text = self.recursos[indexPath.row].valor
-        
-        if (self.recursos[indexPath.row].tipo == 3){
+        if self.recursos[indexPath.row].tipo == 3{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell", for: indexPath) as! PostTableViewCell
             if let url = self.recursos[indexPath.row].valor.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed), let imageURL = URL(string: url){
                 cell.imgPost.contentMode = .scaleToFill
                 cell.imgPost.kf.setImage(with: imageURL)//.af_setImage(withURL: imageURL)
             }
-            cell.imgPost.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-            cell.lblTexto.isHidden = true
-            cell.imgServicio.isHidden = true
-            self.tableView.rowHeight = 220
-        } else {
-            cell.lblTexto.isHidden = false
-            cell.imgServicio.isHidden = false
-            cell.imgPost.isHidden = true
-            self.tableView.rowHeight = 40
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! Post2TableViewCell
+            
+            cell.lblTexto.text = self.recursos[indexPath.row].valor
+             cell.imgServicio.image = UIImage(named: self.imagenes[self.recursos[indexPath.row].tipo])
+            if(self.recursos[indexPath.row].tipo >= 5){
+                cell.imgServicio.image = UIImage(named: self.imagenes[self.recursos[indexPath.row].tipo-5])
+            }
+            return cell
         }
-        
-        if(self.recursos[indexPath.row].tipo >= 5){
-            cell.imgServicio.image = UIImage(named: self.imagenes[self.recursos[indexPath.row].tipo-5])
-
-        }
-        
-        return cell
+        //return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -146,25 +138,13 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         return 1
     }
     
-    
-    func enviarMensaje( titulo:String, mensaje:String){
-        
-        let btnAlert = UIAlertController(title: titulo, message:mensaje, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
-        }
-        btnAlert.addAction(okAction)
-        self.present(btnAlert, animated: true, completion: nil)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return keywords.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (collectionView.bounds.width/3.0)-5, height: 40)
+        return CGSize(width: (collectionView.bounds.width/3.0)-5, height: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -190,24 +170,25 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func cargarDatos(){
+        showActivityIndicator(color: .green)
         NetworkLoader.loadData(url: "\(Api.singleContent.url)\(contenido?.id ?? 0)/", data: [:], method: .get, completion: {[weak self] (result: MyResult<PostCompleto?>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}
+                self.hideActivityIndicator()
                 switch result{
                 case .success(dat: let data):
                     if data != nil{
-                        self.recursos = data?.recursos
                         self.acciones = data?.acciones
-                        self.tableView.reloadData()
                         if data?.post?.establecimiento == nil{
                             self.stackPhone.isHidden = true
                             self.stackLocation.isHidden = true
-                            self.stackSchedule.isHidden = true
+                            //self.stackSchedule.isHidden = true
                             self.map.isHidden = true
                         }else{
                             self.stackPhone.isHidden = false
                             self.stackLocation.isHidden = false
-                            self.stackSchedule.isHidden = false
+                            //self.stackSchedule.isHidden = false
+                            self.txtUsuario.text = data?.post?.establecimiento?.nombre ?? ""
                             self.map.isHidden = false
                             let lat = data?.post?.establecimiento?.latitud ?? "0"
                             let latDouble = Double(lat)
@@ -220,40 +201,21 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
                         }
                         self.collectionView.reloadData()
                     }
+                    if data?.recursos.count ?? 0 > 0{
+                        self.recursos = data?.recursos
+                        self.tableView.reloadData()
+                    }
                 case .failure(let e):
                     self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }
             }
             
         })
-//        let ws = WebServiceClient()
-//        ws.wsTokenArray(params: "", ws: "/contenido/ver_post/\(self.contenido?.id ?? 0)/", method: "GET", completion: { data in
-//
-//            do {
-//                self.postCompleto = try JSONDecoder().decode(PostCompleto.self, from: data as! Data)
-//
-//                self.recursos.append(contentsOf: self.postCompleto.recursos)
-//                self.acciones.append(contentsOf: self.postCompleto.acciones)
-//
-//                DispatchQueue.main.async {
-//
-//                    self.tableView.reloadData()
-//                    self.tableView.scrollToRow(at: IndexPath(row:self.postCompleto.recursos.count-1, section:0), at: .top, animated: false)
-//                }
-//            } catch let jsonError {
-//                print(jsonError)
-//            }
-//        })
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-        
-    @IBAction func btnEmpelo(_ sender: Any) {
-        
-        
     }
     @objc func btnLike(sender:UIButton){
        // let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
@@ -261,10 +223,24 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     @objc func btnCompartir(sender:UIButton){
-        let index = IndexPath(row: sender.tag, section: 0)
-        let cell = tableView.cellForRow(at: index) as! ContenidoViewCell
-        guard let image2 = cell.imagenContenido else{return}//imageSlider.currentSlideshowItem?.imageView.image else {return}
-        let textToShare = [cell.txtTitulo.text ?? "",image2 ] as [Any]
+        //let index = IndexPath(row: sender.tag, section: 0)
+        //let cell = tableView.cellForRow(at: index) as! ContenidoViewCell
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, 0.0)
+        // renders the view's layer into the current graphics context
+        if let context = UIGraphicsGetCurrentContext() { view.layer.render(in: context) }
+
+        // creates UIImage from what was drawn into graphics context
+        guard let screenshot: UIImage = UIGraphicsGetImageFromCurrentImageContext() else{
+            return
+        }
+
+        // clean up newly created context and return screenshot
+        UIGraphicsEndImageContext()
+        //Save it to the camera roll
+        //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        
+       // guard let image2 = self.//cell.imagenContenido else{return}//imageSlider.currentSlideshowItem?.imageView.image else {return}
+        let textToShare = [screenshot] as [Any]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll,.addToReadingList,.copyToPasteboard,.openInIBooks,.mail,.message,.print ]
         self.present(activityViewController, animated: true, completion: nil)

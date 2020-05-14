@@ -165,7 +165,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     
     func wsAccion(tipo:String, post:Int, cuerpo:String ){
         let params = ["tipo":tipo,"post":post,"cuerpo":cuerpo] as [String : Any]
-        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .get, completion: {[weak self] (result: MyResult<ActionResponse?>) in
+        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: {[weak self] (result: MyResult<ActionResponse?>) in
             guard let self = self else {return}
             DispatchQueue.main.async {
                 switch result{
