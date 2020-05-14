@@ -122,7 +122,7 @@
                                                                     <color key="tintColor" name="green"/>
                                                                     <state key="normal" image="mano"/>
                                                                     <connections>
-                                                                        <segue destination="SdE-0h-AXK" kind="show" id="BU6-kW-x0i"/>
+                                                                        <segue destination="SdE-0h-AXK" kind="show" identifier="addtrueque" id="BU6-kW-x0i"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -445,7 +445,7 @@
                                                                 <color key="tintColor" name="green"/>
                                                                 <state key="normal" image="mano"/>
                                                                 <connections>
-                                                                    <segue destination="SdE-0h-AXK" kind="show" id="OSp-1b-IWQ"/>
+                                                                    <segue destination="SdE-0h-AXK" kind="show" identifier="addtrueque" id="OSp-1b-IWQ"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -784,7 +784,7 @@
                         <outlet property="txtTelefono" destination="j1A-ho-rRQ" id="9u8-HJ-sad"/>
                         <outlet property="txtTitulo" destination="820-Oe-iQv" id="NDO-LN-MBD"/>
                         <outlet property="txtUsuario" destination="eAw-ei-yqy" id="UbR-6Z-qBp"/>
-                        <segue destination="Dmu-YT-2eu" kind="show" id="tXl-nD-Txv"/>
+                        <segue destination="Dmu-YT-2eu" kind="show" identifier="comments" id="tXl-nD-Txv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zla-xg-eci" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -794,13 +794,13 @@
         <!--Comentarios-->
         <scene sceneID="S8R-Pk-aBX">
             <objects>
-                <viewController storyboardIdentifier="comentariosViewController" id="Dmu-YT-2eu" customClass="ComentariosViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="comentariosViewController" modalPresentationStyle="fullScreen" id="Dmu-YT-2eu" customClass="ComentariosViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FDw-lx-okL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xdI-qH-VSr">
-                                <rect key="frame" x="20" y="21" width="335" height="461"/>
+                                <rect key="frame" x="20" y="21" width="335" height="481"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comentariosTableViewCell" rowHeight="195" id="3xy-ei-ITh" customClass="ComentariosTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
@@ -898,7 +898,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzv-3W-ldf" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
-                                <rect key="frame" x="20" y="502" width="335" height="41"/>
+                                <rect key="frame" x="20" y="522" width="335" height="41"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4kR-3w-1jz" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="5.5" width="286" height="30"/>
@@ -962,7 +962,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="glC-wc-haS">
-                                <rect key="frame" x="0.0" y="553" width="375" height="94"/>
+                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -998,13 +998,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Cuál de tus servicios deseas ofrecer como trueque?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="408-eb-fFu">
-                                <rect key="frame" x="50" y="36" width="275" height="41"/>
+                                <rect key="frame" x="50" y="80" width="275" height="41"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="Describe el servicio de lo que ofreces..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p6G-kL-3uz" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
-                                <rect key="frame" x="27" y="164" width="321" height="125.5"/>
+                                <rect key="frame" x="27" y="208" width="321" height="79"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -1032,7 +1032,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="¿Qué quieres a cambio de tu servicio?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-PB-dMf" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
-                                <rect key="frame" x="27" y="321.5" width="321" height="125.5"/>
+                                <rect key="frame" x="27" y="319" width="321" height="79"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -1060,7 +1060,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svF-UA-KCn" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
-                                <rect key="frame" x="27" y="500" width="321" height="48"/>
+                                <rect key="frame" x="27" y="451" width="321" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="RQW-Rq-hzP"/>
                                 </constraints>
@@ -1096,10 +1096,10 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="49m-cY-X9o">
-                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
+                                <rect key="frame" x="0.0" y="524" width="375" height="94"/>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ppv-XS-w9q" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
-                                <rect key="frame" x="27" y="97" width="321" height="35"/>
+                                <rect key="frame" x="27" y="141" width="321" height="35"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaB-Z5-6bX">
                                         <rect key="frame" x="0.0" y="0.0" width="321" height="35"/>
@@ -1226,7 +1226,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OSp-1b-IWQ"/>
+        <segue reference="BU6-kW-x0i"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Star" width="26" height="25"/>

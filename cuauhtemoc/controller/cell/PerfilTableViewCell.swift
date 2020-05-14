@@ -11,7 +11,37 @@ import UIKit
 class PerfilTableViewCell: UITableViewCell {
     
     @IBOutlet weak var txtTituloContenido: UILabel!
-    
+    @IBOutlet weak var txtContenido: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}
+class OpcionesTableViewCell: UITableViewCell {
+    @IBOutlet weak var imagen: UIImageView!
+    @IBOutlet weak var txtContenido: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}
+class SeccionesTableViewCell: UITableViewCell {
     @IBOutlet weak var txtContenido: UILabel!
 
     override func awakeFromNib() {

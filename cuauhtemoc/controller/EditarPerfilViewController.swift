@@ -109,7 +109,7 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
                     self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Intereses]())
                     self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Intereses]())
                     
-                    self.usuario = self.perfil.perfil.usuario
+                    self.usuario = self.perfil.perfil?.usuario
                     
                     self.txtNombre.text = self.usuario.nombre
                     self.txtApellido.text = self.usuario.apellido

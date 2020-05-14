@@ -13,7 +13,8 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var imgPerfil: UIImageView!
+    @IBOutlet weak var username: UILabel!
     var perfil:PerfilCompleto!
     var descripcion:[Intereses]! = []
     var intereses:[Intereses]! = []
@@ -22,13 +23,13 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     var contenido:ContenidoCompleto!
     var dato:[Post]! = []
     var user: Usuario?
-    @IBOutlet weak var imgPerfil: UIImageView!
+    var opciones = ["Editar perfil","Mis trueques","Mis Ventas","Aviso de privacidad","Términos y condiciones","Cerrar sesión"]
+    var images = ["greenPencil","mano","dolar","servicio_enlace","servicio_enlace","power"]
     let imagePicker = UIImagePickerController()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.collectionView.dataSource = self
@@ -36,43 +37,30 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         
         cargarDatosPost()
         cargarDatos()
-        
-        
-      //  let pref = UserDefaults();
-
-//        getImage(imageName: "\(pref.string(forKey: "nombreUsuario")!).png")
         imgPerfil.layer.cornerRadius = 48.0
         imgPerfil.clipsToBounds = true
-        guard let userData = UserDefaults.standard.object(forKey: "user") as? Data else {return}
+        guard let userData = UserDefaults.standard.object(forKey: "usuario") as? Data else {return}
         user = try? JSONDecoder().decode(Usuario.self, from: userData)
+        print("ther user:",user)
     }
     
     @IBAction func btnEditarPerfil(_ sender: Any) {
-
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "editarPerfilViewController") as! EditarPerfilViewController
-        
         self.present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func btnChat(_ sender: Any) {
-        
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
-        
         self.present(viewController, animated: true, completion: nil)
-        
     }
     
     @IBAction func btnMisTrueques(_ sender: Any) {
-        
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "misTruequesViewController") as! MisTruequesViewController
-        
         self.present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func btnMisContrataciones(_ sender: Any) {
-        
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "misContratacionesViewController") as! MisContratacionesViewController
-        
         self.present(viewController, animated: true, completion: nil)
         
     }
@@ -82,9 +70,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     
     
     @IBAction func btnCambiarFoto(_ sender: Any) {
-        
         PHPhotoLibrary.requestAuthorization { (status) in
-            
             switch status{
                 case .authorized:
                     self.loadFromLibrary()
@@ -94,23 +80,17 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
                     break
             case .notDetermined:
                 break
-                
             case .restricted:
                 break
-                
             @unknown default:
                 break
-                
             }
         }
     }
     
     func pedirPermiso(titulo:String, mensaje:String, aceptar:String){
-        
         let alertController = UIAlertController (title: titulo, message: mensaje, preferredStyle: UIAlertController.Style.alert)
-        
         let settingsAction = UIAlertAction(title: aceptar, style: UIAlertAction.Style.default) { (_) -> Void in
-            
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
@@ -167,10 +147,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         let fileManager = FileManager.default
         let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
         if fileManager.fileExists(atPath: imagePath){
-            //self.imgPerfil.image = UIImage(contentsOfFile: imagePath)
-            
             self.imgPerfil.image = self.rotateImage( image: UIImage(contentsOfFile: imagePath)!)
-            
         }else{
             print("Panic! No Image!")
         }
@@ -197,31 +174,57 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     
-    
+    //MARK: - TableView Functions -
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "perfilTableViewCell", for: indexPath) as! PerfilTableViewCell
-        
-        cell.txtTituloContenido.text = self.dato[indexPath.row].titulo
-        cell.txtContenido.text = self.dato[indexPath.row].body
-        
-        return cell
+        if indexPath.section == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "perfilTableViewCell", for: indexPath) as! PerfilTableViewCell
+            cell.txtTituloContenido.text = self.dato[indexPath.row].titulo
+            cell.txtContenido.text = self.dato[indexPath.row].body
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "optionsCell") as! OpcionesTableViewCell
+            cell.txtContenido.text = opciones[indexPath.row]
+            cell.imagen.image = UIImage(named: images[indexPath.row])
+            cell.imagen.tintColor = UIColor(named: "green") ?? .green
+            //cell?.textLabel?.text = opciones[indexPath.row]
+            //cell?.imageView?.image = UIImage(named: images[indexPath.row])
+            //cell?.imageView?.tintColor = .green
+            return cell //?? UITableViewCell()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dato.count
+        if section == 0 {
+            return self.dato.count
+        }else{
+            return 6
+        }
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SectionHeader") as! SeccionesTableViewCell
+        if section == 0 {
+            cell.txtContenido.text = "Mis ofertas"
+        }else{
+            cell.txtContenido.text = "Opciones"
+        }
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 52
+    }
+        
+    //MARK: - CollectionView functions -
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return todos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.bounds.width/3.0)-5, height: 40)
+        return CGSize(width: (collectionView.bounds.width/3.0)-5, height: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -243,32 +246,36 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
     }
+    //MARK: - Network Functions -
     
     func cargarDatos(){
-        
-        let ws = WebServiceClient()
-        
-        DispatchQueue.main.async {
-            ws.wsTokenArray(params: "", ws: "/usuarios/verPerfil/", method: "GET", completion: { data in
-                
-                do {
-                    self.perfil = try JSONDecoder().decode(PerfilCompleto.self, from: data as! Data)
-                    self.descripcion.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
-                    self.intereses.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
-                    self.extras.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
-                    
-                    self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
-                    self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Intereses]())
-                    self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Intereses]())
-                    
-                    DispatchQueue.main.async {
+        showActivityIndicator(color: .green)
+        NetworkLoader.loadData(url: Api.seeProfile.url, data: [:], method: .get, completion: {[weak self] (result:MyResult<PerfilCompleto>) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.hideActivityIndicator()
+                switch result{
+                case .success(let data):
+                    if data.perfil != nil{
+                        self.descripcion = data.perfil?.descripcion ?? [Intereses]()
+                        self.intereses = data.perfil?.intereses ?? [Intereses]()
+                        self.extras = data.perfil?.extras ?? [Intereses]()
+                        self.todos.append(contentsOf: self.descripcion)
+                        self.todos.append(contentsOf: self.intereses)
+                        self.todos.append(contentsOf: self.extras)
+                        self.username.text = "\(data.perfil?.usuario?.nombre ?? "") \(data.perfil?.usuario?.apellido ?? "")"
+                        if let urlString = data.perfil?.foto{
+                            guard let url = URL(string: urlString) else {return}
+                            self.imgPerfil.kf.setImage(with: url)
+                        }
+                        self.tableView.reloadData()
                         self.collectionView.reloadData()
                     }
-                } catch let jsonError {
-                    print(jsonError)
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }
-            })
-        }
+            }
+        })
     }
     
     func cargarDatosPost(){
@@ -287,55 +294,8 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
                 }
             }
         })
-//        let ws = WebServiceClient()
-//        let pref = UserDefaults();
-//        print("/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario") ?? 0)")
-//
-//        DispatchQueue.main.async {
-//            ws.wsTokenArray(params: "", ws: "/contenido/list_post/?page_size=30&usuario=\(pref.value(forKey: "idUsuario") ?? "")", method: "GET", completion: { data in
-//
-//                do {
-//                    self.contenido = try JSONDecoder().decode(ContenidoCompleto.self, from: data as! Data)
-//                    self.dato.append(contentsOf: self.contenido.results)
-//
-//                    DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-//                    }
-//                } catch let jsonError {
-//                    print(jsonError)
-//                }
-//            })
-//        }
     }
-    
-    @IBAction func btnMercado(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "contenidoViewController") as! ContenidoViewController
-    
-        self.present(viewController, animated: true, completion: nil)
-    }
-
-    @IBAction func btnCargarOferta(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "cargarOfertaViewController") as! CargarOfertaViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnNotificaciones(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "notificacionesViewController") as! NotificacionesViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnPerfil(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "perfilCompletoViewController") as! PerfilCompletoViewController
-        
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnEmpelo(_ sender: Any) {
-        
-        
-    }
+    //MARK: -
    
 
 }
