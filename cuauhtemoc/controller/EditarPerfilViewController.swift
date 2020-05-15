@@ -95,9 +95,9 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     }
     
     func cargarDatos(){
-        let userData = UserDefaults.standard.value(forKey: "usuario") as? Data ?? Data()
-        let user = try? JSONDecoder().decode(Usuario.self, from: userData)
-        
+//        let userData = UserDefaults.standard.value(forKey: "usuario") as? Data ?? Data()
+//        let user = try? JSONDecoder().decode(Usuario.self, from: userData)
+//        
 //        let ws = WebServiceClient()
 //        let pref = UserDefaults();
 //        

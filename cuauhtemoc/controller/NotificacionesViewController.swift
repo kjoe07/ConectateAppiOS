@@ -29,19 +29,28 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         searchController.searchResultsUpdater = self
         searchController.automaticallyShowsCancelButton = true
         searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Buscar"
+        //searchController.searchBar.placeholder = "Buscar"
+       // searchController.searchBar.barStyle = .default
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.searchBar.barTintColor = UIColor(named: "green") ?? .green
+        searchController.searchBar.tintColor = UIColor(named: "green") ?? .green
+        searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Buscar", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "green") ?? .green])
+        searchController.searchBar.searchTextField.textColor = UIColor(named: "green") ?? .green
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "green") ?? UIColor.systemBlue]
+        //searchController.searchBar.barStyle = .default
         definesPresentationContext = true
-        navigationItem.searchController = searchController
+        self.tableView.tableHeaderView = searchController.searchBar
+        //navigationItem.searchController = searchController
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
         let image = UIImage(named: "conectateBar")
         let imageView = UIImageView(image: image)
         navigationItem.titleView = imageView
-        setNeedsStatusBarAppearanceUpdate()
+        //setNeedsStatusBarAppearanceUpdate()
         //tableView.tableHeaderView = searchController.searchBar
         if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
             textfield.layer.cornerRadius = 17
             textfield.backgroundColor = .white
-            textfield.textColor = .white//UIColor(named: "labelBlue") ?? UIColor.systemBlue
+            //textfield.textColor = UIColor(named: "green") ?? UIColor.systemBlue
             let placeholder = "Buscar"
             let color = UIColor(named: "green") ?? UIColor.green
             textfield.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor : color])

@@ -26,7 +26,9 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     var opciones = ["Editar perfil","Mis trueques","Mis Ventas","Aviso de privacidad"/*,"Términos y condiciones"*/,"Cerrar sesión"]
     var images = ["greenPencil","mano","dolar","servicio_enlace"/*,"servicio_enlace"*/,"power"]
     let imagePicker = UIImagePickerController()
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+           return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +43,8 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         
         cargarDatosPost()
         cargarDatos()
-        imgPerfil.layer.cornerRadius = 48.0
-        imgPerfil.clipsToBounds = true
+        //imgPerfil.layer.cornerRadius = 48.0
+        //imgPerfil.clipsToBounds = true
         guard let userData = UserDefaults.standard.object(forKey: "usuario") as? Data else {return}
         user = try? JSONDecoder().decode(Usuario.self, from: userData)
        // print("ther user:",user)

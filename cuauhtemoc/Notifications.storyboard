@@ -30,18 +30,18 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u5L-uF-4mN">
-                                <rect key="frame" x="20" y="112" width="374" height="587"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="notificacionesTableViewCell" id="cOC-Iv-L3I" customClass="NotificacionesTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="80"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cOC-Iv-L3I" id="Ewu-d6-uTp">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0OP-xp-dnd" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="7" width="374" height="66"/>
+                                                    <rect key="frame" x="20" y="7" width="374" height="66"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbM-by-hTY">
                                                             <rect key="frame" x="17" y="16" width="53" height="34"/>
@@ -150,8 +150,8 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="0OP-xp-dnd" secondAttribute="trailing" id="Aby-d8-Jm1"/>
-                                                <constraint firstItem="0OP-xp-dnd" firstAttribute="leading" secondItem="Ewu-d6-uTp" secondAttribute="leading" id="bAE-d6-EDa"/>
+                                                <constraint firstAttribute="trailing" secondItem="0OP-xp-dnd" secondAttribute="trailing" constant="20" id="Aby-d8-Jm1"/>
+                                                <constraint firstItem="0OP-xp-dnd" firstAttribute="leading" secondItem="Ewu-d6-uTp" secondAttribute="leading" constant="20" id="bAE-d6-EDa"/>
                                                 <constraint firstItem="0OP-xp-dnd" firstAttribute="top" secondItem="Ewu-d6-uTp" secondAttribute="top" constant="7" id="eiq-lW-xf0"/>
                                                 <constraint firstAttribute="bottom" secondItem="0OP-xp-dnd" secondAttribute="bottom" constant="7" id="yxM-bj-0dz"/>
                                             </constraints>
@@ -169,11 +169,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="u5L-uF-4mN" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" constant="20" id="0Ct-l7-am5"/>
+                            <constraint firstItem="u5L-uF-4mN" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" id="0Ct-l7-am5"/>
                             <constraint firstItem="X8j-9Q-7us" firstAttribute="bottom" secondItem="uZ9-id-wBz" secondAttribute="bottom" id="5NF-vf-q6R"/>
-                            <constraint firstItem="u5L-uF-4mN" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" constant="20" id="BLu-p1-6BQ"/>
                             <constraint firstItem="Bo5-aC-WHI" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" id="BPp-gM-pgq"/>
-                            <constraint firstItem="X8j-9Q-7us" firstAttribute="trailing" secondItem="u5L-uF-4mN" secondAttribute="trailing" constant="20" id="Bpq-8w-sRm"/>
+                            <constraint firstItem="X8j-9Q-7us" firstAttribute="trailing" secondItem="u5L-uF-4mN" secondAttribute="trailing" id="Bpq-8w-sRm"/>
                             <constraint firstAttribute="trailing" secondItem="Bo5-aC-WHI" secondAttribute="trailing" id="DSu-Sh-q7g"/>
                             <constraint firstItem="QkI-XU-g9G" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" id="F63-CK-Lge"/>
                             <constraint firstItem="uZ9-id-wBz" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" id="Ixm-Zh-JJ9"/>
@@ -184,7 +183,6 @@
                             <constraint firstItem="u5L-uF-4mN" firstAttribute="top" secondItem="QkI-XU-g9G" secondAttribute="top" constant="24" id="ceg-11-i9s"/>
                             <constraint firstItem="uZ9-id-wBz" firstAttribute="trailing" secondItem="X8j-9Q-7us" secondAttribute="trailing" id="dEp-fZ-gQo"/>
                             <constraint firstItem="X8j-9Q-7us" firstAttribute="bottom" secondItem="QkI-XU-g9G" secondAttribute="bottom" id="mDa-pq-3LS"/>
-                            <constraint firstItem="X8j-9Q-7us" firstAttribute="trailing" secondItem="u5L-uF-4mN" secondAttribute="trailing" constant="20" id="nDG-UP-FmX"/>
                             <constraint firstItem="QkI-XU-g9G" firstAttribute="top" secondItem="X8j-9Q-7us" secondAttribute="top" id="sRP-AD-BYO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X8j-9Q-7us"/>
@@ -208,6 +206,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="W4R-Mr-wCb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="green"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -220,7 +219,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="fondo" width="750" height="1550"/>
+        <image name="fondo" width="375" height="832"/>
         <image name="img_trueque_morado" width="56" height="25"/>
         <image name="logoProvider" width="375" height="94"/>
         <image name="notificationTab" width="13" height="13"/>
