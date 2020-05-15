@@ -24,110 +24,97 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     var usuario:Usuario!
     var scrollGestureRecognizer: UITapGestureRecognizer!
     var textFields: [UITextField]!
-    
-    
+    var changed = false
+    let userData = UserDefaults.standard.value(forKey: "usuario") as? Data ?? Data()
+    var user: Usuario?
     @IBOutlet weak var imgPerfil: UIImageView!
     let imagePicker = UIImagePickerController()
-    
+    var newpass: String?
+    var imagedChange = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
         txtNombre.delegate = self
         txtApellido.delegate = self
         txtTelefono.delegate = self
         txtCorreo.delegate = self
         txtPassword.delegate = self
         txtCP.delegate = self
-        
-        textFields = [txtNombre, txtApellido, txtTelefono, txtCorreo, txtPassword, txtCP];
-        
-        let toolbar = UIToolbar();
+        textFields = [txtNombre, txtApellido, txtCP];
+        let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.doneClick))
-        
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        
         toolbar.setItems([flexibleSpace, doneButton], animated: true)
         txtTelefono.inputAccessoryView = toolbar
         txtCP.inputAccessoryView = toolbar
-        
         let center: NotificationCenter = NotificationCenter.default
         center.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         center.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         scrollGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
-        
-       // cargarDatos()
-        
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
+        cargarDatos()
+        let imageData = UserDefaults.standard.value(forKey: "userImage") as? Data
+        imgPerfil.image = UIImage(data: imageData ?? Data())
     }
-    
-    
-    @IBAction func btnRegresar(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func btnEditarPerfil(_ sender: Any) {
-    }
+
     
     @IBAction func btnGuardarPerfil(_ sender: Any) {
-        guardarPerfil();
+        if changed{
+             guardarPerfil()
+        }else{
+            if imagedChange {
+                self.showAlert(title: "Perfil actualizado", message: "")
+                self.navigationController?.popViewController(animated: true)
+            }else{
+                self.showAlert(title: "Ups!", message: "es necesario cambiar algún campo para guardarlo")
+            }
+        }
     }
  
     func guardarPerfil(){
-        
-        let ws = WebServiceClient()
-       // let pref = UserDefaults()
-        
-        let parametros = "{nombre:\(self.txtNombre.text!),apellido:\(self.txtApellido.text!)&cp:\(self.txtCP.text!)}"
-        print(parametros)
-        
-        DispatchQueue.main.async {
-            
-            ws.wsToken(params: parametros, ws: "/usuarios/update_usuario/", method: "PATCH", completion: {data in
-                
-                self.enviarMensaje(titulo: "", mensaje: "Tu perfil se ha modificado correctamente")
-                
-            })
-        }
+        let params = ["nombre":self.txtNombre.text ?? "","apellido":self.txtApellido.text ?? "","cp": txtCP.text ?? ""]
+        showActivityIndicator(color: UIColor(named: "green") ?? .green)
+        NetworkLoader.loadData(url: Api.updateUser.url, data: params, method: .patch, completion: {[weak self] (result: MyResult<Perfil>) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.hideActivityIndicator()
+                switch result{
+                case .success( let data):
+                    if self.newpass != nil{
+                        self.changepass()
+                    }else{
+                        if self.newpass == nil{
+                            self.showAlert(title: "Perfil actulizado", message: "")
+                            self.navigationController?.popViewController(animated: true)
+                            let data = try? JSONEncoder().encode(data)
+                            UserDefaults.standard.set(data, forKey: "usuario")
+                        }
+                    }
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+        })
     }
     
     func cargarDatos(){
-//        let userData = UserDefaults.standard.value(forKey: "usuario") as? Data ?? Data()
-//        let user = try? JSONDecoder().decode(Usuario.self, from: userData)
-//        
-//        let ws = WebServiceClient()
-//        let pref = UserDefaults();
-//        
-//        DispatchQueue.main.async {
-//            ws.wsTokenArray(params: "", ws: "/usuarios/verPerfil/", method: "GET", completion: { data in
-//                
-//                do {
-//                    self.perfil = try JSONDecoder().decode(PerfilCompleto.self, from: data as! Data)
-//                    
-                    self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
-                    self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Intereses]())
-                    self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Intereses]())
-                    
-                    self.usuario = self.perfil.perfil?.usuario
-                    
-                    self.txtNombre.text = self.usuario.nombre
-                    self.txtApellido.text = self.usuario.apellido
-                    self.txtTelefono.text = self.usuario.celular
-                    //self.txtCorreo.text = user.//pref.string(forKey: "mailUsuario")
-                    //self.txtPassword.text = pref.string(forKey: "password")
-                    self.txtPassword.text = self.usuario.cp
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-//                } catch let jsonError {
-//                    print(jsonError)
-//                }
-//            })
-//        }
+        self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
+        self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Intereses]())
+        self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Intereses]())
+        
+        self.usuario = self.perfil.perfil?.usuario
+        
+        self.txtNombre.text = self.usuario.nombre
+        self.txtApellido.text = self.usuario.apellido
+        self.txtTelefono.text = self.usuario.celular
+        //self.txtCorreo.text = user.//pref.string(forKey: "mailUsuario")
+        self.txtPassword.text = "XXXXX"//pref.string(forKey: "password")
+        self.txtCP.text = self.usuario.cp
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -135,7 +122,7 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.bounds.width/3.0)-5, height: 40)
+        return CGSize(width: (collectionView.bounds.width/3.0)-5, height: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -206,26 +193,20 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     }
     
     func loadFromLibrary(){
-        
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = false
-        
-        self.present(imagePicker, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.imagePicker.delegate = self
+            self.imagePicker.sourceType = .photoLibrary
+            self.imagePicker.allowsEditing = false
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let pref = UserDefaults()
-        
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         if let image = info[.originalImage]  as? UIImage{
             self.imgPerfil.image = image
-            saveImage(imageName:"\(pref.string(forKey: "nombreUsuario")!).png")
+            saveImage(imageName: user?.nombre ?? "")
         }
         self.dismiss(animated: true, completion: nil)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        
     }
     
     func saveImage(imageName: String){
@@ -240,8 +221,12 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
         //store it in the document directory
         fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
         
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "perfilCompletoViewController")
-        self.present(viewController!, animated: true, completion: nil)
+        
+        UserDefaults.standard.set(data, forKey: "userImage")
+        imagedChange = true
+        
+       // let viewController = self.storyboard?.instantiateViewController(withIdentifier: "perfilCompletoViewController")
+       // self.present(viewController!, animated: true, completion: nil)
     }
     
     func getImage(imageName: String){
@@ -303,26 +288,30 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
         }
     }
     
-    func enviarMensaje( titulo:String, mensaje:String){
-        
-        let btnAlert = UIAlertController(title: titulo, message:mensaje, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
+    @IBAction func textfieldDidChange(_ textfield: UITextField){
+        if textfield == txtCooperativa{
+            newpass = textfield.text
         }
-        
-        btnAlert.addAction(okAction)
-        self.present(btnAlert, animated: true, completion: nil)
+        changed = true
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func changepass(){
+        let params = ["old_password":txtPassword.text ?? "","new_password":txtCooperativa.text ?? ""]
+        showActivityIndicator(color: UIColor(named: "green") ?? .green)
+        NetworkLoader.loadData(url: Api.updatePassword.url, data: params, method: .post, completion: {[weak self] (result: MyResult<LoginResponse>) in
+            DispatchQueue.main.async {
+                guard let self = self else{return}
+                self.hideActivityIndicator()
+                switch result{
+                case .success(dat: let data):
+                    if data.result ?? 0 > 1 {
+                        self.showAlert(title: "Exito", message: "su contraseña se ha cambiado con exito")
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+        })
     }
-    */
 
 }

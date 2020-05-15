@@ -16,6 +16,7 @@ struct Usuario:Codable {
     var celular:String?
     var fecha_nacimiento:String?
     var cp:String?
+    var image:String?
     
 //    init(id:Int, nombre:String, apellido:String, celular:String, fecha_nacimiento:String, cp:String) {
 //

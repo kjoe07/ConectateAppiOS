@@ -73,12 +73,15 @@ enum MyResult<T>{
 enum Method {
     case post
     case get
+    case patch
     var method: String{
         switch self {
         case .get:
             return "GET"
         case .post:
             return "POST"
+        case .patch:
+            return "PATCH"
         }
     }
 }
