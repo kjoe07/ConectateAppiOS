@@ -28,6 +28,8 @@
 		11CB7361246B285B00E086DC /* GooglePlacesSearchController in Frameworks */ = {isa = PBXBuildFile; productRef = 11CB7360246B285B00E086DC /* GooglePlacesSearchController */; };
 		11CB7363246B3B1E00E086DC /* AddURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CB7362246B3B1E00E086DC /* AddURLResponse.swift */; };
 		11CB7366246C398000E086DC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 11CB7365246C398000E086DC /* Kingfisher */; };
+		11CB7368246ED22200E086DC /* Web.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11CB7367246ED22200E086DC /* Web.storyboard */; };
+		11CB736A246ED32800E086DC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CB7369246ED32800E086DC /* WebViewController.swift */; };
 		11D483142447F0760061FA33 /* BorderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D483132447F0760061FA33 /* BorderImageView.swift */; };
 		11ED64F5245758810037648C /* VerifyCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED64F4245758810037648C /* VerifyCodeResponse.swift */; };
 		11ED64F62457824E0037648C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116563BE2448BDB300860795 /* Home.storyboard */; };
@@ -129,6 +131,8 @@
 		11B12BAD2448F5D70001ACB2 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		11CB735B246AD2E200E086DC /* HashtagTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagTableViewController.swift; sourceTree = "<group>"; };
 		11CB7362246B3B1E00E086DC /* AddURLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddURLResponse.swift; sourceTree = "<group>"; };
+		11CB7367246ED22200E086DC /* Web.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Web.storyboard; sourceTree = "<group>"; };
+		11CB7369246ED32800E086DC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		11D483132447F0760061FA33 /* BorderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderImageView.swift; sourceTree = "<group>"; };
 		11ED64F4245758810037648C /* VerifyCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeResponse.swift; sourceTree = "<group>"; };
 		197DE7B626E4DD4C786595EF /* Pods_cuauhtemoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -264,6 +268,7 @@
 				574B6387232BDA2F00F4A29D /* AppDelegate.swift */,
 				574B6389232BDA2F00F4A29D /* ViewController.swift */,
 				116563BE2448BDB300860795 /* Home.storyboard */,
+				11CB7367246ED22200E086DC /* Web.storyboard */,
 				1176FED22448EF8A00648239 /* conecta.storyboard */,
 				1176FED02448EE6700648239 /* Notifications.storyboard */,
 				1176FECE2448EE1000648239 /* oferta.storyboard */,
@@ -324,6 +329,7 @@
 				573B567F233D129F00ADB2E3 /* EditarPerfilViewController.swift */,
 				11B12BA72448F2D20001ACB2 /* RecoverViewController.swift */,
 				11CB735B246AD2E200E086DC /* HashtagTableViewController.swift */,
+				11CB7369246ED32800E086DC /* WebViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -564,6 +570,7 @@
 				1176FED12448EE6700648239 /* Notifications.storyboard in Resources */,
 				574B638D232BDA2F00F4A29D /* Main.storyboard in Resources */,
 				116563C02448BE3000860795 /* perfil.storyboard in Resources */,
+				11CB7368246ED22200E086DC /* Web.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +744,7 @@
 				573B5680233D129F00ADB2E3 /* EditarPerfilViewController.swift in Sources */,
 				57BFD1C72334D4C4002A4EA3 /* InteresesViewController.swift in Sources */,
 				11B12BAC2448F5450001ACB2 /* KeyChainServices.swift in Sources */,
+				11CB736A246ED32800E086DC /* WebViewController.swift in Sources */,
 				57BFD1FF233728E1002A4EA3 /* Usuario.swift in Sources */,
 				11286819243FCAE200F6BD58 /* ExtensionUIIMage.swift in Sources */,
 				573B5645233897CA00ADB2E3 /* Accion.swift in Sources */,

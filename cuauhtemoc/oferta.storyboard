@@ -31,7 +31,7 @@
         <!--Cargar Oferta View Controller-->
         <scene sceneID="3gT-72-rGV">
             <objects>
-                <viewController id="WFw-ud-5MX" customClass="CargarOfertaViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CargarOfertaViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WFw-ud-5MX" customClass="CargarOfertaViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0aA-SQ-H8b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

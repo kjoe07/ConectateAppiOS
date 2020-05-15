@@ -184,7 +184,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         self.present(imagePicker, animated: true, completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let pref = UserDefaults()
+       // let pref = UserDefaults()
         
         if let image = info[.originalImage] as? UIImage{
             //self.imgPerfil.image = image//UIImagePickerController.InfoKey.originalImage

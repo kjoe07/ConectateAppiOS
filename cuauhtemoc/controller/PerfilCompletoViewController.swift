@@ -30,6 +30,10 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
+        let image = UIImage(named: "conectateBar")
+        let imageView = UIImageView(image: image)
+        navigationItem.titleView = imageView
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.collectionView.dataSource = self
@@ -41,33 +45,31 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         imgPerfil.clipsToBounds = true
         guard let userData = UserDefaults.standard.object(forKey: "usuario") as? Data else {return}
         user = try? JSONDecoder().decode(Usuario.self, from: userData)
-        print("ther user:",user)
-    }
-    
-    @IBAction func btnEditarPerfil(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "editarPerfilViewController") as! EditarPerfilViewController
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnChat(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "chatViewController") as! ChatViewController
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnMisTrueques(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "misTruequesViewController") as! MisTruequesViewController
-        self.present(viewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func btnMisContrataciones(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "misContratacionesViewController") as! MisContratacionesViewController
-        self.present(viewController, animated: true, completion: nil)
+       // print("ther user:",user)
         
     }
     
+    //MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "web"{
+            let vc = segue.destination as! WebViewController
+            if sender as! String == "term"{
+                vc.term = true
+            }
+        }else if segue.identifier == "truequesContrata"{
+            let vc = segue.destination as! MisContratacionesViewController
+            vc.trueques = (sender as! String) == "trueques" ? true : false            
+        }
+        
+    }
     
+    @IBAction func loadService(_ sender: UIButton){
+        (self.parent?.parent as! UITabBarController).selectedIndex = 1
+    }
     
-    
+    @IBAction func btnMisContrataciones(_ sender: Any) {
+        self.performSegue(withIdentifier: "truequesContrata", sender: "contrata")
+    }
     
     @IBAction func btnCambiarFoto(_ sender: Any) {
         PHPhotoLibrary.requestAuthorization { (status) in
@@ -104,7 +106,6 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         alertController.addAction(settingsAction)
         let cancelAction = UIAlertAction(title: "Cancelar", style: .default, handler: nil)
         alertController.addAction(cancelAction)
-        
         present(alertController, animated: true, completion: nil)
     }
     
@@ -118,27 +119,19 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let pref = UserDefaults()
-        
         if let image = info[.originalImage] as? UIImage{
-                self.imgPerfil.image = image//UIImagePickerController.InfoKey.originalImage
-                saveImage(imageName:"\(pref.string(forKey: "nombreUsuario")!).png")
-            
+            self.imgPerfil.image = image//UIImagePickerController.InfoKey.originalImage
+            saveImage(imageName:"\(pref.string(forKey: "nombreUsuario")!).png")
         }
         self.dismiss(animated: true, completion: nil)
     }
         
     func saveImage(imageName: String){
-        //create an instance of the FileManager
         let fileManager = FileManager.default
-        //get the image path
         let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        //get the image we took with camera
         let image = imgPerfil.image!
-        //get the PNG data for this image
         let data = image.pngData()
-        //store it in the document directory
         fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
-        
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "perfilCompletoViewController")
         self.present(viewController!, animated: true, completion: nil)
     }
@@ -159,17 +152,13 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         {
         case .right:
             rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .down)
-            
         case .down:
             rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .left)
-            
         case .left:
             rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .up)
-            
         default:
             rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .right)
         }
-        
         return rotatedImage
     }
     
@@ -181,25 +170,28 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "perfilTableViewCell", for: indexPath) as! PerfilTableViewCell
-            cell.txtTituloContenido.text = self.dato[indexPath.row].titulo
-            cell.txtContenido.text = self.dato[indexPath.row].body
-            return cell
+            if dato.count > 0{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "perfilTableViewCell", for: indexPath) as! PerfilTableViewCell
+                cell.txtTituloContenido.text = self.dato[indexPath.row].titulo
+                cell.txtContenido.text = self.dato[indexPath.row].body
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "NoDataCell") as! NoDataCell
+                cell.addOfert.addTarget(self, action: #selector(self.loadService(_:)), for: .touchUpInside)
+                return cell
+            }
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "optionsCell") as! OpcionesTableViewCell
             cell.txtContenido.text = opciones[indexPath.row]
             cell.imagen.image = UIImage(named: images[indexPath.row])
             cell.imagen.tintColor = UIColor(named: "green") ?? .green
-            //cell?.textLabel?.text = opciones[indexPath.row]
-            //cell?.imageView?.image = UIImage(named: images[indexPath.row])
-            //cell?.imageView?.tintColor = .green
             return cell //?? UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return self.dato.count
+            return self.dato.count > 0 ? dato.count : 1
         }else{
             return 6
         }
@@ -217,6 +209,33 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 52
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0{
+            if dato.count > 0 {
+                self.performSegue(withIdentifier: "truequesContrata", sender: "contrata")
+            }
+        }else{
+            switch indexPath.row {
+            case 0:
+                self.performSegue(withIdentifier: "editarPerfil", sender: self)
+            case 1:
+                self.performSegue(withIdentifier: "truequesContrata", sender: "trueques")
+            case 2:
+                self.performSegue(withIdentifier: "truequesContrata", sender: "contrata")
+            case 3:
+                self.performSegue(withIdentifier: "web", sender: "aviso")
+            case 4:
+                self.performSegue(withIdentifier: "web", sender: "term")
+            case 5:
+                UserDefaults.standard.removeObject(forKey: "usuario")
+                KeychainService.removePassword(service: "cuauhtemoc", account: "token")
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                self.view.window?.rootViewController = vc
+            default:
+                break
+            }
+        }
+    }
         
     //MARK: - CollectionView functions -
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -228,10 +247,8 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "simpleHashCollectionViewCell", for: indexPath) as! SimpleHashCollectionViewCell
-        cell.txtHashTags.text = "#\(self.todos[indexPath.row].tag!)"
-        
+        cell.txtHashTags.text = "#\(self.todos[indexPath.row].tag!)"        
         return cell
     }
     
