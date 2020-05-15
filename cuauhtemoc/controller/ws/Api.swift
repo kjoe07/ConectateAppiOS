@@ -79,7 +79,7 @@ enum Api {
         case .sendCode:
             return "\(server.ws)/usuarios/enviarCodigo/"
         case .contentAction:
-            return  "\(server.ws)/contenido/acciones/add/"
+            return  "\(server.ws)/contenido/acciones/add"
         case .addKeywordPost:
             return "\(server.ws)/contenido/add_keyword_post/"
         case .updatePassword:

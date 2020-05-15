@@ -159,19 +159,21 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     @objc func btnTruques(sender:UIButton){
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ofrecerTruequeViewController") as! OfrecerTruequeViewController
         viewController.post =  isSearching ? self.busqueda?[sender.tag] :  segmented.selectedSegmentIndex == 0 ?  result?[sender.tag] : employ?[sender.tag]
-        self.present(viewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
+        //self.present(viewController, animated: true, completion: nil)
     }
 
     
     func wsAccion(tipo:String, post:Int, cuerpo:String ){
         let params = ["tipo":tipo,"post":post,"cuerpo":cuerpo] as [String : Any]
-        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: {[weak self] (result: MyResult<ActionResponse?>) in
+        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: {[weak self] (result: MyResult<Contenido?>) in
             guard let self = self else {return}
             DispatchQueue.main.async {
                 switch result{
                 case.success(dat: let dat):
-                    if dat?.count ?? 0 > 0 {
-                        print("success")
+                    if dat?.id ?? 0 > 0 {
+                        self.showAlert(title: "Felicidades", message: "Tu propuesta de trueque fue enviada")
+                        self.navigationController?.popViewController(animated: true)
                     }
                 case .failure(let e):
                     print(e.localizedDescription)
