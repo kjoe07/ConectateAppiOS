@@ -58,7 +58,7 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
         center.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         scrollGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         
-        cargarDatos()
+       // cargarDatos()
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -95,16 +95,18 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     }
     
     func cargarDatos(){
+        let userData = UserDefaults.standard.value(forKey: "usuario") as? Data ?? Data()
+        let user = try? JSONDecoder().decode(Usuario.self, from: userData)
         
-        let ws = WebServiceClient()
-        let pref = UserDefaults();
-        
-        DispatchQueue.main.async {
-            ws.wsTokenArray(params: "", ws: "/usuarios/verPerfil/", method: "GET", completion: { data in
-                
-                do {
-                    self.perfil = try JSONDecoder().decode(PerfilCompleto.self, from: data as! Data)
-                    
+//        let ws = WebServiceClient()
+//        let pref = UserDefaults();
+//        
+//        DispatchQueue.main.async {
+//            ws.wsTokenArray(params: "", ws: "/usuarios/verPerfil/", method: "GET", completion: { data in
+//                
+//                do {
+//                    self.perfil = try JSONDecoder().decode(PerfilCompleto.self, from: data as! Data)
+//                    
                     self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
                     self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Intereses]())
                     self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Intereses]())
@@ -114,18 +116,18 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
                     self.txtNombre.text = self.usuario.nombre
                     self.txtApellido.text = self.usuario.apellido
                     self.txtTelefono.text = self.usuario.celular
-                    self.txtCorreo.text = pref.string(forKey: "mailUsuario")
-                    self.txtPassword.text = pref.string(forKey: "password")
+                    //self.txtCorreo.text = user.//pref.string(forKey: "mailUsuario")
+                    //self.txtPassword.text = pref.string(forKey: "password")
                     self.txtPassword.text = self.usuario.cp
                     
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                     }
-                } catch let jsonError {
-                    print(jsonError)
-                }
-            })
-        }
+//                } catch let jsonError {
+//                    print(jsonError)
+//                }
+//            })
+//        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

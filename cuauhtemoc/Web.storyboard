@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="d8r-JX-wWr">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="b47-M3-s82" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="b47-M3-s82" customClass="WebViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Xx-fy-uwa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,6 +33,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ADi-UI-zZx"/>
                     </view>
+                    <connections>
+                        <outlet property="web" destination="CIG-z0-OUN" id="VKI-Tx-ynS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pJ8-yV-bf3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

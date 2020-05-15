@@ -52,6 +52,7 @@ class MisContratacionesViewController: UIViewController, UITableViewDataSource, 
         NetworkLoader.loadData(url: trueques ? Api.listContent.url : Api.contentAction.url, data: params , method: .get, completion: {[weak self] (result: MyResult<ContentResponse>)in
             DispatchQueue.main.async {
                 guard let self = self else {return}
+                self.hideActivityIndicator()
                 switch result{
                 case .success(let data):
                     if data.count ?? 0 > 0{

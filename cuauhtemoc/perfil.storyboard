@@ -25,12 +25,23 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29e-Rm-42g">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="9nL-5e-Gq3">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="9nL-5e-Gq3" customClass="BorderImageView" customModule="cuauhtemoc" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="11.5" width="80" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="E7R-3A-Psm"/>
                                                     <constraint firstAttribute="height" constant="80" id="jei-uQ-2N8"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="green"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="40"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alejandro Figueroa González" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dra-Bu-d7h">
                                                 <rect key="frame" x="124" y="27" width="222" height="49.5"/>
@@ -1002,6 +1013,7 @@
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstItem="cUw-oC-KA9" firstAttribute="leading" secondItem="v0s-bq-LnG" secondAttribute="leading" constant="24" id="0Hw-FE-7OI"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TmF-yF-rNY" secondAttribute="bottom" constant="70" id="3vb-rZ-Cln"/>
                                                         <constraint firstAttribute="bottom" secondItem="yOH-Pd-lhF" secondAttribute="bottom" constant="22" id="47D-NF-UhS"/>
                                                         <constraint firstItem="yOH-Pd-lhF" firstAttribute="top" secondItem="Evc-3p-N7V" secondAttribute="bottom" constant="10" id="FhX-6x-ZcG"/>
                                                         <constraint firstAttribute="trailing" secondItem="yOH-Pd-lhF" secondAttribute="trailing" id="GEZ-aE-tPD"/>

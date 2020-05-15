@@ -23,8 +23,8 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     var contenido:ContenidoCompleto!
     var dato:[Post]! = []
     var user: Usuario?
-    var opciones = ["Editar perfil","Mis trueques","Mis Ventas","Aviso de privacidad","Términos y condiciones","Cerrar sesión"]
-    var images = ["greenPencil","mano","dolar","servicio_enlace","servicio_enlace","power"]
+    var opciones = ["Editar perfil","Mis trueques","Mis Ventas","Aviso de privacidad"/*,"Términos y condiciones"*/,"Cerrar sesión"]
+    var images = ["greenPencil","mano","dolar","servicio_enlace"/*,"servicio_enlace"*/,"power"]
     let imagePicker = UIImagePickerController()
     
     
@@ -59,6 +59,9 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         }else if segue.identifier == "truequesContrata"{
             let vc = segue.destination as! MisContratacionesViewController
             vc.trueques = (sender as! String) == "trueques" ? true : false            
+        }else if segue.identifier == "editarPerfil"{
+            let vc = segue.destination as! EditarPerfilViewController
+            vc.perfil = perfil
         }
         
     }
@@ -193,7 +196,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         if section == 0 {
             return self.dato.count > 0 ? dato.count : 1
         }else{
-            return 6
+            return 5
         }
     }
     
@@ -224,9 +227,9 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
                 self.performSegue(withIdentifier: "truequesContrata", sender: "contrata")
             case 3:
                 self.performSegue(withIdentifier: "web", sender: "aviso")
+            //case 4:
+          //      self.performSegue(withIdentifier: "web", sender: "term")
             case 4:
-                self.performSegue(withIdentifier: "web", sender: "term")
-            case 5:
                 UserDefaults.standard.removeObject(forKey: "usuario")
                 KeychainService.removePassword(service: "cuauhtemoc", account: "token")
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
@@ -285,6 +288,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
                             guard let url = URL(string: urlString) else {return}
                             self.imgPerfil.kf.setImage(with: url)
                         }
+                        self.perfil = data
                         self.tableView.reloadData()
                         self.collectionView.reloadData()
                     }
