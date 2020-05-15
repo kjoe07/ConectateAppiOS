@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import BadgeControl
 class ContenidoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,/* UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,*/ UISearchResultsUpdating {
     
     //var busquedaTxt:[String] = []
@@ -108,6 +109,8 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             cell.imagenContenido.contentMode = .scaleToFill
             cell.imagenContenido.kf.setImage(with: url)//af_setImage(withURL: url)
         }
+        let badge = BadgeController(for: cell.btnTruques, in: .upperRightCorner, badgeBackgroundColor: UIColor(named: "green") ?? .green, badgeTextColor: .white, badgeTextFont: nil, borderWidth: 1, borderColor: UIColor(named: "green") ?? .green, animation: nil, badgeHeight: 20, animateOnlyWhenBadgeIsNotYetPresent: true)
+        badge.addOrReplaceCurrent(with: isSearching ? busqueda?[indexPath.row].trueques?.description ?? "0" : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].trueques?.description ?? "0" : employ?[indexPath.row].trueques?.description ?? "0", animated: true)
         cell.keywords = isSearching ? busqueda?[indexPath.row].keywords : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].keywords : employ?[indexPath.row].keywords
         cell.collectionView.dataSource = cell
         cell.collectionView.reloadData()
