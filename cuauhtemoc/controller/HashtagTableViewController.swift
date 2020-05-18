@@ -21,6 +21,7 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableHeaderView = searchController.searchBar
+        self.title = "Selecciona varios #"
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
