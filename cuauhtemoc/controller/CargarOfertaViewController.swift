@@ -513,11 +513,6 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         self.txtNombreServicio.endEditing(true)
         self.performSegue(withIdentifier: "single", sender: self)
     }
-    
-    @IBAction func showTripple(_ sender: Any) {
-        trippleButton.isHidden = true
-        self.performSegue(withIdentifier: "triple", sender: self)
-    }
     @IBAction func phoneActivated(_ sender: Any) {
         txtTelefono.isEnabled = true
         txtTelefono.isHidden = false

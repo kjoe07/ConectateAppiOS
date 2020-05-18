@@ -219,7 +219,6 @@ con un</string>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1bc-ec-hE7">
                                                         <rect key="frame" x="0.0" y="0.0" width="358" height="108.5"/>
                                                         <connections>
-                                                            <action selector="showTripple:" destination="WFw-ud-5MX" eventType="touchUpInside" id="RZW-JS-NKG"/>
                                                             <segue destination="obi-tf-84Q" kind="show" identifier="triple" id="vJn-gH-fnY"/>
                                                         </connections>
                                                     </button>
@@ -683,7 +682,6 @@ con un</string>
                         <outlet property="txtEstablishmentLocation" destination="IjK-NK-KSv" id="VjJ-le-KdH"/>
                         <outlet property="txtNombreServicio" destination="6z4-qg-WLQ" id="eQ9-WY-Lwl"/>
                         <outlet property="txtTelefono" destination="Yk8-ae-KB9" id="22R-9F-Xs2"/>
-                        <segue destination="obi-tf-84Q" kind="show" identifier="single" id="yjm-OS-MwF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZC-od-F8h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -720,9 +718,6 @@ con un</string>
             <point key="canvasLocation" x="2628" y="1720"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="yjm-OS-MwF"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="chevronDonw" width="15" height="8"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
