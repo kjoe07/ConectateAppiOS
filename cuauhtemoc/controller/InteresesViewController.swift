@@ -14,7 +14,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var search: UIView!
     //@IBOutlet weak var buscador: UITextField!
     
-    var dato:[Intereses] = []
+   // var dato:[Intereses] = []
     var busqueda:[Results]? = []
     var result: [Results]?
     var intereses:[Int] = []
@@ -35,8 +35,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         searchController.searchBar.leftAnchor.constraint(equalTo: search.leftAnchor).isActive = true
         searchController.searchBar.rightAnchor.constraint(equalTo: search.rightAnchor).isActive = true
         searchController.searchBar.heightAnchor.constraint(equalTo: search.heightAnchor).isActive = true
-        
-        searchController.searchBar.delegate = self
+        searchController.searchBar.delegate = self//delegate = self
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -79,7 +78,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "fotoCollectionView", for: indexPath) as! ImagenesCollectionViewCell
         cell.txtNombre.text = "#\(isSearching ?  busqueda?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "")"
         if let url = isSearching ? busqueda?[indexPath.row].imagen?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) : result?[indexPath.row].imagen?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? "", let imageURL = URL(string: url){
-            cell.imgCell.kf.setImage(with: imageURL)//af_setImage(withURL: imageURL)
+            cell.imgCell.kf.setImage(with: imageURL, placeholder: UIImage(named: "hashtagGreen"))//af_setImage(withURL: imageURL)
         }
        if self.intereses.count > 0 {
            if intereses.contains( !isSearching ?  self.result?[indexPath.row].id ?? -1 : busqueda?[indexPath.row].id ?? -1){
@@ -135,6 +134,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
                 switch resul{
                 case .success(dat: let data):
                     if data.result ?? 0 == 1{
+                        UserDefaults.standard.set(true, forKey: "completed")
                         self.performSegue(withIdentifier: PersonalizadoViewController.identifier, sender: self)
                     }
                 case .failure(let e):
@@ -154,17 +154,22 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
             self.fotosCollectionView.reloadData()
         }else{
             isSearching = false
+             self.fotosCollectionView.reloadData()
         }
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        self.fotosCollectionView.reloadData()
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
+        fotosCollectionView.reloadData()
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
+        isSearching = false
+        fotosCollectionView.reloadData()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("textchanged")

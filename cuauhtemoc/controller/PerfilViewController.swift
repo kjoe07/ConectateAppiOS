@@ -77,7 +77,9 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
         cell.txtNombre.text = "#\(!isSearching ? result?[indexPath.row].tag ?? "" : busqueda?[indexPath.row].tag ?? "")"
         //cell.imgCell.contentMode = .scaleAspectFit
         if let imageURL = URL(string: url?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? ""){
-            cell.imgCell.kf.setImage(with: imageURL)//af_setImage(withURL: imageURL)
+            cell.imgCell.kf.setImage(with: imageURL, placeholder: UIImage(named: "hashtagGreen"))
+            
+            //setImage(with: imageURL, placeholder: UIImage(named: "hashtagGreen"), options: nil, progressBlock: nil, completionHandler: nil) setImage(with: imageURL)//af_setImage(withURL: imageURL)
         }
         if self.intereses.count > 0 {
             if intereses.contains( !isSearching ?  self.result?[indexPath.row].id ?? -1 : busqueda?[indexPath.row].id ?? -1){
@@ -177,13 +179,17 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.view.endEditing(true)
+        isSearching = false
+        fotosCollectionView.reloadData()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("textchanged")
         if searchText.isEmpty {
+            isSearching = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.searchController.resignFirstResponder()
                 self.view.endEditing(true)
+                self.fotosCollectionView.reloadData()
             }
         }
     }

@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Permiso denegado por el usuario")
             }
         }
-        if UserDefaults.standard.object(forKey: "usuario") != nil{
+        if UserDefaults.standard.object(forKey: "usuario") != nil && UserDefaults.standard.value(forKey: "completed") as? Bool ?? false{
             let vc = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController()
             self.window?.rootViewController = vc
             window?.makeKeyAndVisible()
