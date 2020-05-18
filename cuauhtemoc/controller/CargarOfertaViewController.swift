@@ -11,11 +11,12 @@ import UIKit
 import GooglePlacesSearchController
 import CoreLocation
 import Photos
+import GoogleMaps
 class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDataSource, UITableViewDelegate,GooglePlacesAutocompleteViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     @IBOutlet weak var lblTipoServicio: UITextField!
     @IBOutlet weak var txtNombreServicio: UITextField!
-    @IBOutlet weak var txtHasTags: UITextField!
+    @IBOutlet weak var txtEstablishmentLocation: UITextField!
     @IBOutlet weak var txtDescripcion: UITextField!
    // @IBOutlet weak var ckbTelefono: CheckBox!
     @IBOutlet weak var txtTelefono: UITextField!
@@ -23,6 +24,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     @IBOutlet weak var trippleButton: UIButton!
     @IBOutlet weak var mobileSwitch: UISwitch!
     @IBOutlet weak var establismentSwitch: UISwitch!
+    @IBOutlet weak var map: GMSMapView!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
@@ -36,6 +38,8 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     var guardado:[Results]? = []
     var GPSc: GooglePlacesSearchController?
     let imagePicker = UIImagePickerController()
+    var imageArray = [UIImage]()
+    //MARK: - View Functions -
     override func viewDidLoad() {
         super.viewDidLoad()
         lblTipoServicio.delegate = self
@@ -61,46 +65,14 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
+    //MARK: - Actions -
     
     @IBAction func btnAgregar(_ sender: Any) {
-        let params = ["titulo":txtNombreServicio.text ?? "","tipo":"\(pickerViewServicio.selectedRow(inComponent: 0)+1)","body":self.txtDescripcion.text ?? "","flag_telefono":true] as [String : Any]
-        NetworkLoader.loadData(url: Api.createContent.url, data: params, method: .post, completion: { [weak self] (result: MyResult<AddPostResponse>) in
-            DispatchQueue.main.async {
-                guard let self = self else {return}
-                switch result{
-                case .success(dat: let data):
-                    for i in 0..<(self.guardado?.count ?? 0) {
-                       // self.subirURL(post: data.id ?? 0, valor: (self.guardado?[i].id?.description ?? ""), url: "add_keyword_post", tipo: nil)
-                        self.agregarKeyword(post: data.id ?? 0,keyword: self.guardado?[i].id ?? 0)
-                    }
-                    for i in 0..<self.recursos.count {
-                        if(self.recursos[i].tipo == 3){
-                        }  else if(self.recursos[i].tipo == 4){
-                        } else if(self.recursos[i].tipo == 5){
-                        } else if(self.recursos[i].tipo == 6){
-                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_url", tipo: nil)
-                        } else if(self.recursos[i].tipo == 8){
-                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_fecha", tipo: nil)
-                        } else if(self.recursos[i].tipo == 9){
-                        } else if(self.recursos[i].tipo == 10){
-                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_precio", tipo: nil)
-                        } else if(self.recursos[i].tipo == 11){
-                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
-                           // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
-                        } else if(self.recursos[i].tipo == 12){
-                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
-                           // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
-                        } else if(self.recursos[i].tipo == 13){
-                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
-                            //self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
-                        }
-                    }
-                    self.showAlert(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!")
-                case .failure(let e):
-                    self.showAlert(title: "Ups!", message: e.localizedDescription)
-                }
-            }
-        })
+        if txtNombreServicio.text != "" && lblTipoServicio.text != "" && guardado?.count ?? 0 > 0{
+            sendRequest()
+        }else{
+            self.showAlert(title: "Ups!", message: "es necesario completar todos los campos para continuar")
+        }
     }
     
     @IBAction func btnCalendario(_ sender: Any) {
@@ -110,13 +82,9 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         }
         tableView.isHidden = false
     }
-    
-    @IBAction func btnDocumento(_ sender: Any) {
-    }
-    
     @IBAction func btnUrl(_ sender: Any) {
         tableView.isHidden = false
-        let ac = UIAlertController(title: "Ingresa una URL", message: nil, preferredStyle: .alert)
+        let ac = UIAlertController(title: "Escribe el enlace que quieres publicar", message: nil, preferredStyle: .alert)
         ac.addTextField()
         let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0].text!
@@ -127,75 +95,6 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         ac.addAction(submitAction)
         present(ac, animated: true)
     }
-    
-    @IBAction func btnImagen(_ sender: Any) {
-        tableView.isHidden = false    
-        PHPhotoLibrary.requestAuthorization { (status) in
-            
-            switch status{
-            case .authorized:
-                self.loadFromLibrary()
-                break
-            case .denied:
-                self.pedirPermiso(titulo: "Debes habilitar permisos", mensaje: "Para modificar tu foto de perfil es necesario habilites los permisos", aceptar: "Otorgar permiso")
-                break
-            case .notDetermined:
-                break
-                
-            case .restricted:
-                break
-                
-            @unknown default:
-                break
-                
-            }
-        }
-    }
-    
-    func pedirPermiso(titulo:String, mensaje:String, aceptar:String){
-        
-        let alertController = UIAlertController (title: titulo, message: mensaje, preferredStyle: UIAlertController.Style.alert)
-        
-        let settingsAction = UIAlertAction(title: aceptar, style: UIAlertAction.Style.default) { (_) -> Void in
-            
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                return
-            }
-            
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
-            }
-        }
-        alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func loadFromLibrary(){
-        
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = false
-        
-        self.present(imagePicker, animated: true, completion: nil)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-       // let pref = UserDefaults()
-        
-        if let image = info[.originalImage] as? UIImage{
-            //self.imgPerfil.image = image//UIImagePickerController.InfoKey.originalImage
-            //saveImage(imageName:"\(pref.string(forKey: "nombreUsuario")!).png")
-            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: image.description, tipo: 3))
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
     @IBAction func btnMetodoPago(_ sender: Any) {
         tableView.isHidden = false
         let ac = UIAlertController(title: "Ingresa una URL", message: nil, preferredStyle: .alert)
@@ -257,6 +156,62 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     @IBAction func btnUbicacion(_ sender: Any) {
         tableView.isHidden = false
     }
+    @IBAction func btnImagen(_ sender: Any) {
+        tableView.isHidden = false    
+        PHPhotoLibrary.requestAuthorization { (status) in
+            switch status{
+            case .authorized:
+                self.loadFromLibrary()
+                break
+            case .denied:
+                self.pedirPermiso(titulo: "Debes habilitar permisos", mensaje: "Para modificar tu foto de perfil es necesario habilites los permisos", aceptar: "Otorgar permiso")
+                break
+            case .notDetermined, .restricted:
+                break
+            @unknown default:
+                break
+            }
+        }
+    }
+    
+    func pedirPermiso(titulo:String, mensaje:String, aceptar:String){
+        let alertController = UIAlertController (title: titulo, message: mensaje, preferredStyle: UIAlertController.Style.alert)
+        let settingsAction = UIAlertAction(title: aceptar, style: UIAlertAction.Style.default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
+        alertController.addAction(settingsAction)
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func loadFromLibrary(){
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = false
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.originalImage] as? UIImage{
+            let name = info[.imageURL] as? URL
+            let imageName = name?.lastPathComponent
+            let ext = name?.pathExtension
+            let imageNameExt = "\(imageName ?? "").\(ext ?? "")"
+            self.recursos.append(Recurso(id: 0, orden: imageArray.count, post: 0, valor: imageNameExt, tipo: 3))
+            imageArray.append(image)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    //MARK: - Table Fucntions -
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell", for: indexPath) as! Post2TableViewCell
         cell.lblTexto.text = self.recursos[indexPath.row].valor
@@ -292,45 +247,44 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         textField.resignFirstResponder()
         return true
     }
-    
-    func cargarHashTags(){
-        txtHasTags.inputView = pickerViewHashTags
-        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
-        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-        toolBar.barStyle = UIBarStyle.black
-        toolBar.tintColor = UIColor.white
-        toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(donePressed2) )
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width / 3, height: self.view.frame.size.height))
-        label.font = UIFont(name: "Helvetica", size: 13)
-        label.backgroundColor = UIColor.clear
-        label.textColor = UIColor.white
-        label.text = "Selecciona:"
-        label.textAlignment = NSTextAlignment.center
-        let textBtn = UIBarButtonItem(customView: label)
-        toolBar.setItems([textBtn,flexSpace,doneButton], animated: true)
-        txtHasTags.inputAccessoryView = toolBar
-    }
-    
-    @objc func donePressed2() {
-         print("Ingreso")
-        if let index = intereses.firstIndex(of: self.busqueda?[pickerViewHashTags.selectedRow(inComponent: 0)].id ?? 0){
-            print("No hay")
-            intereses.remove(at: index)
-            guardado?.remove(at: index)
-        } else {
-            print("Agregando")
-            if(self.intereses.count >= 5){
-                self.showAlert(title: "Ups", message: "Solo puedes agregar 5 hashtags")
-               // self.enviarMensaje(titulo: "¡Ups!", mensaje: "Solo puedes agregar 5 hashtags")
-            } else {
-                intereses.append(self.busqueda?[pickerViewHashTags.selectedRow(inComponent: 0)].id ?? 0)
-            }
-        }
-        txtHasTags.resignFirstResponder()
-        collectionView.reloadData()
-    }
+    //MARK: -   -
+//    func cargarHashTags(){
+//        txtHasTags.inputView = pickerViewHashTags
+//        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
+//        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
+//        toolBar.barStyle = UIBarStyle.black
+//        toolBar.tintColor = UIColor.white
+//        toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
+//        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(donePressed2) )
+//        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width / 3, height: self.view.frame.size.height))
+//        label.font = UIFont(name: "Helvetica", size: 13)
+//        label.backgroundColor = UIColor.clear
+//        label.textColor = UIColor.white
+//        label.text = "Selecciona:"
+//        label.textAlignment = NSTextAlignment.center
+//        let textBtn = UIBarButtonItem(customView: label)
+//        toolBar.setItems([textBtn,flexSpace,doneButton], animated: true)
+//        txtHasTags.inputAccessoryView = toolBar
+//    }
+//
+//    @objc func donePressed2() {
+//         print("Ingreso")
+//        if let index = intereses.firstIndex(of: self.busqueda?[pickerViewHashTags.selectedRow(inComponent: 0)].id ?? 0){
+//            print("No hay")
+//            intereses.remove(at: index)
+//            guardado?.remove(at: index)
+//        } else {
+//            print("Agregando")
+//            if(self.intereses.count >= 5){
+//                self.showAlert(title: "Ups", message: "Solo puedes agregar 5 hashtags")
+//            } else {
+//                intereses.append(self.busqueda?[pickerViewHashTags.selectedRow(inComponent: 0)].id ?? 0)
+//            }
+//        }
+//        txtHasTags.resignFirstResponder()
+//        collectionView.reloadData()
+//    }
     
     func cargarServicio(){
         lblTipoServicio.inputView = pickerViewServicio
@@ -356,7 +310,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         lblTipoServicio.resignFirstResponder()
         lblTipoServicio.text = tipoServicio[pickerViewServicio.selectedRow(inComponent: 0)]
     }
-    
+    //MARK: - Picker -
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -378,7 +332,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         }
         return nil
     }
-
+    //MARK: - CollectionView Functions -
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return guardado?.count ?? 0
     }
@@ -411,7 +365,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         guardado?.remove(at: indexPath.row)
         self.collectionView.reloadData()
     }
-    
+    //MARK: - Request Functions -
     func cargarDatos(){
         print("load data:")
         let params = ["page_size":300]
@@ -430,14 +384,52 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             }
         })
     }
-        
-    @IBAction func btnEmpelo(_ sender: Any) {
-    }
-    
-    @IBAction func btnRegresar(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+    fileprivate func sendRequest() {
+           let params = ["titulo":txtNombreServicio.text ?? "","tipo":"\(pickerViewServicio.selectedRow(inComponent: 0)+1)","body":self.txtDescripcion.text ?? "","flag_telefono":true] as [String : Any]
+           showActivityIndicator(color: UIColor(named: "green") ?? .green)
+           NetworkLoader.loadData(url: Api.createContent.url, data: params, method: .post, completion: { [weak self] (result: MyResult<AddPostResponse>) in
+               DispatchQueue.main.async {
+                   guard let self = self else {return}
+                   switch result{
+                   case .success(dat: let data):
+                       for i in 0..<(self.guardado?.count ?? 0) {
+                           // self.subirURL(post: data.id ?? 0, valor: (self.guardado?[i].id?.description ?? ""), url: "add_keyword_post", tipo: nil)
+                           self.agregarKeyword(post: data.id ?? 0,keyword: self.guardado?[i].id ?? 0)
+                       }
+                       for i in 0..<self.recursos.count {
+                           if(self.recursos[i].tipo == 3){
+                               for j in 0..<self.imageArray.count{
+                                   self.uploadImages(post: data.id ?? 0, valor: self.recursos[i].valor, Tipo: 3, image: self.imageArray[j])
+                               }
+                           }  else if(self.recursos[i].tipo == 4){
+                           } else if(self.recursos[i].tipo == 5){
+                           } else if(self.recursos[i].tipo == 6){
+                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_url", tipo: nil)
+                           } else if(self.recursos[i].tipo == 8){
+                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_fecha", tipo: nil)
+                           } else if(self.recursos[i].tipo == 9){
+                           } else if(self.recursos[i].tipo == 10){
+                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_precio", tipo: nil)
+                           } else if(self.recursos[i].tipo == 11){
+                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                               // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
+                           } else if(self.recursos[i].tipo == 12){
+                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                               // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
+                           } else if(self.recursos[i].tipo == 13){
+                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                               //self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
+                           }
+                       }
+                       self.hideActivityIndicator()
+                       self.showAlert(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!")
+                   case .failure(let e):
+                       self.hideActivityIndicator()
+                       self.showAlert(title: "Ups!", message: e.localizedDescription)
+                   }
+               }
+           })
+       }
     func agregarKeyword(post:Int, keyword:Int){
         let params = ["post": post,"keyword":keyword]
         NetworkLoader.loadData(url: Api.addKeywordPost.url, data: params, method: .post, completion: {[weak self] (result:MyResult<AddPostResponse?>) in
@@ -474,7 +466,25 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             }
         })
     }
-     //MARK: - Navigation
+    func uploadImages(post id: Int,valor:String,Tipo: Int,image: UIImage){
+        let params = ["post":id,"valor":valor,"tipo":Tipo] as [String : Any]
+        let imageData = image.pngData()
+        //TODO: - Find tje codable value in this request.
+        NetworkLoader.sendPostFormData(formFields: params, url: Api.addFile.url, imageData: imageData, completion: {[weak self] (result:MyResult<Usuario>) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch result{
+                case .success(dat: let data):
+                    //FIXME: - verify the response and do proper responses
+                    print("success")
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+            
+        })
+    }
+     //MARK: - Navigation -
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! HashtagTableViewController
         vc.result = self.dato
@@ -510,7 +520,9 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     @IBAction func locationActivated(_ sender: Any) {
         txtEstablecimiento.isEnabled = true
-        txtEstablecimiento.isHidden = false 
+        txtEstablecimiento.isHidden = false
+        txtEstablishmentLocation.isHidden = false
+        map.isHidden = false
     }
     
     @IBAction func setAddress(_ sender: Any) {
@@ -521,7 +533,14 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         print(place.description)
         GPSc?.isActive = false
         txtEstablecimiento.text = place.formattedAddress
+        let location = place.coordinate ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+        let marker = GMSMarker()
+        marker.icon = #imageLiteral(resourceName: "markerIcon")
+        marker.position = location
+        marker.map = map
+        map.animate(toLocation: location)
         dismiss(animated: true, completion: nil)
        // placesSearchController.isActive = false
     }
+    
 }

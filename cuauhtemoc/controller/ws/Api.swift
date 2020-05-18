@@ -42,6 +42,7 @@ enum Api {
     case contentAction
     case addKeywordPost
     case updatePassword
+    case addFile
     var url:String{
         switch self {
         case .login:
@@ -84,6 +85,8 @@ enum Api {
             return "\(server.ws)/contenido/add_keyword_post/"
         case .updatePassword:
             return "\(server.ws)/usuarios/cambiar_password/"
+        case .addFile:
+            return "\(server.ws)/contenido/add_archivo/"
         }
     }
     
