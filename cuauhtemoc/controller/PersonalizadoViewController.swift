@@ -13,17 +13,12 @@ class PersonalizadoViewController: UIViewController {
     @IBOutlet weak var imgUno: UIImageView!
     @IBOutlet weak var imgDos: UIImageView!
     
-    @IBOutlet weak var stcUno: UIStackView!
     @IBOutlet weak var stcDos: UIStackView!
     
     @IBOutlet weak var viewUno: UIView!
-    @IBOutlet weak var viewDOs: UIView!
     
     @IBOutlet weak var edtHashUno: UITextField!
     @IBOutlet weak var edtHashDos: UITextField!
-    
-    @IBOutlet weak var lblTextoUno: UILabel!
-    @IBOutlet weak var lblTextoDos: UILabel!
     
     var varUno:Bool = true
     var varDos:Bool = true
@@ -78,7 +73,7 @@ class PersonalizadoViewController: UIViewController {
         } else {
             imgUno.isHidden = true
             viewUno.isHidden = false
-            lblTextoUno.text = edtHashUno.text!
+           // lblTextoUno.text = edtHashUno.text!
         }
     }
     
@@ -88,8 +83,8 @@ class PersonalizadoViewController: UIViewController {
             showAlert(title: "¡Ups!", message: "El campo no puede estar vacio")
         } else {
             imgDos.isHidden = true
-            viewDOs.isHidden = false
-            lblTextoDos.text = edtHashDos.text!
+            //viewDOs.isHidden = false
+            //lblTextoDos.text = edtHashDos.text!
         }
     }
     
@@ -97,10 +92,10 @@ class PersonalizadoViewController: UIViewController {
     @objc func singleTapping(recognizer: UIGestureRecognizer) {
         
         if(varUno){
-            stcUno.isHidden = false
+           // stcUno.isHidden = false
             varUno = false
         } else {
-            stcUno.isHidden = true
+            //stcUno.isHidden = true
             varUno = true
         }
     }
