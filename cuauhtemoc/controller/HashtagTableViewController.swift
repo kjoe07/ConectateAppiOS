@@ -48,26 +48,26 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        if isTriple{
-            if cell?.accessoryType == UITableViewCell.AccessoryType.none {
-                cell?.accessoryType = .checkmark
-                hashtags.append(isSearch ? (filter?[indexPath.row])! : (result?[indexPath.row])!)
-                if hashtags.count == 3{
-                    self.selectedHashtag?(hashtags)
-                   // self.values?(selected)
-                   self.navigationController?.popViewController(animated: true)
-                }
-            }else{
-                cell?.accessoryType = .none
-                hashtags.removeAll(where: {
-                    $0.tag?.lowercased().contains(isSearch ? filter?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "") ?? false
-                })
-            }            
-        }else{
+       // if isTriple{
+        if cell?.accessoryType == UITableViewCell.AccessoryType.none {
             cell?.accessoryType = .checkmark
-            self.values?( isSearch ? filter?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "")
-            self.navigationController?.popViewController(animated: true)
+            hashtags.append(isSearch ? (filter?[indexPath.row])! : (result?[indexPath.row])!)
+            if hashtags.count == 3{
+                self.selectedHashtag?(hashtags)
+                // self.values?(selected)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }else{
+            cell?.accessoryType = .none
+            hashtags.removeAll(where: {
+                $0.tag?.lowercased().contains(isSearch ? filter?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "") ?? false
+            })
         }
+//        }else{
+//            cell?.accessoryType = .checkmark
+//            self.values?( isSearch ? filter?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "")
+//            self.navigationController?.popViewController(animated: true)
+//        }
     }
     
 
@@ -81,7 +81,16 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
     }
     */
     func updateSearchResults(for searchController: UISearchController) {
-        
+        if searchController.searchBar.text != ""{
+            isSearch = true
+            self.filter = self.result?.filter({
+                $0.tag?.lowercased().contains((searchController.searchBar.text ??  "").lowercased()) ?? false
+            })
+        }else{
+            searchController.isActive = false
+            isSearch = false
+        }
+        tableView.reloadData()
     }
 
 

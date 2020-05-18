@@ -87,7 +87,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         let ac = UIAlertController(title: "Escribe el enlace que quieres publicar", message: nil, preferredStyle: .alert)
         ac.addTextField()
         let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
-            let answer = ac.textFields![0].text!
+            let answer = ac.textFields?[0].text ?? ""
             print(answer)
             self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 6))
             self.tableView.reloadData()
@@ -492,14 +492,14 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! HashtagTableViewController
         vc.result = self.dato
-        if segue.identifier == "triple"{
-            vc.isTriple = true
-        }
-        vc.values = { val in
-            self.view.endEditing(true)
-            self.txtNombreServicio.resignFirstResponder()
-            self.txtNombreServicio.text = "#\(val)"
-        }
+//        if segue.identifier == "triple"{
+//            vc.isTriple = true
+//        }
+//        vc.values = { val in
+//            self.view.endEditing(true)
+//            self.txtNombreServicio.resignFirstResponder()
+//            self.txtNombreServicio.text = "#\(val)"
+//        }
         vc.selectedHashtag = { val in
             self.view.endEditing(true)
             self.guardado = val
