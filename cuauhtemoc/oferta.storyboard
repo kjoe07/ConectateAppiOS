@@ -40,13 +40,13 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ak-w3-JUh">
-                                        <rect key="frame" x="0.0" y="1578" width="414" height="20"/>
+                                        <rect key="frame" x="0.0" y="1183" width="414" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="tfS-7s-VZ3"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="hcM-tb-R6n">
-                                        <rect key="frame" x="28" y="36" width="358" height="1542"/>
+                                        <rect key="frame" x="28" y="36" width="358" height="1147"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Qué deseas cargar?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx1-5A-JjC">
                                                 <rect key="frame" x="0.0" y="0.0" width="358" height="22"/>
@@ -365,11 +365,11 @@ con un</string>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre del establecimiento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-ev-pZk" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="654.5" width="358" height="30"/>
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre del establecimiento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-ev-pZk" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="647" width="358" height="41"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="pHA-Jh-0OS"/>
+                                                    <constraint firstAttribute="height" constant="41" id="pHA-Jh-0OS"/>
                                                 </constraints>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -398,11 +398,11 @@ con un</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ubicación" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IjK-NK-KSv" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="699.5" width="358" height="30"/>
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ubicación" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IjK-NK-KSv" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="647" width="358" height="41"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="RnA-3n-dF1"/>
+                                                    <constraint firstAttribute="height" constant="41" id="RnA-3n-dF1"/>
                                                 </constraints>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -439,27 +439,27 @@ con un</string>
                                                     <action selector="setAddress:" destination="WFw-ud-5MX" eventType="editingDidBegin" id="uc2-Mg-376"/>
                                                 </connections>
                                             </textField>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r5J-o0-yu4" customClass="GMSMapView">
-                                                <rect key="frame" x="0.0" y="744.5" width="358" height="290"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r5J-o0-yu4" customClass="GMSMapView">
+                                                <rect key="frame" x="0.0" y="647" width="358" height="290"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="290" id="CLP-TV-5Pc"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agrega a tu publicación" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENK-3I-oO8">
-                                                <rect key="frame" x="0.0" y="1049.5" width="358" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="654.5" width="358" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entre más contenido agregues más fácil será conseguir conexiónes" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4u1-I3-KtP">
-                                                <rect key="frame" x="0.0" y="1085" width="358" height="41"/>
+                                                <rect key="frame" x="0.0" y="690" width="358" height="41"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="eqL-nC-k60">
-                                                <rect key="frame" x="0.0" y="1141" width="358" height="25"/>
+                                                <rect key="frame" x="0.0" y="746" width="358" height="25"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDs-wE-1xD">
                                                         <rect key="frame" x="0.0" y="0.0" width="34.5" height="25"/>
@@ -531,7 +531,7 @@ con un</string>
                                                 </constraints>
                                             </stackView>
                                             <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sna-lG-cpU" customClass="SelfSizedTableView" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1181" width="358" height="300"/>
+                                                <rect key="frame" x="0.0" y="786" width="358" height="300"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="300" id="WMa-ms-Y6u"/>
@@ -604,7 +604,7 @@ con un</string>
                                                 </prototypes>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5G-eQ-P2g" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1496" width="358" height="46"/>
+                                                <rect key="frame" x="0.0" y="1101" width="358" height="46"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="46" id="9AY-LI-lXv"/>
