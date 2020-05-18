@@ -354,7 +354,7 @@ con un</string>
                                                         <color key="onTintColor" name="labelTabbar"/>
                                                         <color key="thumbTintColor" name="green"/>
                                                         <connections>
-                                                            <action selector="locationActivated:" destination="WFw-ud-5MX" eventType="valueChanged" id="VlQ-Rj-UUu"/>
+                                                            <action selector="locationActivated:" destination="WFw-ud-5MX" eventType="valueChanged" id="Iya-z4-2LA"/>
                                                         </connections>
                                                     </switch>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Cuentas con un local o establecimiento?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WKP-Z8-3Cm">
@@ -368,6 +368,7 @@ con un</string>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre del establecimiento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-ev-pZk" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="647" width="358" height="41"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="tintColor" name="green"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="41" id="pHA-Jh-0OS"/>
                                                 </constraints>
@@ -436,7 +437,7 @@ con un</string>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isRightViewVisible" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="setAddress:" destination="WFw-ud-5MX" eventType="editingDidBegin" id="uc2-Mg-376"/>
+                                                    <action selector="setAddress:" destination="WFw-ud-5MX" eventType="editingDidBegin" id="ivT-VA-brx"/>
                                                 </connections>
                                             </textField>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r5J-o0-yu4" customClass="GMSMapView">

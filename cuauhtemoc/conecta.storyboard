@@ -1171,11 +1171,11 @@
             </objects>
             <point key="canvasLocation" x="-9" y="1538"/>
         </scene>
-        <!--Conecta-->
+        <!--Conectate-->
         <scene sceneID="srt-tM-DoG">
             <objects>
                 <navigationController storyboardIdentifier="UINavigationController-jmw-9r-72E" automaticallyAdjustsScrollViewInsets="NO" id="jmw-9r-72E" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Conecta" image="hashTagTab" id="3Ok-AH-dhs"/>
+                    <tabBarItem key="tabBarItem" title="Conectate" image="hashTagTab" id="3Ok-AH-dhs"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Jg1-ba-EPx">

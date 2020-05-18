@@ -12,25 +12,19 @@ class PersonalizadoViewController: UIViewController {
 
     @IBOutlet weak var imgUno: UIImageView!
     @IBOutlet weak var imgDos: UIImageView!
-    
     @IBOutlet weak var stcDos: UIStackView!
-    
     @IBOutlet weak var viewUno: UIView!
-    
     @IBOutlet weak var edtHashUno: UITextField!
     @IBOutlet weak var edtHashDos: UITextField!
     
     var varUno:Bool = true
-    var varDos:Bool = true
-    
+    var varDos:Bool = true    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         imgUno.isUserInteractionEnabled = true
         let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.singleTapping(recognizer:)))
         singleTap.numberOfTapsRequired = 1
         imgUno.addGestureRecognizer(singleTap)
-        
         imgDos.isUserInteractionEnabled = true
         let singleTapDos: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.singleTappingDos(recognizer:)))
         singleTap.numberOfTapsRequired = 1
@@ -58,11 +52,7 @@ class PersonalizadoViewController: UIViewController {
             })
         }
         let vc = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController()
-        //pref.setValue("3", forKey: "bandera")
-        //let viewController = self.storyboard?.instantiateViewController(withIdentifier: ContenidoViewController.identifier) as! MenuViewController
         self.view.window?.rootViewController = vc
-        //self.present(viewController, animated: true, completion: nil)
-        
     }
     
     
