@@ -92,6 +92,4 @@ enum Api {
             return "\(server.ws)/usuarios/resetPassword/"
         }
     }
-    
-    
 }

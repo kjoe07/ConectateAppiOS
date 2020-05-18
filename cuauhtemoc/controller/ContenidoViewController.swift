@@ -92,14 +92,10 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         cell.txtNombreUsuario.text = isSearching ?  self.busqueda?[indexPath.row].usuario?.nombre ?? "" : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].usuario?.nombre ?? "" : employ?[indexPath.row].usuario?.nombre ?? ""
         cell.txtCoincidencia.isHidden = true
         if isSearching ? busqueda?[indexPath.row].establecimiento != nil : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].establecimiento != nil : employ?[indexPath.row].establecimiento != nil{
-            //cell.labelSchedule.text = isSearching ? busqueda?[indexPath.row].fecha ?? "" : result?[indexPath.row].fecha
             cell.labelAddress.text = isSearching ? busqueda?[indexPath.row].establecimiento?.direccion : result?[indexPath.row].establecimiento?.direccion
             cell.locationIcon.isHidden = false
-            //cell.scheduleIcon.isHidden = false
         }else{
             cell.locationIcon.isHidden = true
-            //cell.scheduleIcon.isHidden = true
-            //cell.labelSchedule.isHidden = true
             cell.labelAddress.text = isSearching ? busqueda?[indexPath.row].body ?? "" : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].body ?? "" : employ?[indexPath.row].body ?? ""
         }
         cell.txtNumComentarios.text = "\(isSearching ? busqueda?[indexPath.row].comments ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].comments ?? 0 : employ?[indexPath.row].comments ?? 0) comentarios "

@@ -264,6 +264,11 @@
 			isa = PBXGroup;
 			children = (
 				574B63D6232DD30C00F4A29D /* cuauhtemoc.entitlements */,
+				57AF9C212346AD3C00784B32 /* customView */,
+				574B63DE233091B400F4A29D /* modelo */,
+				574B63DB23308EEF00F4A29D /* cell */,
+				574B63CB232CBC2600F4A29D /* utils */,
+				574B63CA232CBBEF00F4A29D /* ws */,
 				574B63C5232CB6B500F4A29D /* controller */,
 				574B6387232BDA2F00F4A29D /* AppDelegate.swift */,
 				574B6389232BDA2F00F4A29D /* ViewController.swift */,
@@ -304,11 +309,6 @@
 		574B63C5232CB6B500F4A29D /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				57AF9C212346AD3C00784B32 /* customView */,
-				574B63DE233091B400F4A29D /* modelo */,
-				574B63DB23308EEF00F4A29D /* cell */,
-				574B63CB232CBC2600F4A29D /* utils */,
-				574B63CA232CBBEF00F4A29D /* ws */,
 				574B63C6232CBB2000F4A29D /* LoginViewController.swift */,
 				574B63C8232CBBA700F4A29D /* RegistroViewController.swift */,
 				574B63D9232FF90E00F4A29D /* ValidarCodigoViewController.swift */,

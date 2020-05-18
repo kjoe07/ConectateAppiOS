@@ -9,7 +9,6 @@
 import UIKit
 
 class HashtagTableViewController: UITableViewController,UISearchResultsUpdating {
-    var isTriple = false
     var result: [Results]?
     var filter: [Results]?
     var isSearch = false
