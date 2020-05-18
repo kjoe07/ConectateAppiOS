@@ -813,7 +813,7 @@
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HT2-Re-5NW" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="UVm-My-TJw">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hashtagGreen" translatesAutoresizingMaskIntoConstraints="NO" id="UVm-My-TJw">
                                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="120" id="UI5-BZ-CSg"/>
@@ -1553,7 +1553,7 @@ Crea dos </string>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hU6-VN-N2a" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="lWQ-Tc-HZV">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hashtagGreen" translatesAutoresizingMaskIntoConstraints="NO" id="lWQ-Tc-HZV">
                                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="120" id="RCW-j4-MIe"/>
@@ -1771,8 +1771,8 @@ Crea dos </string>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="conectateLogo" width="194" height="130"/>
         <image name="fondo" width="375" height="832"/>
+        <image name="hashtagGreen" width="63" height="63"/>
         <image name="loginBackground" width="375" height="618"/>
-        <image name="logo" width="450" height="348"/>
         <image name="logoProvider" width="375" height="94"/>
         <image name="plus" width="34" height="34"/>
         <image name="registerBackGround" width="375" height="967"/>

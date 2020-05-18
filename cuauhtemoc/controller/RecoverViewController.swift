@@ -28,7 +28,7 @@ class RecoverViewController: UIViewController {
                     switch result{
                     case .success(dat: let data):
                         if data?.result == 1{
-                            self.showAlert(title: "", message: "En breve recivirá un correo electronico con instrucciones para recuperar su contraseña.")
+                            self.showAlert(title: "¡LISTO!", message: "Revisa tu correo electrónico, te enviamos las instrucciones que debes seguir para recuperar tu contraseña")
                         }else{
                             self.showAlert(title: "Ups!", message: "No pudimos enviarle el correo electronico, intente más tarde por favor.")
                         }
