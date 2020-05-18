@@ -80,7 +80,8 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     }
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let myCell = cell as! ContenidoViewCell
-        myCell.imagenContenido.image = #imageLiteral(resourceName: "placeholderTrueke")
+        myCell.imagenContenido.image = #imageLiteral(resourceName: "hashtagGreen")
+        myCell.imagenContenido.contentMode = .center
         myCell.imagenContenido.kf.cancelDownloadTask()
         myCell.labelAddress.isHidden = false
         //myCell.labelSchedule.isHidden = false

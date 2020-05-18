@@ -34,7 +34,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koX-xF-baO" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
                                                     <rect key="frame" x="27" y="16" width="321" height="311.5"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderTrueke" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-OJ-WXk" customClass="BorderImageView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hashtagGreen" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-OJ-WXk" customClass="BorderImageView" customModule="cuauhtemoc" customModuleProvider="target">
                                                             <rect key="frame" x="223" y="27" width="75" height="75"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="75" id="lQj-Hc-wmX"/>
@@ -45,7 +45,10 @@
                                                                     <real key="value" value="37.5"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                    <real key="value" value="0.0"/>
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" name="green"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
@@ -1210,12 +1213,12 @@
         <image name="dolar" width="35" height="35"/>
         <image name="fondo" width="375" height="832"/>
         <image name="hashTagTab" width="13" height="13"/>
+        <image name="hashtagGreen" width="63" height="63"/>
         <image name="heart" width="58" height="58"/>
         <image name="img_lupa" width="24" height="24"/>
         <image name="location" width="17" height="21"/>
         <image name="logoProvider" width="375" height="94"/>
         <image name="mano" width="55" height="28"/>
-        <image name="placeholderTrueke" width="115" height="111"/>
         <image name="sendGreen" width="52" height="64"/>
         <image name="servicio_calendario" width="72" height="72"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
