@@ -54,7 +54,7 @@ class NetworkLoader{
         }.resume()
         
     }
-    static func sendPostFormData<T:Codable>(formFields: [String: Any]?,url: String, imageData: Data?,completion: @escaping (MyResult<T>) -> Void){
+    static func sendPostFormData<T:Codable>(formFields: [String: String]?,url: String, imageData: Data?,completion: @escaping (MyResult<T>) -> Void){
             let boundary = "Boundary-\(UUID().uuidString)"
             var request = URLRequest(url: URL(string: url)!)
             request.httpMethod = "POST"
