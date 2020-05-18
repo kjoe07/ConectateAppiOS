@@ -385,51 +385,55 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         })
     }
     fileprivate func sendRequest() {
-           let params = ["titulo":txtNombreServicio.text ?? "","tipo":"\(pickerViewServicio.selectedRow(inComponent: 0)+1)","body":self.txtDescripcion.text ?? "","flag_telefono":true] as [String : Any]
-           showActivityIndicator(color: UIColor(named: "green") ?? .green)
-           NetworkLoader.loadData(url: Api.createContent.url, data: params, method: .post, completion: { [weak self] (result: MyResult<AddPostResponse>) in
-               DispatchQueue.main.async {
-                   guard let self = self else {return}
-                   switch result{
-                   case .success(dat: let data):
-                       for i in 0..<(self.guardado?.count ?? 0) {
-                           // self.subirURL(post: data.id ?? 0, valor: (self.guardado?[i].id?.description ?? ""), url: "add_keyword_post", tipo: nil)
-                           self.agregarKeyword(post: data.id ?? 0,keyword: self.guardado?[i].id ?? 0)
-                       }
-                       for i in 0..<self.recursos.count {
-                           if(self.recursos[i].tipo == 3){
-                               for j in 0..<self.imageArray.count{
-                                   self.uploadImages(post: data.id ?? 0, valor: self.recursos[i].valor, Tipo: 3, image: self.imageArray[j])
-                               }
-                           }  else if(self.recursos[i].tipo == 4){
-                           } else if(self.recursos[i].tipo == 5){
-                           } else if(self.recursos[i].tipo == 6){
-                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_url", tipo: nil)
-                           } else if(self.recursos[i].tipo == 8){
-                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_fecha", tipo: nil)
-                           } else if(self.recursos[i].tipo == 9){
-                           } else if(self.recursos[i].tipo == 10){
-                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_precio", tipo: nil)
-                           } else if(self.recursos[i].tipo == 11){
-                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
-                               // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
-                           } else if(self.recursos[i].tipo == 12){
-                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
-                               // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
-                           } else if(self.recursos[i].tipo == 13){
-                               self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
-                               //self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
-                           }
-                       }
-                       self.hideActivityIndicator()
-                       self.showAlert(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!")
-                   case .failure(let e):
-                       self.hideActivityIndicator()
-                       self.showAlert(title: "Ups!", message: e.localizedDescription)
-                   }
-               }
-           })
-       }
+        var params = ["titulo":txtNombreServicio.text ?? "","tipo":"\(pickerViewServicio.selectedRow(inComponent: 0)+1)","body":self.txtDescripcion.text ?? "","flag_telefono":true] as [String : Any]
+        if establismentSwitch.isOn{
+            //FIXME: - what params goes here and how to upload establismente name and address
+            params["establecimiento"] = 1
+        }
+        if mobileSwitch.isOn{
+            params["telefono"] = txtTelefono.text ?? ""
+        }
+        showActivityIndicator(color: UIColor(named: "green") ?? .green)
+        NetworkLoader.loadData(url: Api.createContent.url, data: params, method: .post, completion: { [weak self] (result: MyResult<AddPostResponse>) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch result{
+                case .success(dat: let data):
+                    for i in 0..<(self.guardado?.count ?? 0) {
+                        self.agregarKeyword(post: data.id ?? 0,keyword: self.guardado?[i].id ?? 0)
+                    }
+                    for i in 0..<self.recursos.count {
+                        if(self.recursos[i].tipo == 3){
+                            for j in 0..<self.imageArray.count{
+                                self.uploadImages(post: data.id ?? 0, valor: self.recursos[i].valor, Tipo: 3, image: self.imageArray[j])
+                            }
+                        } else if(self.recursos[i].tipo == 4){
+                        } else if(self.recursos[i].tipo == 5){
+                        } else if(self.recursos[i].tipo == 6){
+                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_url", tipo: nil)
+                        } else if(self.recursos[i].tipo == 8){
+                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_fecha", tipo: nil)
+                        } else if(self.recursos[i].tipo == 9){
+                        } else if(self.recursos[i].tipo == 10){
+                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_precio", tipo: nil)
+                        } else if(self.recursos[i].tipo == 11){
+                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                            // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
+                        } else if(self.recursos[i].tipo == 12){
+                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                        } else if(self.recursos[i].tipo == 13){
+                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                        }
+                    }
+                    self.hideActivityIndicator()
+                    self.showAlert(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!")
+                case .failure(let e):
+                    self.hideActivityIndicator()
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+        })
+    }
     func agregarKeyword(post:Int, keyword:Int){
         let params = ["post": post,"keyword":keyword]
         NetworkLoader.loadData(url: Api.addKeywordPost.url, data: params, method: .post, completion: {[weak self] (result:MyResult<AddPostResponse?>) in
@@ -511,8 +515,8 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     @IBAction func showTripple(_ sender: Any) {
-//        trippleButton.isHidden = true
-//        self.performSegue(withIdentifier: "triple", sender: self)
+        trippleButton.isHidden = true
+        self.performSegue(withIdentifier: "triple", sender: self)
     }
     @IBAction func phoneActivated(_ sender: Any) {
         txtTelefono.isEnabled = true

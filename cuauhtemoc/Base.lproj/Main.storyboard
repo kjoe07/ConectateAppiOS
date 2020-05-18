@@ -664,8 +664,8 @@
                                     <constraint firstItem="iS0-CE-j7z" firstAttribute="leading" secondItem="UhJ-7J-BJA" secondAttribute="leading" id="z2X-V8-Swh"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresa el código que recibiste vía SMS." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgI-XW-RxV">
-                                <rect key="frame" x="52.333333333333343" y="278" width="270.66666666666663" height="20.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresa el código que recibiste vía WhatsApp." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgI-XW-RxV">
+                                <rect key="frame" x="31.333333333333343" y="278" width="312.33333333333326" height="20.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                 <color key="textColor" name="labelTabbar"/>
                                 <nil key="highlightedColor"/>
@@ -1474,6 +1474,14 @@ Crea dos </string>
                                     <constraint firstAttribute="height" constant="65" id="jUX-Zl-bzd"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pk7-5I-UAr">
+                                <rect key="frame" x="15" y="59" width="13" height="22"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="chevron.left" catalog="system"/>
+                                <connections>
+                                    <action selector="goBack:" destination="r3A-Mb-zGl" eventType="touchUpInside" id="lgx-Py-6qg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1484,6 +1492,7 @@ Crea dos </string>
                             <constraint firstAttribute="trailing" secondItem="rE6-Vu-FTJ" secondAttribute="trailing" constant="32" id="HEm-0G-jm9"/>
                             <constraint firstItem="gZQ-rO-vPa" firstAttribute="top" secondItem="0bH-DP-nL2" secondAttribute="top" id="I5q-w0-1IR"/>
                             <constraint firstItem="rE6-Vu-FTJ" firstAttribute="top" secondItem="Hv4-vF-CbB" secondAttribute="bottom" constant="34" id="IWe-Oe-Ec7"/>
+                            <constraint firstItem="Pk7-5I-UAr" firstAttribute="leading" secondItem="0bH-DP-nL2" secondAttribute="leading" constant="15" id="JdN-Az-Hg1"/>
                             <constraint firstItem="gZQ-rO-vPa" firstAttribute="leading" secondItem="0bH-DP-nL2" secondAttribute="leading" id="Mvk-7S-grI"/>
                             <constraint firstItem="75x-ma-RLH" firstAttribute="top" secondItem="0bH-DP-nL2" secondAttribute="top" constant="27" id="PDn-2J-LGW"/>
                             <constraint firstItem="75x-ma-RLH" firstAttribute="centerX" secondItem="VDo-Kh-BsR" secondAttribute="centerX" id="SA7-tL-86c"/>
@@ -1500,6 +1509,7 @@ Crea dos </string>
                             <constraint firstItem="mnl-Li-N6H" firstAttribute="leading" secondItem="0bH-DP-nL2" secondAttribute="leading" id="m9Z-5c-chL"/>
                             <constraint firstItem="Hv4-vF-CbB" firstAttribute="top" secondItem="vuq-Kz-tuB" secondAttribute="bottom" constant="44" id="niw-rg-gP4"/>
                             <constraint firstItem="vuq-Kz-tuB" firstAttribute="top" secondItem="mnl-Li-N6H" secondAttribute="bottom" constant="58" id="ogG-Cr-quo"/>
+                            <constraint firstItem="Pk7-5I-UAr" firstAttribute="top" secondItem="0bH-DP-nL2" secondAttribute="top" constant="15" id="rvw-pM-1ka"/>
                             <constraint firstItem="ZVO-Wk-lja" firstAttribute="centerX" secondItem="mnl-Li-N6H" secondAttribute="centerX" id="rxk-4y-bYQ"/>
                             <constraint firstItem="vuq-Kz-tuB" firstAttribute="centerX" secondItem="VDo-Kh-BsR" secondAttribute="centerX" id="uRq-Un-9s2"/>
                         </constraints>
@@ -1758,8 +1768,9 @@ Crea dos </string>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="checkButton" width="20" height="20"/>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="conectateLogo" width="194" height="130"/>
-        <image name="fondo" width="750" height="1550"/>
+        <image name="fondo" width="375" height="832"/>
         <image name="loginBackground" width="375" height="618"/>
         <image name="logo" width="450" height="348"/>
         <image name="logoProvider" width="375" height="94"/>

@@ -17,6 +17,9 @@ class RecoverViewController: UIViewController {
     }
     @IBAction func email(_ sender: Any) {
     }
+    @IBAction func goBack(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
 
     /*
