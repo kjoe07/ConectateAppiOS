@@ -498,6 +498,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! HashtagTableViewController
         vc.result = self.dato
+        vc.editingModel = self.guardado //?? [Results]()
         vc.selectedHashtag = { val in
             self.view.endEditing(true)
             self.guardado = val

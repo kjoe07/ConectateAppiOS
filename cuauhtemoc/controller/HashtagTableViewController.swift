@@ -17,18 +17,18 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
     var selected = "" //[String] = []
     var hashtags: [Results] = []
     let searchController = UISearchController(searchResultsController: nil)
+    var editingModel: [Results]?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableHeaderView = searchController.searchBar
         self.title = "Selecciona varios #"
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.hashtags = editingModel ?? [Results]()
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        if hashtags.count == 3{
+            self.selectedHashtag?(hashtags)
+        }
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,24 +43,33 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = isSearch ? filter?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? ""
+        if editingModel != nil{
+            if self.hashtags.contains(where: {
+               return  $0.id == (self.isSearch ? self.filter?[indexPath.row].id : self.result?[indexPath.row].id)
+            }){
+                cell.accessoryType = .checkmark
+            }
+        }
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
        // if isTriple{
         if cell?.accessoryType == UITableViewCell.AccessoryType.none {
-            cell?.accessoryType = .checkmark
-            hashtags.append(isSearch ? (filter?[indexPath.row])! : (result?[indexPath.row])!)
-            if hashtags.count == 3{
-                self.selectedHashtag?(hashtags)
-                // self.values?(selected)
-                self.navigationController?.popViewController(animated: true)
+            if hashtags.count < 3{
+                cell?.accessoryType = .checkmark
+                hashtags.append(isSearch ? (filter?[indexPath.row])! : (result?[indexPath.row])!)
             }
         }else{
             cell?.accessoryType = .none
             hashtags.removeAll(where: {
-                $0.tag?.lowercased().contains(isSearch ? filter?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "") ?? false
+                $0.id == (isSearch ? filter?[indexPath.row].id : result?[indexPath.row].id)
+                //$0.tag?.lowercased().contains(isSearch ? filter?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "") ?? false
             })
+            print("the count:",hashtags.count)
+//            editingModel?.removeAll(where: {
+//                $0.tag?.lowercased().contains(isSearch ? filter?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? "") ?? false
+//            })
         }
 //        }else{
 //            cell?.accessoryType = .checkmark
