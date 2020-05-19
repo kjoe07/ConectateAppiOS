@@ -35,3 +35,15 @@ struct SendCodeResponse: Codable {
     let code : String?
     let error: String?
 }
+struct ChangePass:Codable{
+    let result : Int?
+    enum CodingKeys: String, CodingKey {
+
+        case result = "result"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        result = try values.decodeIfPresent(Int.self, forKey: .result)
+    }
+}

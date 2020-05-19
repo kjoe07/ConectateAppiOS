@@ -285,20 +285,20 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBAction func textfieldDidChange(_ textfield: UITextField){
         if textfield == txtCooperativa{
             newpass = textfield.text
-        }else{
+        }else if textfield != txtPassword{
             changed = true
         }
     }
     func changepass(){
         let params = ["old_password":txtPassword.text ?? "","new_password":txtCooperativa.text ?? ""]
         showActivityIndicator(color: UIColor(named: "green") ?? .green)
-        NetworkLoader.loadData(url: Api.updatePassword.url, data: params, method: .patch, completion: {[weak self] (result: MyResult<LoginResponse>) in
+        NetworkLoader.loadData(url: Api.updatePassword.url, data: params, method: .patch, completion: {[weak self] (result: MyResult<ChangePass>) in
             DispatchQueue.main.async {
                 guard let self = self else{return}
                 self.hideActivityIndicator()
                 switch result{
                 case .success(dat: let data):
-                    if data.result ?? 0 > 1 {
+                    if data.result ?? 0  ==  1 {
                         self.showAlert(title: "Exito", message: "su contraseña se ha cambiado con exito")
                         self.navigationController?.popViewController(animated: true)
                     }

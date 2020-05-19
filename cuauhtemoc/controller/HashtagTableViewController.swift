@@ -43,11 +43,14 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = isSearch ? filter?[indexPath.row].tag ?? "" : result?[indexPath.row].tag ?? ""
+        
         if editingModel != nil{
             if self.hashtags.contains(where: {
                return  $0.id == (self.isSearch ? self.filter?[indexPath.row].id : self.result?[indexPath.row].id)
             }){
                 cell.accessoryType = .checkmark
+            }else{
+                cell.accessoryType = .none
             }
         }
         return cell
