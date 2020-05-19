@@ -23,7 +23,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     var contenido:ContenidoCompleto!
     var dato:[Post]! = []
     var user: Usuario?
-    var opciones = ["Editar perfil","Mis trueques","Mis Ventas","Aviso de privacidad"/*,"Términos y condiciones"*/,"Cerrar sesión"]
+    var opciones = ["Editar perfil","Mis trueques","Mis ventas","Aviso de privacidad"/*,"Términos y condiciones"*/,"Cerrar sesión"]
     var images = ["greenPencil","mano","dolar","servicio_enlace"/*,"servicio_enlace"*/,"power"]
     let imagePicker = UIImagePickerController()
     override var preferredStatusBarStyle: UIStatusBarStyle {
