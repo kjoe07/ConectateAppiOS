@@ -61,7 +61,9 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         GPSc = GooglePlacesSearchController(delegate: self, apiKey: "AIzaSyADPJdpByqnYJUcFu2FlXKjWGVOARShVMw", placeType: .address, coordinate: CLLocationCoordinate2D(latitude: 23.6345005, longitude: -102.5527878) , radius: .zero, strictBounds: false, searchBarPlaceholder: "Entre la dirección")
         locationDelegate.requestAuthorization()
         locationDelegate.updated = { [weak self] loc in
+            print("Location updated closure")
             self?.map.animate(toLocation: loc)
+            self?.map.animate(toZoom: 14)
         }
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +72,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
+
     //MARK: - Actions -
     
     @IBAction func btnAgregar(_ sender: Any) {
