@@ -16,10 +16,10 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var imgPerfil: UIImageView!
     @IBOutlet weak var username: UILabel!
     var perfil:PerfilCompleto!
-    var descripcion:[Intereses]! = []
-    var intereses:[Intereses]! = []
-    var extras:[Intereses]! = []
-    var todos:[Intereses]! = []
+    var descripcion:[Results]! = []
+    var intereses:[Results]! = []
+    var extras:[Results]! = []
+    var todos:[Results]! = []
     var contenido:ContenidoCompleto!
     var dato:[Post]! = []
     var user: Usuario?
@@ -289,9 +289,9 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
                 switch result{
                 case .success(let data):
                     if data.perfil != nil{
-                        self.descripcion = data.perfil?.descripcion ?? [Intereses]()
-                        self.intereses = data.perfil?.intereses ?? [Intereses]()
-                        self.extras = data.perfil?.extras ?? [Intereses]()
+                        self.descripcion = data.perfil?.descripcion //?? [Results]()
+                        self.intereses = data.perfil?.intereses //?? [Results]()
+                        self.extras = data.perfil?.extras //?? [Results]
                         self.todos.append(contentsOf: self.descripcion)
                         self.todos.append(contentsOf: self.intereses)
                         self.todos.append(contentsOf: self.extras)

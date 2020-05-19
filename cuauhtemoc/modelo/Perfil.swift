@@ -11,9 +11,9 @@ import Foundation
 struct Perfil:Codable {
     
     let usuario:Usuario?
-    let descripcion:[Intereses]?
-    let intereses:[Intereses]?
-    let extras:[Intereses]?
+    let descripcion:[Results]?
+    let intereses:[Results]?
+    let extras:[Results]?
     let foto:String?
     
 }

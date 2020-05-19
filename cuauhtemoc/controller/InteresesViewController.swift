@@ -17,13 +17,13 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
    // var dato:[Intereses] = []
     var busqueda:[Results]? = []
     var result: [Results]?
+    var selectedResult: [Results]?
     var intereses:[Int] = []
     var contenido:ContenidoCompleto!
     let searchController = UISearchController(searchResultsController: nil)
     var isSearching = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         fotosCollectionView.delegate = self
         fotosCollectionView.dataSource = self
         fotosCollectionView.backgroundColor =  UIColor(white: 1, alpha: 0.0)
@@ -36,6 +36,9 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         searchController.searchBar.rightAnchor.constraint(equalTo: search.rightAnchor).isActive = true
         searchController.searchBar.heightAnchor.constraint(equalTo: search.heightAnchor).isActive = true
         searchController.searchBar.delegate = self//delegate = self
+        for r in self.selectedResult ?? [Results](){
+            self.intereses.append(r.id ?? 0)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -135,7 +138,11 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
                 case .success(dat: let data):
                     if data.result ?? 0 == 1{
                         UserDefaults.standard.set(true, forKey: "completed")
-                        self.performSegue(withIdentifier: PersonalizadoViewController.identifier, sender: self)
+                        if self.navigationController == nil {
+                            self.performSegue(withIdentifier: PersonalizadoViewController.identifier, sender: self)
+                        }else{
+                            self.navigationController?.popViewController(animated: true)
+                        }
                     }
                 case .failure(let e):
                     self.showAlert(title: "", message: e.localizedDescription)

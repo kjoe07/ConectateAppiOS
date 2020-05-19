@@ -20,7 +20,7 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBOutlet weak var txtCooperativa: UITextField!
     
     var perfil:PerfilCompleto!
-    var todos:[Intereses]! = []
+    var todos:[Results]! = []
     var usuario:Usuario!
     var scrollGestureRecognizer: UITapGestureRecognizer!
     var textFields: [UITextField]!
@@ -103,9 +103,9 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     }
     
     func cargarDatos(){
-        self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Intereses]())
-        self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Intereses]())
-        self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Intereses]())
+        self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Results]())
+        self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Results]())
+        self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Results]())
         
         self.usuario = self.perfil.perfil?.usuario
         
@@ -308,5 +308,10 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
             }
         })
     }
-
+    
+    @IBAction func editHashtags(_ sender: UIButton){
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "InteresesViewController") as! InteresesViewController
+        vc.selectedResult = self.perfil.perfil?.intereses
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

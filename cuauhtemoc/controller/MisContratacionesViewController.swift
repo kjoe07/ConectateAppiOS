@@ -22,6 +22,8 @@ class MisContratacionesViewController: UIViewController, UITableViewDataSource, 
         let user = try? JSONDecoder().decode(Usuario.self, from: userData)
         userId = user?.id
         cargarDatosPost()
+        print("trueques:",trueques)
+        self.title = trueques ? "Mis trueques" : "Mis ventas"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,7 +51,7 @@ class MisContratacionesViewController: UIViewController, UITableViewDataSource, 
     func cargarDatosPost(){
         let params = ["page_size":30,"usuario":userId,"tipo":trueques ? 4 : 5]
         showActivityIndicator(color: UIColor(named: "green") ?? .green)
-        NetworkLoader.loadData(url: trueques ? Api.listContent.url : Api.contentAction.url, data: params , method: .get, completion: {[weak self] (result: MyResult<ContentResponse>)in
+        NetworkLoader.loadData(url:  Api.listContent.url, data: params , method: .get, completion: {[weak self] (result: MyResult<ContentResponse>)in
             DispatchQueue.main.async {
                 guard let self = self else {return}
                 self.hideActivityIndicator()
