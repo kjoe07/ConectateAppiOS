@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 import BadgeControl
-class ContenidoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,/* UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,*/ UISearchResultsUpdating {
+class ContenidoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,/* UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,*/ UISearchResultsUpdating,UISearchControllerDelegate {
     
     //var busquedaTxt:[String] = []
     //var contenido:ContenidoCompleto!
@@ -29,10 +29,12 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         definesPresentationContext = true
+        //navigationItem.searchController = searchController
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.automaticallyShowsCancelButton = true
+        searchController.delegate  = self
         self.tableView.dataSource = self
         self.tableView.delegate = self
         locationDelegate.requestAuthorization()
@@ -44,11 +46,20 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @IBAction func btnBuscarContenido(_ sender: Any) {
-        if tableView.tableHeaderView == nil{
-            tableView.tableHeaderView = searchController.searchBar
+        if navigationItem.searchController == nil{
+            navigationItem.searchController = searchController
+            self.navigationController?.view.setNeedsLayout()
+            self.navigationController?.view.layoutIfNeeded()
         }else{
-            tableView.tableHeaderView = nil
+            navigationItem.searchController = nil
+            self.navigationController?.view.setNeedsLayout()
+            self.navigationController?.view.layoutIfNeeded()
         }
+//        if tableView.tableHeaderView == nil{
+//            tableView.tableHeaderView = searchController.searchBar
+//        }else{
+//            tableView.tableHeaderView = nil
+//        }
     }
     
     func cargarDatos(latitud:Double?,longitud: Double?){
@@ -209,17 +220,6 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         })
     }
     
-    func enviarMensaje( titulo:String, mensaje:String){
-        
-        let btnAlert = UIAlertController(title: titulo, message:mensaje, preferredStyle: UIAlertController.Style.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
-            (result : UIAlertAction) -> Void in
-        }
-        btnAlert.addAction(okAction)
-        self.present(btnAlert, animated: true, completion: nil)
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -245,5 +245,13 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBAction func change(_ sender: Any) {
         tableView.reloadData()
+    }
+    func didDismissSearchController(_ searchController: UISearchController) {
+        navigationItem.searchController = nil
+        self.navigationController?.view.setNeedsLayout()
+        self.navigationController?.view.layoutSubviews()
+        let view = UIView()
+        self.navigationController?.navigationBar.insertSubview(view, at: 1)
+        view.removeFromSuperview()
     }
 }
