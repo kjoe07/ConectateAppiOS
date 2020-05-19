@@ -19,9 +19,10 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     var result: [Post]?
     var employ: [Post]?
     let searchController = UISearchController(searchResultsController: nil)
+    let locationDelegate = LocationCoordinateDelegate()
     var isSearching = false
-    @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segmented: CustomSegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buscador: UITextField!
@@ -34,7 +35,11 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         searchController.automaticallyShowsCancelButton = true
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.cargarDatos()
+        locationDelegate.updated = {[weak self] loc in
+            guard let self = self else {return}
+            self.cargarDatos(latitud: loc.latitude, longitud: loc.longitude)
+        }
+        self.cargarDatos(latitud: nil, longitud: nil)
     }
     
     @IBAction func btnBuscarContenido(_ sender: Any) {
@@ -45,8 +50,13 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func cargarDatos(){
-        let params = ["page_size":300]
+    func cargarDatos(latitud:Double?,longitud: Double?){
+        var params = ["page_size":300] as [String:Any]
+        if latitud != nil{
+            params["latitud"] = latitud ?? 0.0
+        }else if longitud != nil{
+            params["longitud"] = longitud ?? 0.0
+        }
         NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result: MyResult<PostResponse>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}

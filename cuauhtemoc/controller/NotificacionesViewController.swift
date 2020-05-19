@@ -63,7 +63,9 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
             }
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        cargarDatos()
+    }
     func cargarDatos(){
         showActivityIndicator(color: UIColor(named: "green") ?? .green)
         NetworkLoader.loadData(url: Api.notification.url, data: [:], method: .get, completion: {[weak self] (result: MyResult<ResponseNotification>) in
