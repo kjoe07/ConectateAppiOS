@@ -213,7 +213,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     //MARK: - Table Fucntions -
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell", for: indexPath) as! Post2TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Post2TableViewCell
         cell.lblTexto.text = self.recursos[indexPath.row].valor
         if(self.recursos[indexPath.row].tipo == 3){
             cell.imgServicio.image = UIImage(named: "servicio_imagen")
@@ -492,14 +492,6 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! HashtagTableViewController
         vc.result = self.dato
-//        if segue.identifier == "triple"{
-//            vc.isTriple = true
-//        }
-//        vc.values = { val in
-//            self.view.endEditing(true)
-//            self.txtNombreServicio.resignFirstResponder()
-//            self.txtNombreServicio.text = "#\(val)"
-//        }
         vc.selectedHashtag = { val in
             self.view.endEditing(true)
             self.guardado = val
@@ -514,14 +506,22 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         self.performSegue(withIdentifier: "single", sender: self)
     }
     @IBAction func phoneActivated(_ sender: Any) {
-        txtTelefono.isEnabled = true
-        txtTelefono.isHidden = false
+        if (sender as! UISwitch).isOn {
+            txtTelefono.isHidden = false
+        }else{
+            txtTelefono.isHidden = true
+        }
     }
     @IBAction func locationActivated(_ sender: Any) {
-        txtEstablecimiento.isEnabled = true
-        txtEstablecimiento.isHidden = false
-        txtEstablishmentLocation.isHidden = false
-        map.isHidden = false
+        if (sender as! UISwitch).isOn{
+            txtEstablecimiento.isHidden = false
+            txtEstablishmentLocation.isHidden = false
+            map.isHidden = false
+        }else{
+            txtEstablecimiento.isHidden = true
+            txtEstablishmentLocation.isHidden = true
+            map.isHidden = true
+        }        
     }
     
     @IBAction func setAddress(_ sender: Any) {

@@ -55,11 +55,6 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             self.navigationController?.view.setNeedsLayout()
             self.navigationController?.view.layoutIfNeeded()
         }
-//        if tableView.tableHeaderView == nil{
-//            tableView.tableHeaderView = searchController.searchBar
-//        }else{
-//            tableView.tableHeaderView = nil
-//        }
     }
     
     func cargarDatos(latitud:Double?,longitud: Double?){

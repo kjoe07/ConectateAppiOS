@@ -313,7 +313,7 @@ con un</string>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yk8-ae-KB9" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yk8-ae-KB9" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="601" width="358" height="30"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
@@ -364,7 +364,7 @@ con un</string>
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre del establecimiento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-ev-pZk" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre del establecimiento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbU-ev-pZk" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="647" width="358" height="41"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <color key="tintColor" name="green"/>
@@ -398,7 +398,7 @@ con un</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ubicación" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IjK-NK-KSv" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ubicación" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IjK-NK-KSv" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="647" width="358" height="41"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
@@ -576,7 +576,7 @@ con un</string>
                                                             <outlet property="lblTexto" destination="vtr-Zh-cG4" id="9c0-jz-fsn"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" id="NNs-wm-DHU" customClass="PostTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" id="NNs-wm-DHU" customClass="Post2TableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="84" width="358" height="200"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NNs-wm-DHU" id="Gjo-ej-Wi8">
@@ -597,9 +597,6 @@ con un</string>
                                                                 <constraint firstItem="10r-G3-hCr" firstAttribute="centerX" secondItem="Gjo-ej-Wi8" secondAttribute="centerX" id="YOw-3c-r1s"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
-                                                        <connections>
-                                                            <outlet property="imgPost" destination="10r-G3-hCr" id="m7U-cB-5vf"/>
-                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>

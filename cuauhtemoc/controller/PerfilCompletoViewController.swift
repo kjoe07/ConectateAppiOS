@@ -241,6 +241,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
             case 4:
                 UserDefaults.standard.removeObject(forKey: "usuario")
                 UserDefaults.standard.removeObject(forKey: "completed")
+                UserDefaults.standard.removeObject(forKey: "userImage")
                 UserDefaults.standard.synchronize()
                 KeychainService.removePassword(service: "cuauhtemoc", account: "token")
                 let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
