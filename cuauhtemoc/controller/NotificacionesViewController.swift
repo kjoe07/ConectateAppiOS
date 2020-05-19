@@ -131,6 +131,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         } else if notificaciones?[indexPath.row].content_object?.tipo == 9 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "servicio_redes"), for: .normal)
         }
+        cell.imgTipoNotificacion.tintColor = UIColor(named: "green") ?? .green
         return cell
     }
     
