@@ -35,6 +35,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         searchController.automaticallyShowsCancelButton = true
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        locationDelegate.requestAuthorization()
         locationDelegate.updated = {[weak self] loc in
             guard let self = self else {return}
             self.cargarDatos(latitud: loc.latitude, longitud: loc.longitude)
@@ -54,7 +55,8 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         var params = ["page_size":300] as [String:Any]
         if latitud != nil{
             params["latitud"] = latitud ?? 0.0
-        }else if longitud != nil{
+        }
+        if longitud != nil{
             params["longitud"] = longitud ?? 0.0
         }
         NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result: MyResult<PostResponse>) in
@@ -101,6 +103,20 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         cell.txtTitulo.text = isSearching ?  self.busqueda?[indexPath.row].titulo ?? "": segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].titulo ?? "" : employ?[indexPath.row].titulo ?? ""
         cell.txtNombreUsuario.text = isSearching ?  self.busqueda?[indexPath.row].usuario?.nombre ?? "" : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].usuario?.nombre ?? "" : employ?[indexPath.row].usuario?.nombre ?? ""
         cell.txtCoincidencia.isHidden = true
+        let distance = isSearching ? busqueda?[indexPath.row].distancia : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].distancia :  employ?[indexPath.row].distancia
+        if distance != nil {
+            cell.txtCoincidencia.isHidden = false
+            let double = Double(distance ?? "0") ?? 0.0
+            let formater = MeasurementFormatter()
+            formater.locale = Locale(identifier: "es_MX")
+            formater.numberFormatter.usesGroupingSeparator = true
+            formater.numberFormatter.maximumFractionDigits = 0
+            formater.unitOptions = .naturalScale
+            formater.unitStyle = .short
+            let measure = Measurement(value: double, unit: UnitLength.kilometers )
+            let stringDistance  = formater.string(from: measure)
+            cell.txtCoincidencia.text = "a \(stringDistance)"
+        }
         if isSearching ? busqueda?[indexPath.row].establecimiento != nil : segmented.selectedSegmentIndex == 0 ? result?[indexPath.row].establecimiento != nil : employ?[indexPath.row].establecimiento != nil{
             cell.labelAddress.text = isSearching ? busqueda?[indexPath.row].establecimiento?.direccion : result?[indexPath.row].establecimiento?.direccion
             cell.locationIcon.isHidden = false

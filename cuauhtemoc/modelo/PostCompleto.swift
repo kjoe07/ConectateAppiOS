@@ -39,6 +39,7 @@ struct Post: Codable {
     let contrataciones: Int?
     let img: String?
     let foto_perfil: String?
+    let distancia:String?
 }
 struct PostResponse: Codable{
     let count: Int?

@@ -14,13 +14,15 @@ class LocationCoordinateDelegate:NSObject,CLLocationManagerDelegate{
     var updated: ((CLLocationCoordinate2D) -> Void)?
     override init() {
         super.init()
+        print("init delegate")
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager?.requestWhenInUseAuthorization()
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("auth change")
         switch status {
         case .authorizedWhenInUse,.authorizedAlways:
             locationManager?.startUpdatingLocation()
@@ -39,6 +41,7 @@ class LocationCoordinateDelegate:NSObject,CLLocationManagerDelegate{
         }
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        print("update")
        // map.clear()
        let location = locations.last! as CLLocation
         updated?(location.coordinate)
@@ -54,6 +57,10 @@ class LocationCoordinateDelegate:NSObject,CLLocationManagerDelegate{
         //let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
 
         //self.map.//setRegion(region, animated: true)
+    }
+    func requestAuthorization(){
+        print("request")
+        locationManager?.requestWhenInUseAuthorization()
     }
 }
 

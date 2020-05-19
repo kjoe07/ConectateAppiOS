@@ -58,6 +58,10 @@
 		<string>whatsapp</string>
 		<string>waze</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Es necesaria la ubicación para mostrarte los contenidos mas cercanos a ti.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Es necesaria la ubicación para mostrarte los contenidos mas cercanos a ti.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>
