@@ -83,7 +83,8 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     @IBAction func btnCalendario(_ sender: Any) {
         FechaAlertView.instance.showAlert()
         FechaAlertView.instance.selected = { fecha,hora in
-            print("fecha y hora",fecha,hora)
+            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: "\(fecha):\(hora)", tipo: 2))
+            self.tableView.reloadData()
         }
         tableView.isHidden = false
     }
@@ -416,7 +417,6 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     fileprivate func sendRequest() {
         var params = ["titulo":txtNombreServicio.text ?? "","tipo":"\(pickerViewServicio.selectedRow(inComponent: 0)+1)","body":self.txtDescripcion.text ?? "","flag_telefono":true] as [String : Any]
         if establismentSwitch.isOn{
-            //FIXME: - what params goes here and how to upload establismente name and address
             params["establecimiento"] = 1
         }
         if mobileSwitch.isOn{
@@ -436,26 +436,27 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                             for j in 0..<self.imageArray.count{
                                 self.uploadImages(post: data.id ?? 0, valor: self.recursos[i].valor, Tipo: 3, image: self.imageArray[j])
                             }
-                        } else if(self.recursos[i].tipo == 4){
-                        } else if(self.recursos[i].tipo == 5){
                         } else if(self.recursos[i].tipo == 6){
                             self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_url", tipo: nil)
                         } else if(self.recursos[i].tipo == 8){
                             self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_fecha", tipo: nil)
                         } else if(self.recursos[i].tipo == 9){
+                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_ubicacion", tipo: nil)
                         } else if(self.recursos[i].tipo == 10){
                             self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_precio", tipo: nil)
                         } else if(self.recursos[i].tipo == 11){
-                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                            //self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                             // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
                         } else if(self.recursos[i].tipo == 12){
-                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                            //self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                         } else if(self.recursos[i].tipo == 13){
                             self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                         }
                     }
                     self.hideActivityIndicator()
                     self.showAlert(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!")
+                    self.viewDidLoad()
+                    self.viewWillAppear(true)
                 case .failure(let e):
                     self.hideActivityIndicator()
                     self.showAlert(title: "Ups!", message: e.localizedDescription)
