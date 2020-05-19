@@ -25,7 +25,6 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     @IBOutlet weak var mobileSwitch: UISwitch!
     @IBOutlet weak var establismentSwitch: UISwitch!
     @IBOutlet weak var map: GMSMapView!
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     var pickerViewServicio = UIPickerView()
@@ -40,6 +39,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     let imagePicker = UIImagePickerController()
     var imageArray = [UIImage]()
     let locationDelegate = LocationCoordinateDelegate()
+    var establistmnetLocation = false
     //MARK: - View Functions -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,57 +93,77 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         ac.addTextField()
         let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
             let answer = ac.textFields?[0].text ?? ""
-            print(answer)
-            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 6))
-            self.tableView.reloadData()
+            if answer != ""{
+                self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 6))
+                self.tableView.reloadData()
+            }else{
+                self.showAlert(title: "Ups!", message: "No es un enlace válido")
+            }
         }
         ac.addAction(submitAction)
+        let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        ac.addAction(cancel)
         present(ac, animated: true)
     }
     @IBAction func btnMetodoPago(_ sender: Any) {
         tableView.isHidden = false
-        let ac = UIAlertController(title: "Ingresa una URL", message: nil, preferredStyle: .alert)
-        ac.addTextField()
-        let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
-            let answer = ac.textFields![0].text!
-            print(answer)
-            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 11))
+        let vc = self.storyboard?.instantiateViewController(identifier: "method") as! MethodViewController
+        vc.selected = { vals in
+            for val in vals{
+                self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: val, tipo: 11))
+            }
             self.tableView.reloadData()
         }
-        ac.addAction(submitAction)
-        present(ac, animated: true)
     }
     
     @IBAction func btnTexto(_ sender: Any) {
         tableView.isHidden = false
-       let ac = UIAlertController(title: "Ingresa una URL", message: nil, preferredStyle: .alert)
+       let ac = UIAlertController(title: "Agregar contenido (texto)", message: nil, preferredStyle: .alert)
         ac.addTextField()
         let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0].text!
             print(answer)
-            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 13))
-            self.tableView.reloadData()
+            if answer != ""{
+                self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 13))
+                self.tableView.reloadData()
+            }
         }
         ac.addAction(submitAction)
+        let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        ac.addAction(cancel)
         present(ac, animated: true)
     }
     
     @IBAction func btnRedes(_ sender: Any) {
         tableView.isHidden = false
-        let ac = UIAlertController(title: "Ingresa una URL", message: nil, preferredStyle: .alert)
-        ac.addTextField()
+        let ac = UIAlertController(title: "Agregar redes sociales", message: nil, preferredStyle: .alert)
+        ac.addTextField(configurationHandler: { text in
+            text.placeholder = "Facebook"
+        })
+        ac.addTextField(configurationHandler: { text in
+            text.placeholder = "Twitter"
+        })
+        ac.addTextField(configurationHandler: { text in
+            text.placeholder = "Linkedin"
+        })
+        ac.addTextField(configurationHandler: { text in
+            text.placeholder = "Instagram"
+        })
         let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
-            let answer = ac.textFields![0].text!
-            print(answer)
-            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 12))
+            for i in 0..<(ac.textFields?.count ?? 0){
+                let answer = ac.textFields?[i].text ?? ""
+                if answer != "" {
+                    self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 12))
+                }
+            }
             self.tableView.reloadData()
         }
         ac.addAction(submitAction)
+        let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        ac.addAction(cancel)
         present(ac, animated: true)
     }
-    
-    @IBAction func btnVideo(_ sender: Any) {
-    }
+
     
     @IBAction func btnPrecio(_ sender: Any) {
         tableView.isHidden = false
@@ -156,11 +176,14 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             self.tableView.reloadData()
         }
         ac.addAction(submitAction)
+        let cancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        ac.addAction(cancel)
         present(ac, animated: true)
     }
     
     @IBAction func btnUbicacion(_ sender: Any) {
         tableView.isHidden = false
+        present(GPSc ?? GooglePlacesSearchController(searchResultsController: nil), animated: true, completion: nil)
     }
     @IBAction func btnImagen(_ sender: Any) {
         tableView.isHidden = false    
@@ -532,21 +555,27 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     @IBAction func setAddress(_ sender: Any) {
+        establistmnetLocation = true
         present(GPSc ?? GooglePlacesSearchController(searchResultsController: nil), animated: true, completion: nil)
     }
     
     func viewController(didAutocompleteWith place: PlaceDetails) {
-        print(place.description)
-        GPSc?.isActive = false
-        txtEstablecimiento.text = place.formattedAddress
-        let location = place.coordinate ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
-        let marker = GMSMarker()
-        marker.icon = #imageLiteral(resourceName: "markerIcon")
-        marker.position = location
-        marker.map = map
-        map.animate(toLocation: location)
+        if establistmnetLocation{
+            print(place.description)
+            GPSc?.isActive = false
+            txtEstablecimiento.text = place.formattedAddress
+            let location = place.coordinate ?? CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+            let marker = GMSMarker()
+            marker.icon = #imageLiteral(resourceName: "markerIcon")
+            marker.position = location
+            marker.map = map
+            map.animate(toLocation: location)
+        }else{
+            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: place.formattedAddress, tipo: 9))
+            self.tableView.reloadData()
+        }
+        
         dismiss(animated: true, completion: nil)
        // placesSearchController.isActive = false
     }
-    
 }

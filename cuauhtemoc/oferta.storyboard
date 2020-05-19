@@ -679,11 +679,12 @@ con un</string>
                         <outlet property="txtEstablishmentLocation" destination="IjK-NK-KSv" id="VjJ-le-KdH"/>
                         <outlet property="txtNombreServicio" destination="6z4-qg-WLQ" id="eQ9-WY-Lwl"/>
                         <outlet property="txtTelefono" destination="Yk8-ae-KB9" id="22R-9F-Xs2"/>
+                        <segue destination="2Ew-g6-onR" kind="presentation" id="Hnp-4x-o8c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZC-od-F8h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1897.1014492753625" y="1720.3125"/>
+            <point key="canvasLocation" x="2019" y="1725"/>
         </scene>
         <!--Hashtag Table View Controller-->
         <scene sceneID="pox-If-UVI">
@@ -712,7 +713,129 @@ con un</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kFc-jR-Ruo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2628" y="1720"/>
+            <point key="canvasLocation" x="2720" y="1720"/>
+        </scene>
+        <!--Method View Controller-->
+        <scene sceneID="dLe-EK-2kr">
+            <objects>
+                <viewController storyboardIdentifier="method" modalPresentationStyle="fullScreen" id="2Ew-g6-onR" customClass="MethodViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DEM-wq-5du">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5t-NP-qKL" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                <rect key="frame" x="58.5" y="299" width="297" height="298"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecciona tus métodos de pago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAa-aw-cdF">
+                                        <rect key="frame" x="30" y="34" width="237" height="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8s3-MY-c2W">
+                                        <rect key="frame" x="238" y="76" width="51" height="31"/>
+                                    </switch>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4b6-zx-NEG">
+                                        <rect key="frame" x="238" y="117" width="51" height="31"/>
+                                    </switch>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nXh-UK-4fJ">
+                                        <rect key="frame" x="238" y="158" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Efectivo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HlU-ck-ufr">
+                                        <rect key="frame" x="20" y="82.5" width="198" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tarjeta de crédito/débito" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rly-xb-1uz">
+                                        <rect key="frame" x="20" y="123.5" width="168" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PayPal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1X-JU-QNz">
+                                        <rect key="frame" x="20" y="164.5" width="45.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WA5-un-IRd" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                        <rect key="frame" x="22" y="216" width="250" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="zcP-eG-vEx"/>
+                                        </constraints>
+                                        <state key="normal" title="Agregar método de pago">
+                                            <color key="titleColor" name="green"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="green"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="acept:" destination="2Ew-g6-onR" eventType="touchUpInside" id="xmw-h1-ugx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="HlU-ck-ufr" firstAttribute="leading" secondItem="f5t-NP-qKL" secondAttribute="leading" constant="20" id="3yx-cb-s03"/>
+                                    <constraint firstAttribute="trailing" secondItem="8s3-MY-c2W" secondAttribute="trailing" constant="10" id="4P6-QT-q4G"/>
+                                    <constraint firstItem="8s3-MY-c2W" firstAttribute="leading" secondItem="HlU-ck-ufr" secondAttribute="trailing" constant="20" id="7aQ-hh-zFl"/>
+                                    <constraint firstItem="MAa-aw-cdF" firstAttribute="centerX" secondItem="f5t-NP-qKL" secondAttribute="centerX" id="9hJ-j6-kg7"/>
+                                    <constraint firstItem="WA5-un-IRd" firstAttribute="leading" secondItem="f5t-NP-qKL" secondAttribute="leading" constant="22" id="J7c-eO-GVc"/>
+                                    <constraint firstItem="M1X-JU-QNz" firstAttribute="leading" secondItem="HlU-ck-ufr" secondAttribute="leading" id="OCe-tE-M3H"/>
+                                    <constraint firstItem="M1X-JU-QNz" firstAttribute="centerY" secondItem="nXh-UK-4fJ" secondAttribute="centerY" id="OUG-nw-r0Y"/>
+                                    <constraint firstItem="Rly-xb-1uz" firstAttribute="leading" secondItem="HlU-ck-ufr" secondAttribute="leading" id="RCO-hL-3Pe"/>
+                                    <constraint firstItem="nXh-UK-4fJ" firstAttribute="trailing" secondItem="8s3-MY-c2W" secondAttribute="trailing" id="X6B-Ud-hOu"/>
+                                    <constraint firstAttribute="trailing" secondItem="WA5-un-IRd" secondAttribute="trailing" constant="25" id="anX-M8-amb"/>
+                                    <constraint firstItem="nXh-UK-4fJ" firstAttribute="top" secondItem="4b6-zx-NEG" secondAttribute="bottom" constant="10" id="bys-Uq-esz"/>
+                                    <constraint firstAttribute="trailing" secondItem="MAa-aw-cdF" secondAttribute="trailing" constant="30" id="cXQ-KW-BZ3"/>
+                                    <constraint firstItem="4b6-zx-NEG" firstAttribute="top" secondItem="8s3-MY-c2W" secondAttribute="bottom" constant="10" id="e7c-iC-D6o"/>
+                                    <constraint firstItem="HlU-ck-ufr" firstAttribute="centerY" secondItem="8s3-MY-c2W" secondAttribute="centerY" id="fB2-iV-xqa"/>
+                                    <constraint firstItem="MAa-aw-cdF" firstAttribute="top" secondItem="f5t-NP-qKL" secondAttribute="top" constant="34" id="fiC-zU-Jdc"/>
+                                    <constraint firstItem="8s3-MY-c2W" firstAttribute="top" secondItem="MAa-aw-cdF" secondAttribute="bottom" constant="24" id="hz6-Q2-oy0"/>
+                                    <constraint firstItem="WA5-un-IRd" firstAttribute="top" secondItem="nXh-UK-4fJ" secondAttribute="bottom" constant="27" id="kA5-Ed-ZzD"/>
+                                    <constraint firstItem="MAa-aw-cdF" firstAttribute="leading" secondItem="f5t-NP-qKL" secondAttribute="leading" constant="30" id="kJV-yT-ihb"/>
+                                    <constraint firstAttribute="bottom" secondItem="WA5-un-IRd" secondAttribute="bottom" constant="34" id="ozB-Gf-j2j"/>
+                                    <constraint firstItem="Rly-xb-1uz" firstAttribute="centerY" secondItem="4b6-zx-NEG" secondAttribute="centerY" id="rJE-xd-6oS"/>
+                                    <constraint firstItem="4b6-zx-NEG" firstAttribute="trailing" secondItem="8s3-MY-c2W" secondAttribute="trailing" id="wS3-AI-Csf"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                        <real key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="green"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="f5t-NP-qKL" firstAttribute="centerX" secondItem="DEM-wq-5du" secondAttribute="centerX" id="lrZ-Fu-uNJ"/>
+                            <constraint firstItem="f5t-NP-qKL" firstAttribute="centerY" secondItem="DEM-wq-5du" secondAttribute="centerY" id="nj0-6n-GZD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="D52-Ka-pmF"/>
+                    </view>
+                    <connections>
+                        <outlet property="cardSwitch" destination="4b6-zx-NEG" id="RtD-57-EgP"/>
+                        <outlet property="efectivoSwitch" destination="8s3-MY-c2W" id="nep-tS-NoU"/>
+                        <outlet property="paypal" destination="nXh-UK-4fJ" id="RyQ-fK-T8m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MAS-vt-BD7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2738" y="2426"/>
         </scene>
     </scenes>
     <resources>

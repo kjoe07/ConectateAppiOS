@@ -21,6 +21,7 @@
 		11866E09242E942400D9D3E3 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11866E08242E942400D9D3E3 /* UIViewControllerExtension.swift */; };
 		118D3DA32444DC48004D92E6 /* BorderCurvedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D3DA22444DC48004D92E6 /* BorderCurvedButton.swift */; };
 		11A7BCBA24734B9700D0F6F5 /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7BCB924734B9700D0F6F5 /* LocationCoordinate.swift */; };
+		11A7BCBC2474305300D0F6F5 /* MethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7BCBB2474305300D0F6F5 /* MethodViewController.swift */; };
 		11B12BA82448F2D20001ACB2 /* RecoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B12BA72448F2D20001ACB2 /* RecoverViewController.swift */; };
 		11B12BAA2448F4E80001ACB2 /* NetworkLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B12BA92448F4E80001ACB2 /* NetworkLoader.swift */; };
 		11B12BAC2448F5450001ACB2 /* KeyChainServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B12BAB2448F5450001ACB2 /* KeyChainServices.swift */; };
@@ -127,6 +128,7 @@
 		11866E08242E942400D9D3E3 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		118D3DA22444DC48004D92E6 /* BorderCurvedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCurvedButton.swift; sourceTree = "<group>"; };
 		11A7BCB924734B9700D0F6F5 /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
+		11A7BCBB2474305300D0F6F5 /* MethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodViewController.swift; sourceTree = "<group>"; };
 		11B12BA72448F2D20001ACB2 /* RecoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverViewController.swift; sourceTree = "<group>"; };
 		11B12BA92448F4E80001ACB2 /* NetworkLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoader.swift; sourceTree = "<group>"; };
 		11B12BAB2448F5450001ACB2 /* KeyChainServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyChainServices.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				11CB735B246AD2E200E086DC /* HashtagTableViewController.swift */,
 				11CB7369246ED32800E086DC /* WebViewController.swift */,
 				11A7BCB924734B9700D0F6F5 /* LocationCoordinate.swift */,
+				11A7BCBB2474305300D0F6F5 /* MethodViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				11286819243FCAE200F6BD58 /* ExtensionUIIMage.swift in Sources */,
 				573B5645233897CA00ADB2E3 /* Accion.swift in Sources */,
 				11286817243FBD5100F6BD58 /* BorderTextField.swift in Sources */,
+				11A7BCBC2474305300D0F6F5 /* MethodViewController.swift in Sources */,
 				574B63D8232FF8CA00F4A29D /* PerfilViewController.swift in Sources */,
 				11A7BCBA24734B9700D0F6F5 /* LocationCoordinate.swift in Sources */,
 				11D483142447F0760061FA33 /* BorderImageView.swift in Sources */,
