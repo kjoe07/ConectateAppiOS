@@ -61,8 +61,11 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
 
     
     @IBAction func btnGuardarPerfil(_ sender: Any) {
+        print("changed status:",changed)
         if changed{
              guardarPerfil()
+        }else if newpass != nil{
+            changepass()
         }else{
             if imagedChange {
                 self.showAlert(title: "Perfil actualizado", message: "")
@@ -170,15 +173,11 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     }
     
     func pedirPermiso(titulo:String, mensaje:String, aceptar:String){
-        
         let alertController = UIAlertController (title: titulo, message: mensaje, preferredStyle: UIAlertController.Style.alert)
-        
         let settingsAction = UIAlertAction(title: aceptar, style: UIAlertAction.Style.default) { (_) -> Void in
-            
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
-            
             if UIApplication.shared.canOpenURL(settingsUrl) {
                 UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
                     print("Settings opened: \(success)") // Prints true
@@ -248,17 +247,13 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
         {
         case .right:
             rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .down)
-            
         case .down:
             rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .left)
-            
         case .left:
             rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .up)
-            
         default:
             rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .right)
         }
-        
         return rotatedImage
     }
     
@@ -280,7 +275,6 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        
         if(UIDevice.current.userInterfaceIdiom == .pad){
             
         }else {
@@ -291,13 +285,14 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBAction func textfieldDidChange(_ textfield: UITextField){
         if textfield == txtCooperativa{
             newpass = textfield.text
+        }else{
+            changed = true
         }
-        changed = true
     }
     func changepass(){
         let params = ["old_password":txtPassword.text ?? "","new_password":txtCooperativa.text ?? ""]
         showActivityIndicator(color: UIColor(named: "green") ?? .green)
-        NetworkLoader.loadData(url: Api.updatePassword.url, data: params, method: .post, completion: {[weak self] (result: MyResult<LoginResponse>) in
+        NetworkLoader.loadData(url: Api.updatePassword.url, data: params, method: .patch, completion: {[weak self] (result: MyResult<LoginResponse>) in
             DispatchQueue.main.async {
                 guard let self = self else{return}
                 self.hideActivityIndicator()
