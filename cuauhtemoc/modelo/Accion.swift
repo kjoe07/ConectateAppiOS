@@ -9,32 +9,47 @@
 import Foundation
 
 
-class Accion:Codable {
+struct Accion:Codable {
+    let id : Int?
+    let tipo : Int?
+    let post : Int?
+    let cuerpo : String?
+    let estatus : Int?
+    let usuario : Usuario?
+    let telefono_post : String?
+    let nombre_post : String?
+    let titulo_post : String?
+    let fecha : String?
+    let calificacion : String?
 
-    var id:Int!
-    var tipo:Int!
-    var post:Int!
-    var cuerpo:String!
-    var estatus:Int!
-    var nombre_usuario:String!
-    var nombre_post:String!
-    var titulo_post:String!
-    var fecha:String!
-    var calificacion:Int!
-    
-    
-    init(id:Int, tipo:Int, post:Int, cuerpo:String, estatus:Int, nombre_usuario:String, nombre_post:String, titulo_post:String, fecha:String, calificacion:Int  ) {
-        
-        self.id = id
-        self.tipo = tipo
-        self.post = post
-        self.cuerpo = cuerpo
-        self.estatus = estatus
-        self.nombre_usuario = nombre_usuario
-        self.nombre_post = nombre_post
-        self.titulo_post = titulo_post
-        self.fecha = fecha
-        self.calificacion = calificacion
+    enum CodingKeys: String, CodingKey {
+
+        case id = "id"
+        case tipo = "tipo"
+        case post = "post"
+        case cuerpo = "cuerpo"
+        case estatus = "estatus"
+        case usuario = "usuario"
+        case telefono_post = "telefono_post"
+        case nombre_post = "nombre_post"
+        case titulo_post = "titulo_post"
+        case fecha = "fecha"
+        case calificacion = "calificacion"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        tipo = try values.decodeIfPresent(Int.self, forKey: .tipo)
+        post = try values.decodeIfPresent(Int.self, forKey: .post)
+        cuerpo = try values.decodeIfPresent(String.self, forKey: .cuerpo)
+        estatus = try values.decodeIfPresent(Int.self, forKey: .estatus)
+        usuario = try values.decodeIfPresent(Usuario.self, forKey: .usuario)
+        telefono_post = try values.decodeIfPresent(String.self, forKey: .telefono_post)
+        nombre_post = try values.decodeIfPresent(String.self, forKey: .nombre_post)
+        titulo_post = try values.decodeIfPresent(String.self, forKey: .titulo_post)
+        fecha = try values.decodeIfPresent(String.self, forKey: .fecha)
+        calificacion = try values.decodeIfPresent(String.self, forKey: .calificacion)
     }
     
     

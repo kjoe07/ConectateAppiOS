@@ -185,7 +185,8 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     @objc func btnComentarios(sender:UIButton){
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "comentariosViewController") as! ComentariosViewController
         viewController.post = isSearching ? self.busqueda?[sender.tag] : segmented.selectedSegmentIndex == 0 ?  result?[sender.tag] : employ?[sender.tag]
-        self.present(viewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
+       // self.present(viewController, animated: true, completion: nil)
     }
 
     @objc func btnTruques(sender:UIButton){
@@ -198,7 +199,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     
     func wsAccion(tipo:String, post:Int, cuerpo:String ){
         let params = ["tipo":tipo,"post":post,"cuerpo":cuerpo] as [String : Any]
-        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: {[weak self] (result: MyResult<Contenido?>) in
+        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: {[weak self] (result: MyResult<Accion?>) in
             guard let self = self else {return}
             DispatchQueue.main.async {
                 switch result{
