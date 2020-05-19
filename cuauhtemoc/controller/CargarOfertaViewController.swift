@@ -39,6 +39,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     var GPSc: GooglePlacesSearchController?
     let imagePicker = UIImagePickerController()
     var imageArray = [UIImage]()
+    let locationDelegate = LocationCoordinateDelegate()
     //MARK: - View Functions -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,10 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         self.collectionView.delegate = self
         tableView.isHidden = true
         GPSc = GooglePlacesSearchController(delegate: self, apiKey: "AIzaSyADPJdpByqnYJUcFu2FlXKjWGVOARShVMw", placeType: .address, coordinate: CLLocationCoordinate2D(latitude: 23.6345005, longitude: -102.5527878) , radius: .zero, strictBounds: false, searchBarPlaceholder: "Entre la dirección")
+        locationDelegate.requestAuthorization()
+        locationDelegate.updated = { [weak self] loc in
+            self?.map.animate(toLocation: loc)
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -144,6 +149,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         tableView.isHidden = false
         let ac = UIAlertController(title: "Ingresa un Precio", message: nil, preferredStyle: .alert)
         ac.addTextField()
+        ac.textFields?[0].keyboardType = .numberPad
         let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0].text!
             self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 10))
