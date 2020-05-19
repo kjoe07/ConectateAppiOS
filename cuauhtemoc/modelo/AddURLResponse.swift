@@ -45,7 +45,7 @@ struct AddPostResponse : Codable {
     let titulo : String?
     let tipo : Int?
     let body : String?
-    let establecimiento : String?
+    let establecimiento : Int?
     let telefono : String?
 
     enum CodingKeys: String, CodingKey {
@@ -64,7 +64,7 @@ struct AddPostResponse : Codable {
         titulo = try values.decodeIfPresent(String.self, forKey: .titulo)
         tipo = try values.decodeIfPresent(Int.self, forKey: .tipo)
         body = try values.decodeIfPresent(String.self, forKey: .body)
-        establecimiento = try values.decodeIfPresent(String.self, forKey: .establecimiento)
+        establecimiento = try values.decodeIfPresent(Int.self, forKey: .establecimiento)
         telefono = try values.decodeIfPresent(String.self, forKey: .telefono)
     }
 

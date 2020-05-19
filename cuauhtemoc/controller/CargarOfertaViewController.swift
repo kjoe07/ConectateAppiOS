@@ -460,8 +460,12 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                     }
                     self.hideActivityIndicator()
                     self.showAlert(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!")
-                    self.viewDidLoad()
-                    self.viewWillAppear(true)
+                    let vc = self.storyboard?.instantiateViewController(identifier: "CargarOfertaViewController") ?? CargarOfertaViewController()
+                    var vcs = self.navigationController?.viewControllers
+                    vcs?.removeLast()
+                    vcs?.append(vc)
+                    self.navigationController?.setViewControllers(vcs ?? [vc], animated: false)
+                    (self.parent?.parent as? UITabBarController)?.selectedIndex = 0
                 case .failure(let e):
                     self.hideActivityIndicator()
                     self.showAlert(title: "Ups!", message: e.localizedDescription)
