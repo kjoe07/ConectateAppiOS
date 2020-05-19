@@ -39,17 +39,17 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-        
-        cargarDatosPost()
-        cargarDatos()
+        self.collectionView.delegate = self       
+       
         //imgPerfil.layer.cornerRadius = 48.0
         //imgPerfil.clipsToBounds = true
         guard let imageData = UserDefaults.standard.object(forKey: "userImage") as? Data else {return}
         imgPerfil.image = UIImage(data: imageData)
         guard let userData = UserDefaults.standard.object(forKey: "usuario") as? Data else {return}
         user = try? JSONDecoder().decode(Usuario.self, from: userData)
-       // print("ther user:",user)
+        print("ther user:",user)
+        cargarDatosPost()
+        cargarDatos()
         
     }
     

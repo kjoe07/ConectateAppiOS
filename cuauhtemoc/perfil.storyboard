@@ -665,9 +665,6 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LfP-Lc-GzB">
                                                                         <rect key="frame" x="257.5" y="0.0" width="78.5" height="35"/>
                                                                         <state key="normal" image="greenPencil"/>
-                                                                        <connections>
-                                                                            <action selector="btnEditarPerfil:" destination="SoG-c7-NaM" eventType="touchUpInside" id="UiA-fZ-zcL"/>
-                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </stackView>
