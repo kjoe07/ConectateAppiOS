@@ -62,6 +62,8 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         locationDelegate.requestAuthorization()
         locationDelegate.updated = { [weak self] loc in
             print("Location updated closure")
+            let marker = GMSMarker(position: loc)
+            marker.map = self?.map
             self?.map.animate(toLocation: loc)
             self?.map.animate(toZoom: 14)
         }
