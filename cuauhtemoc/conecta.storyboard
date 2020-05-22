@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jmw-9r-72E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jmw-9r-72E">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -12,7 +12,7 @@
         <!--# Conectate-->
         <scene sceneID="eVJ-N7-GXB">
             <objects>
-                <viewController id="Vp8-IX-dqK" customClass="ContenidoViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vp8-IX-dqK" customClass="ContenidoViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CxN-K8-Up4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,21 +20,28 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fondo" translatesAutoresizingMaskIntoConstraints="NO" id="bp5-ig-oIh">
                                 <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tLR-ER-evf">
-                                <rect key="frame" x="0.0" y="105" width="375" height="419"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1D-sE-kkF">
+                                <rect key="frame" x="0.0" y="524" width="375" height="94"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="8yQ-yY-jSb">
+                                <rect key="frame" x="0.0" y="524" width="375" height="94"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tLR-ER-evf">
+                                <rect key="frame" x="0.0" y="105" width="375" height="493"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="1" indentationWidth="10" reuseIdentifier="contenidoViewCell" id="69g-KJ-PF8" customClass="ContenidoViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="1" indentationWidth="10" reuseIdentifier="contenidoViewCell" id="69g-KJ-PF8" customClass="ContenidoViewCell" customModule="_conectate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="343.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="69g-KJ-PF8" id="Rcv-bW-xJY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="343.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koX-xF-baO" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koX-xF-baO" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                     <rect key="frame" x="27" y="16" width="321" height="311.5"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hashtagGreen" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-OJ-WXk" customClass="BorderImageView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hashtagGreen" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-OJ-WXk" customClass="BorderImageView" customModule="_conectate_" customModuleProvider="target">
                                                             <rect key="frame" x="223" y="27" width="75" height="75"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="75" id="lQj-Hc-wmX"/>
@@ -155,7 +162,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="simpleHashCollectionViewCell" id="2zU-Be-9iI" customClass="SimpleHashCollectionViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="simpleHashCollectionViewCell" id="2zU-Be-9iI" customClass="SimpleHashCollectionViewCell" customModule="_conectate_" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="10" width="37" height="20.5"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="D7z-zZ-fj9">
@@ -273,14 +280,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1D-sE-kkF">
-                                <rect key="frame" x="0.0" y="524" width="375" height="94"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="8yQ-yY-jSb">
-                                <rect key="frame" x="0.0" y="524" width="375" height="94"/>
-                            </imageView>
-                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oYJ-Zf-xXd" customClass="CustomSegmentedControl" customModule="cuauhtemoc" customModuleProvider="target">
+                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oYJ-Zf-xXd" customClass="CustomSegmentedControl" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="15" y="59" width="345" height="32"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <segments>
@@ -296,7 +296,6 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="fIS-P6-GmZ" firstAttribute="bottom" secondItem="bp5-ig-oIh" secondAttribute="bottom" id="3iL-mT-Nml"/>
-                            <constraint firstItem="tLR-ER-evf" firstAttribute="bottom" secondItem="8yQ-yY-jSb" secondAttribute="top" id="5wx-6E-WZi"/>
                             <constraint firstItem="bp5-ig-oIh" firstAttribute="top" secondItem="fIS-P6-GmZ" secondAttribute="top" id="9Co-7L-enc"/>
                             <constraint firstItem="fIS-P6-GmZ" firstAttribute="trailing" secondItem="oYJ-Zf-xXd" secondAttribute="trailing" constant="15" id="9sh-tI-yH9"/>
                             <constraint firstItem="8yQ-yY-jSb" firstAttribute="leading" secondItem="fIS-P6-GmZ" secondAttribute="leading" id="WYT-eN-4Zg"/>
@@ -304,6 +303,7 @@
                             <constraint firstItem="fIS-P6-GmZ" firstAttribute="bottom" secondItem="8yQ-yY-jSb" secondAttribute="bottom" id="XdP-Xm-S6R"/>
                             <constraint firstItem="fIS-P6-GmZ" firstAttribute="trailing" secondItem="bp5-ig-oIh" secondAttribute="trailing" id="ZVA-BK-VoO"/>
                             <constraint firstAttribute="trailing" secondItem="tLR-ER-evf" secondAttribute="trailing" id="cwz-GO-wDw"/>
+                            <constraint firstItem="fIS-P6-GmZ" firstAttribute="bottom" secondItem="tLR-ER-evf" secondAttribute="bottom" constant="20" id="gSb-bI-qxk"/>
                             <constraint firstItem="bp5-ig-oIh" firstAttribute="leading" secondItem="fIS-P6-GmZ" secondAttribute="leading" id="hzJ-C2-4Zt"/>
                             <constraint firstItem="M1D-sE-kkF" firstAttribute="leading" secondItem="8yQ-yY-jSb" secondAttribute="leading" id="l6J-J0-oMV"/>
                             <constraint firstItem="M1D-sE-kkF" firstAttribute="bottom" secondItem="8yQ-yY-jSb" secondAttribute="bottom" id="o1u-Zp-hTU"/>
@@ -332,12 +332,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WE8-OV-6ed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="15.942028985507248" y="770.75892857142856"/>
+            <point key="canvasLocation" x="15.199999999999999" y="770.46476761619192"/>
         </scene>
         <!--Contenido-->
         <scene sceneID="ea9-IG-3Fq">
             <objects>
-                <viewController storyboardIdentifier="verContenidoViewController" id="VWR-6y-ksz" customClass="VerContenidoViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="verContenidoViewController" id="VWR-6y-ksz" customClass="VerContenidoViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="04w-vS-1Rw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -349,8 +349,11 @@
                                 <rect key="frame" x="0.0" y="10" width="375" height="657"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="XMb-G4-H6n">
+                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cor-pE-gRT">
-                                <rect key="frame" x="20" y="10" width="335" height="541"/>
+                                <rect key="frame" x="20" y="10" width="335" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6uN-mc-z2u" userLabel="containerView">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="1205"/>
@@ -477,7 +480,7 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="simpleHashCollectionViewCell" id="tvG-lJ-TND" customClass="SimpleHashCollectionViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="simpleHashCollectionViewCell" id="tvG-lJ-TND" customClass="SimpleHashCollectionViewCell" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -561,14 +564,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qfd-O8-dvj" customClass="SelfSizedTableView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qfd-O8-dvj" customClass="SelfSizedTableView" customModule="_conectate_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="859.5" width="327" height="208.5"/>
                                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="208.5" id="94S-BY-lhX"/>
                                                         </constraints>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" id="uri-YH-ala" customClass="Post2TableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" id="uri-YH-ala" customClass="Post2TableViewCell" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="327" height="56"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uri-YH-ala" id="cnB-wF-EPS">
@@ -607,7 +610,7 @@
                                                                     <outlet property="lblTexto" destination="a7S-8u-rpN" id="8UX-y3-75r"/>
                                                                 </connections>
                                                             </tableViewCell>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" id="EY3-X4-7K9" customClass="PostTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" id="EY3-X4-7K9" customClass="PostTableViewCell" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="84" width="327" height="200"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY3-X4-7K9" id="ihw-YW-UCM">
@@ -638,7 +641,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="mad-LP-yP5">
                                                         <rect key="frame" x="0.0" y="1090" width="327" height="115"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ul-ta-aPi" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ul-ta-aPi" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="46"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="46" id="7b2-vl-xMy"/>
@@ -674,7 +677,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyl-Rk-A0r" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyl-Rk-A0r" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="69" width="327" height="46"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="46" id="g4E-dN-7KO"/>
@@ -743,9 +746,6 @@
                                     <constraint firstItem="6uN-mc-z2u" firstAttribute="leading" secondItem="Cor-pE-gRT" secondAttribute="leading" id="mHM-wN-z4v"/>
                                 </constraints>
                             </scrollView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="XMb-G4-H6n">
-                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -754,7 +754,7 @@
                             <constraint firstItem="l40-ae-9ue" firstAttribute="leading" secondItem="DbK-SW-xhX" secondAttribute="leading" id="A5E-Qh-PWH"/>
                             <constraint firstItem="XMb-G4-H6n" firstAttribute="bottom" secondItem="DbK-SW-xhX" secondAttribute="bottom" id="BcC-9x-gkg"/>
                             <constraint firstItem="DbK-SW-xhX" firstAttribute="bottom" secondItem="l40-ae-9ue" secondAttribute="bottom" id="EeE-kI-nh4"/>
-                            <constraint firstItem="XMb-G4-H6n" firstAttribute="top" secondItem="Cor-pE-gRT" secondAttribute="bottom" constant="22" id="IGW-a0-uvf"/>
+                            <constraint firstItem="DbK-SW-xhX" firstAttribute="bottom" secondItem="Cor-pE-gRT" secondAttribute="bottom" constant="10" id="IGW-a0-uvf"/>
                             <constraint firstItem="l40-ae-9ue" firstAttribute="top" secondItem="Cor-pE-gRT" secondAttribute="top" id="ILt-Kd-vpc"/>
                             <constraint firstItem="XMb-G4-H6n" firstAttribute="trailing" secondItem="DbK-SW-xhX" secondAttribute="trailing" id="IeP-8f-5bc"/>
                             <constraint firstItem="Yyg-0D-VBx" firstAttribute="trailing" secondItem="DbK-SW-xhX" secondAttribute="trailing" id="NnR-Sv-BMt"/>
@@ -793,23 +793,26 @@
         <!--Comentarios-->
         <scene sceneID="S8R-Pk-aBX">
             <objects>
-                <viewController storyboardIdentifier="comentariosViewController" modalPresentationStyle="fullScreen" id="Dmu-YT-2eu" customClass="ComentariosViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="comentariosViewController" modalPresentationStyle="fullScreen" id="Dmu-YT-2eu" customClass="ComentariosViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FDw-lx-okL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="glC-wc-haS">
+                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xdI-qH-VSr">
-                                <rect key="frame" x="20" y="21" width="335" height="481"/>
+                                <rect key="frame" x="20" y="21" width="335" height="575"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comentariosTableViewCell" rowHeight="195" id="3xy-ei-ITh" customClass="ComentariosTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comentariosTableViewCell" rowHeight="195" id="3xy-ei-ITh" customClass="ComentariosTableViewCell" customModule="_conectate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="335" height="195"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3xy-ei-ITh" id="qmX-3J-ENW">
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="195"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksC-jo-DYV" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksC-jo-DYV" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="195"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="SVN-20-KvW">
@@ -896,10 +899,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzv-3W-ldf" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
-                                <rect key="frame" x="20" y="522" width="335" height="41"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzv-3W-ldf" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
+                                <rect key="frame" x="20" y="616" width="335" height="41"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4kR-3w-1jz" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4kR-3w-1jz" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="5.5" width="286" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="cqj-AH-dHT"/>
@@ -960,15 +963,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="glC-wc-haS">
-                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="HAA-8l-2JF" firstAttribute="trailing" secondItem="wzv-3W-ldf" secondAttribute="trailing" constant="20" id="B48-U9-v8g"/>
                             <constraint firstItem="glC-wc-haS" firstAttribute="leading" secondItem="HAA-8l-2JF" secondAttribute="leading" id="Fun-9e-8rE"/>
-                            <constraint firstItem="glC-wc-haS" firstAttribute="top" secondItem="wzv-3W-ldf" secondAttribute="bottom" constant="10" id="M1v-nf-ii5"/>
+                            <constraint firstItem="glC-wc-haS" firstAttribute="bottom" secondItem="wzv-3W-ldf" secondAttribute="bottom" constant="10" id="M1v-nf-ii5"/>
                             <constraint firstItem="glC-wc-haS" firstAttribute="trailing" secondItem="HAA-8l-2JF" secondAttribute="trailing" id="Pvd-6w-bd7"/>
                             <constraint firstItem="HAA-8l-2JF" firstAttribute="trailing" secondItem="xdI-qH-VSr" secondAttribute="trailing" constant="20" id="RJo-wa-SOK"/>
                             <constraint firstItem="HAA-8l-2JF" firstAttribute="bottom" secondItem="glC-wc-haS" secondAttribute="bottom" id="ff4-M8-kHn"/>
@@ -992,18 +992,21 @@
         <!--Ofrece un trueque-->
         <scene sceneID="F5K-2L-din">
             <objects>
-                <viewController storyboardIdentifier="ofrecerTruequeViewController" modalPresentationStyle="fullScreen" id="SdE-0h-AXK" customClass="OfrecerTruequeViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ofrecerTruequeViewController" modalPresentationStyle="fullScreen" id="SdE-0h-AXK" customClass="OfrecerTruequeViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YXu-U0-BOV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="49m-cY-X9o">
+                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Cuál de tus servicios deseas ofrecer como trueque?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="408-eb-fFu">
                                 <rect key="frame" x="50" y="26" width="275" height="41"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="Describe el servicio de lo que ofreces..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p6G-kL-3uz" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="Describe el servicio de lo que ofreces..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p6G-kL-3uz" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="27" y="148" width="321" height="169.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1031,7 +1034,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="¿Qué quieres a cambio de tu servicio?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-PB-dMf" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="¿Qué quieres a cambio de tu servicio?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-PB-dMf" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="27" y="349.5" width="321" height="169.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1059,8 +1062,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svF-UA-KCn" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svF-UA-KCn" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="27" y="549" width="321" height="48"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="RQW-Rq-hzP"/>
                                 </constraints>
@@ -1095,10 +1099,7 @@
                                     <action selector="btnHacerTrueque:" destination="SdE-0h-AXK" eventType="touchUpInside" id="4y0-A7-9vv"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="49m-cY-X9o">
-                                <rect key="frame" x="0.0" y="573" width="375" height="94"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Selcciona" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2F-hX-2Yo" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Selcciona" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2F-hX-2Yo" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="15" y="87" width="345" height="41"/>
                                 <color key="backgroundColor" name="green"/>
                                 <constraints>

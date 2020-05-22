@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jfv-xJ-zRV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jfv-xJ-zRV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +11,7 @@
         <!--Notificaciones View Controller-->
         <scene sceneID="ibn-Ur-s0x">
             <objects>
-                <viewController storyboardIdentifier="notificacionesViewController" id="QlV-3p-MyU" customClass="NotificacionesViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="notificacionesViewController" id="QlV-3p-MyU" customClass="NotificacionesViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PSm-n6-P6L">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,17 +30,17 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u5L-uF-4mN">
-                                <rect key="frame" x="0.0" y="112" width="414" height="587"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="681"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="notificacionesTableViewCell" id="cOC-Iv-L3I" customClass="NotificacionesTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="notificacionesTableViewCell" id="cOC-Iv-L3I" customClass="NotificacionesTableViewCell" customModule="_conectate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cOC-Iv-L3I" id="Ewu-d6-uTp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0OP-xp-dnd" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0OP-xp-dnd" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="7" width="374" height="66"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbM-by-hTY">
@@ -52,7 +52,7 @@
                                                             <color key="tintColor" name="green"/>
                                                             <state key="normal" image="img_trueque_morado"/>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vb5-yn-ExP" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vb5-yn-ExP" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                                             <rect key="frame" x="289" y="21" width="71" height="24"/>
                                                             <color key="backgroundColor" name="green"/>
                                                             <constraints>
@@ -87,7 +87,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsL-aQ-Ni2" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xsL-aQ-Ni2" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                             <rect key="frame" x="9" y="9" width="9" height="9"/>
                                                             <color key="backgroundColor" name="green"/>
                                                             <constraints>
@@ -178,7 +178,7 @@
                             <constraint firstItem="uZ9-id-wBz" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" id="Ixm-Zh-JJ9"/>
                             <constraint firstItem="X8j-9Q-7us" firstAttribute="trailing" secondItem="QkI-XU-g9G" secondAttribute="trailing" id="Pay-VR-GxY"/>
                             <constraint firstItem="uZ9-id-wBz" firstAttribute="top" secondItem="PSm-n6-P6L" secondAttribute="top" constant="-10" id="YgL-4b-ONc"/>
-                            <constraint firstItem="Bo5-aC-WHI" firstAttribute="top" secondItem="u5L-uF-4mN" secondAttribute="bottom" constant="20" id="aBb-QG-Dsv"/>
+                            <constraint firstItem="Bo5-aC-WHI" firstAttribute="bottom" secondItem="u5L-uF-4mN" secondAttribute="bottom" constant="20" id="aBb-QG-Dsv"/>
                             <constraint firstItem="X8j-9Q-7us" firstAttribute="bottom" secondItem="Bo5-aC-WHI" secondAttribute="bottom" id="aHU-4G-FJK"/>
                             <constraint firstItem="u5L-uF-4mN" firstAttribute="top" secondItem="QkI-XU-g9G" secondAttribute="top" constant="24" id="ceg-11-i9s"/>
                             <constraint firstItem="uZ9-id-wBz" firstAttribute="trailing" secondItem="X8j-9Q-7us" secondAttribute="trailing" id="dEp-fZ-gQo"/>

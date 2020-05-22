@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +11,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="loginViewController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="LoginViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,7 +61,7 @@
                                     <constraint firstAttribute="trailing" secondItem="b9l-9R-n2P" secondAttribute="trailing" id="VSA-oE-eko"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="RRD-Jd-62M" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="RRD-Jd-62M" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="33" y="262" width="309" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="aFw-qq-shR"/>
@@ -77,7 +77,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="JVK-8f-oPN" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="JVK-8f-oPN" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="33" y="334" width="309" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="wpn-UC-8WD"/>
@@ -112,7 +112,7 @@
                                     <segue destination="r3A-Mb-zGl" kind="presentation" id="1QT-Ag-n58"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUR-2N-0Kz" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUR-2N-0Kz" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="33" y="494" width="309" height="46"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -201,7 +201,7 @@
         <!--Registro View Controller-->
         <scene sceneID="8fT-Zd-V1H">
             <objects>
-                <viewController storyboardIdentifier="registroViewController" modalPresentationStyle="fullScreen" id="9WZ-dA-2cF" customClass="RegistroViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registroViewController" modalPresentationStyle="fullScreen" id="9WZ-dA-2cF" customClass="RegistroViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZjJ-P0-Mut">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,6 +218,12 @@
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="registerBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="TdM-C6-5hQ">
                                 <rect key="frame" x="0.0" y="172" width="375" height="650"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="StX-0R-MHG">
+                                <rect key="frame" x="0.0" y="688" width="375" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="y0s-kw-4nC"/>
+                                </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lFP-0w-XKF">
                                 <rect key="frame" x="0.0" y="177" width="375" height="58"/>
@@ -244,7 +250,7 @@
                                 </constraints>
                             </stackView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpc-I1-NuY">
-                                <rect key="frame" x="0.0" y="235" width="375" height="431"/>
+                                <rect key="frame" x="0.0" y="235" width="375" height="521"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKs-bW-PfH">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
@@ -255,7 +261,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="UbW-2T-t7r">
                                                         <rect key="frame" x="0.0" y="0.0" width="309" height="524"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre (Persona o institución)" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="dO2-X1-hTg" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nombre (Persona o institución)" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="dO2-X1-hTg" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="309" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="m6d-t9-qKJ"/>
@@ -271,7 +277,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Apellidos" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="LDB-rD-RjL" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Apellidos" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="LDB-rD-RjL" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="68" width="309" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="ung-tt-c0Z"/>
@@ -287,7 +293,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Fecha de Nacimiento" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="5La-Ml-Blf" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Fecha de Nacimiento" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="5La-Ml-Blf" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="136" width="309" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="6my-Ab-4Cw"/>
@@ -303,7 +309,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Teléfono (10 dígitos)" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="C4d-LP-H3T" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Teléfono (10 dígitos)" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="C4d-LP-H3T" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="204" width="309" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="hvI-XQ-vkZ"/>
@@ -319,7 +325,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="BYa-Tb-aEv" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Correo electrónico" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="BYa-Tb-aEv" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="272" width="309" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="t6y-ZB-O8k"/>
@@ -335,7 +341,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña (mín. 8 caracteres)" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="pbd-jl-E9R" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña (mín. 8 caracteres)" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="pbd-jl-E9R" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="340" width="309" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="UJq-UV-ABA"/>
@@ -351,7 +357,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirmar contraseña " textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-xc-kmP" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirmar contraseña " textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-xc-kmP" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="408" width="309" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="i52-ZK-kfl"/>
@@ -367,7 +373,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Código Postal" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="MPr-y7-R9n" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Código Postal" textAlignment="natural" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="MPr-y7-R9n" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="476" width="309" height="48"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="48" id="P4k-ks-0MV"/>
@@ -487,7 +493,7 @@
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HhY-8F-Cqe">
                                                                 <rect key="frame" x="0.0" y="0.0" width="309" height="60"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cp-ei-BIk" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cp-ei-BIk" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="309" height="60"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="60" id="MjA-Ze-Ity"/>
@@ -561,12 +567,6 @@
                                     <constraint firstItem="GKs-bW-PfH" firstAttribute="top" secondItem="Xpc-I1-NuY" secondAttribute="top" id="oWP-uu-Ghr"/>
                                 </constraints>
                             </scrollView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="StX-0R-MHG">
-                                <rect key="frame" x="0.0" y="688" width="375" height="90"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="y0s-kw-4nC"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -588,7 +588,7 @@
                             <constraint firstAttribute="bottom" secondItem="TdM-C6-5hQ" secondAttribute="bottom" constant="-10" id="kAQ-tk-c5L"/>
                             <constraint firstItem="Xpc-I1-NuY" firstAttribute="leading" secondItem="mb7-51-niw" secondAttribute="leading" id="oMu-t3-uGc"/>
                             <constraint firstItem="eZ3-cA-r5H" firstAttribute="trailing" secondItem="mb7-51-niw" secondAttribute="trailing" id="oak-em-x0g"/>
-                            <constraint firstItem="StX-0R-MHG" firstAttribute="top" secondItem="Xpc-I1-NuY" secondAttribute="bottom" constant="22" id="qz2-Wv-aoi"/>
+                            <constraint firstItem="StX-0R-MHG" firstAttribute="bottom" secondItem="Xpc-I1-NuY" secondAttribute="bottom" constant="22" id="qz2-Wv-aoi"/>
                             <constraint firstItem="mb7-51-niw" firstAttribute="bottom" secondItem="StX-0R-MHG" secondAttribute="bottom" id="tKP-h2-Anf"/>
                             <constraint firstItem="StX-0R-MHG" firstAttribute="leading" secondItem="mb7-51-niw" secondAttribute="leading" id="xNl-NK-4rN"/>
                         </constraints>
@@ -618,7 +618,7 @@
         <!--Validar Codigo View Controller-->
         <scene sceneID="UQb-tJ-lQd">
             <objects>
-                <viewController storyboardIdentifier="ValidarCodigoViewController" modalPresentationStyle="fullScreen" id="ASc-MH-mHD" customClass="ValidarCodigoViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ValidarCodigoViewController" modalPresentationStyle="fullScreen" id="ASc-MH-mHD" customClass="ValidarCodigoViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ewV-sy-40t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -670,7 +670,7 @@
                                 <color key="textColor" name="labelTabbar"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Código" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-WW-Gdz" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Código" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="MYo-WW-Gdz" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="32" y="342.66666666666669" width="311" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="e0Z-9k-nRE"/>
@@ -696,7 +696,7 @@
                                     <action selector="btnReenviarCodigo:" destination="ASc-MH-mHD" eventType="touchUpInside" id="nrj-R4-Hiw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5J-eW-xSO" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5J-eW-xSO" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="32" y="502.66666666666674" width="311" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="1yy-RS-6Ni"/>
@@ -783,7 +783,7 @@
         <!--Perfil View Controller-->
         <scene sceneID="8CY-vw-OuC">
             <objects>
-                <viewController storyboardIdentifier="PerfilViewController" modalPresentationStyle="fullScreen" id="96e-Zs-MnH" customClass="PerfilViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PerfilViewController" modalPresentationStyle="fullScreen" id="96e-Zs-MnH" customClass="PerfilViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TLA-LG-gHw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -794,8 +794,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hrX-Pl-wwD">
                                 <rect key="frame" x="0.0" y="229" width="375" height="549"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="1QD-cE-kbg">
+                                        <rect key="frame" x="0.0" y="459" width="375" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="GuH-rJ-ZXc"/>
+                                        </constraints>
+                                    </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MZo-Jm-YU9">
-                                        <rect key="frame" x="20" y="52" width="335" height="335"/>
+                                        <rect key="frame" x="20" y="52" width="335" height="425"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gO2-V3-mON">
                                             <size key="itemSize" width="130" height="130"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -803,14 +809,14 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="fotoCollectionView" id="yMR-3i-Ecm" customClass="ImagenesCollectionViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="fotoCollectionView" id="yMR-3i-Ecm" customClass="ImagenesCollectionViewCell" customModule="_conectate_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HT2-Re-5NW" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HT2-Re-5NW" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hashtagGreen" translatesAutoresizingMaskIntoConstraints="NO" id="UVm-My-TJw">
@@ -887,8 +893,9 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzK-zf-r7V" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="403" width="311" height="46"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzK-zf-r7V" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="493" width="311" height="46"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="4ij-fb-dGz"/>
                                         </constraints>
@@ -923,12 +930,6 @@
                                             <action selector="btnGuardar:" destination="96e-Zs-MnH" eventType="touchUpInside" id="bTb-nz-k1M"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="1QD-cE-kbg">
-                                        <rect key="frame" x="0.0" y="459" width="375" height="90"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="GuH-rJ-ZXc"/>
-                                        </constraints>
-                                    </imageView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYP-5V-ewr">
                                         <rect key="frame" x="0.0" y="-20" width="375" height="56"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -948,7 +949,7 @@
                                     <constraint firstItem="MYP-5V-ewr" firstAttribute="leading" secondItem="hrX-Pl-wwD" secondAttribute="leading" id="US4-YF-hcg"/>
                                     <constraint firstAttribute="trailing" secondItem="MZo-Jm-YU9" secondAttribute="trailing" constant="20" id="iVV-a9-fzU"/>
                                     <constraint firstItem="MZo-Jm-YU9" firstAttribute="leading" secondItem="hrX-Pl-wwD" secondAttribute="leading" constant="20" id="lAA-w2-PGb"/>
-                                    <constraint firstItem="1QD-cE-kbg" firstAttribute="top" secondItem="pzK-zf-r7V" secondAttribute="bottom" constant="10" id="lvt-Fm-ZP8"/>
+                                    <constraint firstItem="1QD-cE-kbg" firstAttribute="bottom" secondItem="pzK-zf-r7V" secondAttribute="bottom" constant="10" id="lvt-Fm-ZP8"/>
                                     <constraint firstAttribute="trailing" secondItem="MYP-5V-ewr" secondAttribute="trailing" id="mTa-fm-mvq"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="pzK-zf-r7V" secondAttribute="trailing" constant="32" id="nuX-2y-pRr"/>
                                     <constraint firstItem="pzK-zf-r7V" firstAttribute="leading" secondItem="hrX-Pl-wwD" secondAttribute="leading" constant="32" id="oZo-Ap-kGB"/>
@@ -1025,7 +1026,7 @@
         <!--View Controller-->
         <scene sceneID="4Ka-J4-zdI">
             <objects>
-                <viewController id="Xxg-Mi-Ymx" customClass="ViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xxg-Mi-Ymx" customClass="ViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JgF-Vf-bET">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1051,7 +1052,7 @@
         <!--Personalizado View Controller-->
         <scene sceneID="ymP-KK-9gX">
             <objects>
-                <viewController storyboardIdentifier="PersonalizadoViewController" modalPresentationStyle="fullScreen" id="hyz-XW-KRx" customClass="PersonalizadoViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PersonalizadoViewController" modalPresentationStyle="fullScreen" id="hyz-XW-KRx" customClass="PersonalizadoViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXq-dz-hcY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <subviews>
@@ -1105,7 +1106,7 @@ Crea dos </string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Sj-nj-ipO">
                                                 <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="165"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="mr2-Ob-jbr" customClass="BorderImageView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="mr2-Ob-jbr" customClass="BorderImageView" customModule="_conectate_" customModuleProvider="target">
                                                         <rect key="frame" x="-4.3333333333333357" y="22.666666666666686" width="120" height="120"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="120" id="5Gy-5I-YdG"/>
@@ -1133,7 +1134,7 @@ Crea dos </string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69f-0a-pgO">
                                                 <rect key="frame" x="143.66666666666666" y="0.0" width="111.33333333333334" height="165"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="8sL-WK-XSy" customClass="BorderImageView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="8sL-WK-XSy" customClass="BorderImageView" customModule="_conectate_" customModuleProvider="target">
                                                         <rect key="frame" x="-4.3333333333333144" y="22.666666666666686" width="120" height="120"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="120" id="dkh-53-NCl"/>
@@ -1163,10 +1164,10 @@ Crea dos </string>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="f40-iF-H9V">
                                         <rect key="frame" x="27" y="240" width="321" height="110"/>
                                         <subviews>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wf-Dm-g1t" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wf-Dm-g1t" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="321" height="40"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ao0-xg-saO" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="#" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ao0-xg-saO" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="231" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1217,10 +1218,10 @@ Crea dos </string>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a6q-Od-YiP">
                                                 <rect key="frame" x="0.0" y="70" width="321" height="40"/>
                                                 <subviews>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7B-7t-0kq" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p7B-7t-0kq" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="321" height="40"/>
                                                         <subviews>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="07I-Gz-vfo" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="#" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="07I-Gz-vfo" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="221" height="40"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
@@ -1270,7 +1271,7 @@ Crea dos </string>
                                             <constraint firstItem="3Wf-Dm-g1t" firstAttribute="leading" secondItem="f40-iF-H9V" secondAttribute="leading" id="XBq-IS-d9O"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJ9-NN-xOb" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hJ9-NN-xOb" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                         <rect key="frame" x="32" y="403" width="311" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="Z2Z-81-3LO"/>
@@ -1369,7 +1370,7 @@ Crea dos </string>
         <!--Recover View Controller-->
         <scene sceneID="YMa-be-9Cf">
             <objects>
-                <viewController storyboardIdentifier="recover" modalPresentationStyle="fullScreen" id="r3A-Mb-zGl" customClass="RecoverViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="recover" modalPresentationStyle="fullScreen" id="r3A-Mb-zGl" customClass="RecoverViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VDo-Kh-BsR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1412,7 +1413,7 @@ Crea dos </string>
                                 <color key="textColor" name="labelTabbar"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Correo electrónico" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="Hv4-vF-CbB" customClass="BorderTextField" customModule="cuauhtemoc" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Correo electrónico" minimumFontSize="17" background="textFieldBackGround" translatesAutoresizingMaskIntoConstraints="NO" id="Hv4-vF-CbB" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="32" y="363" width="311" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="NDy-tb-MQV"/>
@@ -1431,7 +1432,7 @@ Crea dos </string>
                                     <action selector="email:" destination="r3A-Mb-zGl" eventType="editingDidEnd" id="Kyz-KA-aDr"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rE6-Vu-FTJ" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rE6-Vu-FTJ" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="32" y="443" width="311" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="MrV-Ab-wGl"/>
@@ -1523,7 +1524,7 @@ Crea dos </string>
         <!--Intereses View Controller-->
         <scene sceneID="li0-Ce-SxW">
             <objects>
-                <viewController storyboardIdentifier="InteresesViewController" modalPresentationStyle="fullScreen" id="GHX-Mw-DdG" customClass="InteresesViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InteresesViewController" modalPresentationStyle="fullScreen" id="GHX-Mw-DdG" customClass="InteresesViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l26-p4-3rc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1534,8 +1535,14 @@ Crea dos </string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uU9-q3-aSw">
                                 <rect key="frame" x="0.0" y="229" width="375" height="549"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="YXs-dN-gzK">
+                                        <rect key="frame" x="0.0" y="459" width="375" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="IJP-7v-gdi"/>
+                                        </constraints>
+                                    </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="rz0-Bg-G01">
-                                        <rect key="frame" x="20" y="52" width="335" height="335"/>
+                                        <rect key="frame" x="20" y="52" width="335" height="425"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cSj-1i-aRD">
                                             <size key="itemSize" width="130" height="130"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1543,14 +1550,14 @@ Crea dos </string>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="fotoCollectionView" id="ZvF-bx-BFh" customClass="ImagenesCollectionViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="fotoCollectionView" id="ZvF-bx-BFh" customClass="ImagenesCollectionViewCell" customModule="_conectate_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hU6-VN-N2a" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hU6-VN-N2a" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hashtagGreen" translatesAutoresizingMaskIntoConstraints="NO" id="lWQ-Tc-HZV">
@@ -1627,8 +1634,9 @@ Crea dos </string>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaL-r5-kGa" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="403" width="311" height="46"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaL-r5-kGa" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
+                                        <rect key="frame" x="32" y="493" width="311" height="46"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="zrc-By-stb"/>
                                         </constraints>
@@ -1663,12 +1671,6 @@ Crea dos </string>
                                             <action selector="btnGuardar:" destination="GHX-Mw-DdG" eventType="touchUpInside" id="yHD-cr-3Lh"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="YXs-dN-gzK">
-                                        <rect key="frame" x="0.0" y="459" width="375" height="90"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="IJP-7v-gdi"/>
-                                        </constraints>
-                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peN-0p-oIR">
                                         <rect key="frame" x="0.0" y="-20" width="375" height="56"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1691,7 +1693,7 @@ Crea dos </string>
                                     <constraint firstItem="VaL-r5-kGa" firstAttribute="top" secondItem="rz0-Bg-G01" secondAttribute="bottom" constant="16" id="hAu-9m-7FL"/>
                                     <constraint firstItem="peN-0p-oIR" firstAttribute="leading" secondItem="uU9-q3-aSw" secondAttribute="leading" id="qC0-Na-AbN"/>
                                     <constraint firstItem="rz0-Bg-G01" firstAttribute="top" secondItem="peN-0p-oIR" secondAttribute="bottom" constant="16" id="sul-5j-V4u"/>
-                                    <constraint firstItem="YXs-dN-gzK" firstAttribute="top" secondItem="VaL-r5-kGa" secondAttribute="bottom" constant="10" id="wTF-ER-7eY"/>
+                                    <constraint firstItem="YXs-dN-gzK" firstAttribute="bottom" secondItem="VaL-r5-kGa" secondAttribute="bottom" constant="10" id="wTF-ER-7eY"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="VaL-r5-kGa" secondAttribute="trailing" constant="32" id="yB5-sW-bWk"/>
                                 </constraints>
                             </view>
@@ -1764,7 +1766,7 @@ Crea dos </string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eqi-yV-l9G"/>
+        <segue reference="DVH-ec-FaR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="checkButton" width="20" height="20"/>

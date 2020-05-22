@@ -20,6 +20,12 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+		<string>whatsapp</string>
+		<string>waze</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -27,6 +33,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationUsageDescription</key>
+	<string>Es necesaria la ubicación para mostrarte los contenidos mas cercanos a ti.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Es necesaria la ubicación para mostrarte los contenidos mas cercanos a ti.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>La aplicación solicita acceso a tu libería solo cuando quieras subir una imagen</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -52,16 +62,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>comgooglemaps</string>
-		<string>whatsapp</string>
-		<string>waze</string>
-	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Es necesaria la ubicación para mostrarte los contenidos mas cercanos a ti.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Es necesaria la ubicación para mostrarte los contenidos mas cercanos a ti.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>

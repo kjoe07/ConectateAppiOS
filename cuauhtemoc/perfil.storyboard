@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZZ2-Y1-4xu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZZ2-Y1-4xu">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -12,7 +12,7 @@
         <!--Perfil Completo View Controller-->
         <scene sceneID="9TR-xd-XVS">
             <objects>
-                <viewController storyboardIdentifier="perfilCompletoViewController" id="lqe-pM-VZZ" customClass="PerfilCompletoViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="perfilCompletoViewController" id="lqe-pM-VZZ" customClass="PerfilCompletoViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pUf-JY-bVM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <subviews>
@@ -25,7 +25,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29e-Rm-42g">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="753" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="9nL-5e-Gq3" customClass="BorderImageView" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="753" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="9nL-5e-Gq3" customClass="BorderImageView" customModule="_conectate_" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="17" width="70" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="9nL-5e-Gq3" secondAttribute="height" multiplier="1:1" id="1gS-a9-nIO"/>
@@ -76,7 +76,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="simpleHashCollectionViewCell" id="D0a-SS-Gto" customClass="SimpleHashCollectionViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="simpleHashCollectionViewCell" id="D0a-SS-Gto" customClass="SimpleHashCollectionViewCell" customModule="_conectate_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="130" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gRh-eP-HdZ">
@@ -124,7 +124,7 @@
                                         <rect key="frame" x="0.0" y="218" width="414" height="497"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SectionHeader" translatesAutoresizingMaskIntoConstraints="NO" id="RNi-zY-ozk" customClass="SeccionesTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SectionHeader" translatesAutoresizingMaskIntoConstraints="NO" id="RNi-zY-ozk" customClass="SeccionesTableViewCell" customModule="_conectate_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="52"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RNi-zY-ozk" id="Vga-zq-3Qd">
@@ -152,17 +152,17 @@
                                                     <outlet property="txtContenido" destination="24C-7o-Gpq" id="z3l-hL-9h3"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" indentationWidth="10" reuseIdentifier="perfilTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="Bli-Ns-FSM" customClass="PerfilTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" indentationWidth="10" reuseIdentifier="perfilTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="Bli-Ns-FSM" customClass="PerfilTableViewCell" customModule="_conectate_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="80" width="414" height="97"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bli-Ns-FSM" id="fP8-iO-B9w">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="97"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2G-MI-YIy" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2G-MI-YIy" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                             <rect key="frame" x="25" y="9" width="364" height="79"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="0Ln-Pc-KzG" customClass="BorderImageView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="0Ln-Pc-KzG" customClass="BorderImageView" customModule="_conectate_" customModuleProvider="target">
                                                                     <rect key="frame" x="15" y="15" width="49" height="49"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="49" id="GnJ-bn-oIZ"/>
@@ -250,14 +250,14 @@
                                                     <outlet property="txtTituloContenido" destination="0Fi-v9-m49" id="ZbP-c5-1EK"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoDataCell" id="Xk4-c7-98y" customClass="NoDataCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoDataCell" id="Xk4-c7-98y" customClass="NoDataCell" customModule="_conectate_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="177" width="414" height="184"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xk4-c7-98y" id="DxE-P4-xe8">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="184"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU0-Q8-GaT" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU0-Q8-GaT" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                             <rect key="frame" x="25" y="9" width="364" height="166"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5F-nh-tq1">
@@ -268,7 +268,7 @@
                                                                     <color key="textColor" name="green"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lzq-KZ-IzF" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lzq-KZ-IzF" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                                                     <rect key="frame" x="65" y="86" width="234" height="40"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="40" id="H7S-gv-Ws7"/>
@@ -351,14 +351,14 @@
                                                     <outlet property="addOfert" destination="Lzq-KZ-IzF" id="c2I-iM-LGs"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" indentationWidth="10" reuseIdentifier="optionsCell" id="5JB-rH-nvh" customClass="OpcionesTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" indentationWidth="10" reuseIdentifier="optionsCell" id="5JB-rH-nvh" customClass="OpcionesTableViewCell" customModule="_conectate_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="361" width="414" height="58"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5JB-rH-nvh" id="LGP-I4-glt">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVq-r6-6e2" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVq-r6-6e2" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                             <rect key="frame" x="25" y="9" width="364" height="40"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ll4-wr-PgD">
@@ -504,7 +504,7 @@
         <!--Editar perfil-->
         <scene sceneID="g7d-H7-e8v">
             <objects>
-                <viewController storyboardIdentifier="editarPerfilViewController" id="SoG-c7-NaM" customClass="EditarPerfilViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editarPerfilViewController" id="SoG-c7-NaM" customClass="EditarPerfilViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4i-KA-2UA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <subviews>
@@ -528,7 +528,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fk-o2-ncD">
-                                <rect key="frame" x="0.0" y="182" width="414" height="537"/>
+                                <rect key="frame" x="0.0" y="182" width="414" height="621"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqT-a1-X7y" userLabel="container">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="751.5"/>
@@ -693,7 +693,7 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="simpleHashCollectionViewCell" id="ErP-yn-Nfv" customClass="SimpleHashCollectionViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="simpleHashCollectionViewCell" id="ErP-yn-Nfv" customClass="SimpleHashCollectionViewCell" customModule="_conectate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="130" height="22"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -729,7 +729,7 @@
                                                             </collectionViewCell>
                                                         </cells>
                                                     </collectionView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxz-kB-FCv" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fxz-kB-FCv" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="645.5" width="354" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="0ea-it-Z6x"/>
@@ -837,7 +837,7 @@
                             <constraint firstItem="DBF-x5-h1S" firstAttribute="top" secondItem="pas-pd-hTn" secondAttribute="top" id="JaN-ec-vHd"/>
                             <constraint firstItem="VmG-Se-nI0" firstAttribute="bottom" secondItem="pas-pd-hTn" secondAttribute="bottom" id="LPw-YK-HVb"/>
                             <constraint firstItem="VmG-Se-nI0" firstAttribute="leading" secondItem="pas-pd-hTn" secondAttribute="leading" id="LVW-0J-0dw"/>
-                            <constraint firstItem="VmG-Se-nI0" firstAttribute="top" secondItem="2fk-o2-ncD" secondAttribute="bottom" id="QB4-YQ-8nb"/>
+                            <constraint firstItem="VmG-Se-nI0" firstAttribute="bottom" secondItem="2fk-o2-ncD" secondAttribute="bottom" constant="10" id="QB4-YQ-8nb"/>
                             <constraint firstItem="7Eq-rs-Lb1" firstAttribute="centerX" secondItem="z4i-KA-2UA" secondAttribute="centerX" id="dqY-Bh-mXh"/>
                             <constraint firstItem="7Eq-rs-Lb1" firstAttribute="top" secondItem="pas-pd-hTn" secondAttribute="top" constant="20" id="gSa-Wf-EgO"/>
                             <constraint firstItem="2fk-o2-ncD" firstAttribute="leading" secondItem="pas-pd-hTn" secondAttribute="leading" id="ici-hz-L83"/>
@@ -892,23 +892,23 @@
         <!--Mis Contrataciones View Controller-->
         <scene sceneID="X26-JO-hbU">
             <objects>
-                <viewController storyboardIdentifier="misContratacionesViewController" id="t7e-J4-5I3" customClass="MisContratacionesViewController" customModule="cuauhtemoc" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="misContratacionesViewController" id="t7e-J4-5I3" customClass="MisContratacionesViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YnY-5f-wqt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="If4-oD-drb">
-                                <rect key="frame" x="20" y="98" width="374" height="611"/>
+                                <rect key="frame" x="20" y="98" width="374" height="705"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="contratacionesTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contratacionesTableViewCell" id="4Kx-zg-Gy7" customClass="ContratacionesTableViewCell" customModule="cuauhtemoc" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="contratacionesTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contratacionesTableViewCell" id="4Kx-zg-Gy7" customClass="ContratacionesTableViewCell" customModule="_conectate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="288"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Kx-zg-Gy7" id="3WW-qM-OR9">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="288"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v0s-bq-LnG" customClass="BorderCardView" customModule="cuauhtemoc" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v0s-bq-LnG" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                     <rect key="frame" x="24" y="12" width="326" height="264"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="cUw-oC-KA9">
@@ -921,7 +921,7 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TmF-yF-rNY">
                                                             <rect key="frame" x="16" y="120" width="85" height="74"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blp-Bh-P9r" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="blp-Bh-P9r" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="85" height="33"/>
                                                                     <color key="backgroundColor" name="green"/>
                                                                     <constraints>
@@ -937,7 +937,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80I-Ij-PoN" customClass="BorderCurvedButton" customModule="cuauhtemoc" customModuleProvider="target">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80I-Ij-PoN" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="41" width="85" height="33"/>
                                                                     <color key="backgroundColor" name="green"/>
                                                                     <constraints>
@@ -1072,7 +1072,7 @@
                             <constraint firstItem="If4-oD-drb" firstAttribute="leading" secondItem="oON-tq-ahR" secondAttribute="leading" constant="20" id="Y6l-5r-gRD"/>
                             <constraint firstItem="nwA-5p-Kis" firstAttribute="trailing" secondItem="oON-tq-ahR" secondAttribute="trailing" id="dPu-4R-AVu"/>
                             <constraint firstItem="nwA-5p-Kis" firstAttribute="leading" secondItem="oON-tq-ahR" secondAttribute="leading" id="gqd-6g-yX2"/>
-                            <constraint firstItem="nwA-5p-Kis" firstAttribute="top" secondItem="If4-oD-drb" secondAttribute="bottom" constant="10" id="lgL-Ic-QjW"/>
+                            <constraint firstItem="nwA-5p-Kis" firstAttribute="bottom" secondItem="If4-oD-drb" secondAttribute="bottom" constant="10" id="lgL-Ic-QjW"/>
                             <constraint firstItem="If4-oD-drb" firstAttribute="top" secondItem="oON-tq-ahR" secondAttribute="top" constant="10" id="rUT-FS-sch"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oON-tq-ahR"/>
