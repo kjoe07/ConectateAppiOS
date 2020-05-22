@@ -26,6 +26,10 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var segmented: CustomSegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buscador: UITextField!
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         definesPresentationContext = true

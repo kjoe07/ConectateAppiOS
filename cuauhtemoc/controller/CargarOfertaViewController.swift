@@ -40,6 +40,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     var imageArray = [UIImage]()
     let locationDelegate = LocationCoordinateDelegate()
     var establistmnetLocation = false
+    var phone: String?
     //MARK: - View Functions -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +68,10 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             self?.map.animate(toLocation: loc)
             self?.map.animate(toZoom: 14)
         }
+        let userData = UserDefaults.standard.value(forKey: "usuario") as? Data
+        guard let user = try? JSONDecoder().decode(Usuario.self, from: userData ?? Data()) else {return}
+        txtTelefono.text = user.celular ?? ""
+        phone =  user.celular ?? ""
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -547,9 +552,11 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     @IBAction func phoneActivated(_ sender: Any) {
         if (sender as! UISwitch).isOn {
-            txtTelefono.isHidden = false
+            txtTelefono.isUserInteractionEnabled = true
+            txtTelefono.text = ""
         }else{
-            txtTelefono.isHidden = true
+            txtTelefono.isUserInteractionEnabled = false
+            txtTelefono.text = phone ?? ""
         }
     }
     @IBAction func locationActivated(_ sender: Any) {
