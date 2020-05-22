@@ -55,8 +55,8 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
         center.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         scrollGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
         cargarDatos()
-        let imageData = UserDefaults.standard.value(forKey: "userImage") as? Data
-        imgPerfil.image = UIImage(data: imageData ?? Data())
+        guard let imageData = UserDefaults.standard.value(forKey: "userImage") as? Data else {return}    
+        imgPerfil.image = UIImage(data: imageData)
     }
 
     
