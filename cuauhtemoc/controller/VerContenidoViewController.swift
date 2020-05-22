@@ -55,6 +55,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         share.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
         share.addTarget(self, action: #selector(self.btnCompartir(sender:)), for: .touchUpInside)
         share.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        share.tintColor = UIColor(named: "green")
         let shareButton =  UIBarButtonItem(customView: share)//UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(self.btnCompartir(sender:)))
         //shareButton.imageInsets = UIEdgeInsets(top: 3, left: 10, bottom: 7, right: 0)
         let message = UIButton(type: .custom)

@@ -68,7 +68,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
             vc.perfil = perfil
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         guard let userData = UserDefaults.standard.object(forKey: "userImage") as? Data else {return}
         imgPerfil.image = UIImage(data: userData)
         cargarDatosPost()
