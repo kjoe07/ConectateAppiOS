@@ -208,16 +208,8 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
          guard let screenshot: UIImage = UIGraphicsGetImageFromCurrentImageContext() else{
              return
          }
-
-         // clean up newly created context and return screenshot
          UIGraphicsEndImageContext()
-         //Save it to the camera roll
-         //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-         
-        // guard let image2 = self.//cell.imagenContenido else{return}//imageSlider.currentSlideshowItem?.imageView.image else {return}
-         let textToShare = [screenshot] as [Any]
-//        guard let image2 = cell.imagenContenido else{return}//imageSlider.currentSlideshowItem?.imageView.image else {return}
-//        let textToShare = [cell.txtTitulo.text ?? "",image2 ] as [Any]
+         let textToShare = [screenshot] //as [Any]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll,.addToReadingList,.copyToPasteboard,.openInIBooks,.mail,.message,.print ]
         self.present(activityViewController, animated: true, completion: nil)
