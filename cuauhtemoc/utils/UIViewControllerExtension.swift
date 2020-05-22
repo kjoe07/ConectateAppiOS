@@ -62,8 +62,10 @@ extension UIViewController{
         }
     }
     func openWhatsApp(phone: String){
+        print("the number is: \(phone)")
         DispatchQueue.main.async {
-            let urlWhats = "whatsapp://send?phone=+\(phone)&text=Hola, :"
+            let urlWhats = "whatsapp://send?phone=\(phone)&text=Hola, :"
+            print("url:",urlWhats)
             var characterSet = CharacterSet.urlQueryAllowed
              characterSet.insert(charactersIn: "?&")
              if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: characterSet){

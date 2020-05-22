@@ -438,6 +438,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                 guard let self = self else {return}
                 switch result{
                 case .success(dat: let data):
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ofertCreated"), object: nil)
                     for i in 0..<(self.guardado?.count ?? 0) {
                         self.agregarKeyword(post: data.id ?? 0,keyword: self.guardado?[i].id ?? 0)
                     }

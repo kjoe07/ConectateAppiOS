@@ -51,6 +51,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         cargarDatos()
         guard let imageData = UserDefaults.standard.object(forKey: "userImage") as? Data else {return}
         imgPerfil.image = UIImage(data: imageData)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.viewWillAppear(_:)), name: NSNotification.Name(rawValue: "ofertCreated"), object: nil)
     }
     
     //MARK: - Navigation
@@ -68,7 +69,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
             vc.perfil = perfil
         }
     }
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         guard let userData = UserDefaults.standard.object(forKey: "userImage") as? Data else {return}
         imgPerfil.image = UIImage(data: userData)
         cargarDatosPost()
