@@ -29,7 +29,7 @@
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tLR-ER-evf">
                                 <rect key="frame" x="0.0" y="105" width="375" height="493"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="1" indentationWidth="10" reuseIdentifier="contenidoViewCell" id="69g-KJ-PF8" customClass="ContenidoViewCell" customModule="_conectate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="343.5"/>
@@ -41,7 +41,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koX-xF-baO" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
                                                     <rect key="frame" x="27" y="16" width="321" height="311.5"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hashtagGreen" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-OJ-WXk" customClass="BorderImageView" customModule="_conectate_" customModuleProvider="target">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-OJ-WXk" customClass="BorderImageView" customModule="_conectate_" customModuleProvider="target">
                                                             <rect key="frame" x="223" y="27" width="75" height="75"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="75" id="lQj-Hc-wmX"/>
@@ -255,6 +255,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="koX-xF-baO" firstAttribute="leading" secondItem="Rcv-bW-xJY" secondAttribute="leading" constant="27" id="3wl-2R-YIs"/>
                                                 <constraint firstAttribute="bottom" secondItem="koX-xF-baO" secondAttribute="bottom" constant="16" id="AlT-BB-AzN"/>
@@ -262,6 +263,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="koX-xF-baO" secondAttribute="trailing" constant="27" id="x8Y-yr-FaQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="btnBloquear" destination="0NY-q1-03F" id="VAa-vW-Lk5"/>
                                             <outlet property="btnComentarios" destination="g3v-qP-OPP" id="VFj-M4-0jD"/>
@@ -319,7 +321,7 @@
                     <navigationItem key="navigationItem" title="# Conectate" id="09l-is-GeQ">
                         <barButtonItem key="backBarButtonItem" title=" " id="ddG-VU-V0C"/>
                         <barButtonItem key="rightBarButtonItem" image="img_lupa" id="wBV-G3-Gro">
-                            <color key="tintColor" name="green"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="btnBuscarContenido:" destination="Vp8-IX-dqK" id="ASr-2r-v6P"/>
                             </connections>
@@ -1181,10 +1183,10 @@
                     <tabBarItem key="tabBarItem" title="Conectate" image="hashTagTab" id="3Ok-AH-dhs"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Jg1-ba-EPx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Jg1-ba-EPx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" name="green"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="21"/>
@@ -1205,6 +1207,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Icon" width="76" height="76"/>
         <image name="Star" width="26" height="25"/>
         <image name="block" width="58" height="58"/>
         <image name="chat" width="52" height="50"/>
@@ -1213,7 +1216,6 @@
         <image name="dolar" width="35" height="35"/>
         <image name="fondo" width="375" height="832"/>
         <image name="hashTagTab" width="13" height="13"/>
-        <image name="hashtagGreen" width="63" height="63"/>
         <image name="heart" width="58" height="58"/>
         <image name="img_lupa" width="24" height="24"/>
         <image name="location" width="17" height="21"/>

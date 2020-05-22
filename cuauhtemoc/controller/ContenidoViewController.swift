@@ -34,6 +34,10 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         definesPresentationContext = true
         //navigationItem.searchController = searchController
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
+        let image = UIImage(named: "conectateBar")
+        let imageView = UIImageView(image: image)
+        navigationItem.titleView = imageView
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
