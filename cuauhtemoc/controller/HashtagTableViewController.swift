@@ -23,6 +23,7 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
         tableView.tableHeaderView = searchController.searchBar
         self.title = "Selecciona varios #"
         self.hashtags = editingModel ?? [Results]()
+        searchController.searchResultsUpdater = self
     }
     override func viewWillDisappear(_ animated: Bool) {
         if hashtags.count == 3{
@@ -98,7 +99,7 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
                 $0.tag?.lowercased().contains((searchController.searchBar.text ??  "").lowercased()) ?? false
             })
         }else{
-            searchController.isActive = false
+           // searchController.isActive = false
             isSearch = false
         }
         tableView.reloadData()

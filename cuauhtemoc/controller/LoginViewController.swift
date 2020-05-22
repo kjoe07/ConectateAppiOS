@@ -80,6 +80,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         }
                         let encoder = try? JSONEncoder().encode(dat.usuario)
                         UserDefaults.standard.set(encoder, forKey: "usuario")
+                        UserDefaults.standard.set(true,forKey: "completed")
                         UserDefaults.standard.synchronize()
                         self.view.window?.rootViewController = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController()
                         //self.view.window?.makeKeyAndVisible()
