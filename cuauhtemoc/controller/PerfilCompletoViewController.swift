@@ -225,7 +225,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0{
             if dato.count > 0 {
-                self.performSegue(withIdentifier: "truequesContrata", sender: "contrata")
+                //self.performSegue(withIdentifier: "truequesContrata", sender: "contrata")
             }
         }else{
             switch indexPath.row {
