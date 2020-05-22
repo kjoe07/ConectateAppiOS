@@ -35,6 +35,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         definesPresentationContext = true
         //navigationItem.searchController = searchController
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
+       // self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .any, barMetrics: .compactPrompt)
         let image = UIImage(named: "conectateBar")
         let imageView = UIImageView(image: image)
         navigationItem.titleView = imageView
