@@ -50,8 +50,10 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         locationDelegate.updated = {[weak self] loc in
             guard let self = self else {return}
             self.cargarDatos(latitud: loc.latitude, longitud: loc.longitude)
+            self.cargarDatos2(latitud: loc.latitude, longitud: loc.longitude)
         }
         self.cargarDatos(latitud: nil, longitud: nil)
+        self.cargarDatos2(latitud: nil, longitud: nil)
     }
     
     @IBAction func btnBuscarContenido(_ sender: Any) {
@@ -85,6 +87,30 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                             $0.tipo?.lowercased() == "empleo"
                         })
                         self.tableView.reloadData()
+                    }else{
+                        self.showAlert(title: "¡Ups!", message: dat.error ?? "")
+                    }
+                case .failure(let e):
+                    self.showAlert(title: "¡Ups!", message: e.localizedDescription)
+                }
+            }
+        })
+    }
+    func cargarDatos2(latitud:Double?,longitud: Double?){
+        var params = ["page_size":300,"tipo":"empleo"] as [String:Any]
+        if latitud != nil{
+            params["latitud"] = latitud ?? 0.0
+        }
+        if longitud != nil{
+            params["longitud"] = longitud ?? 0.0
+        }
+        NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result: MyResult<PostResponse>) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch result{
+                case .success(let dat):
+                    if dat.count ?? 0 > 0{
+                        self.employ = dat.results
                     }else{
                         self.showAlert(title: "¡Ups!", message: dat.error ?? "")
                     }
