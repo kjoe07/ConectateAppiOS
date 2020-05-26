@@ -38,10 +38,10 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         searchController.searchBar.searchTextField.textColor = UIColor(named: "green") ?? .green
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "green") ?? UIColor.systemBlue]
         //searchController.searchBar.barStyle = .default
-        definesPresentationContext = true
-        self.tableView.tableHeaderView = searchController.searchBar
+       // self.tableView.tableHeaderView = searchController.searchBar
         //navigationItem.searchController = searchController
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
+        //self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
+        //self.navigationController?.navigationBar.setBackgroundImage(<#T##backgroundImage: UIImage?##UIImage?#>, for: .any, barMetrics: .)
         let image = UIImage(named: "conectateBar")
         let imageView = UIImageView(image: image)
         navigationItem.titleView = imageView
@@ -63,8 +63,28 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
             }
         }
     }
+    @IBAction func btnBuscarContenido(_ sender: Any) {
+        if navigationItem.searchController == nil{
+            navigationItem.searchController = searchController
+            self.navigationController?.view.setNeedsLayout()
+            self.navigationController?.view.layoutIfNeeded()
+        }else{
+            navigationItem.searchController = nil
+            self.navigationController?.view.setNeedsLayout()
+            self.navigationController?.view.layoutIfNeeded()
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         cargarDatos()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = .clear
+        //self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        //self.navigationController?.navigationBar.topItem?.title = " "
+        //self.title = "Editar Perfil"
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.layoutIfNeeded()
     }
     func cargarDatos(){
         showActivityIndicator(color: UIColor(named: "green") ?? .green)
@@ -196,7 +216,14 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
             }
         }
     }
-    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        navigationItem.searchController = nil
+        self.navigationController?.view.setNeedsLayout()
+        self.navigationController?.view.layoutSubviews()
+        let view = UIView()
+        self.navigationController?.navigationBar.insertSubview(view, at: 1)
+        view.removeFromSuperview()
+    }
 
     /*
     // MARK: - Navigation

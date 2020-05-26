@@ -35,7 +35,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         definesPresentationContext = true
         //navigationItem.searchController = searchController
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
-       // self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .any, barMetrics: .compactPrompt)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .any, barMetrics: .compactPrompt)
         let image = UIImage(named: "conectateBar")
         let imageView = UIImageView(image: image)
         navigationItem.titleView = imageView
@@ -68,7 +68,18 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             self.navigationController?.view.layoutIfNeeded()
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        //cargarDatos()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = .clear
+        //self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        //self.navigationController?.navigationBar.topItem?.title = " "
+        //self.title = "Editar Perfil"
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.layoutIfNeeded()
+    }
     func cargarDatos(latitud:Double?,longitud: Double?,search:String?){
         var params = ["page_size":300] as [String:Any]
         if latitud != nil{

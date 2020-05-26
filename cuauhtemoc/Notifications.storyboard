@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fondo" translatesAutoresizingMaskIntoConstraints="NO" id="uZ9-id-wBz">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fondo" translatesAutoresizingMaskIntoConstraints="NO" id="uZ9-id-wBz">
                                 <rect key="frame" x="0.0" y="-10" width="414" height="823"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QkI-XU-g9G">
@@ -187,7 +187,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X8j-9Q-7us"/>
                     </view>
-                    <navigationItem key="navigationItem" id="JLw-EB-Ayh"/>
+                    <navigationItem key="navigationItem" id="JLw-EB-Ayh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="MTV-jG-HhZ">
+                            <connections>
+                                <action selector="btnBuscarContenido:" destination="QlV-3p-MyU" id="IQa-qc-mFR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="u5L-uF-4mN" id="G1l-X7-ebl"/>
                     </connections>
@@ -206,6 +212,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="W4R-Mr-wCb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="green"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
