@@ -75,7 +75,9 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
                 switch result{
                 case .success(dat: let dat):
                     if dat.count ?? 0 > 0{
-                        self.notificaciones = dat.results
+                        self.notificaciones = dat.results?.filter({
+                            $0.content_object?.tipo ?? 0 != 2
+                        })
                         self.tableView.reloadData()
                     }
                 case .failure(let e):
@@ -136,6 +138,19 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isSearch{
+            if busqueda?.count ?? 0 == 0{
+                tableView.setEmptyView(title: "Ups!", message: "no encontramos ninguna publicación que coincida con los criterios de búsqueda", imageString: "Icon")
+            }else{
+                tableView.restore()
+            }
+        }else{
+            if notificaciones?.count ?? 0 == 0{
+                tableView.setEmptyView(title: "", message: "No tienes ninguna notificacion en estos momentos", imageString: "Icon")
+            }else{
+                tableView.restore()
+            }
+        }
         return isSearch ? busqueda?.count ?? 0 : self.notificaciones?.count ?? 0
     }
     

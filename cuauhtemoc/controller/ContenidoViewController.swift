@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 import BadgeControl
-class ContenidoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,/* UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,*/ UISearchResultsUpdating,UISearchControllerDelegate {
+class ContenidoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,/* UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,*/ UISearchResultsUpdating,UISearchControllerDelegate, UISearchBarDelegate {
     
     //var busquedaTxt:[String] = []
     //var contenido:ContenidoCompleto!
@@ -43,17 +43,18 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
         searchController.automaticallyShowsCancelButton = true
+        searchController.searchBar.delegate = self
         searchController.delegate  = self
         self.tableView.dataSource = self
         self.tableView.delegate = self
         locationDelegate.requestAuthorization()
         locationDelegate.updated = {[weak self] loc in
             guard let self = self else {return}
-            self.cargarDatos(latitud: loc.latitude, longitud: loc.longitude)
-            self.cargarDatos2(latitud: loc.latitude, longitud: loc.longitude)
+            self.cargarDatos(latitud: loc.latitude, longitud: loc.longitude, search: nil)
+            self.cargarDatos2(latitud: loc.latitude, longitud: loc.longitude, search: nil)
         }
-        self.cargarDatos(latitud: nil, longitud: nil)
-        self.cargarDatos2(latitud: nil, longitud: nil)
+        self.cargarDatos(latitud: nil, longitud: nil,search: nil)
+        self.cargarDatos2(latitud: nil, longitud: nil, search: nil)
     }
     
     @IBAction func btnBuscarContenido(_ sender: Any) {
@@ -68,13 +69,17 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func cargarDatos(latitud:Double?,longitud: Double?){
+    func cargarDatos(latitud:Double?,longitud: Double?,search:String?){
         var params = ["page_size":300] as [String:Any]
         if latitud != nil{
             params["latitud"] = latitud ?? 0.0
         }
         if longitud != nil{
             params["longitud"] = longitud ?? 0.0
+        }
+        if search != nil{
+            params["body"] = search ?? ""
+            params["titulo"] = search ?? ""
         }
         NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result: MyResult<PostResponse>) in
             DispatchQueue.main.async {
@@ -96,13 +101,17 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             }
         })
     }
-    func cargarDatos2(latitud:Double?,longitud: Double?){
+    func cargarDatos2(latitud:Double?,longitud: Double?,search:String?){
         var params = ["page_size":300,"tipo":"empleo"] as [String:Any]
         if latitud != nil{
             params["latitud"] = latitud ?? 0.0
         }
         if longitud != nil{
             params["longitud"] = longitud ?? 0.0
+        }
+        if search != nil{
+            params["body"] = search ?? ""
+            params["titulo"] = search ?? ""
         }
         NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result: MyResult<PostResponse>) in
             DispatchQueue.main.async {
@@ -265,21 +274,21 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        if searchController.searchBar.text != ""{
-            isSearching = true
-            if segmented.selectedSegmentIndex == 0 {
-                self.busqueda = result?.filter({
-                    $0.titulo?.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") ?? false
-                })
-            }else{
-                self.busqueda = employ?.filter({
-                    $0.titulo?.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") ?? false
-                })
-            }
-        }else{
-            isSearching = false
-        }
-        tableView.reloadData()
+//        if searchController.searchBar.text != ""{
+//            isSearching = true
+//            if segmented.selectedSegmentIndex == 0 {
+//                self.busqueda = result?.filter({
+//                    $0.titulo?.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") ?? false
+//                })
+//            }else{
+//                self.busqueda = employ?.filter({
+//                    $0.titulo?.lowercased().contains(searchController.searchBar.text?.lowercased() ?? "") ?? false
+//                })
+//            }
+//        }else{
+//            isSearching = false
+//        }
+//        tableView.reloadData()
     }
     
     @IBAction func change(_ sender: Any) {
@@ -292,5 +301,16 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         let view = UIView()
         self.navigationController?.navigationBar.insertSubview(view, at: 1)
         view.removeFromSuperview()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if searchBar.text != ""{
+            segmented.selectedSegmentIndex == 0 ? self.cargarDatos(latitud: nil, longitud: nil, search: searchBar.text) : cargarDatos2(latitud: nil, longitud: nil, search: searchBar.text)
+        }else{
+            locationDelegate.requestAuthorization()
+        }        
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        locationDelegate.requestAuthorization()
     }
 }
