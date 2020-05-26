@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct Keyword:Codable {
-    
-    let id:Int?
-    let tipo:Int?
-    let tag:String?
-    let imagen:String?
-}
+//struct Keyword:Codable {
+//    
+//    let id:Int?
+//    let tipo:Int?
+//    let tag:String?
+//    let imagen:String?
+//}

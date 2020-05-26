@@ -31,16 +31,17 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     var pickerViewHashTags = UIPickerView()
     var recursos:[Recurso]!  = []
     var tipoServicio:[String] = ["Empleo","Servicio","Establecimiento", "Evento", "Producto"]
-    var dato:[Results]? = []
-    var busqueda:[Results]? = []
+    var dato:[Keyword]? = []
+    var busqueda:[Keyword]? = []
     var intereses:[Int] = []
-    var guardado:[Results]? = []
+    var guardado:[Keyword]? = []
     var GPSc: GooglePlacesSearchController?
     let imagePicker = UIImagePickerController()
     var imageArray = [UIImage]()
     let locationDelegate = LocationCoordinateDelegate()
     var establistmnetLocation = false
     var phone: String?
+    var post: Post?
     //MARK: - View Functions -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +73,18 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         guard let user = try? JSONDecoder().decode(Usuario.self, from: userData ?? Data()) else {return}
         txtTelefono.text = user.celular ?? ""
         phone =  user.celular ?? ""
+        if post != nil{
+            lblTipoServicio.text = post?.tipo ?? ""
+            txtNombreServicio.text = post?.titulo ?? ""
+            txtDescripcion.text = post?.body ?? ""
+            self.guardado = post?.keywords
+            self.collectionView.reloadData()
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+        if post == nil {
+            self.navigationController?.navigationBar.isHidden = true
+        }        
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
@@ -433,7 +443,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             params["telefono"] = txtTelefono.text ?? ""
         }
         showActivityIndicator(color: UIColor(named: "green") ?? .green)
-        NetworkLoader.loadData(url: Api.createContent.url, data: params, method: .post, completion: { [weak self] (result: MyResult<AddPostResponse>) in
+        NetworkLoader.loadData(url: Api.createContent.url, data: params, method: .post, completion: { [weak self] (result: MyResult<Post>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}
                 switch result{

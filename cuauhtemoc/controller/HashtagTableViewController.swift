@@ -9,20 +9,20 @@
 import UIKit
 
 class HashtagTableViewController: UITableViewController,UISearchResultsUpdating {
-    var result: [Results]?
-    var filter: [Results]?
+    var result: [Keyword]?
+    var filter: [Keyword]?
     var isSearch = false
     var values: ((String)->Void)?
-    var selectedHashtag: (([Results])->Void)?
+    var selectedHashtag: (([Keyword])->Void)?
     var selected = "" //[String] = []
-    var hashtags: [Results] = []
+    var hashtags: [Keyword] = []
     let searchController = UISearchController(searchResultsController: nil)
-    var editingModel: [Results]?
+    var editingModel: [Keyword]?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableHeaderView = searchController.searchBar
         self.title = "Selecciona varios #"
-        self.hashtags = editingModel ?? [Results]()
+        self.hashtags = editingModel ?? [Keyword]()
         searchController.searchResultsUpdater = self
     }
     override func viewWillDisappear(_ animated: Bool) {

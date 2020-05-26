@@ -12,7 +12,7 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
     var textFields: [UITextField]!
     var post: Post?
     var perfil:PerfilCompleto!
-    var descripcion:[Results]! = []
+    var descripcion:[Keyword]! = []
     
     @IBOutlet weak var txtPerfil: UITextField!
     @IBOutlet weak var txtOfreces: UITextField!
@@ -83,7 +83,7 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
                 case .success(dat: let data):
                     if data.perfil != nil{
                         self.perfil = data
-                        self.descripcion = data.perfil?.descripcion ?? [Results]()
+                        self.descripcion = data.perfil?.descripcion ?? [Keyword]()
                         self.cargarHashTags()
                     }
                 case .failure(let e):

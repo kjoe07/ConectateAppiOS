@@ -20,7 +20,7 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBOutlet weak var txtCooperativa: UITextField!
     
     var perfil:PerfilCompleto!
-    var todos:[Results]! = []
+    var todos:[Keyword]! = []
     var usuario:Usuario!
     var scrollGestureRecognizer: UITapGestureRecognizer!
     var textFields: [UITextField]!
@@ -103,9 +103,9 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     }
     
     func cargarDatos(){
-        self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Results]())
-        self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Results]())
-        self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Results]())
+        self.todos.append(contentsOf: self.perfil.perfil?.descripcion ?? [Keyword]())
+        self.todos.append(contentsOf: self.perfil.perfil?.intereses ?? [Keyword]())
+        self.todos.append(contentsOf: self.perfil.perfil?.extras ?? [Keyword]())
         
         self.usuario = self.perfil.perfil?.usuario
         

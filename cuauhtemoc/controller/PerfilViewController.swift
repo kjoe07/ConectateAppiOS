@@ -16,9 +16,9 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var search: UIView!
     
     //var dato:[Intereses] = []
-    var busqueda:[Results]? = []
+    var busqueda:[Keyword]? = []
     var intereses:[Int] = []
-    var result: [Results]?
+    var result: [Keyword]?
     let searchController = UISearchController(searchResultsController: nil)
     var isSearching = false
     override func viewDidLoad() {

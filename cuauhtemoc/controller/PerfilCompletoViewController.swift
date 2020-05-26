@@ -16,10 +16,10 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var imgPerfil: UIImageView!
     @IBOutlet weak var username: UILabel!
     var perfil:PerfilCompleto!
-    var descripcion:[Results]! = []
-    var intereses:[Results]! = []
-    var extras:[Results]! = []
-    var todos:[Results]! = []
+    var descripcion:[Keyword]! = []
+    var intereses:[Keyword]! = []
+    var extras:[Keyword]! = []
+    var todos:[Keyword]! = []
     var contenido:ContenidoCompleto!
     var dato:[Post]! = []
     var user: Usuario?
@@ -226,6 +226,9 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         if indexPath.section == 0{
             if dato.count > 0 {
                 //self.performSegue(withIdentifier: "truequesContrata", sender: "contrata")
+                let vc = UIStoryboard(name: "oferta", bundle: nil).instantiateViewController(identifier: CargarOfertaViewController.identifier) as! CargarOfertaViewController
+                vc.post = self.dato[indexPath.row]
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }else{
             switch indexPath.row {

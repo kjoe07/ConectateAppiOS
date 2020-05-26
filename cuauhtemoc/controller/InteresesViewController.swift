@@ -15,9 +15,9 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
     //@IBOutlet weak var buscador: UITextField!
     
    // var dato:[Intereses] = []
-    var busqueda:[Results]? = []
-    var result: [Results]?
-    var selectedResult: [Results]?
+    var busqueda:[Keyword]? = []
+    var result: [Keyword]?
+    var selectedResult: [Keyword]?
     var intereses:[Int] = []
     var contenido:ContenidoCompleto!
     let searchController = UISearchController(searchResultsController: nil)
@@ -36,7 +36,7 @@ class InteresesViewController: UIViewController, UICollectionViewDelegate, UICol
         searchController.searchBar.rightAnchor.constraint(equalTo: search.rightAnchor).isActive = true
         searchController.searchBar.heightAnchor.constraint(equalTo: search.heightAnchor).isActive = true
         searchController.searchBar.delegate = self//delegate = self
-        for r in self.selectedResult ?? [Results](){
+        for r in self.selectedResult ?? [Keyword](){
             self.intereses.append(r.id ?? 0)
         }
     }

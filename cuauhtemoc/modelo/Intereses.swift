@@ -29,7 +29,7 @@ struct HashtagProfileResponse : Codable {
     let count : Int?
     let next : String?
     let previous : String?
-    let results : [Results]?
+    let results : [Keyword]?
 
     enum CodingKeys: String, CodingKey {
 
@@ -44,10 +44,10 @@ struct HashtagProfileResponse : Codable {
         count = try values.decodeIfPresent(Int.self, forKey: .count)
         next = try values.decodeIfPresent(String.self, forKey: .next)
         previous = try values.decodeIfPresent(String.self, forKey: .previous)
-        results = try values.decodeIfPresent([Results].self, forKey: .results)
+        results = try values.decodeIfPresent([Keyword].self, forKey: .results)
     }
 }
-struct Results : Codable {
+struct Keyword : Codable {
     let id : Int?
     let tipo : Int?
     let tag : String?
