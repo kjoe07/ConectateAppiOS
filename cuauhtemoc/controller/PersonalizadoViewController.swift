@@ -16,6 +16,8 @@ class PersonalizadoViewController: UIViewController {
     @IBOutlet weak var viewUno: UIView!
     @IBOutlet weak var edtHashUno: UITextField!
     @IBOutlet weak var edtHashDos: UITextField!
+    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label1: UILabel!
     
     var varUno:Bool = true
     var varDos:Bool = true    
@@ -61,6 +63,8 @@ class PersonalizadoViewController: UIViewController {
         } else {
             imgUno.isHidden = true
             viewUno.isHidden = false
+            label1.isHidden = false
+            label1.text = edtHashUno.text
            // lblTextoUno.text = edtHashUno.text!
         }
     }
@@ -71,6 +75,8 @@ class PersonalizadoViewController: UIViewController {
             showAlert(title: "¡Ups!", message: "El campo no puede estar vacio")
         } else {
             imgDos.isHidden = true
+            label2.text = edtHashDos.text
+            label2.isHidden = false
             //viewDOs.isHidden = false
             //lblTextoDos.text = edtHashDos.text!
         }

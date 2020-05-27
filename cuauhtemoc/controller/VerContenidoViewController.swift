@@ -260,7 +260,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     @objc func btnComentarios(sender:UIButton){
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "comentariosViewController") as! ComentariosViewController
         viewController.post = contenido
-        self.present(viewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     func wsAccion(tipo:String, post:Int, cuerpo:String ){
         let params = ["tipo":tipo,"post":post,"cuerpo":cuerpo] as [String : Any]
