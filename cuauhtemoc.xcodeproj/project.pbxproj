@@ -19,6 +19,9 @@
 		1176FECF2448EE1000648239 /* oferta.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1176FECE2448EE1000648239 /* oferta.storyboard */; };
 		1176FED12448EE6700648239 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1176FED02448EE6700648239 /* Notifications.storyboard */; };
 		1176FED32448EF8A00648239 /* conecta.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1176FED22448EF8A00648239 /* conecta.storyboard */; };
+		118061D4247EF11700E02251 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 118061D3247EF11700E02251 /* Onboarding.storyboard */; };
+		118061D6247EF42E00E02251 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118061D5247EF42E00E02251 /* OnboardingViewController.swift */; };
+		118061D8247EF4F100E02251 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118061D7247EF4F100E02251 /* OnboardingCollectionViewCell.swift */; };
 		11866E09242E942400D9D3E3 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11866E08242E942400D9D3E3 /* UIViewControllerExtension.swift */; };
 		118D3DA32444DC48004D92E6 /* BorderCurvedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118D3DA22444DC48004D92E6 /* BorderCurvedButton.swift */; };
 		11A7BCBA24734B9700D0F6F5 /* LocationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7BCB924734B9700D0F6F5 /* LocationCoordinate.swift */; };
@@ -127,6 +130,9 @@
 		1176FECE2448EE1000648239 /* oferta.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = oferta.storyboard; sourceTree = "<group>"; };
 		1176FED02448EE6700648239 /* Notifications.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		1176FED22448EF8A00648239 /* conecta.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = conecta.storyboard; sourceTree = "<group>"; };
+		118061D3247EF11700E02251 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		118061D5247EF42E00E02251 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		118061D7247EF4F100E02251 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		11866E08242E942400D9D3E3 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		118D3DA22444DC48004D92E6 /* BorderCurvedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCurvedButton.swift; sourceTree = "<group>"; };
 		11A7BCB924734B9700D0F6F5 /* LocationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCoordinate.swift; sourceTree = "<group>"; };
@@ -287,6 +293,7 @@
 				574B638B232BDA2F00F4A29D /* Main.storyboard */,
 				574B638E232BDA3100F4A29D /* Assets.xcassets */,
 				574B6390232BDA3100F4A29D /* LaunchScreen.storyboard */,
+				118061D3247EF11700E02251 /* Onboarding.storyboard */,
 				574B6393232BDA3100F4A29D /* Info.plist */,
 				574B63D4232DD15300F4A29D /* GoogleService-Info.plist */,
 				11286812243F7D5B00F6BD58 /* Colors.xcassets */,
@@ -338,6 +345,7 @@
 				11CB7369246ED32800E086DC /* WebViewController.swift */,
 				11A7BCB924734B9700D0F6F5 /* LocationCoordinate.swift */,
 				11A7BCBB2474305300D0F6F5 /* MethodViewController.swift */,
+				118061D5247EF42E00E02251 /* OnboardingViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -377,6 +385,7 @@
 				573B5667233CEBF900ADB2E3 /* NotificacionesTableViewCell.swift */,
 				573B5671233D00D900ADB2E3 /* PerfilTableViewCell.swift */,
 				573B567B233D101400ADB2E3 /* ContratacionesTableViewCell.swift */,
+				118061D7247EF4F100E02251 /* OnboardingCollectionViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -571,6 +580,7 @@
 				574B6392232BDA3100F4A29D /* LaunchScreen.storyboard in Resources */,
 				11ED64F62457824E0037648C /* Home.storyboard in Resources */,
 				1176FECF2448EE1000648239 /* oferta.storyboard in Resources */,
+				118061D4247EF11700E02251 /* Onboarding.storyboard in Resources */,
 				1176FED32448EF8A00648239 /* conecta.storyboard in Resources */,
 				574B638F232BDA3100F4A29D /* Assets.xcassets in Resources */,
 				57AF9C232346AD5500784B32 /* FechaAlertView.xib in Resources */,
@@ -710,6 +720,7 @@
 				57BFD20323372E17002A4EA3 /* Establecimiento.swift in Sources */,
 				57BFD1F923371564002A4EA3 /* SimpleHashCollectionViewCell.swift in Sources */,
 				11ED64F5245758810037648C /* VerifyCodeResponse.swift in Sources */,
+				118061D8247EF4F100E02251 /* OnboardingCollectionViewCell.swift in Sources */,
 				574B63DD23308F0600F4A29D /* ImagenesCollectionViewCell.swift in Sources */,
 				573B56432338972600ADB2E3 /* Recurso.swift in Sources */,
 				573B567C233D101400ADB2E3 /* ContratacionesTableViewCell.swift in Sources */,
@@ -732,6 +743,7 @@
 				11866E09242E942400D9D3E3 /* UIViewControllerExtension.swift in Sources */,
 				573B5651233B651000ADB2E3 /* ComentariosViewController.swift in Sources */,
 				573B565D233C6CF400ADB2E3 /* Perfil.swift in Sources */,
+				118061D6247EF42E00E02251 /* OnboardingViewController.swift in Sources */,
 				573B5672233D00D900ADB2E3 /* PerfilTableViewCell.swift in Sources */,
 				573B5653233B674B00ADB2E3 /* Notificacion.swift in Sources */,
 				57BFD1F72337138D002A4EA3 /* ContenidoViewCell.swift in Sources */,
