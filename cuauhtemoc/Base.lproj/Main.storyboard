@@ -966,7 +966,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQC-32-sbv">
                                 <rect key="frame" x="20" y="152" width="335" height="45.333333333333343"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Selecciona 5 ">
+                                    <fragment content="Selecciona 3 ">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="15" name="Avenir-Medium"/>
@@ -1124,11 +1124,20 @@ Crea dos </string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1k-pD-tgU">
+                                                        <rect key="frame" x="-4.3333333333333357" y="122.3333333333333" width="120" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="g1k-pD-tgU" firstAttribute="bottom" secondItem="mr2-Ob-jbr" secondAttribute="bottom" id="E13-DZ-K4o"/>
                                                     <constraint firstItem="mr2-Ob-jbr" firstAttribute="centerY" secondItem="3Sj-nj-ipO" secondAttribute="centerY" id="aOD-0k-G4S"/>
                                                     <constraint firstItem="mr2-Ob-jbr" firstAttribute="centerX" secondItem="3Sj-nj-ipO" secondAttribute="centerX" id="bwK-0r-siT"/>
+                                                    <constraint firstItem="g1k-pD-tgU" firstAttribute="leading" secondItem="mr2-Ob-jbr" secondAttribute="leading" id="gUK-pG-7lh"/>
+                                                    <constraint firstItem="g1k-pD-tgU" firstAttribute="trailing" secondItem="mr2-Ob-jbr" secondAttribute="trailing" id="xoU-Ar-d28"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="69f-0a-pgO">
@@ -1152,10 +1161,19 @@ Crea dos </string>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bS-U6-TEW">
+                                                        <rect key="frame" x="-4.3333333333333144" y="122.3333333333333" width="120" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstItem="8sL-WK-XSy" firstAttribute="centerY" secondItem="69f-0a-pgO" secondAttribute="centerY" id="0qZ-AK-Djd"/>
+                                                    <constraint firstItem="4bS-U6-TEW" firstAttribute="bottom" secondItem="8sL-WK-XSy" secondAttribute="bottom" id="M8y-XW-TeK"/>
+                                                    <constraint firstItem="4bS-U6-TEW" firstAttribute="trailing" secondItem="8sL-WK-XSy" secondAttribute="trailing" id="ftK-rr-R2h"/>
+                                                    <constraint firstItem="4bS-U6-TEW" firstAttribute="leading" secondItem="8sL-WK-XSy" secondAttribute="leading" id="jsB-Wq-ni8"/>
                                                     <constraint firstItem="8sL-WK-XSy" firstAttribute="centerX" secondItem="69f-0a-pgO" secondAttribute="centerX" id="q3y-Ox-AVv"/>
                                                 </constraints>
                                             </view>
@@ -1359,6 +1377,8 @@ Crea dos </string>
                         <outlet property="edtHashUno" destination="ao0-xg-saO" id="9WE-zl-mgY"/>
                         <outlet property="imgDos" destination="mr2-Ob-jbr" id="UCX-uT-TbS"/>
                         <outlet property="imgUno" destination="8sL-WK-XSy" id="H6r-7r-A6b"/>
+                        <outlet property="label1" destination="4bS-U6-TEW" id="qJp-YN-0D7"/>
+                        <outlet property="label2" destination="g1k-pD-tgU" id="vFe-uW-L6j"/>
                         <outlet property="stcDos" destination="a6q-Od-YiP" id="1gg-cp-nxr"/>
                         <outlet property="viewUno" destination="3Wf-Dm-g1t" id="1dd-qu-s46"/>
                     </connections>
