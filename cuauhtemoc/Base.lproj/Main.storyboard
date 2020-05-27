@@ -1428,9 +1428,6 @@ Crea dos </string>
                                         <real key="value" value="9"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="email:" destination="r3A-Mb-zGl" eventType="editingDidEnd" id="Kyz-KA-aDr"/>
-                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rE6-Vu-FTJ" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
                                 <rect key="frame" x="32" y="443" width="311" height="46"/>
@@ -1516,6 +1513,9 @@ Crea dos </string>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0bH-DP-nL2"/>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="Hv4-vF-CbB" id="ObE-cr-zkD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8f7-xY-tiI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -38,7 +38,7 @@ class RecoverViewController: UIViewController {
                 }
             })
         }else{
-            self.showAlert(title: "Ups!", message: "la direccion de correo no es válida.")
+            self.showAlert(title: "", message: "Es necesario el correo electrónico para continuar")
         }
     }
     
