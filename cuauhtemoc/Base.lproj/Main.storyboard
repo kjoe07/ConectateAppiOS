@@ -966,9 +966,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQC-32-sbv">
                                 <rect key="frame" x="20" y="152" width="335" height="45.333333333333343"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Selecciona 3 ">
+                                    <fragment content="Selecciona 5 ">
                                         <attributes>
-                                            <color key="NSColor" red="1" green="0.99999000000000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="15" name="Avenir-Medium"/>
                                             <real key="NSKern" value="0.0"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
@@ -976,7 +976,7 @@
                                     </fragment>
                                     <fragment content="#Hashtags">
                                         <attributes>
-                                            <color key="NSColor" red="0.40512999999999999" green="0.58443000000000001" blue="0.18484999999999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="18" name="Avenir-Medium"/>
                                             <real key="NSKern" value="0.0"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
@@ -984,7 +984,7 @@
                                     </fragment>
                                     <fragment content=" que describan tu perfil profesional">
                                         <attributes>
-                                            <color key="NSColor" red="1" green="0.99999000000000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" size="15" name="Avenir-Medium"/>
                                             <real key="NSKern" value="0.0"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
@@ -1707,7 +1707,7 @@ Crea dos </string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRN-gj-BZh">
                                 <rect key="frame" x="20" y="152" width="335" height="45.333333333333343"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Selecciona 3 ">
+                                    <fragment content="Selecciona 5 ">
                                         <attributes>
                                             <color key="NSColor" red="1" green="0.99999000000000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="15" name="Avenir-Medium"/>
