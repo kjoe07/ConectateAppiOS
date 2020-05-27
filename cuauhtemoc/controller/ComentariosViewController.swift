@@ -25,7 +25,7 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.txtComentarios.delegate = self
-
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
         cargarDatos()
         // Do any additional setup after loading the view.
     }
@@ -84,7 +84,6 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "comentariosTableViewCell", for: indexPath) as! ComentariosTableViewCell
         
         cell.txtNombreUsuario.text = "\(self.comentarios[indexPath.row].usuario?.nombre ?? "") \(self.comentarios[indexPath.row].usuario?.apellido ?? "")"
@@ -145,10 +144,6 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
 //                }
 //            })
 //        }
-    }
-    
-    @IBAction func btnRegresar(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

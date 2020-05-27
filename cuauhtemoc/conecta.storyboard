@@ -12,7 +12,6 @@
         <!--# Conectate-->
         <scene sceneID="eVJ-N7-GXB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WE8-OV-6ed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="Vp8-IX-dqK" customClass="ContenidoViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CxN-K8-Up4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -331,8 +330,10 @@
                     <connections>
                         <outlet property="segmented" destination="oYJ-Zf-xXd" id="xTD-DM-CiD"/>
                         <outlet property="tableView" destination="tLR-ER-evf" id="r27-uu-LaN"/>
+                        <segue destination="VWR-6y-ksz" kind="show" id="qhU-VD-F1f"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WE8-OV-6ed" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="15.199999999999999" y="770.46476761619192"/>
         </scene>
@@ -345,17 +346,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fondo" translatesAutoresizingMaskIntoConstraints="NO" id="Yyg-0D-VBx">
-                                <rect key="frame" x="0.0" y="-10" width="414" height="872"/>
+                                <rect key="frame" x="0.0" y="-10" width="414" height="823"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l40-ae-9ue">
-                                <rect key="frame" x="0.0" y="54" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="98" width="414" height="715"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="XMb-G4-H6n">
-                                <rect key="frame" x="0.0" y="768" width="414" height="94"/>
+                                <rect key="frame" x="0.0" y="719" width="414" height="94"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cor-pE-gRT">
-                                <rect key="frame" x="20" y="54" width="374" height="798"/>
+                                <rect key="frame" x="20" y="98" width="374" height="705"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6uN-mc-z2u" userLabel="containerView">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="1185"/>
@@ -555,7 +556,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jwd-kI-odM" customClass="GMSMapView">
-                                                        <rect key="frame" x="0.0" y="428.33333333333326" width="366" height="345"/>
+                                                        <rect key="frame" x="0.0" y="428.33333333333337" width="366" height="345"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="345" id="YUf-9i-lkm"/>
                                                         </constraints>
@@ -801,10 +802,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="glC-wc-haS">
-                                <rect key="frame" x="0.0" y="768" width="414" height="94"/>
+                                <rect key="frame" x="0.0" y="719" width="414" height="94"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xdI-qH-VSr">
-                                <rect key="frame" x="20" y="65" width="374" height="726"/>
+                                <rect key="frame" x="20" y="109" width="374" height="633"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comentariosTableViewCell" rowHeight="195" id="3xy-ei-ITh" customClass="ComentariosTableViewCell" customModule="_conectate_" customModuleProvider="target">
@@ -902,7 +903,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzv-3W-ldf" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
-                                <rect key="frame" x="20" y="811" width="374" height="41"/>
+                                <rect key="frame" x="20" y="762" width="374" height="41"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4kR-3w-1jz" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="5.6666666666666288" width="325" height="30"/>
@@ -1000,16 +1001,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="49m-cY-X9o">
-                                <rect key="frame" x="0.0" y="768" width="414" height="94"/>
+                                <rect key="frame" x="0.0" y="719" width="414" height="94"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¿Cuál de tus servicios deseas ofrecer como trueque?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="408-eb-fFu">
-                                <rect key="frame" x="50" y="70" width="314" height="40.666666666666657"/>
+                                <rect key="frame" x="50" y="114.00000000000001" width="314" height="40.666666666666671"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="Describe el servicio de lo que ofreces..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p6G-kL-3uz" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
-                                <rect key="frame" x="27" y="191.66666666666663" width="360" height="245.33333333333337"/>
+                                <rect key="frame" x="27" y="235.66666666666669" width="360" height="198.66666666666669"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -1037,7 +1038,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="¿Qué quieres a cambio de tu servicio?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-PB-dMf" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
-                                <rect key="frame" x="27" y="469" width="360" height="245"/>
+                                <rect key="frame" x="27" y="466.33333333333331" width="360" height="198.66666666666669"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -1065,7 +1066,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svF-UA-KCn" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
-                                <rect key="frame" x="27" y="744" width="360" height="48"/>
+                                <rect key="frame" x="27" y="695" width="360" height="48"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="RQW-Rq-hzP"/>
@@ -1102,7 +1103,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Selcciona" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2F-hX-2Yo" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
-                                <rect key="frame" x="15" y="130.66666666666666" width="384" height="41"/>
+                                <rect key="frame" x="15" y="174.66666666666666" width="384" height="41"/>
                                 <color key="backgroundColor" name="green"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="XK2-cT-Ss8"/>

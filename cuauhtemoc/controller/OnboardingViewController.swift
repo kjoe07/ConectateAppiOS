@@ -18,7 +18,7 @@ class OnboardingViewController: UIViewController,UICollectionViewDataSource,UICo
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //UserDefaults.standard.set(true, forKey: "first")
+        UserDefaults.standard.set(true, forKey: "first")
         // Do any additional setup after loading the view.
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
