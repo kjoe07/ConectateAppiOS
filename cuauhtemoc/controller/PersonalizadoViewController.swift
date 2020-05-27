@@ -34,21 +34,19 @@ class PersonalizadoViewController: UIViewController {
         stcDos.isHidden = true
     }
     
-    @IBAction func btnContinuar(_ sender: Any) {        
-        let ws = WebServiceClient()
+    @IBAction func btnContinuar(_ sender: Any) {
         //let pref = UserDefaults()
         if !(self.edtHashDos.text?.isEmpty ?? true){
-            let parametros = "tag=\(self.edtHashDos.text!)"
-            ws.wsToken(params: parametros, ws: "/usuarios/agregarExtra/", method: "POST", completion: {data in
-                DispatchQueue.main.async {
-                }
+            //let parametros = "tag=\(self.edtHashDos.text!)"
+            NetworkLoader.loadData(url: Api.addExtra.url, data: ["tag":self.edtHashDos.text ?? ""], method: .post, completion: { (result:MyResult<VerifyCodeResponse>) in
             })
+//            ws.wsToken(params: parametros, ws: "/usuarios/agregarExtra/", method: "POST", completion: {data in
+//                DispatchQueue.main.async {
+//                }
+//            })
         }
         if !(self.edtHashUno.text?.isEmpty ?? true){
-            let parametros = "tag=\(self.edtHashUno.text!)"
-            ws.wsToken(params: parametros, ws: "/usuarios/agregarExtra/", method: "POST", completion: {data in
-                DispatchQueue.main.async {
-                }
+            NetworkLoader.loadData(url: Api.addExtra.url, data: ["tag":self.edtHashUno.text ?? ""], method: .post, completion: { (result:MyResult<VerifyCodeResponse>) in
             })
         }
         let vc = UIStoryboard(name: "Home", bundle: nil).instantiateInitialViewController()
