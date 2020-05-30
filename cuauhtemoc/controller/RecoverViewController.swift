@@ -30,7 +30,7 @@ class RecoverViewController: UIViewController {
                         if data?.result == 1{
                             self.showAlert(title: "¡LISTO!", message: "Revisa tu correo electrónico, te enviamos las instrucciones que debes seguir para recuperar tu contraseña")
                         }else{
-                            self.showAlert(title: "Ups!", message: "No pudimos enviarle el correo electronico, intente más tarde por favor.")
+                            self.showAlert(title: "Ups!", message: "No pudimos enviarle el correo electrónico, intente más tarde por favor.")
                         }
                     case .failure(let e):
                         self.showAlert(title: "Ups!", message: e.localizedDescription)

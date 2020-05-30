@@ -77,7 +77,7 @@ class PerfilViewController: UIViewController, UICollectionViewDelegate, UICollec
         cell.txtNombre.text = "#\(!isSearching ? result?[indexPath.row].tag ?? "" : busqueda?[indexPath.row].tag ?? "")"
         //cell.imgCell.contentMode = .scaleAspectFit
         if let imageURL = URL(string: url?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? ""){
-            cell.imgCell.kf.setImage(with: imageURL, placeholder: UIImage(named: "hashtagGreen"))
+            cell.imgCell.kf.setImage(with: imageURL, placeholder: UIImage(named: "Icon"))
             
             //setImage(with: imageURL, placeholder: UIImage(named: "hashtagGreen"), options: nil, progressBlock: nil, completionHandler: nil) setImage(with: imageURL)//af_setImage(withURL: imageURL)
         }

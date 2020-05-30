@@ -23,14 +23,8 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="Bo5-aC-WHI">
-                                <rect key="frame" x="0.0" y="719" width="414" height="94"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="94" id="6tt-SQ-HYX"/>
-                                </constraints>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="u5L-uF-4mN">
-                                <rect key="frame" x="0.0" y="112" width="414" height="681"/>
+                                <rect key="frame" x="0.0" y="112" width="414" height="701"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="notificacionesTableViewCell" id="cOC-Iv-L3I" customClass="NotificacionesTableViewCell" customModule="_conectate_" customModuleProvider="target">
@@ -171,15 +165,12 @@
                         <constraints>
                             <constraint firstItem="u5L-uF-4mN" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" id="0Ct-l7-am5"/>
                             <constraint firstItem="X8j-9Q-7us" firstAttribute="bottom" secondItem="uZ9-id-wBz" secondAttribute="bottom" id="5NF-vf-q6R"/>
-                            <constraint firstItem="Bo5-aC-WHI" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" id="BPp-gM-pgq"/>
                             <constraint firstItem="X8j-9Q-7us" firstAttribute="trailing" secondItem="u5L-uF-4mN" secondAttribute="trailing" id="Bpq-8w-sRm"/>
-                            <constraint firstAttribute="trailing" secondItem="Bo5-aC-WHI" secondAttribute="trailing" id="DSu-Sh-q7g"/>
                             <constraint firstItem="QkI-XU-g9G" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" id="F63-CK-Lge"/>
                             <constraint firstItem="uZ9-id-wBz" firstAttribute="leading" secondItem="X8j-9Q-7us" secondAttribute="leading" id="Ixm-Zh-JJ9"/>
                             <constraint firstItem="X8j-9Q-7us" firstAttribute="trailing" secondItem="QkI-XU-g9G" secondAttribute="trailing" id="Pay-VR-GxY"/>
+                            <constraint firstItem="u5L-uF-4mN" firstAttribute="bottom" secondItem="X8j-9Q-7us" secondAttribute="bottom" id="VUT-qP-rVB"/>
                             <constraint firstItem="uZ9-id-wBz" firstAttribute="top" secondItem="PSm-n6-P6L" secondAttribute="top" constant="-10" id="YgL-4b-ONc"/>
-                            <constraint firstItem="Bo5-aC-WHI" firstAttribute="bottom" secondItem="u5L-uF-4mN" secondAttribute="bottom" constant="20" id="aBb-QG-Dsv"/>
-                            <constraint firstItem="X8j-9Q-7us" firstAttribute="bottom" secondItem="Bo5-aC-WHI" secondAttribute="bottom" id="aHU-4G-FJK"/>
                             <constraint firstItem="u5L-uF-4mN" firstAttribute="top" secondItem="QkI-XU-g9G" secondAttribute="top" constant="24" id="ceg-11-i9s"/>
                             <constraint firstItem="uZ9-id-wBz" firstAttribute="trailing" secondItem="X8j-9Q-7us" secondAttribute="trailing" id="dEp-fZ-gQo"/>
                             <constraint firstItem="X8j-9Q-7us" firstAttribute="bottom" secondItem="QkI-XU-g9G" secondAttribute="bottom" id="mDa-pq-3LS"/>
@@ -228,7 +219,6 @@
     <resources>
         <image name="fondo" width="375" height="832"/>
         <image name="img_trueque_morado" width="56" height="25"/>
-        <image name="logoProvider" width="375" height="94"/>
         <image name="notificationTab" width="13" height="13"/>
         <namedColor name="green">
             <color red="0.078431372549019607" green="0.65098039215686276" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -122,9 +122,9 @@ class ValidarCodigoViewController: UIViewController, UITextFieldDelegate {
                 switch result{
                 case .success(dat: let dat):
                     if dat.result ?? 0 == 1{
-                        self.showAlert(title: "", message: "El codigo fue enviado satisfactoriamente")
+                        self.showAlert(title: "", message: "El código fue enviado satisfactoriamente")
                     }else{
-                        self.showAlert(title: "", message: dat.error ?? "No se pudo enviar el codigo intente mas tarde")
+                        self.showAlert(title: "", message: dat.error ?? "No se pudo enviar el código, contáctanos.")
                     }
                 case .failure(let e):
                     self.showAlert(title: "", message: e.localizedDescription /*?? "No se pudo enviar el codigo intente mas tarde"*/)

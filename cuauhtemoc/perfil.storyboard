@@ -117,9 +117,6 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="mPM-AX-CgD">
-                                        <rect key="frame" x="0.0" y="631" width="414" height="94"/>
-                                    </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pj6-cq-SSX">
                                         <rect key="frame" x="0.0" y="218" width="414" height="497"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -449,13 +446,10 @@
                                     <constraint firstItem="29e-Rm-42g" firstAttribute="leading" secondItem="fHJ-6C-L88" secondAttribute="leading" id="4TQ-j4-z8T"/>
                                     <constraint firstItem="k8S-y2-oJf" firstAttribute="top" secondItem="29e-Rm-42g" secondAttribute="bottom" constant="16" id="NQy-Lf-Z9a"/>
                                     <constraint firstAttribute="trailing" secondItem="29e-Rm-42g" secondAttribute="trailing" id="OaP-NQ-iEl"/>
-                                    <constraint firstAttribute="trailing" secondItem="mPM-AX-CgD" secondAttribute="trailing" id="S6k-e2-nrp"/>
-                                    <constraint firstAttribute="bottom" secondItem="mPM-AX-CgD" secondAttribute="bottom" id="Unt-tP-UmI"/>
                                     <constraint firstAttribute="trailing" secondItem="k8S-y2-oJf" secondAttribute="trailing" constant="24" id="W1e-jR-wJa"/>
                                     <constraint firstItem="k8S-y2-oJf" firstAttribute="leading" secondItem="fHJ-6C-L88" secondAttribute="leading" constant="24" id="Zpw-8T-0Ke"/>
                                     <constraint firstAttribute="trailing" secondItem="Pj6-cq-SSX" secondAttribute="trailing" id="ccY-zX-EHR"/>
                                     <constraint firstItem="Pj6-cq-SSX" firstAttribute="top" secondItem="k8S-y2-oJf" secondAttribute="bottom" constant="10" id="eKg-xf-zqx"/>
-                                    <constraint firstItem="mPM-AX-CgD" firstAttribute="leading" secondItem="fHJ-6C-L88" secondAttribute="leading" id="lrY-0o-gma"/>
                                     <constraint firstItem="Pj6-cq-SSX" firstAttribute="leading" secondItem="fHJ-6C-L88" secondAttribute="leading" id="qkF-WY-iEl"/>
                                     <constraint firstItem="29e-Rm-42g" firstAttribute="top" secondItem="fHJ-6C-L88" secondAttribute="top" id="tjZ-YR-1fw"/>
                                     <constraint firstAttribute="bottom" secondItem="Pj6-cq-SSX" secondAttribute="bottom" constant="10" id="vKQ-Je-5Mo"/>
@@ -513,18 +507,9 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VmG-Se-nI0">
                                 <rect key="frame" x="0.0" y="719" width="414" height="94"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="hS8-Mo-ibY">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="hS8-Mo-ibY" firstAttribute="leading" secondItem="VmG-Se-nI0" secondAttribute="leading" id="3qQ-9p-jsy"/>
-                                    <constraint firstAttribute="trailing" secondItem="hS8-Mo-ibY" secondAttribute="trailing" id="Q1P-bl-sTh"/>
-                                    <constraint firstAttribute="bottom" secondItem="hS8-Mo-ibY" secondAttribute="bottom" id="eqf-8q-TFP"/>
                                     <constraint firstAttribute="height" constant="94" id="kPV-GW-Fhu"/>
-                                    <constraint firstItem="hS8-Mo-ibY" firstAttribute="top" secondItem="VmG-Se-nI0" secondAttribute="top" id="m6o-q1-3nC"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2fk-o2-ncD">
@@ -899,7 +884,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="If4-oD-drb">
-                                <rect key="frame" x="20" y="98" width="374" height="705"/>
+                                <rect key="frame" x="20" y="98" width="374" height="715"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="contratacionesTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="contratacionesTableViewCell" id="4Kx-zg-Gy7" customClass="ContratacionesTableViewCell" customModule="_conectate_" customModuleProvider="target">
@@ -1059,7 +1044,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="nwA-5p-Kis">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="nwA-5p-Kis">
                                 <rect key="frame" x="0.0" y="719" width="414" height="94"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="94" id="ggz-qJ-C27"/>
@@ -1073,7 +1058,7 @@
                             <constraint firstItem="If4-oD-drb" firstAttribute="leading" secondItem="oON-tq-ahR" secondAttribute="leading" constant="20" id="Y6l-5r-gRD"/>
                             <constraint firstItem="nwA-5p-Kis" firstAttribute="trailing" secondItem="oON-tq-ahR" secondAttribute="trailing" id="dPu-4R-AVu"/>
                             <constraint firstItem="nwA-5p-Kis" firstAttribute="leading" secondItem="oON-tq-ahR" secondAttribute="leading" id="gqd-6g-yX2"/>
-                            <constraint firstItem="nwA-5p-Kis" firstAttribute="bottom" secondItem="If4-oD-drb" secondAttribute="bottom" constant="10" id="lgL-Ic-QjW"/>
+                            <constraint firstItem="nwA-5p-Kis" firstAttribute="bottom" secondItem="If4-oD-drb" secondAttribute="bottom" id="lgL-Ic-QjW"/>
                             <constraint firstItem="If4-oD-drb" firstAttribute="top" secondItem="oON-tq-ahR" secondAttribute="top" constant="10" id="rUT-FS-sch"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oON-tq-ahR"/>
