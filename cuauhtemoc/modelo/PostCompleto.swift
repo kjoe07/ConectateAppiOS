@@ -33,7 +33,7 @@ struct Post: Codable {
     let body:String?
     let telefono:String?
     let establecimiento:Establecimiento?
-    let likes: Int?
+    var likes: Int?
     let comments: Int?
     let trueques: Int?
     let contrataciones: Int?

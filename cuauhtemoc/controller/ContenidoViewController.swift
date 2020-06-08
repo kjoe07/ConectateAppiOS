@@ -237,6 +237,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         cell.btnBloquear.addTarget(self, action:#selector(btnBloquear(sender:)) , for: .touchUpInside)
         cell.btnComentarios.addTarget(self, action:#selector(btnComentarios(sender:)) , for: .touchUpInside)
         cell.btnTruques.addTarget(self, action:#selector(btnTruques(sender:)) , for: .touchUpInside)
+        cell.btnLike.isSelected = isSearching ? busqueda?[indexPath.row].likes ?? 0 == 1 ? true : false : segmented.selectedSegmentIndex == 0 ? (result?[indexPath.row].likes ?? 0 == 1 ? true : false) :( employ?[indexPath.row].likes ?? 0 == 1 ? true : false)
         return cell
     }
     //MARK: -
@@ -245,6 +246,13 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
         wsAccion(tipo: "1",post: id ,cuerpo: "")
         sender.isSelected = true
+        if  isSearching{
+           self.busqueda?[sender.tag].likes = 1
+        }else if segmented.selectedSegmentIndex == 0 {
+            result?[sender.tag].likes = 1
+        } else {
+            employ?[sender.tag].likes = 1
+        }
     }
     
     @objc func btnCompartir(sender:UIButton){

@@ -13,7 +13,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
    
     var contenido: Post?
     var keywords:[Keyword]! = []
-    var post: Post!
+    var post: Post?
     var postCompleto:PostCompleto!
     var recursos:[Recurso]!  = []
     var acciones:[Accion]!  = []
@@ -127,6 +127,8 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         }
         tableView.isHidden = true
         cargarDatos()
+        //map.animate(toZoom: 17)
+        map.isUserInteractionEnabled = false
         // Do any additional setup after loading the view.
     }
     
@@ -219,9 +221,12 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
                             let lon = data?.post?.establecimiento?.longitud ?? "0"
                             let long = Double(lon)
                             let location = CLLocationCoordinate2D(latitude: latDouble ?? 0.0, longitude: long ?? 0.0)//data?.post?.establecimiento.
+                            print("location:",location)
                             let marker = GMSMarker(position: location)
-                            marker.icon = #imageLiteral(resourceName: "markerIcon")
+                          //  marker.icon = #imageLiteral(resourceName: "markerIcon")
+                            marker.title = self.post?.establecimiento?.nombre
                             self.map.animate(toLocation: location)
+                            self.map.animate(toZoom: 17)
                         }
                         self.collectionView.reloadData()
                     }
@@ -271,6 +276,8 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     
     @objc func btnLike(sender:UIButton){
        // let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
+        sender.isSelected = true
+        post?.likes = 1
         wsAccion(tipo: "1",post: contenido?.id ?? 0 ,cuerpo: "", mensajeExito: "")
     }
     
