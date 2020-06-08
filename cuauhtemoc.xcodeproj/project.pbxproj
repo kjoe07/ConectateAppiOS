@@ -13,6 +13,7 @@
 		11286819243FCAE200F6BD58 /* ExtensionUIIMage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11286818243FCAE200F6BD58 /* ExtensionUIIMage.swift */; };
 		1128681B244118AE00F6BD58 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1128681A244118AE00F6BD58 /* CustomSegmentedControl.swift */; };
 		1138462B2453AB2E007C4624 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1138462A2453AB2E007C4624 /* RegisterResponse.swift */; };
+		11479401248849480087D0D9 /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11479400248849480087D0D9 /* AuthenticationServices.framework */; };
 		11633186247D4DC200C10CCB /* UItableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11633185247D4DC100C10CCB /* UItableViewExtension.swift */; };
 		116563C02448BE3000860795 /* perfil.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116563BF2448BE3000860795 /* perfil.storyboard */; };
 		116F43B4242E8C700041F301 /* ActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 116F43B3242E8C700041F301 /* ActivityIndicator */; };
@@ -124,6 +125,7 @@
 		11286818243FCAE200F6BD58 /* ExtensionUIIMage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIIMage.swift; sourceTree = "<group>"; };
 		1128681A244118AE00F6BD58 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		1138462A2453AB2E007C4624 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
+		11479400248849480087D0D9 /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		11633185247D4DC100C10CCB /* UItableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UItableViewExtension.swift; sourceTree = "<group>"; };
 		116563BE2448BDB300860795 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		116563BF2448BE3000860795 /* perfil.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = perfil.storyboard; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11479401248849480087D0D9 /* AuthenticationServices.framework in Frameworks */,
 				116F43B4242E8C700041F301 /* ActivityIndicator in Frameworks */,
 				552D00359A0D1AB13E65443B /* Pods_cuauhtemoc.framework in Frameworks */,
 				11FF0921242E7FE200A93AE0 /* IQKeyboardManagerSwift in Frameworks */,
@@ -431,6 +434,7 @@
 		9F48EF84839FE7F98A6C7D60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11479400248849480087D0D9 /* AuthenticationServices.framework */,
 				197DE7B626E4DD4C786595EF /* Pods_cuauhtemoc.framework */,
 				10C2007884AD47FACEC77021 /* Pods_cuauhtemocTests.framework */,
 				4370429B21F2FFD717FB8C51 /* Pods_cuauhtemocUITests.framework */,

@@ -15,6 +15,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     //var contenido:ContenidoCompleto!
     //var dato:[Contenido]! = []
     var busqueda: [Post]?  = []
+    var busquedaEmpleo: [Post]? = []
     //var keywords:[Keyword]! = []
     var result: [Post]?
     var employ: [Post]?
@@ -98,10 +99,11 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                 switch result{
                 case .success(let dat):
                     if dat.count ?? 0 > 0{
-                        self.result = dat.results
-                        self.employ = dat.results?.filter({
-                            $0.tipo?.lowercased() == "empleo"
-                        })
+                        if search == nil {
+                            self.result = dat.results
+                        }else{
+                            self.busqueda = dat.results
+                        }
                         self.tableView.reloadData()
                     }else{
                         self.showAlert(title: "¡Ups!", message: dat.error ?? "")
@@ -130,7 +132,12 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                 switch result{
                 case .success(let dat):
                     if dat.count ?? 0 > 0{
-                        self.employ = dat.results
+                        if search != nil {
+                            self.employ = dat.results
+                        }else{
+                            self.busquedaEmpleo = dat.results
+                        }
+                        self.tableView.reloadData()
                     }else{
                         self.showAlert(title: "¡Ups!", message: dat.error ?? "")
                     }
@@ -142,7 +149,22 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     }
     //MARK: - TableView Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? busqueda?.count ?? 0 : segmented.selectedSegmentIndex == 0 ? result?.count ?? 0 : employ?.count ?? 0
+        if segmented.selectedSegmentIndex == 0{
+            print("resultados :",result?.count ?? 0)
+            if isSearching{
+                print("busqueda:",busqueda?.count ?? 0)
+                return busqueda?.count ?? 0
+            }
+            return result?.count ?? 0
+        }else{
+            if isSearching{
+                print("busqueda:",busqueda?.count ?? 0)
+                return busquedaEmpleo?.count ?? 0
+            }
+            print("empleos:", employ?.count ?? 0)
+            return  employ?.count ?? 0
+        }
+        //return isSearching ? busqueda?.count ?? 0 : segmented.selectedSegmentIndex == 0 ? result?.count ?? 0 : employ?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -303,6 +325,9 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @IBAction func change(_ sender: Any) {
+        self.isSearching = false
+        self.searchController.searchBar.text = ""
+        searchController.isActive = false
         tableView.reloadData()
     }
     func didDismissSearchController(_ searchController: UISearchController) {
