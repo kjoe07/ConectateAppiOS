@@ -222,9 +222,11 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
                             let long = Double(lon)
                             let location = CLLocationCoordinate2D(latitude: latDouble ?? 0.0, longitude: long ?? 0.0)//data?.post?.establecimiento.
                             print("location:",location)
-                            let marker = GMSMarker(position: location)
-                          //  marker.icon = #imageLiteral(resourceName: "markerIcon")
+                            let marker = GMSMarker()
+                            marker.icon = #imageLiteral(resourceName: "markerIcon")
+                            marker.position = location
                             marker.title = self.post?.establecimiento?.nombre
+                            marker.map = self.map
                             self.map.animate(toLocation: location)
                             self.map.animate(toZoom: 17)
                         }
