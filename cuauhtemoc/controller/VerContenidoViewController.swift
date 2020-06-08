@@ -78,16 +78,36 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         if(contenido?.tipo == "Empleo"){
             btnActionOtro.setTitle("Quiero aplicar", for: UIControl.State.normal)
             btnActionTrueque.isHidden = true
+            
+            btnActionOtro.addTarget(self, action: #selector(self.btnAsistir(sender:)), for: .touchUpInside)
+            
         } else if(contenido?.tipo == "Servicio"){
+            
             btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
+            
+            btnActionOtro.addTarget(self, action: #selector(self.btnContratar(sender:)), for: .touchUpInside)
+            btnActionTrueque.addTarget(self, action: #selector(self.btnTrueque(sender:)), for: .touchUpInside)
+            
         } else if(contenido?.tipo == "Establecimiento"){
             btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
             btnActionTrueque.isHidden = true
+            
+            btnActionTrueque.addTarget(self, action: #selector(self.btnTrueque(sender:)), for: .touchUpInside)
+            btnActionOtro.addTarget(self, action: #selector(self.btnContratar(sender:)), for: .touchUpInside)
+            
         } else if(contenido?.tipo == "Evento"){
             btnActionOtro.setTitle("Quiero asistir", for: UIControl.State.normal)
             btnActionTrueque.isHidden = true
+            
+            btnActionOtro.addTarget(self, action: #selector(self.btnAsistir(sender:)), for: .touchUpInside)
+            
         } else if(contenido?.tipo == "Producto"){
-            btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
+            
+            btnActionOtro.setTitle("Quiero comprar", for: UIControl.State.normal)
+            
+            btnActionOtro.addTarget(self, action: #selector(self.btnComprar(sender:)), for: .touchUpInside)
+            btnActionTrueque.addTarget(self, action: #selector(self.btnTrueque(sender:)), for: .touchUpInside)
+
         }
         
         self.tableView.dataSource = self
@@ -122,9 +142,12 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! Post2TableViewCell
             
             cell.lblTexto.text = self.recursos[indexPath.row].valor
-             cell.imgServicio.image = UIImage(named: self.imagenes[self.recursos[indexPath.row].tipo])
+            print(self.recursos[indexPath.row].tipo!)
+            
             if(self.recursos[indexPath.row].tipo >= 5){
                 cell.imgServicio.image = UIImage(named: self.imagenes[self.recursos[indexPath.row].tipo-5])
+            } else {
+                cell.imgServicio.image = UIImage(named: self.imagenes[self.recursos[indexPath.row].tipo])
             }
             return cell
         }
@@ -218,9 +241,37 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         textField.resignFirstResponder()
         return true
     }
+    
+    @objc func btnAsistir(sender:UIButton){
+       // let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
+        wsAccion(tipo: "9", post: contenido?.id ?? 0 ,cuerpo: "", mensajeExito:"Tu solicitud de evento fue enviada, te notificaremos cuando tengamos una respuesta ")
+    }
+    
+    @objc func btnTrueque(sender:UIButton){
+
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ofrecerTruequeViewController") as! OfrecerTruequeViewController
+        viewController.post =  post
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func btnContratar(sender:UIButton){
+       // let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
+        wsAccion(tipo: "5",post: contenido?.id ?? 0 ,cuerpo: "", mensajeExito: "Tu solicitud de contratación fue enviada, te notificaremos cuando tengamos una respuesta")
+    }
+    
+    @objc func btnAplicar(sender:UIButton){
+       // let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
+        wsAccion(tipo: "7",post: contenido?.id ?? 0 ,cuerpo:"", mensajeExito:"Tu solicitud de empleo fue enviada, te notificaremos cuando tengamos una respuesta")
+    }
+    
+    @objc func btnComprar(sender:UIButton){
+       // let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
+        wsAccion(tipo: "8",post: contenido?.id ?? 0 ,cuerpo: "", mensajeExito: "Tu solicitud de compra fue enviada, te notificaremos cuando tengamos una respuesta")
+    }
+    
     @objc func btnLike(sender:UIButton){
        // let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
-        wsAccion(tipo: "1",post: contenido?.id ?? 0 ,cuerpo: "")
+        wsAccion(tipo: "1",post: contenido?.id ?? 0 ,cuerpo: "", mensajeExito: "")
     }
     
     @objc func btnCompartir(sender:UIButton){
@@ -251,7 +302,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         let id = contenido?.id ?? 0
         let btnAlert = UIAlertController(title: "Atención", message:"¿Relamente quieres dejar de ver este contenido?", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "Sí", style: UIAlertAction.Style.default) {_ in
-            self.wsAccion(tipo: "2",post: id,cuerpo: "")
+            self.wsAccion(tipo: "2",post: id,cuerpo: "" , mensajeExito: "")
         }
         btnAlert.addAction(okAction)
         self.present(btnAlert, animated: true, completion: nil)
@@ -262,7 +313,8 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         viewController.post = contenido
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-    func wsAccion(tipo:String, post:Int, cuerpo:String ){
+    
+    func wsAccion(tipo:String, post:Int, cuerpo:String, mensajeExito:String ){
         let params = ["tipo":tipo,"post":post,"cuerpo":cuerpo] as [String : Any]
         NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: {[weak self] (result: MyResult<ActionResponse?>) in
             guard let self = self else {return}
@@ -272,6 +324,11 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
                     if dat?.count ?? 0 > 0 {
                         print("success")
                     }
+                    
+                    if tipo == "5" || tipo == "7" || tipo == "8" || tipo == "9" {
+                        self.showAlert(title: "#Conectate", message: mensajeExito)
+                    }
+                    
                 case .failure(let e):
                     print(e.localizedDescription)
                     self.showAlert(title: "Ups!", message: e.localizedDescription)
@@ -279,5 +336,4 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
             }
         })
     }
-    
 }

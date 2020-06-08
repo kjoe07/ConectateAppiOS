@@ -12,7 +12,7 @@
         <!--# Conectate-->
         <scene sceneID="eVJ-N7-GXB">
             <objects>
-                <viewController id="Vp8-IX-dqK" customClass="ContenidoViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vp8-IX-dqK" customClass="ContenidoViewController" customModule="_Conéctate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CxN-K8-Up4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,17 +24,17 @@
                                 <rect key="frame" x="0.0" y="149" width="414" height="673"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="1" indentationWidth="10" reuseIdentifier="contenidoViewCell" id="69g-KJ-PF8" customClass="ContenidoViewCell" customModule="_conectate_" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="1" indentationWidth="10" reuseIdentifier="contenidoViewCell" id="69g-KJ-PF8" customClass="ContenidoViewCell" customModule="_Conéctate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="343.66665649414062"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="69g-KJ-PF8" id="Rcv-bW-xJY">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="343.66665649414062"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koX-xF-baO" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koX-xF-baO" customClass="BorderCardView" customModule="_Conéctate_" customModuleProvider="target">
                                                     <rect key="frame" x="27" y="16" width="360" height="311.66666666666669"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-OJ-WXk" customClass="BorderImageView" customModule="_conectate_" customModuleProvider="target">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-OJ-WXk" customClass="BorderImageView" customModule="_Conéctate_" customModuleProvider="target">
                                                             <rect key="frame" x="262" y="27" width="75" height="75"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="75" id="lQj-Hc-wmX"/>
@@ -155,7 +155,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="simpleHashCollectionViewCell" id="2zU-Be-9iI" customClass="SimpleHashCollectionViewCell" customModule="_conectate_" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="simpleHashCollectionViewCell" id="2zU-Be-9iI" customClass="SimpleHashCollectionViewCell" customModule="_Conéctate_" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="9.6666666666666661" width="37" height="20.666666666666671"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="D7z-zZ-fj9">
@@ -275,7 +275,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oYJ-Zf-xXd" customClass="CustomSegmentedControl" customModule="_conectate_" customModuleProvider="target">
+                            <segmentedControl opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oYJ-Zf-xXd" customClass="CustomSegmentedControl" customModule="_Conéctate_" customModuleProvider="target">
                                 <rect key="frame" x="15" y="103" width="384" height="32"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <segments>
@@ -325,7 +325,7 @@
         <!--Contenido-->
         <scene sceneID="ea9-IG-3Fq">
             <objects>
-                <viewController storyboardIdentifier="verContenidoViewController" id="VWR-6y-ksz" customClass="VerContenidoViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="verContenidoViewController" id="VWR-6y-ksz" customClass="VerContenidoViewController" customModule="_Conéctate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="04w-vS-1Rw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -465,7 +465,7 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="simpleHashCollectionViewCell" id="tvG-lJ-TND" customClass="SimpleHashCollectionViewCell" customModule="_conectate_" customModuleProvider="target">
+                                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="simpleHashCollectionViewCell" id="tvG-lJ-TND" customClass="SimpleHashCollectionViewCell" customModule="_Conéctate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="130" height="40"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -549,14 +549,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qfd-O8-dvj" customClass="SelfSizedTableView" customModule="_conectate_" customModuleProvider="target">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qfd-O8-dvj" customClass="SelfSizedTableView" customModule="_Conéctate_" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="839.33333333333337" width="366" height="208.66666666666663"/>
                                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="208.5" id="94S-BY-lhX"/>
                                                         </constraints>
                                                         <prototypes>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" id="uri-YH-ala" customClass="Post2TableViewCell" customModule="_conectate_" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell2" id="uri-YH-ala" customClass="Post2TableViewCell" customModule="_Conéctate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="28" width="366" height="56"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uri-YH-ala" id="cnB-wF-EPS">
@@ -595,7 +595,7 @@
                                                                     <outlet property="lblTexto" destination="a7S-8u-rpN" id="8UX-y3-75r"/>
                                                                 </connections>
                                                             </tableViewCell>
-                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" id="EY3-X4-7K9" customClass="PostTableViewCell" customModule="_conectate_" customModuleProvider="target">
+                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" id="EY3-X4-7K9" customClass="PostTableViewCell" customModule="_Conéctate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="84" width="366" height="200"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EY3-X4-7K9" id="ihw-YW-UCM">
@@ -626,7 +626,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="mad-LP-yP5">
                                                         <rect key="frame" x="0.0" y="1070" width="366" height="115"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ul-ta-aPi" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ul-ta-aPi" customClass="BorderCurvedButton" customModule="_Conéctate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="366" height="46"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="46" id="7b2-vl-xMy"/>
@@ -662,7 +662,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyl-Rk-A0r" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyl-Rk-A0r" customClass="BorderCurvedButton" customModule="_Conéctate_" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="69" width="366" height="46"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="46" id="g4E-dN-7KO"/>
@@ -775,7 +775,7 @@
         <!--Comentarios-->
         <scene sceneID="S8R-Pk-aBX">
             <objects>
-                <viewController storyboardIdentifier="comentariosViewController" modalPresentationStyle="fullScreen" id="Dmu-YT-2eu" customClass="ComentariosViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="comentariosViewController" modalPresentationStyle="fullScreen" id="Dmu-YT-2eu" customClass="ComentariosViewController" customModule="_Conéctate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FDw-lx-okL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -784,14 +784,14 @@
                                 <rect key="frame" x="20" y="109" width="374" height="633"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comentariosTableViewCell" rowHeight="195" id="3xy-ei-ITh" customClass="ComentariosTableViewCell" customModule="_conectate_" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comentariosTableViewCell" rowHeight="195" id="3xy-ei-ITh" customClass="ComentariosTableViewCell" customModule="_Conéctate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="195"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3xy-ei-ITh" id="qmX-3J-ENW">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="195"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksC-jo-DYV" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksC-jo-DYV" customClass="BorderCardView" customModule="_Conéctate_" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="185"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="SVN-20-KvW">
@@ -878,10 +878,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzv-3W-ldf" customClass="BorderCardView" customModule="_conectate_" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzv-3W-ldf" customClass="BorderCardView" customModule="_Conéctate_" customModuleProvider="target">
                                 <rect key="frame" x="20" y="762" width="374" height="41"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4kR-3w-1jz" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4kR-3w-1jz" customClass="BorderTextField" customModule="_Conéctate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="5.6666666666666288" width="325" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="cqj-AH-dHT"/>
@@ -968,7 +968,7 @@
         <!--Ofrece un trueque-->
         <scene sceneID="F5K-2L-din">
             <objects>
-                <viewController storyboardIdentifier="ofrecerTruequeViewController" modalPresentationStyle="fullScreen" id="SdE-0h-AXK" customClass="OfrecerTruequeViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ofrecerTruequeViewController" modalPresentationStyle="fullScreen" id="SdE-0h-AXK" customClass="OfrecerTruequeViewController" customModule="_Conéctate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YXu-U0-BOV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -979,7 +979,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="Describe el servicio de lo que ofreces..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p6G-kL-3uz" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="Describe el servicio de lo que ofreces..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p6G-kL-3uz" customClass="BorderTextField" customModule="_Conéctate_" customModuleProvider="target">
                                 <rect key="frame" x="27" y="235.66666666666669" width="360" height="198.66666666666669"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1007,7 +1007,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="¿Qué quieres a cambio de tu servicio?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-PB-dMf" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="¿Qué quieres a cambio de tu servicio?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JrI-PB-dMf" customClass="BorderTextField" customModule="_Conéctate_" customModuleProvider="target">
                                 <rect key="frame" x="27" y="466.33333333333331" width="360" height="198.66666666666669"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1035,7 +1035,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svF-UA-KCn" customClass="BorderCurvedButton" customModule="_conectate_" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svF-UA-KCn" customClass="BorderCurvedButton" customModule="_Conéctate_" customModuleProvider="target">
                                 <rect key="frame" x="27" y="695" width="360" height="48"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1072,7 +1072,7 @@
                                     <action selector="btnHacerTrueque:" destination="SdE-0h-AXK" eventType="touchUpInside" id="4y0-A7-9vv"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Selcciona" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2F-hX-2Yo" customClass="BorderTextField" customModule="_conectate_" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Selcciona" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2F-hX-2Yo" customClass="BorderTextField" customModule="_Conéctate_" customModuleProvider="target">
                                 <rect key="frame" x="15" y="174.66666666666666" width="384" height="41"/>
                                 <color key="backgroundColor" name="green"/>
                                 <constraints>
