@@ -264,6 +264,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             self.wsAccion(tipo: "2",post: id,cuerpo: "")
         }
         btnAlert.addAction(okAction)
+        btnAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
         self.present(btnAlert, animated: true, completion: nil)
     }
     

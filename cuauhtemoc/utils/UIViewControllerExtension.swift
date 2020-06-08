@@ -15,6 +15,14 @@ extension UIViewController{
             self.present(alert, animated: true)
         }
     }
+//    func showAlert(with title: String, message: String) {
+//        DispatchQueue.main.async {
+//            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//            alert.addAction(UIAlertAction)
+//            self.present(alert, animated: true)
+//        }
+//    }
     
     func navTitleWithImageAndText(titleText: String, imageName: String) -> UIView {
 

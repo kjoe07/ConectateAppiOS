@@ -90,7 +90,9 @@
                                                                         <constraint firstAttribute="width" constant="28" id="4fd-LF-U1w"/>
                                                                         <constraint firstAttribute="height" constant="28" id="dg4-xz-KTe"/>
                                                                     </constraints>
-                                                                    <state key="normal" image="heart"/>
+                                                                    <color key="tintColor" name="green"/>
+                                                                    <state key="normal" image="emtptyHeart"/>
+                                                                    <state key="selected" image="heart"/>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NY-q1-03F">
                                                                     <rect key="frame" x="52.666666666666657" y="0.0" width="28" height="28"/>
@@ -1175,6 +1177,7 @@
         <image name="chevronDonw" width="15" height="8"/>
         <image name="comentIcon" width="55" height="55"/>
         <image name="dolar" width="35" height="35"/>
+        <image name="emtptyHeart" width="28" height="28"/>
         <image name="fondo" width="375" height="832"/>
         <image name="hashTagTab" width="13" height="13"/>
         <image name="heart" width="58" height="58"/>
