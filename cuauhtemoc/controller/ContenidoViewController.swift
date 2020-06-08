@@ -93,9 +93,11 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             params["body"] = search ?? ""
             params["titulo"] = search ?? ""
         }
+        self.showActivityIndicator(color: UIColor(named: "green") ?? .green)
         NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result: MyResult<PostResponse>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}
+                self.hideActivityIndicator()
                 switch result{
                 case .success(let dat):
                     if dat.count ?? 0 > 0{
@@ -126,16 +128,21 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             params["body"] = search ?? ""
             params["titulo"] = search ?? ""
         }
+        self.showActivityIndicator(color: UIColor(named: "green") ?? .green)
         NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result: MyResult<PostResponse>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}
+                print("result:",result)
+                self.hideActivityIndicator()
                 switch result{
                 case .success(let dat):
                     if dat.count ?? 0 > 0{
                         if search != nil {
-                            self.employ = dat.results
+                            print("is search")
+                            self.busqueda = dat.results
                         }else{
-                            self.busquedaEmpleo = dat.results
+                            print("not search Empleo")
+                            self.employ = dat.results
                         }
                         self.tableView.reloadData()
                     }else{
@@ -149,22 +156,22 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     }
     //MARK: - TableView Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmented.selectedSegmentIndex == 0{
-            print("resultados :",result?.count ?? 0)
-            if isSearching{
-                print("busqueda:",busqueda?.count ?? 0)
-                return busqueda?.count ?? 0
-            }
-            return result?.count ?? 0
-        }else{
-            if isSearching{
-                print("busqueda:",busqueda?.count ?? 0)
-                return busquedaEmpleo?.count ?? 0
-            }
-            print("empleos:", employ?.count ?? 0)
-            return  employ?.count ?? 0
-        }
-        //return isSearching ? busqueda?.count ?? 0 : segmented.selectedSegmentIndex == 0 ? result?.count ?? 0 : employ?.count ?? 0
+//        if segmented.selectedSegmentIndex == 0{
+//            print("resultados :",result?.count ?? 0)
+//            if isSearching{
+//                print("busqueda:",busqueda?.count ?? 0)
+//                return busqueda?.count ?? 0
+//            }
+//            return result?.count ?? 0
+//        }else{
+//            if isSearching{
+//                print("busqueda Empleo:",busquedaEmpleo?.count ?? 0)
+//                return busquedaEmpleo?.count ?? 0
+//            }
+//            print("empleos:", employ?.count ?? 0)
+//            return  employ?.count ?? 0
+//        }
+        return isSearching ? busqueda?.count ?? 0 : segmented.selectedSegmentIndex == 0 ? result?.count ?? 0 : employ?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -237,6 +244,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     @objc func btnLike(sender:UIButton){
         let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
         wsAccion(tipo: "1",post: id ,cuerpo: "")
+        sender.isSelected = true
     }
     
     @objc func btnCompartir(sender:UIButton){
@@ -325,11 +333,12 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
 //        tableView.reloadData()
     }
     
-    @IBAction func change(_ sender: Any) {
+    @IBAction func change(_ sender: UISegmentedControl) {
         self.isSearching = false
-        self.searchController.searchBar.text = ""
+        //self.searchController.searchBar.text = ""
         searchController.isActive = false
         tableView.reloadData()
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     func didDismissSearchController(_ searchController: UISearchController) {
         navigationItem.searchController = nil
@@ -342,12 +351,15 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if searchBar.text != ""{
+            self.isSearching = true
             segmented.selectedSegmentIndex == 0 ? self.cargarDatos(latitud: nil, longitud: nil, search: searchBar.text) : cargarDatos2(latitud: nil, longitud: nil, search: searchBar.text)
         }else{
+            self.isSearching = false
             locationDelegate.requestAuthorization()
         }        
     }
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
         locationDelegate.requestAuthorization()
     }
 }

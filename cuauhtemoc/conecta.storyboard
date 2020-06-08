@@ -286,7 +286,7 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" name="green"/>
                                 <connections>
-                                    <action selector="change:" destination="Vp8-IX-dqK" eventType="valueChanged" id="Wps-Pw-xxQ"/>
+                                    <action selector="change:" destination="Vp8-IX-dqK" eventType="valueChanged" id="OHU-Qd-NOL"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>

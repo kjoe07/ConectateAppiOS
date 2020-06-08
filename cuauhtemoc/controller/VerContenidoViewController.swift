@@ -305,6 +305,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
             self.wsAccion(tipo: "2",post: id,cuerpo: "" , mensajeExito: "")
         }
         btnAlert.addAction(okAction)
+        btnAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
         self.present(btnAlert, animated: true, completion: nil)
     }
     
