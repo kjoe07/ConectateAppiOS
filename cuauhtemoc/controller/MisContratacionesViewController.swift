@@ -25,6 +25,14 @@ class MisContratacionesViewController: UIViewController, UITableViewDataSource, 
         print("trueques:",trueques)
         self.title = trueques ? "Mis trueques" : "Mis ventas"
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "calificate"{
+            let vc = segue.destination as! CalificarViewController
+            print("the sender",sender)
+            print("the sender tag:",(sender  as? UIButton)?.tag)
+            vc.id = dato[(sender  as? UIButton)?.tag ?? 0].id//  Int
+        }
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -37,6 +45,8 @@ class MisContratacionesViewController: UIViewController, UITableViewDataSource, 
         cell.txtNombre.text = self.dato[indexPath.row].usuario?.nombre
         cell.btnChat.tag = indexPath.row
         cell.btnChat.addTarget(self, action: #selector(self.chat(_:)), for: .touchUpInside)
+        cell.btnCalificar.tag = indexPath.row
+        //cell.btnCalificar.addTarget(self, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
         return cell
     }
     

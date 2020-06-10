@@ -41,6 +41,10 @@
 	<string>La aplicación solicita acceso a tu libería solo cuando quieras subir una imagen</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>La aplicación solicita acceso a tu libería solo cuando quieras subir una imagen</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

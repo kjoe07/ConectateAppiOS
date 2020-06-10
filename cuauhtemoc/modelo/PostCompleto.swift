@@ -50,3 +50,32 @@ struct PostResponse: Codable{
     let error:String?
     
 }
+struct calificarResponse : Codable {
+    let id : Int?
+    let tipo : Int?
+    let post : Int?
+    let cuerpo : String?
+    let estatus : Int?
+    let calificacion : Int?
+
+    enum CodingKeys: String, CodingKey {
+
+        case id = "id"
+        case tipo = "tipo"
+        case post = "post"
+        case cuerpo = "cuerpo"
+        case estatus = "estatus"
+        case calificacion = "calificacion"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        tipo = try values.decodeIfPresent(Int.self, forKey: .tipo)
+        post = try values.decodeIfPresent(Int.self, forKey: .post)
+        cuerpo = try values.decodeIfPresent(String.self, forKey: .cuerpo)
+        estatus = try values.decodeIfPresent(Int.self, forKey: .estatus)
+        calificacion = try values.decodeIfPresent(Int.self, forKey: .calificacion)
+    }
+
+}

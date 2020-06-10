@@ -38,6 +38,7 @@
 		11CB7368246ED22200E086DC /* Web.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11CB7367246ED22200E086DC /* Web.storyboard */; };
 		11CB736A246ED32800E086DC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CB7369246ED32800E086DC /* WebViewController.swift */; };
 		11D483142447F0760061FA33 /* BorderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D483132447F0760061FA33 /* BorderImageView.swift */; };
+		11DAFBB124918F7B00FC8B0E /* CalificarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DAFBB024918F7B00FC8B0E /* CalificarViewController.swift */; };
 		11ED64F5245758810037648C /* VerifyCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED64F4245758810037648C /* VerifyCodeResponse.swift */; };
 		11ED64F62457824E0037648C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116563BE2448BDB300860795 /* Home.storyboard */; };
 		11FF0921242E7FE200A93AE0 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 11FF0920242E7FE200A93AE0 /* IQKeyboardManagerSwift */; };
@@ -148,6 +149,7 @@
 		11CB7367246ED22200E086DC /* Web.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Web.storyboard; sourceTree = "<group>"; };
 		11CB7369246ED32800E086DC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		11D483132447F0760061FA33 /* BorderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderImageView.swift; sourceTree = "<group>"; };
+		11DAFBB024918F7B00FC8B0E /* CalificarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalificarViewController.swift; sourceTree = "<group>"; };
 		11ED64F4245758810037648C /* VerifyCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeResponse.swift; sourceTree = "<group>"; };
 		197DE7B626E4DD4C786595EF /* Pods_cuauhtemoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4370429B21F2FFD717FB8C51 /* Pods_cuauhtemocUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemocUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -349,6 +351,7 @@
 				11A7BCB924734B9700D0F6F5 /* LocationCoordinate.swift */,
 				11A7BCBB2474305300D0F6F5 /* MethodViewController.swift */,
 				118061D5247EF42E00E02251 /* OnboardingViewController.swift */,
+				11DAFBB024918F7B00FC8B0E /* CalificarViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				574B63DA232FF90E00F4A29D /* ValidarCodigoViewController.swift in Sources */,
 				574B63C7232CBB2000F4A29D /* LoginViewController.swift in Sources */,
 				573B564923389D9F00ADB2E3 /* PostCompleto.swift in Sources */,
+				11DAFBB124918F7B00FC8B0E /* CalificarViewController.swift in Sources */,
 				573953B32337652A00D36609 /* ContenidoCompleto.swift in Sources */,
 				573B5655233B67DF00ADB2E3 /* DatoComentario.swift in Sources */,
 				573B5668233CEBF900ADB2E3 /* NotificacionesTableViewCell.swift in Sources */,
