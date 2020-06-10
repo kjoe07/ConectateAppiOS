@@ -35,10 +35,50 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var stackLocation: UIStackView!
     @IBOutlet weak var map: GMSMapView!
     
+    fileprivate func extractedFunc() {
+        if(contenido?.tipo == "Empleo"){
+            btnActionOtro.setTitle("Quiero aplicar", for: UIControl.State.normal)
+            btnActionTrueque.isHidden = true
+            
+            btnActionOtro.addTarget(self, action: #selector(self.btnAsistir(sender:)), for: .touchUpInside)
+            
+        } else if(contenido?.tipo == "Servicio"){
+            
+            btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
+            
+            btnActionOtro.addTarget(self, action: #selector(self.btnContratar(sender:)), for: .touchUpInside)
+            btnActionTrueque.addTarget(self, action: #selector(self.btnTrueque(sender:)), for: .touchUpInside)
+            
+        } else if(contenido?.tipo == "Establecimiento"){
+            btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
+            btnActionTrueque.isHidden = true
+            
+            btnActionTrueque.addTarget(self, action: #selector(self.btnTrueque(sender:)), for: .touchUpInside)
+            btnActionOtro.addTarget(self, action: #selector(self.btnContratar(sender:)), for: .touchUpInside)
+            
+        } else if(contenido?.tipo == "Evento"){
+            btnActionOtro.setTitle("Quiero asistir", for: UIControl.State.normal)
+            btnActionTrueque.isHidden = true
+            
+            btnActionOtro.addTarget(self, action: #selector(self.btnAsistir(sender:)), for: .touchUpInside)
+            
+        } else if(contenido?.tipo == "Producto"){
+            
+            btnActionOtro.setTitle("Quiero comprar", for: UIControl.State.normal)
+            
+            btnActionOtro.addTarget(self, action: #selector(self.btnComprar(sender:)), for: .touchUpInside)
+            btnActionTrueque.addTarget(self, action: #selector(self.btnTrueque(sender:)), for: .touchUpInside)
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let like : UIButton = UIButton.init(type: .custom)
         like.setImage(#imageLiteral(resourceName: "likeNavigationBar"), for: .normal)
+        if contenido?.liked ?? false{
+            like.setImage(#imageLiteral(resourceName: "heartGreen"), for: .normal)
+        }
         like.addTarget(self, action: #selector(btnLike(sender:)), for: .touchUpInside)
         like.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         like.tintColor = UIColor(named: "green")
@@ -75,46 +115,12 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         self.tableView.maxHeight = 200
         
         print(contenido?.tipo ?? "")
-        if(contenido?.tipo == "Empleo"){
-            btnActionOtro.setTitle("Quiero aplicar", for: UIControl.State.normal)
-            btnActionTrueque.isHidden = true
-            
-            btnActionOtro.addTarget(self, action: #selector(self.btnAsistir(sender:)), for: .touchUpInside)
-            
-        } else if(contenido?.tipo == "Servicio"){
-            
-            btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
-            
-            btnActionOtro.addTarget(self, action: #selector(self.btnContratar(sender:)), for: .touchUpInside)
-            btnActionTrueque.addTarget(self, action: #selector(self.btnTrueque(sender:)), for: .touchUpInside)
-            
-        } else if(contenido?.tipo == "Establecimiento"){
-            btnActionOtro.setTitle("Quiero contratar", for: UIControl.State.normal)
-            btnActionTrueque.isHidden = true
-            
-            btnActionTrueque.addTarget(self, action: #selector(self.btnTrueque(sender:)), for: .touchUpInside)
-            btnActionOtro.addTarget(self, action: #selector(self.btnContratar(sender:)), for: .touchUpInside)
-            
-        } else if(contenido?.tipo == "Evento"){
-            btnActionOtro.setTitle("Quiero asistir", for: UIControl.State.normal)
-            btnActionTrueque.isHidden = true
-            
-            btnActionOtro.addTarget(self, action: #selector(self.btnAsistir(sender:)), for: .touchUpInside)
-            
-        } else if(contenido?.tipo == "Producto"){
-            
-            btnActionOtro.setTitle("Quiero comprar", for: UIControl.State.normal)
-            
-            btnActionOtro.addTarget(self, action: #selector(self.btnComprar(sender:)), for: .touchUpInside)
-            btnActionTrueque.addTarget(self, action: #selector(self.btnTrueque(sender:)), for: .touchUpInside)
-
-        }
+        extractedFunc()
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        
         self.keywords = contenido?.keywords ?? ([Keyword]())
         if self.contenido?.establecimiento == nil{
             self.stackPhone.isHidden = true
@@ -129,7 +135,6 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         cargarDatos()
         //map.animate(toZoom: 17)
         map.isUserInteractionEnabled = false
-        // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -169,21 +174,16 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: (collectionView.bounds.width/3.0)-5, height: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        
         return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "simpleHashCollectionViewCell", for: indexPath) as! SimpleHashCollectionViewCell
-        
         cell.txtHashTags.text = "#\(keywords[indexPath.row].tag!)"
-        
         return cell
     }
     
@@ -240,7 +240,6 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
                     self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }
             }
-            
         })
     }
     
@@ -255,10 +254,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     @objc func btnTrueque(sender:UIButton){
-
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ofrecerTruequeViewController") as! OfrecerTruequeViewController
-        viewController.post =  post
-        self.navigationController?.pushViewController(viewController, animated: true)
+        self.performSegue(withIdentifier: "addtrueque", sender: self)
     }
     
     @objc func btnContratar(sender:UIButton){
@@ -284,23 +280,12 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     @objc func btnCompartir(sender:UIButton){
-        //let index = IndexPath(row: sender.tag, section: 0)
-        //let cell = tableView.cellForRow(at: index) as! ContenidoViewCell
         UIGraphicsBeginImageContextWithOptions(view.frame.size, true, 0.0)
-        // renders the view's layer into the current graphics context
         if let context = UIGraphicsGetCurrentContext() { view.layer.render(in: context) }
-
-        // creates UIImage from what was drawn into graphics context
         guard let screenshot: UIImage = UIGraphicsGetImageFromCurrentImageContext() else{
             return
         }
-
-        // clean up newly created context and return screenshot
         UIGraphicsEndImageContext()
-        //Save it to the camera roll
-        //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        
-       // guard let image2 = self.//cell.imagenContenido else{return}//imageSlider.currentSlideshowItem?.imageView.image else {return}
         let textToShare = [screenshot] as [Any]
         let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll,.addToReadingList,.copyToPasteboard,.openInIBooks,.mail,.message,.print ]
@@ -334,11 +319,9 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
                     if dat?.count ?? 0 > 0 {
                         print("success")
                     }
-                    
                     if tipo == "5" || tipo == "7" || tipo == "8" || tipo == "9" {
                         self.showAlert(title: "#Conectate", message: mensajeExito)
                     }
-                    
                 case .failure(let e):
                     print(e.localizedDescription)
                     self.showAlert(title: "Ups!", message: e.localizedDescription)
@@ -346,4 +329,11 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
             }
         })
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addtrueque"{
+            let vc = segue.destination as! OfrecerTruequeViewController
+            vc.post = self.contenido
+        }
+    }
+   
 }

@@ -37,11 +37,6 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Buscar", attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "green") ?? .green])
         searchController.searchBar.searchTextField.textColor = UIColor(named: "green") ?? .green
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "green") ?? UIColor.systemBlue]
-        //searchController.searchBar.barStyle = .default
-       // self.tableView.tableHeaderView = searchController.searchBar
-        //navigationItem.searchController = searchController
-        //self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
-        //self.navigationController?.navigationBar.setBackgroundImage(<#T##backgroundImage: UIImage?##UIImage?#>, for: .any, barMetrics: .)
         let image = UIImage(named: "conectateBar")
         let imageView = UIImageView(image: image)
         navigationItem.titleView = imageView
@@ -108,7 +103,6 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificacionesTableViewCell", for: indexPath) as! NotificacionesTableViewCell
         cell.name.text = isSearch ? busqueda?[indexPath.row].cuerpo : notificaciones?[indexPath.row].cuerpo
         let dateFormater = DateFormatter()
@@ -126,19 +120,23 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
             cell.txtNotificacion.text = ""//notificaciones?[indexPath.row].content_object?.body ?? ""
         }
         cell.btnAcciom.tag = indexPath.row
-        cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
+       
         cell.btnAcciom.setTitle("Chat", for: .normal)
+        cell.imgTipoNotificacion.tintColor = UIColor(named: "green") ?? .green
+        //cell.imgTipoNotificacion.imageView?.image?.renderingMode = UIImage.RenderingMode.alwaysTemplate
         if notificaciones?[indexPath.row].content_object?.tipo == 1 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "emtptyHeart"), for: .normal)
+             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
         } else if notificaciones?[indexPath.row].content_object?.tipo == 2 {
             //cell.imgTipoNotificacion.image = UIImage(named: "btn_bloqueat")
             cell.imgTipoNotificacion.setImage(UIImage(named: "btn_bloqueat"), for: .normal)
         } else if notificaciones?[indexPath.row].content_object?.tipo == 3 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "img_mensaje"), for: .normal)
+            cell.btnAcciom.setTitle("Ver", for: .normal)
             //cell.imgTipoNotificacion.image = UIImage(named: "img_mensaje")
         } else if notificaciones?[indexPath.row].content_object?.tipo == 4 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "img_trueque_morado"), for: .normal)
-            cell.btnAcciom.isHidden = true
+            cell.btnAcciom.setTitle("Ver", for: .normal)
         } else if notificaciones?[indexPath.row].content_object?.tipo == 5 {
             cell.imgTipoNotificacion.setImage( UIImage(named: "img_contratar_morado"), for: .normal)
             
@@ -147,11 +145,14 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
             
         } else if notificaciones?[indexPath.row].content_object?.tipo == 7 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "img_lapiz_morado"), for: .normal)
+             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
             
         } else if notificaciones?[indexPath.row].content_object?.tipo == 8 {
             cell.imgTipoNotificacion.setImage( UIImage(named: "servicio_precio"), for: .normal)
+             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
         } else if notificaciones?[indexPath.row].content_object?.tipo == 9 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "servicio_redes"), for: .normal)
+             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
         }
         cell.imgTipoNotificacion.tintColor = UIColor(named: "green") ?? .green
         return cell
@@ -182,7 +183,13 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
     @IBAction func goChat(_ sender: Any){
         let index = (sender as? UIButton)?.tag ?? 0
         openWhatsApp(phone: isSearch ? busqueda?[index].usuario_envio?.celular ?? "" : notificaciones?[index].usuario_envio?.celular ?? "")
-        //openWhatsApp()
+    }
+    @IBAction func showComments(_ sender:UIButton){
+        let vc = UIStoryboard(name: "conecta", bundle: nil).instantiateViewController(identifier: "comentariosViewController") as! ComentariosViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    @IBAction func showTrueques(_ sender: UIButton){
+        //TODO: -a new VC fro the truques system
     }
     
     func updateSearchResults(for searchController: UISearchController) {

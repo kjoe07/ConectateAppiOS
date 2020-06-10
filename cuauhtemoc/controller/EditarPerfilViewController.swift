@@ -203,58 +203,11 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         if let image = info[.originalImage]  as? UIImage{
             self.imgPerfil.image = image
-            saveImage(imageName: user?.nombre ?? "")
+            let data = image.jpegData(compressionQuality: 0.8)
+            UserDefaults.standard.set(data, forKey: "userImage")
+            //saveImage(imageName: user?.nombre ?? "")
         }
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func saveImage(imageName: String){
-        //create an instance of the FileManager
-        let fileManager = FileManager.default
-        //get the image path
-        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        //get the image we took with camera
-        let image = imgPerfil.image!
-        //get the PNG data for this image
-        let data = image.pngData()
-        //store it in the document directory
-        fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
-        
-        
-        UserDefaults.standard.set(data, forKey: "userImage")
-        imagedChange = true
-        
-       // let viewController = self.storyboard?.instantiateViewController(withIdentifier: "perfilCompletoViewController")
-       // self.present(viewController!, animated: true, completion: nil)
-    }
-    
-    func getImage(imageName: String){
-        let fileManager = FileManager.default
-        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        if fileManager.fileExists(atPath: imagePath){
-            //self.imgPerfil.image = UIImage(contentsOfFile: imagePath)
-            
-            self.imgPerfil.image = self.rotateImage( image: UIImage(contentsOfFile: imagePath)!)
-            
-        }else{
-            print("Panic! No Image!")
-        }
-    }
-    
-    func rotateImage(image:UIImage) -> UIImage {
-        var rotatedImage = UIImage()
-        switch image.imageOrientation
-        {
-        case .right:
-            rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .down)
-        case .down:
-            rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .left)
-        case .left:
-            rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .up)
-        default:
-            rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .right)
-        }
-        return rotatedImage
     }
     
     @objc func doneClick(){

@@ -71,3 +71,32 @@ struct Contenido: Codable {
     let img: String?
     let foto_perfil: String?
 }
+struct ResponseAddPost : Codable {
+    let id : Int?
+    let titulo : String?
+    let tipo : Int?
+    let body : String?
+    let establecimiento : String?
+    let telefono : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case id = "id"
+        case titulo = "titulo"
+        case tipo = "tipo"
+        case body = "body"
+        case establecimiento = "establecimiento"
+        case telefono = "telefono"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        titulo = try values.decodeIfPresent(String.self, forKey: .titulo)
+        tipo = try values.decodeIfPresent(Int.self, forKey: .tipo)
+        body = try values.decodeIfPresent(String.self, forKey: .body)
+        establecimiento = try values.decodeIfPresent(String.self, forKey: .establecimiento)
+        telefono = try values.decodeIfPresent(String.self, forKey: .telefono)
+    }
+
+}

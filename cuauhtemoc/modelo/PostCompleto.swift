@@ -40,6 +40,7 @@ struct Post: Codable {
     let img: String?
     let foto_perfil: String?
     let distancia:String?
+    var liked: Bool?
 }
 struct PostResponse: Codable{
     let count: Int?

@@ -43,7 +43,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
        
         //imgPerfil.layer.cornerRadius = 48.0
         //imgPerfil.clipsToBounds = true
-        
+        //UserDefaults.standard.set(encoder, forKey: "usuario")
         guard let userData = UserDefaults.standard.object(forKey: "usuario") as? Data else {return}
         user = try? JSONDecoder().decode(Usuario.self, from: userData)
         print("ther user:",user)
@@ -83,98 +83,7 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     @IBAction func btnMisContrataciones(_ sender: Any) {
         self.performSegue(withIdentifier: "truequesContrata", sender: "contrata")
     }
-    
-    @IBAction func btnCambiarFoto(_ sender: Any) {
-        PHPhotoLibrary.requestAuthorization { (status) in
-            switch status{
-                case .authorized:
-                    self.loadFromLibrary()
-                    break
-                case .denied:
-                    self.pedirPermiso(titulo: "Debes habilitar permisos", mensaje: "Para modificar tu foto de perfil es necesario habilites los permisos", aceptar: "Otorgar permiso")
-                    break
-            case .notDetermined:
-                break
-            case .restricted:
-                break
-            @unknown default:
-                break
-            }
-        }
-    }
-    
-    func pedirPermiso(titulo:String, mensaje:String, aceptar:String){
-        let alertController = UIAlertController (title: titulo, message: mensaje, preferredStyle: UIAlertController.Style.alert)
-        let settingsAction = UIAlertAction(title: aceptar, style: UIAlertAction.Style.default) { (_) -> Void in
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                return
-            }
-            
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
-            }
-        }
-        alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .default, handler: nil)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func loadFromLibrary(){
         
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = false
-        
-        self.present(imagePicker, animated: true, completion: nil)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let pref = UserDefaults()
-        if let image = info[.originalImage] as? UIImage{
-            self.imgPerfil.image = image//UIImagePickerController.InfoKey.originalImage
-            saveImage(imageName:"\(pref.string(forKey: "nombreUsuario")!).png")
-        }
-        self.dismiss(animated: true, completion: nil)
-    }
-        
-    func saveImage(imageName: String){
-        let fileManager = FileManager.default
-        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        let image = imgPerfil.image!
-        let data = image.pngData()
-        fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "perfilCompletoViewController")
-        self.present(viewController!, animated: true, completion: nil)
-    }
-    
-    func getImage(imageName: String){
-        let fileManager = FileManager.default
-        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        if fileManager.fileExists(atPath: imagePath){
-            self.imgPerfil.image = self.rotateImage( image: UIImage(contentsOfFile: imagePath)!)
-        }else{
-            print("Panic! No Image!")
-        }
-    }
-    
-    func rotateImage(image:UIImage) -> UIImage {
-        var rotatedImage = UIImage()
-        switch image.imageOrientation
-        {
-        case .right:
-            rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .down)
-        case .down:
-            rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .left)
-        case .left:
-            rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .up)
-        default:
-            rotatedImage = UIImage(cgImage: image.cgImage!, scale: 1.0, orientation: .right)
-        }
-        return rotatedImage
-    }
-    
     
     //MARK: - TableView Functions -
     func numberOfSections(in tableView: UITableView) -> Int {

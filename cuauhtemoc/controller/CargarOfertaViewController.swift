@@ -28,6 +28,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     var pickerViewServicio = UIPickerView()
+    @IBOutlet weak var saveButton: BorderCurvedButton!
     var pickerViewHashTags = UIPickerView()
     var recursos:[Recurso]!  = []
     var tipoServicio:[String] = ["Empleo","Servicio","Establecimiento", "Evento", "Producto"]
@@ -79,9 +80,12 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             txtDescripcion.text = post?.body ?? ""
             self.guardado = post?.keywords
             self.collectionView.reloadData()
+            saveButton.setTitle("Editar servicio", for: .normal)
         }
     }
     override func viewWillAppear(_ animated: Bool) {
+        cargarServicio()
+        cargarDatos()
         if post == nil {
             self.navigationController?.navigationBar.isHidden = true
         }        
@@ -135,6 +139,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             }
             self.tableView.reloadData()
         }
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func btnTexto(_ sender: Any) {
@@ -211,8 +216,9 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         PHPhotoLibrary.requestAuthorization { (status) in
             switch status{
             case .authorized:
-                self.loadFromLibrary()
-                break
+                DispatchQueue.main.async {
+                     self.loadFromLibrary()
+                }
             case .denied:
                 self.pedirPermiso(titulo: "Debes habilitar permisos", mensaje: "Para modificar tu foto de perfil es necesario habilites los permisos", aceptar: "Otorgar permiso")
                 break
@@ -256,6 +262,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             let imageNameExt = "\(imageName ?? "").\(ext ?? "")"
             self.recursos.append(Recurso(id: 0, orden: imageArray.count, post: 0, valor: imageNameExt, tipo: 3))
             imageArray.append(image)
+            tableView.reloadData()
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -266,7 +273,13 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! Post2TableViewCell
         cell.lblTexto.text = self.recursos[indexPath.row].valor
         if(self.recursos[indexPath.row].tipo == 3){
-            cell.imgServicio.image = UIImage(named: "servicio_imagen")
+            print("imagen 3")
+            //cell.imgServicio.image = UIImage(named: "servicio_imagen")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell") as! PostTableViewCell
+            print("should load and image")
+            let id = self.recursos[indexPath.row].orden
+            cell.imgPost.image = imageArray[id ?? 0]
+            return cell
         }  else if(self.recursos[indexPath.row].tipo == 4){
             cell.imgServicio.image = UIImage(named: "servicio_video")
         } else if(self.recursos[indexPath.row].tipo == 5){
@@ -296,6 +309,12 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            self.recursos.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     //MARK: -   -
 //    func cargarHashTags(){
@@ -418,7 +437,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     //MARK: - Request Functions -
     func cargarDatos(){
         print("load data:")
-        let params = ["page_size":300]
+        let params = ["page_size":2000]
         NetworkLoader.loadData(url: Api.listHashTagsByKeyword.url, data: params, method: .get, completion: {[weak self] (result:MyResult<HashtagProfileResponse>) in
             guard let self = self else {return}
             DispatchQueue.main.async {
@@ -443,8 +462,9 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             params["telefono"] = txtTelefono.text ?? ""
         }
         showActivityIndicator(color: UIColor(named: "green") ?? .green)
-        NetworkLoader.loadData(url: Api.createContent.url, data: params, method: .post, completion: { [weak self] (result: MyResult<Post>) in
+        NetworkLoader.loadData(url: Api.createContent.url, data: params, method: .post, completion: { [weak self] (result: MyResult<ResponseAddPost>) in
             DispatchQueue.main.async {
+                print("the resul:",result)
                 guard let self = self else {return}
                 switch result{
                 case .success(dat: let data):
@@ -455,7 +475,8 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                     for i in 0..<self.recursos.count {
                         if(self.recursos[i].tipo == 3){
                             for j in 0..<self.imageArray.count{
-                                self.uploadImages(post: data.id ?? 0, valor: self.recursos[i].valor, Tipo: 3, image: self.imageArray[j])
+                                //guard let image  =  else {return}
+                                self.uploadImages(post: data.id ?? 0, valor: self.recursos[i].valor, Tipo: 3, image: self.imageArray[j] )
                             }
                         } else if(self.recursos[i].tipo == 6){
                             self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_url", tipo: nil)
@@ -605,5 +626,9 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         dismiss(animated: true, completion: nil)
        // placesSearchController.isActive = false
+    }
+    @IBAction func deleteAll(_ sender: UIButton){
+           self.recursos.removeAll()
+           self.tableView.reloadData()
     }
 }

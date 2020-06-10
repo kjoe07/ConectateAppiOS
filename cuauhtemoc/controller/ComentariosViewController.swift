@@ -41,6 +41,7 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
     
     func wsAccion(tipo:String, post:Int, cuerpo:String ){
         let params = ["tipo":tipo,"post":post,"cuerpo":cuerpo] as [String : Any]
+        self.view.endEditing(true)
         NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: { [weak self ] (result: MyResult<Accion>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}
@@ -48,6 +49,7 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
                 case .success(dat: let data):
                     if data.id ?? 0 > 0{
                         self.comentarios.append(data)
+                        self.txtComentarios.text = ""
 //                        self.comentarios.append(Accion(id: data.id ?? 0, tipo: data.tipo ?? 0, post: data.post ?? 0, cuerpo: data.cuerpo ?? "", estatus: data.estatus ?? 0, nombre_usuario: data.usuario?.nombre ?? "", nombre_post: data.nombre_post ?? "", titulo_post: data.titulo_post ?? "", fecha: data.fecha ?? "", calificacion: Int(data.calificacion ?? "0") ?? 0))
                         self.tableView.reloadData()
                     }

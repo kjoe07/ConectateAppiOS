@@ -27,6 +27,8 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
         
         textFields = [txtPerfil, txtOfreces, txtCambio];
         cargarDatos()
+        self.title = "Ofrecer un trueque"
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
     }
     
     @IBAction func btnHacerTrueque(_ sender: Any) {

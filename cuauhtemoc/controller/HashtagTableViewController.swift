@@ -18,18 +18,16 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
     var hashtags: [Keyword] = []
     let searchController = UISearchController(searchResultsController: nil)
     var editingModel: [Keyword]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableHeaderView = searchController.searchBar
         self.title = "Selecciona varios #"
         self.hashtags = editingModel ?? [Keyword]()
         searchController.searchResultsUpdater = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.donde(_:)))
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        if hashtags.count == 3{
-            self.selectedHashtag?(hashtags)
-        }
-    }
+   
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,7 +58,7 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
         let cell = tableView.cellForRow(at: indexPath)
        // if isTriple{
         if cell?.accessoryType == UITableViewCell.AccessoryType.none {
-            if hashtags.count < 3{
+            if hashtags.count < 5{
                 cell?.accessoryType = .checkmark
                 hashtags.append(isSearch ? (filter?[indexPath.row])! : (result?[indexPath.row])!)
             }
@@ -81,7 +79,14 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
 //            self.navigationController?.popViewController(animated: true)
 //        }
     }
-    
+    @objc func donde(_ sender: UIBarButtonItem){
+        if hashtags.count == 5{
+            self.selectedHashtag?(hashtags)
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            self.showAlert(title: "Ups!", message: "debe escojer 5 hashtags")
+        }
+    }
 
     /*
     // MARK: - Navigation

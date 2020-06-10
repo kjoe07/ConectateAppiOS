@@ -514,7 +514,7 @@
                                                     <constraint firstAttribute="height" constant="25" id="aUj-sj-VQy"/>
                                                 </constraints>
                                             </stackView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sna-lG-cpU" customClass="SelfSizedTableView" customModule="_Conéctate_" customModuleProvider="target">
+                                            <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sna-lG-cpU" customClass="SelfSizedTableView" customModule="_Conéctate_" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="802" width="358" height="300"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -522,37 +522,34 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="If6-88-Otu" customClass="Post2TableViewCell" customModule="_Conéctate_" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="358" height="56"/>
+                                                        <rect key="frame" x="0.0" y="28" width="358" height="30.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="If6-88-Otu" id="Ynu-TQ-Wgw">
-                                                            <rect key="frame" x="0.0" y="0.0" width="358" height="56"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="358" height="30.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7AQ-3B-TtR">
-                                                                    <rect key="frame" x="34" y="16" width="290" height="24"/>
-                                                                    <subviews>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="servicio_calendario" translatesAutoresizingMaskIntoConstraints="NO" id="Zcl-cW-tgE">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                                                                            <color key="tintColor" name="green"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="width" constant="24" id="k70-Xe-zEm"/>
-                                                                                <constraint firstAttribute="height" constant="24" id="nPx-Zs-W6M"/>
-                                                                            </constraints>
-                                                                        </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-Zh-cG4">
-                                                                            <rect key="frame" x="34" y="0.0" width="256" height="24"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                </stackView>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="servicio_calendario" translatesAutoresizingMaskIntoConstraints="NO" id="Zcl-cW-tgE">
+                                                                    <rect key="frame" x="0.0" y="3.5" width="24" height="24"/>
+                                                                    <color key="tintColor" name="green"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="24" id="k70-Xe-zEm"/>
+                                                                        <constraint firstAttribute="height" constant="24" id="nPx-Zs-W6M"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-Zh-cG4">
+                                                                    <rect key="frame" x="34" y="5" width="319" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="7AQ-3B-TtR" secondAttribute="trailing" constant="34" id="Fpk-BS-rw4"/>
-                                                                <constraint firstItem="7AQ-3B-TtR" firstAttribute="top" secondItem="Ynu-TQ-Wgw" secondAttribute="topMargin" constant="5" id="LDN-Mt-uz6"/>
-                                                                <constraint firstItem="7AQ-3B-TtR" firstAttribute="leading" secondItem="Ynu-TQ-Wgw" secondAttribute="leading" constant="34" id="kY1-Ub-cP4"/>
-                                                                <constraint firstAttribute="bottomMargin" secondItem="7AQ-3B-TtR" secondAttribute="bottom" constant="5" id="y2c-7X-US0"/>
+                                                                <constraint firstAttribute="trailing" secondItem="vtr-Zh-cG4" secondAttribute="trailing" constant="5" id="Gpb-6p-qcE"/>
+                                                                <constraint firstItem="vtr-Zh-cG4" firstAttribute="top" secondItem="Ynu-TQ-Wgw" secondAttribute="top" constant="5" id="ZUP-zg-Xp2"/>
+                                                                <constraint firstItem="vtr-Zh-cG4" firstAttribute="leading" secondItem="Zcl-cW-tgE" secondAttribute="trailing" constant="10" id="awG-Kw-Rnw"/>
+                                                                <constraint firstAttribute="bottom" secondItem="vtr-Zh-cG4" secondAttribute="bottom" constant="5" id="r8k-gR-hqF"/>
+                                                                <constraint firstItem="Zcl-cW-tgE" firstAttribute="centerY" secondItem="Ynu-TQ-Wgw" secondAttribute="centerY" id="sAm-gi-dTq"/>
+                                                                <constraint firstItem="Zcl-cW-tgE" firstAttribute="leading" secondItem="Ynu-TQ-Wgw" secondAttribute="leading" id="vqo-uy-zwb"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
@@ -560,8 +557,8 @@
                                                             <outlet property="lblTexto" destination="vtr-Zh-cG4" id="9c0-jz-fsn"/>
                                                         </connections>
                                                     </tableViewCell>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" id="NNs-wm-DHU" customClass="Post2TableViewCell" customModule="_Conéctate_" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="84" width="358" height="200"/>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postTableViewCell" id="NNs-wm-DHU" customClass="PostTableViewCell" customModule="_Conéctate_" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="58.5" width="358" height="200"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NNs-wm-DHU" id="Gjo-ej-Wi8">
                                                             <rect key="frame" x="0.0" y="0.0" width="358" height="200"/>
@@ -581,6 +578,9 @@
                                                                 <constraint firstItem="10r-G3-hCr" firstAttribute="centerX" secondItem="Gjo-ej-Wi8" secondAttribute="centerX" id="YOw-3c-r1s"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="imgPost" destination="10r-G3-hCr" id="qYk-1J-CkV"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
@@ -656,6 +656,7 @@
                         <outlet property="lblTipoServicio" destination="WpB-GX-j74" id="8Oa-QT-PHT"/>
                         <outlet property="map" destination="r5J-o0-yu4" id="ocd-Dx-pGg"/>
                         <outlet property="mobileSwitch" destination="UHe-GU-3wL" id="9Jq-lL-wZ1"/>
+                        <outlet property="saveButton" destination="B5G-eQ-P2g" id="Lbj-53-oVA"/>
                         <outlet property="tableView" destination="Sna-lG-cpU" id="vg8-fs-VUU"/>
                         <outlet property="trippleButton" destination="1bc-ec-hE7" id="Ttk-lV-mti"/>
                         <outlet property="txtDescripcion" destination="VzH-rB-Azh" id="Tgg-7R-vTK"/>
@@ -663,7 +664,7 @@
                         <outlet property="txtEstablishmentLocation" destination="IjK-NK-KSv" id="VjJ-le-KdH"/>
                         <outlet property="txtNombreServicio" destination="6z4-qg-WLQ" id="eQ9-WY-Lwl"/>
                         <outlet property="txtTelefono" destination="Yk8-ae-KB9" id="22R-9F-Xs2"/>
-                        <segue destination="2Ew-g6-onR" kind="presentation" id="Hnp-4x-o8c"/>
+                        <segue destination="2Ew-g6-onR" kind="presentation" identifier="method" id="Hnp-4x-o8c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZC-od-F8h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

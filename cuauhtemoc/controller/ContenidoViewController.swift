@@ -156,21 +156,6 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     }
     //MARK: - TableView Functions
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if segmented.selectedSegmentIndex == 0{
-//            print("resultados :",result?.count ?? 0)
-//            if isSearching{
-//                print("busqueda:",busqueda?.count ?? 0)
-//                return busqueda?.count ?? 0
-//            }
-//            return result?.count ?? 0
-//        }else{
-//            if isSearching{
-//                print("busqueda Empleo:",busquedaEmpleo?.count ?? 0)
-//                return busquedaEmpleo?.count ?? 0
-//            }
-//            print("empleos:", employ?.count ?? 0)
-//            return  employ?.count ?? 0
-//        }
         return isSearching ? busqueda?.count ?? 0 : segmented.selectedSegmentIndex == 0 ? result?.count ?? 0 : employ?.count ?? 0
     }
     
@@ -237,7 +222,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         cell.btnBloquear.addTarget(self, action:#selector(btnBloquear(sender:)) , for: .touchUpInside)
         cell.btnComentarios.addTarget(self, action:#selector(btnComentarios(sender:)) , for: .touchUpInside)
         cell.btnTruques.addTarget(self, action:#selector(btnTruques(sender:)) , for: .touchUpInside)
-        cell.btnLike.isSelected = isSearching ? busqueda?[indexPath.row].likes ?? 0 == 1 ? true : false : segmented.selectedSegmentIndex == 0 ? (result?[indexPath.row].likes ?? 0 == 1 ? true : false) :( employ?[indexPath.row].likes ?? 0 == 1 ? true : false)
+        cell.btnLike.isSelected = isSearching ? busqueda?[indexPath.row].liked ?? false : segmented.selectedSegmentIndex == 0 ? (result?[indexPath.row].liked ?? false) :( employ?[indexPath.row].liked ?? false )
         return cell
     }
     //MARK: -
