@@ -938,6 +938,9 @@
                                                                             <real key="value" value="6"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <segue destination="ojT-Bc-Szb" kind="show" identifier="calificate" id="mmL-LS-PFV"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                         </stackView>
@@ -1063,7 +1066,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oON-tq-ahR"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1zT-0f-1Kr"/>
+                    <navigationItem key="navigationItem" id="1zT-0f-1Kr">
+                        <barButtonItem key="backBarButtonItem" title=" " id="uvD-b4-neB"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="If4-oD-drb" id="df9-sF-ldY"/>
                     </connections>
@@ -1072,8 +1077,83 @@
             </objects>
             <point key="canvasLocation" x="-335" y="2486"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="4Rd-EC-45b">
+            <objects>
+                <viewController id="ojT-Bc-Szb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4z5-SK-eom">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rMM-Zj-Js1">
+                                <rect key="frame" x="69" y="185" width="276" height="33"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NLo-m2-GXn">
+                                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="Faz-bL-Gwl"/>
+                                        </constraints>
+                                        <color key="tintColor" name="labelTabbar"/>
+                                        <state key="normal" backgroundImage="star.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="Star"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tak-Yy-fEw">
+                                        <rect key="frame" x="58.5" y="0.0" width="42.5" height="33"/>
+                                        <color key="tintColor" name="labelTabbar"/>
+                                        <state key="normal" backgroundImage="star.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="Star"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pg3-7Q-b6H">
+                                        <rect key="frame" x="117" y="0.0" width="42" height="33"/>
+                                        <color key="tintColor" name="labelTabbar"/>
+                                        <state key="normal" backgroundImage="star.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="Star"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VkT-L1-fii">
+                                        <rect key="frame" x="175" y="0.0" width="42.5" height="33"/>
+                                        <color key="tintColor" name="labelTabbar"/>
+                                        <state key="normal" backgroundImage="star.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="Star"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4pi-vx-rO9">
+                                        <rect key="frame" x="233.5" y="0.0" width="42.5" height="33"/>
+                                        <color key="tintColor" name="labelTabbar"/>
+                                        <state key="normal" backgroundImage="star.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                        </state>
+                                        <state key="selected" backgroundImage="Star"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="D3S-56-FN8"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="MSM-XB-jm6" firstAttribute="trailing" secondItem="rMM-Zj-Js1" secondAttribute="trailing" constant="69" id="TwB-1v-Q6R"/>
+                            <constraint firstItem="rMM-Zj-Js1" firstAttribute="leading" secondItem="MSM-XB-jm6" secondAttribute="leading" constant="69" id="fMB-cP-7cb"/>
+                            <constraint firstItem="rMM-Zj-Js1" firstAttribute="top" secondItem="MSM-XB-jm6" secondAttribute="top" constant="97" id="sOA-MK-obn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MSM-XB-jm6"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jSi-cQ-Vue"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hna-D1-pMY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="377" y="2486"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Star" width="26" height="25"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="comentIcon" width="55" height="55"/>
         <image name="defaultProfileImage" width="69" height="69"/>
@@ -1082,12 +1162,16 @@
         <image name="logoProvider" width="375" height="94"/>
         <image name="perfilTab" width="14" height="20"/>
         <image name="plusImagen" width="35" height="36"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="textFieldBackGround" width="310" height="46"/>
         <namedColor name="green">
             <color red="0.078431372549019607" green="0.65098039215686276" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="green25">
             <color red="0.078000001609325409" green="0.65100002288818359" blue="0.0040000001899898052" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="labelTabbar">
+            <color red="0.65098039215686276" green="0.65098039215686276" blue="0.65098039215686276" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

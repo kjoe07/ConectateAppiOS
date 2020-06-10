@@ -547,7 +547,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         })
     }
     func uploadImages(post id: Int,valor:String,Tipo: Int,image: UIImage){
-        let params = ["post":id.description,"valor":valor.description,"tipo":Tipo.description] //as [String : Any]
+        let params = ["post":id.description,"tipo":Tipo.description] //as [String : Any]
         let imageData = image.pngData()
         //TODO: - Find tje codable value in this request.
         NetworkLoader.sendPostFormData(formFields: params, url: Api.addFile.url, imageData: imageData, completion: {[weak self] (result:MyResult<Usuario>) in

@@ -59,9 +59,10 @@ class NetworkLoader{
             var request = URLRequest(url: URL(string: url)!)
             request.httpMethod = "POST"
             request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            if let str = KeychainService.loadPassword(service: "bizne", account: "userToken"){
+            if let str = KeychainService.loadPassword(service: "cuauhtemoc", account: "token"){
                 print("the request token: \(str)")
-               request.setValue(str, forHTTPHeaderField: "Authorization")
+                request.setValue("Token \(str)", forHTTPHeaderField: "Authorization")
+               //request.setValue(str, forHTTPHeaderField: "Authorization")
             }
             let httpBody = NSMutableData()
             if let form = formFields{
@@ -70,7 +71,7 @@ class NetworkLoader{
                 }
             }
             if let image = imageData{
-               httpBody.append(convertFileData(fieldName: "pic",fileName: "pic.jpg",mimeType: "image/jpg",fileData: image,using: boundary))
+               httpBody.append(convertFileData(fieldName: "valor",fileName: "pic.jpg",mimeType: "image/png",fileData: image,using: boundary))
             }
             httpBody.appendString("--\(boundary)--")
             request.httpBody = httpBody as Data
