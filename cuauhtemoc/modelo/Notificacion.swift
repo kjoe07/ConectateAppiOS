@@ -10,7 +10,7 @@ import Foundation
 
 struct Notificacion :Codable {
     let id : Int?
-    let usuario : Usuario?
+    let usuario : Usuario_envio?
     let usuario_envio : Usuario_envio?
     let interfaz : Int?
     let tipo : Int?
@@ -35,7 +35,7 @@ struct Notificacion :Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decodeIfPresent(Int.self, forKey: .id)
-        usuario = try values.decodeIfPresent(Usuario.self, forKey: .usuario)
+        usuario = try values.decodeIfPresent(Usuario_envio.self, forKey: .usuario)
         usuario_envio = try values.decodeIfPresent(Usuario_envio.self, forKey: .usuario_envio)
         interfaz = try values.decodeIfPresent(Int.self, forKey: .interfaz)
         tipo = try values.decodeIfPresent(Int.self, forKey: .tipo)
@@ -81,6 +81,8 @@ struct Content_object : Codable {
     let body : String?
     let establecimiento : String?
     let telefono : String?
+    let post: Int?
+    let cuerpo: String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -90,6 +92,8 @@ struct Content_object : Codable {
         case body = "body"
         case establecimiento = "establecimiento"
         case telefono = "telefono"
+        case post = "post"
+        case cuerpo = "cuerpo"
     }
 
     init(from decoder: Decoder) throws {
@@ -97,9 +101,11 @@ struct Content_object : Codable {
         id = try values.decodeIfPresent(Int.self, forKey: .id)
         titulo = try values.decodeIfPresent(String.self, forKey: .titulo)
         tipo = try values.decodeIfPresent(Int.self, forKey: .tipo)
-        body = try values.decodeIfPresent(String.self, forKey: .body)
-        establecimiento = try values.decodeIfPresent(String.self, forKey: .establecimiento)
-        telefono = try values.decodeIfPresent(String.self, forKey: .telefono)
+        body = try? values.decodeIfPresent(String.self, forKey: .body)
+        establecimiento = try? values.decodeIfPresent(String.self, forKey: .establecimiento)
+        telefono = try? values.decodeIfPresent(String.self, forKey: .telefono)
+        post = try? values.decodeIfPresent(Int.self, forKey: .post)
+        cuerpo = try? values.decodeIfPresent(String.self, forKey: .cuerpo)
     }
 
 }

@@ -233,6 +233,8 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
                         self.collectionView.reloadData()
                     }
                     if data?.recursos.count ?? 0 > 0{
+                        print("Recursos has data")
+                        self.tableView.isHidden = false
                         self.recursos = data?.recursos
                         self.tableView.reloadData()
                     }
@@ -275,6 +277,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     @objc func btnLike(sender:UIButton){
        // let id = isSearching ? self.busqueda![sender.tag].id ?? 0 : segmented.selectedSegmentIndex == 0 ? result?[sender.tag].id ?? 0 : employ?[sender.tag].id ?? 0
         sender.isSelected = true
+        sender.setImage(#imageLiteral(resourceName: "heartGreen"), for: .normal)
         post?.likes = 1
         wsAccion(tipo: "1",post: contenido?.id ?? 0 ,cuerpo: "", mensajeExito: "")
     }

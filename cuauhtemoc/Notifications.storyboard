@@ -179,6 +179,7 @@
                         <viewLayoutGuide key="safeArea" id="X8j-9Q-7us"/>
                     </view>
                     <navigationItem key="navigationItem" id="JLw-EB-Ayh">
+                        <barButtonItem key="backBarButtonItem" title=" " id="X1W-le-GeD"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="MTV-jG-HhZ">
                             <connections>
                                 <action selector="btnBuscarContenido:" destination="QlV-3p-MyU" id="IQa-qc-mFR"/>
@@ -187,11 +188,249 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="u5L-uF-4mN" id="G1l-X7-ebl"/>
+                        <segue destination="Lfj-kj-kTy" kind="show" id="SKc-wj-aNG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zod-2i-UaI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-239.13043478260872" y="1773.8839285714284"/>
+        </scene>
+        <!--Solicitudes de trueque-->
+        <scene sceneID="ntj-Ni-g0P">
+            <objects>
+                <viewController id="Lfj-kj-kTy" customClass="SolicitudesTruequesViewController" customModule="_Conéctate_" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CVk-Lb-6WA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TIQ-M3-DEC">
+                                <rect key="frame" x="0.0" y="103" width="414" height="680"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Xlp-lJ-Zfa" customClass="TruequeTableViewCell" customModule="_Conéctate_" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="284"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xlp-lJ-Zfa" id="2kn-oK-w2r">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="284"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLC-3O-RwU" customClass="BorderCardView" customModule="_Conéctate_" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="15" width="384" height="254"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_trueque_morado" translatesAutoresizingMaskIntoConstraints="NO" id="aD2-ub-04d">
+                                                            <rect key="frame" x="37" y="15" width="53" height="27"/>
+                                                            <color key="tintColor" name="green"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="53" id="Rbc-qj-aAR"/>
+                                                                <constraint firstAttribute="height" constant="27" id="fvA-Ef-p6D"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="G5n-Sq-yKe" customClass="BorderCurvedButton" customModule="_Conéctate_" customModuleProvider="target">
+                                                            <rect key="frame" x="15" y="57" width="86" height="54"/>
+                                                            <color key="backgroundColor" name="green"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="86" id="5aX-c2-u8K"/>
+                                                                <constraint firstAttribute="height" constant="54" id="6HN-d6-FmF"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14.199999809265137"/>
+                                                            <state key="normal" title="Aceptar trueque">
+                                                                <color key="titleColor" red="1" green="1" blue="1" alpha="0.90696357520000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="9"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="s50-nS-Ifm" customClass="BorderCurvedButton" customModule="_Conéctate_" customModuleProvider="target">
+                                                            <rect key="frame" x="15" y="118" width="86" height="54"/>
+                                                            <color key="backgroundColor" name="DarkRed"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14.199999809265137"/>
+                                                            <state key="normal" title="Rechazar trueque">
+                                                                <color key="titleColor" red="1" green="1" blue="1" alpha="0.90696357520000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="9"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ji3-uN-Jld" customClass="BorderCurvedButton" customModule="_Conéctate_" customModuleProvider="target">
+                                                            <rect key="frame" x="15" y="179" width="86" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="86" id="9xM-mQ-Ja4"/>
+                                                                <constraint firstAttribute="height" constant="30" id="bvb-7X-r70"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                            <state key="normal" title="Chat">
+                                                                <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" name="green"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="1.5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="9"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFE-ZS-Aw9">
+                                                            <rect key="frame" x="333.5" y="223.5" width="34.5" height="19.5"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                            <color key="textColor" name="green"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H2-uW-7I5">
+                                                            <rect key="frame" x="107" y="10" width="267" height="37"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Te ofrece:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sd-rp-uMj">
+                                                            <rect key="frame" x="112" y="57" width="62.5" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="hhe-u7-F3a"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                            <color key="textColor" name="green"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aHg-MF-Wem">
+                                                            <rect key="frame" x="111" y="80" width="263" height="62.5"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiere a cambio:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTy-LM-8Fd">
+                                                            <rect key="frame" x="111" y="152.5" width="108.5" height="19.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="19.5" id="Iak-LP-s64"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                            <color key="textColor" name="green"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDE-QC-DDm">
+                                                            <rect key="frame" x="111" y="174" width="263" height="41.5"/>
+                                                            <string key="text" base64-UTF8="YES">
+Cg
+</string>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="8Sd-rp-uMj" firstAttribute="leading" secondItem="G5n-Sq-yKe" secondAttribute="trailing" constant="11" id="24s-Q1-QaK"/>
+                                                        <constraint firstAttribute="bottom" secondItem="IFE-ZS-Aw9" secondAttribute="bottom" constant="11" id="35g-Hd-74V"/>
+                                                        <constraint firstItem="aD2-ub-04d" firstAttribute="leading" secondItem="WLC-3O-RwU" secondAttribute="leading" constant="37" id="4Au-rc-EKl"/>
+                                                        <constraint firstItem="ZTy-LM-8Fd" firstAttribute="leading" secondItem="s50-nS-Ifm" secondAttribute="trailing" constant="10" id="4BD-3W-yP4"/>
+                                                        <constraint firstItem="aHg-MF-Wem" firstAttribute="leading" secondItem="G5n-Sq-yKe" secondAttribute="trailing" constant="10" id="5Qf-s7-yoa"/>
+                                                        <constraint firstItem="G5n-Sq-yKe" firstAttribute="top" secondItem="aD2-ub-04d" secondAttribute="bottom" constant="15" id="Ah1-q7-QKY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="0H2-uW-7I5" secondAttribute="trailing" constant="10" id="Izp-N4-OtI"/>
+                                                        <constraint firstItem="0H2-uW-7I5" firstAttribute="top" secondItem="WLC-3O-RwU" secondAttribute="top" constant="10" id="J4b-8a-jcp"/>
+                                                        <constraint firstItem="G5n-Sq-yKe" firstAttribute="leading" secondItem="WLC-3O-RwU" secondAttribute="leading" constant="15" id="Lib-Ts-Viq"/>
+                                                        <constraint firstItem="8Sd-rp-uMj" firstAttribute="top" secondItem="0H2-uW-7I5" secondAttribute="bottom" constant="10" id="ObQ-xa-Wfw"/>
+                                                        <constraint firstItem="ji3-uN-Jld" firstAttribute="top" secondItem="s50-nS-Ifm" secondAttribute="bottom" constant="7" id="OiC-4G-EUW"/>
+                                                        <constraint firstItem="ji3-uN-Jld" firstAttribute="leading" secondItem="WLC-3O-RwU" secondAttribute="leading" constant="15" id="Oqn-aI-0Ir"/>
+                                                        <constraint firstAttribute="trailing" secondItem="IFE-ZS-Aw9" secondAttribute="trailing" constant="16" id="QDr-Dn-4cD"/>
+                                                        <constraint firstItem="s50-nS-Ifm" firstAttribute="leading" secondItem="WLC-3O-RwU" secondAttribute="leading" constant="15" id="Uk6-CN-fcJ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="lDE-QC-DDm" secondAttribute="trailing" constant="10" id="Yjx-Zv-uL2"/>
+                                                        <constraint firstItem="0H2-uW-7I5" firstAttribute="leading" secondItem="aD2-ub-04d" secondAttribute="trailing" constant="17" id="adb-bP-pkt"/>
+                                                        <constraint firstItem="ZTy-LM-8Fd" firstAttribute="bottom" secondItem="s50-nS-Ifm" secondAttribute="bottom" id="fGp-WC-jZo"/>
+                                                        <constraint firstItem="IFE-ZS-Aw9" firstAttribute="top" secondItem="lDE-QC-DDm" secondAttribute="bottom" constant="8" id="fIX-Ag-h6u"/>
+                                                        <constraint firstItem="8Sd-rp-uMj" firstAttribute="top" secondItem="G5n-Sq-yKe" secondAttribute="top" id="fZS-hk-CVg"/>
+                                                        <constraint firstItem="lDE-QC-DDm" firstAttribute="leading" secondItem="ji3-uN-Jld" secondAttribute="trailing" constant="10" id="gPD-HU-dBS"/>
+                                                        <constraint firstItem="s50-nS-Ifm" firstAttribute="top" secondItem="G5n-Sq-yKe" secondAttribute="bottom" constant="7" id="gUs-if-EGp"/>
+                                                        <constraint firstItem="ZTy-LM-8Fd" firstAttribute="top" secondItem="aHg-MF-Wem" secondAttribute="bottom" constant="10" id="hLW-d8-5a7"/>
+                                                        <constraint firstItem="aHg-MF-Wem" firstAttribute="top" secondItem="8Sd-rp-uMj" secondAttribute="bottom" constant="2" id="iBL-3o-5DE"/>
+                                                        <constraint firstItem="s50-nS-Ifm" firstAttribute="height" secondItem="G5n-Sq-yKe" secondAttribute="height" id="mmp-ox-fA9"/>
+                                                        <constraint firstItem="lDE-QC-DDm" firstAttribute="top" secondItem="ZTy-LM-8Fd" secondAttribute="bottom" constant="2" id="nLU-3n-5Dw"/>
+                                                        <constraint firstAttribute="trailing" secondItem="aHg-MF-Wem" secondAttribute="trailing" constant="10" id="uDU-MZ-Mvu"/>
+                                                        <constraint firstItem="aD2-ub-04d" firstAttribute="top" secondItem="WLC-3O-RwU" secondAttribute="top" constant="15" id="uPw-A9-H9l"/>
+                                                        <constraint firstItem="s50-nS-Ifm" firstAttribute="width" secondItem="G5n-Sq-yKe" secondAttribute="width" id="wPc-vq-nLt"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="radius">
+                                                            <real key="value" value="5.4000000000000004"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                            <real key="value" value="1.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                            <color key="value" name="green"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowsOffSetWidth">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                            <color key="value" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowsOffSetHeight">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                            <real key="value" value="0.23000000000000001"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                                            <real key="value" value="19"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowSpread">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="WLC-3O-RwU" secondAttribute="bottom" constant="15" id="6qt-RV-Dmw"/>
+                                                <constraint firstAttribute="trailing" secondItem="WLC-3O-RwU" secondAttribute="trailing" constant="15" id="RR2-ap-hKH"/>
+                                                <constraint firstItem="WLC-3O-RwU" firstAttribute="top" secondItem="2kn-oK-w2r" secondAttribute="top" constant="15" id="Zr0-mm-ajG"/>
+                                                <constraint firstItem="WLC-3O-RwU" firstAttribute="leading" secondItem="2kn-oK-w2r" secondAttribute="leading" constant="15" id="bj2-k8-h4f"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="aceptButton" destination="G5n-Sq-yKe" id="K8V-Oc-FER"/>
+                                            <outlet property="chatButton" destination="ji3-uN-Jld" id="VLG-Zh-KwZ"/>
+                                            <outlet property="dateLabel" destination="IFE-ZS-Aw9" id="llH-vz-BXx"/>
+                                            <outlet property="pide" destination="lDE-QC-DDm" id="ZrA-aG-lT9"/>
+                                            <outlet property="rejectButton" destination="s50-nS-Ifm" id="92a-9z-Cch"/>
+                                            <outlet property="servicio" destination="aHg-MF-Wem" id="mTB-O1-cBh"/>
+                                            <outlet property="title" destination="0H2-uW-7I5" id="V7i-JA-IEh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoProvider" translatesAutoresizingMaskIntoConstraints="NO" id="Hj2-mP-fc4">
+                                <rect key="frame" x="0.0" y="713" width="414" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="CEG-xE-Ywk"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hmS-2w-AyT" firstAttribute="trailing" secondItem="Hj2-mP-fc4" secondAttribute="trailing" id="KdQ-sw-tK2"/>
+                            <constraint firstItem="hmS-2w-AyT" firstAttribute="bottom" secondItem="Hj2-mP-fc4" secondAttribute="bottom" id="TFh-jr-CZR"/>
+                            <constraint firstItem="hmS-2w-AyT" firstAttribute="trailing" secondItem="TIQ-M3-DEC" secondAttribute="trailing" id="bQw-Yc-hnB"/>
+                            <constraint firstItem="Hj2-mP-fc4" firstAttribute="leading" secondItem="hmS-2w-AyT" secondAttribute="leading" id="jjP-Z5-BA9"/>
+                            <constraint firstItem="TIQ-M3-DEC" firstAttribute="leading" secondItem="hmS-2w-AyT" secondAttribute="leading" id="mme-sz-pCS"/>
+                            <constraint firstItem="hmS-2w-AyT" firstAttribute="bottom" secondItem="TIQ-M3-DEC" secondAttribute="bottom" constant="30" id="n5K-HV-QCY"/>
+                            <constraint firstItem="TIQ-M3-DEC" firstAttribute="top" secondItem="hmS-2w-AyT" secondAttribute="top" constant="15" id="ogp-oI-hoe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hmS-2w-AyT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Solicitudes de trueque" id="AZD-2z-wou"/>
+                    <connections>
+                        <outlet property="tableView" destination="TIQ-M3-DEC" id="tfJ-ww-xX5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUM-Rf-nLh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="428.98550724637687" y="1773.8839285714284"/>
         </scene>
         <!--Notificaciones-->
         <scene sceneID="ix1-3Y-YfV">
@@ -219,7 +458,11 @@
     <resources>
         <image name="fondo" width="375" height="832"/>
         <image name="img_trueque_morado" width="56" height="25"/>
+        <image name="logoProvider" width="375" height="94"/>
         <image name="notificationTab" width="13" height="13"/>
+        <namedColor name="DarkRed">
+            <color red="0.79607843137254897" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="green">
             <color red="0.078431372549019607" green="0.65098039215686276" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

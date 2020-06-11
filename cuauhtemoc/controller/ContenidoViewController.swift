@@ -292,8 +292,10 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                 switch result{
                 case.success(dat: let dat):
                     if dat?.id ?? 0 > 0 {
-                        self.showAlert(title: "Felicidades", message: "Tu propuesta de trueque fue enviada")
-                        self.navigationController?.popViewController(animated: true)
+                        if tipo != "1"{
+                            self.showAlert(title: "Felicidades", message: "Tu propuesta de trueque fue enviada")
+                        }                        
+                        //self.navigationController?.popViewController(animated: true)
                     }
                 case .failure(let e):
                     print(e.localizedDescription)

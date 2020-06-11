@@ -286,6 +286,8 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             cell.imgServicio.image = UIImage(named: "servicio_documento")
         } else if(self.recursos[indexPath.row].tipo == 6){
             cell.imgServicio.image = UIImage(named: "servicio_enlace")
+        }else if(self.recursos[indexPath.row].tipo == 9){
+            cell.imgServicio.image = UIImage(named: "location")
         } else if(self.recursos[indexPath.row].tipo == 10){
             cell.imgServicio.image = UIImage(named: "servicio_precio")
         } else if(self.recursos[indexPath.row].tipo == 11){
@@ -496,13 +498,19 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                         }
                     }
                     self.hideActivityIndicator()
-                    self.showAlert(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!")
-                    let vc = self.storyboard?.instantiateViewController(identifier: "CargarOfertaViewController") ?? CargarOfertaViewController()
-                    var vcs = self.navigationController?.viewControllers
-                    vcs?.removeLast()
-                    vcs?.append(vc)
-                    self.navigationController?.setViewControllers(vcs ?? [vc], animated: false)
-                    (self.parent?.parent as? UITabBarController)?.selectedIndex = 0
+                    let alert = UIAlertController(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Aceptar", style: .default, handler: {_ in
+                        let vc = self.storyboard?.instantiateViewController(identifier: "CargarOfertaViewController") ?? CargarOfertaViewController()
+                                           var vcs = self.navigationController?.viewControllers
+                        vcs?.removeLast()
+                        vcs?.append(vc)
+                        self.navigationController?.setViewControllers(vcs ?? [vc], animated: false)
+                        (self.parent?.parent as? UITabBarController)?.selectedIndex = 0
+                    })
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
+                    //self.showAlert(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!")
+                   
                 case .failure(let e):
                     self.hideActivityIndicator()
                     self.showAlert(title: "Ups!", message: e.localizedDescription)

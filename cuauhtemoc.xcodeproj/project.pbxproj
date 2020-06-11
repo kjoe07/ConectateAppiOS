@@ -39,6 +39,8 @@
 		11CB736A246ED32800E086DC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CB7369246ED32800E086DC /* WebViewController.swift */; };
 		11D483142447F0760061FA33 /* BorderImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D483132447F0760061FA33 /* BorderImageView.swift */; };
 		11DAFBB124918F7B00FC8B0E /* CalificarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DAFBB024918F7B00FC8B0E /* CalificarViewController.swift */; };
+		11DAFBB32492807200FC8B0E /* TruequeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DAFBB22492807200FC8B0E /* TruequeTableViewCell.swift */; };
+		11DAFBB52492809D00FC8B0E /* SolicitudesTruequesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DAFBB42492809D00FC8B0E /* SolicitudesTruequesViewController.swift */; };
 		11ED64F5245758810037648C /* VerifyCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ED64F4245758810037648C /* VerifyCodeResponse.swift */; };
 		11ED64F62457824E0037648C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 116563BE2448BDB300860795 /* Home.storyboard */; };
 		11FF0921242E7FE200A93AE0 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 11FF0920242E7FE200A93AE0 /* IQKeyboardManagerSwift */; };
@@ -150,6 +152,8 @@
 		11CB7369246ED32800E086DC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		11D483132447F0760061FA33 /* BorderImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderImageView.swift; sourceTree = "<group>"; };
 		11DAFBB024918F7B00FC8B0E /* CalificarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalificarViewController.swift; sourceTree = "<group>"; };
+		11DAFBB22492807200FC8B0E /* TruequeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruequeTableViewCell.swift; sourceTree = "<group>"; };
+		11DAFBB42492809D00FC8B0E /* SolicitudesTruequesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolicitudesTruequesViewController.swift; sourceTree = "<group>"; };
 		11ED64F4245758810037648C /* VerifyCodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeResponse.swift; sourceTree = "<group>"; };
 		197DE7B626E4DD4C786595EF /* Pods_cuauhtemoc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemoc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4370429B21F2FFD717FB8C51 /* Pods_cuauhtemocUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cuauhtemocUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -352,6 +356,7 @@
 				11A7BCBB2474305300D0F6F5 /* MethodViewController.swift */,
 				118061D5247EF42E00E02251 /* OnboardingViewController.swift */,
 				11DAFBB024918F7B00FC8B0E /* CalificarViewController.swift */,
+				11DAFBB42492809D00FC8B0E /* SolicitudesTruequesViewController.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -392,6 +397,7 @@
 				573B5671233D00D900ADB2E3 /* PerfilTableViewCell.swift */,
 				573B567B233D101400ADB2E3 /* ContratacionesTableViewCell.swift */,
 				118061D7247EF4F100E02251 /* OnboardingCollectionViewCell.swift */,
+				11DAFBB22492807200FC8B0E /* TruequeTableViewCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -785,12 +791,14 @@
 				11D483142447F0760061FA33 /* BorderImageView.swift in Sources */,
 				11CB735C246AD2E200E086DC /* HashtagTableViewController.swift in Sources */,
 				573B5666233CEAF900ADB2E3 /* NotificacionCompleto.swift in Sources */,
+				11DAFBB32492807200FC8B0E /* TruequeTableViewCell.swift in Sources */,
 				1128681B244118AE00F6BD58 /* CustomSegmentedControl.swift in Sources */,
 				574B6388232BDA2F00F4A29D /* AppDelegate.swift in Sources */,
 				57BFD1C9233688FB002A4EA3 /* PersonalizadoViewController.swift in Sources */,
 				573B567E233D127400ADB2E3 /* ChatViewController.swift in Sources */,
 				118D3DA32444DC48004D92E6 /* BorderCurvedButton.swift in Sources */,
 				11B12BA82448F2D20001ACB2 /* RecoverViewController.swift in Sources */,
+				11DAFBB52492809D00FC8B0E /* SolicitudesTruequesViewController.swift in Sources */,
 				57BFD20123372974002A4EA3 /* Keyword.swift in Sources */,
 				11B12BAA2448F4E80001ACB2 /* NetworkLoader.swift in Sources */,
 			);

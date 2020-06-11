@@ -80,7 +80,7 @@ class HashtagTableViewController: UITableViewController,UISearchResultsUpdating 
 //        }
     }
     @objc func donde(_ sender: UIBarButtonItem){
-        if hashtags.count == 5{
+        if  (1...5).contains(hashtags.count){
             self.selectedHashtag?(hashtags)
             self.navigationController?.popViewController(animated: true)
         }else{
