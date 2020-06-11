@@ -18,7 +18,7 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
     var acciones:[Accion]!  = []
     var comentarios:[Accion]!  = []
     var postCompleto:PostCompleto!
-    
+    var id: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,7 +104,7 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func cargarDatos(){
-        NetworkLoader.loadData(url: "\(Api.singleContent.url)\(post.id ?? 0)/", data: [:], method: .get, completion: {
+        NetworkLoader.loadData(url: "\(Api.singleContent.url)\(id == nil ? post.id ?? 0 : id ?? 0)/", data: [:], method: .get, completion: {
             [weak self] (result: MyResult<PostCompleto>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}

@@ -133,6 +133,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         } else if notificaciones?[indexPath.row].content_object?.tipo == 3 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "img_mensaje"), for: .normal)
             cell.btnAcciom.setTitle("Ver", for: .normal)
+            cell.btnAcciom.addTarget(self, action: #selector(self.showComments(_:)), for: .touchUpInside)
             //cell.imgTipoNotificacion.image = UIImage(named: "img_mensaje")
         } else if notificaciones?[indexPath.row].content_object?.tipo == 4 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "img_trueque_morado"), for: .normal)
@@ -186,6 +187,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
     }
     @IBAction func showComments(_ sender:UIButton){
         let vc = UIStoryboard(name: "conecta", bundle: nil).instantiateViewController(identifier: "comentariosViewController") as! ComentariosViewController
+        vc.id = self.notificaciones?[sender.tag].content_object?.id
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func showTrueques(_ sender: UIButton){
