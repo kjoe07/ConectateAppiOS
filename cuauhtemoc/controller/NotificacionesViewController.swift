@@ -91,7 +91,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
                 case .success(dat: let dat):
                     if dat.count ?? 0 > 0{
                         self.notificaciones = dat.results?.filter({
-                            $0.content_object?.tipo ?? 0 != 2
+                            $0.tipo ?? 0 != 2
                         })
                         self.tableView.reloadData()
                     }
@@ -124,36 +124,37 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         cell.btnAcciom.setTitle("Chat", for: .normal)
         cell.imgTipoNotificacion.tintColor = UIColor(named: "green") ?? .green
         //cell.imgTipoNotificacion.imageView?.image?.renderingMode = UIImage.RenderingMode.alwaysTemplate
-        if notificaciones?[indexPath.row].content_object?.tipo == 1 {
-            cell.imgTipoNotificacion.setImage(UIImage(named: "emtptyHeart"), for: .normal)
-             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
-        } else if notificaciones?[indexPath.row].content_object?.tipo == 2 {
-            //cell.imgTipoNotificacion.image = UIImage(named: "btn_bloqueat")
-            cell.imgTipoNotificacion.setImage(UIImage(named: "btn_bloqueat"), for: .normal)
-        } else if notificaciones?[indexPath.row].content_object?.tipo == 3 {
+        if notificaciones?[indexPath.row].tipo == 1 {
+            cell.imgTipoNotificacion.setImage(#imageLiteral(resourceName: "heartGreen"), for: .normal)
+            cell.btnAcciom.isHidden = true
+             //cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
+        } else if notificaciones?[indexPath.row].tipo == 3 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "img_mensaje"), for: .normal)
             cell.btnAcciom.setTitle("Ver", for: .normal)
             cell.btnAcciom.addTarget(self, action: #selector(self.showComments(_:)), for: .touchUpInside)
+            cell.btnAcciom.isHidden = false
             //cell.imgTipoNotificacion.image = UIImage(named: "img_mensaje")
-        } else if notificaciones?[indexPath.row].content_object?.tipo == 4 {
+        } else if notificaciones?[indexPath.row].tipo == 4 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "img_trueque_morado"), for: .normal)
             cell.btnAcciom.setTitle("Ver", for: .normal)
-        } else if notificaciones?[indexPath.row].content_object?.tipo == 5 {
-            cell.imgTipoNotificacion.setImage( UIImage(named: "img_contratar_morado"), for: .normal)
-            
-        } else if notificaciones?[indexPath.row].content_object?.tipo == 6 {
-            cell.imgTipoNotificacion.setImage(UIImage(named: "btn_add_circulo_amarillo"), for: .normal)
-            
-        } else if notificaciones?[indexPath.row].content_object?.tipo == 7 {
-            cell.imgTipoNotificacion.setImage(UIImage(named: "img_lapiz_morado"), for: .normal)
+            cell.btnAcciom.addTarget(self, action: #selector(self.showTrueques(_:)), for: .primaryActionTriggered)
+            cell.btnAcciom.isHidden = false
+        } else if notificaciones?[indexPath.row].tipo == 5 {
+            cell.imgTipoNotificacion.setImage( #imageLiteral(resourceName: "servicio_precio"), for: .normal)
+            cell.btnAcciom.isHidden = false
+            cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .primaryActionTriggered)
+        } else if notificaciones?[indexPath.row].tipo == 7 {
+            cell.imgTipoNotificacion.setImage(#imageLiteral(resourceName: "greenPencil"), for: .normal)
+            cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
+            cell.btnAcciom.isHidden = false
+        } else if notificaciones?[indexPath.row].tipo == 8 {
+            cell.imgTipoNotificacion.setImage( #imageLiteral(resourceName: "servicio_precio"), for: .normal)
              cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
-            
-        } else if notificaciones?[indexPath.row].content_object?.tipo == 8 {
-            cell.imgTipoNotificacion.setImage( UIImage(named: "servicio_precio"), for: .normal)
-             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
-        } else if notificaciones?[indexPath.row].content_object?.tipo == 9 {
+            cell.btnAcciom.isHidden = false
+        } else if notificaciones?[indexPath.row].tipo == 9 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "servicio_redes"), for: .normal)
-             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
+            cell.btnAcciom.isHidden = true
+             //cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
         }
         cell.imgTipoNotificacion.tintColor = UIColor(named: "green") ?? .green
         return cell
@@ -191,7 +192,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         self.navigationController?.pushViewController(vc, animated: true)
     }
     @IBAction func showTrueques(_ sender: UIButton){
-        //TODO: -a new VC fro the truques system
+        self.performSegue(withIdentifier: "trueques", sender: sender)
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -233,15 +234,14 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         self.navigationController?.navigationBar.insertSubview(view, at: 1)
         view.removeFromSuperview()
     }
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "trueques"{
+            let vc = segue.destination as! SolicitudesTruequesViewController
+            vc.id = self.notificaciones?[(sender as? UIButton)?.tag ?? 0].content_object?.id
+        }
     }
-    */
 
 }

@@ -232,7 +232,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
                         }
                         self.collectionView.reloadData()
                     }
-                    if data?.recursos.count ?? 0 > 0{
+                    if data?.recursos?.count ?? 0 > 0{
                         print("Recursos has data")
                         self.tableView.isHidden = false
                         self.recursos = data?.recursos

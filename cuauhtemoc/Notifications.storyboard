@@ -188,7 +188,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="u5L-uF-4mN" id="G1l-X7-ebl"/>
-                        <segue destination="Lfj-kj-kTy" kind="show" id="SKc-wj-aNG"/>
+                        <segue destination="Lfj-kj-kTy" kind="show" identifier="trueques" id="SKc-wj-aNG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zod-2i-UaI" userLabel="First Responder" sceneMemberID="firstResponder"/>

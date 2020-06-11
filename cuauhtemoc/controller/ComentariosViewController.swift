@@ -110,8 +110,8 @@ class ComentariosViewController: UIViewController, UITableViewDataSource, UITabl
                 guard let self = self else {return}
                 switch result{
                 case .success(dat: let data):
-                    if data.acciones.count > 0{
-                        self.comentarios = data.acciones.filter({
+                    if data.acciones?.count ?? 0 > 0{
+                        self.comentarios = data.acciones?.filter({
                             $0.tipo == 3
                         })
                         self.tableView.reloadData()

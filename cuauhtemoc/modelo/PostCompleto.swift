@@ -11,17 +11,10 @@ import Foundation
 class PostCompleto:Codable {
     
     let post:Post?
-    let recursos:[Recurso]
-    let acciones:[Accion]
-    
-    init(post:Post, recursos:[Recurso], acciones:[Accion]) {
-        self.post = post
-        self.recursos = recursos
-        self.acciones = acciones
-    }
-    
-    
+    let recursos:[Recurso]?
+    let acciones:[Accion]?
 }
+
 struct Post: Codable {
     let id:Int?
     let usuario:Usuario?
