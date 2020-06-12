@@ -69,11 +69,13 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func btnRegistro(_ sender: Any) {
         textFields = [txtNombre,txtTelefono,txtCorreo,txtPassword,txtCP,txtApellido,txtFechaNacimiento]
-        if(chcDatos.isOn && chcTerminos.isOn) && (validarDatos(textFields: textFields)){
+        if(chcDatos.isOn && chcTerminos.isOn) && (validarDatos(textFields: textFields)) && txtTelefono.text?.count == 10{
             registroUsuarioWS()
         } else {
             if !chcDatos.isOn || !chcTerminos.isOn{
                enviarMensaje(titulo: "Verifica tu información", mensaje: "Debes aceptar términos y coindiciones y la ley de datos personale spara continuar")
+            }else if txtTelefono.text?.count != 10{
+                self.showAlert(title: "Ups!", message: "el teléfono sólo debe contener 10 dígitos.")
             }else{
                 enviarMensaje(titulo: "¡Ups!", mensaje: "Ingrese todos los campos para continuar")
             }
@@ -88,6 +90,7 @@ class RegistroViewController: UIViewController, UITextFieldDelegate {
             DispatchQueue.main.async {
                 print("result",result)
                 self.hideActivityIndicator()
+                
                 switch result{
                 case .success(let dat):
                     if dat.result ?? 0 == 1{
