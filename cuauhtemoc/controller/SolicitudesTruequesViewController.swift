@@ -74,10 +74,32 @@ class SolicitudesTruequesViewController: UIViewController, UITableViewDataSource
     }
     
     @objc func acept(_ sender: UIButton){
-        
+        let params = ["estatus":3]
+        NetworkLoader.loadData(url: "\(Api.calificar.url)\(trueques?[sender.tag].id ?? 0)/", data:params, method: .put, completion: {[weak self] (result:MyResult<LoginResponse>)in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch result{
+                case .success(let data):
+                    print(data)
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+        })
     }
     @objc func cancel(_ sender: UIButton){
-        
+        let params = ["estatus":4]
+        NetworkLoader.loadData(url: "\(Api.calificar.url)\(trueques?[sender.tag].id ?? 0)/", data:params, method: .put, completion: {[weak self] (result:MyResult<LoginResponse>)in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch result{
+                case .success(let data):
+                    print(data)
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+        })
     }
     
     @objc func chat(_ sender: UIButton){

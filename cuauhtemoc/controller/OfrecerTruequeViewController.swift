@@ -54,14 +54,17 @@ class OfrecerTruequeViewController: UIViewController, UITextFieldDelegate, UIPic
     
     func wsAccion(tipo:String, post:Int, cuerpo:String ){
         let params = ["tipo":tipo,"post":post,"cuerpo":cuerpo] as [String : Any]
-        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: {[weak self] (result: MyResult<ActionResponse?>) in
+        NetworkLoader.loadData(url: Api.contentAction.url, data: params, method: .post, completion: {[weak self] (result: MyResult<AddTruequeResponse?>) in
             guard let self = self else {return}
             DispatchQueue.main.async {
+                print("result:",result)
                 switch result{
                 case.success(dat: let dat):
-                    if dat?.count ?? 0 > 0 {
+//                    if dat?.count ?? 0 > 0 {
+                        self.navigationController?.popViewController(animated: true)
+                        self.showAlert(title: "Felicidades", message: "Su propuesta de trueque ha sido enviada.")
                         print("success")
-                    }
+                    //}
                 case .failure(let e):
                     print(e.localizedDescription)
                     self.showAlert(title: "Ups!", message: e.localizedDescription)

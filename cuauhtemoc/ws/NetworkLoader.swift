@@ -126,6 +126,7 @@ enum Method {
     case post
     case get
     case patch
+    case put
     var method: String{
         switch self {
         case .get:
@@ -134,6 +135,8 @@ enum Method {
             return "POST"
         case .patch:
             return "PATCH"
+        case .put:
+            return "PUT"
         }
     }
 }
