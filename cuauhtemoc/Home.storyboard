@@ -33,7 +33,7 @@
         <!--Chat View Controller-->
         <scene sceneID="gXg-mu-YPX">
             <objects>
-                <viewController storyboardIdentifier="chatViewController" id="CBs-gT-3mZ" customClass="ChatViewController" customModule="_conectate_" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chatViewController" id="CBs-gT-3mZ" customClass="ChatViewController" customModule="_Conéctate_" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VgR-OO-DJz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
                                 <rect key="frame" x="20" y="202" width="374" height="610"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comentariosTableViewCell" rowHeight="195" id="5Di-Tn-BkC" customClass="ComentariosTableViewCell" customModule="_conectate_" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comentariosTableViewCell" rowHeight="195" id="5Di-Tn-BkC" customClass="ComentariosTableViewCell" customModule="_Conéctate_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="195"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Di-Tn-BkC" id="c8Z-J4-5nk">

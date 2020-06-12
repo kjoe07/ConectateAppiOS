@@ -80,6 +80,8 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             txtDescripcion.text = post?.body ?? ""
             self.guardado = post?.keywords
             self.collectionView.reloadData()
+            self.tableView.reloadData()
+            self.title = "Editar post"
             saveButton.setTitle("Editar servicio", for: .normal)
         }
     }

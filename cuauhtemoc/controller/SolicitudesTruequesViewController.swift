@@ -74,7 +74,7 @@ class SolicitudesTruequesViewController: UIViewController, UITableViewDataSource
     }
     
     @objc func acept(_ sender: UIButton){
-        let params = ["estatus":3]
+        let params = ["tipo":3]
         NetworkLoader.loadData(url: "\(Api.calificar.url)\(trueques?[sender.tag].id ?? 0)/", data:params, method: .put, completion: {[weak self] (result:MyResult<LoginResponse>)in
             DispatchQueue.main.async {
                 guard let self = self else {return}
@@ -88,7 +88,7 @@ class SolicitudesTruequesViewController: UIViewController, UITableViewDataSource
         })
     }
     @objc func cancel(_ sender: UIButton){
-        let params = ["estatus":4]
+        let params = ["tipo":4]
         NetworkLoader.loadData(url: "\(Api.calificar.url)\(trueques?[sender.tag].id ?? 0)/", data:params, method: .put, completion: {[weak self] (result:MyResult<LoginResponse>)in
             DispatchQueue.main.async {
                 guard let self = self else {return}

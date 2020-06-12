@@ -22,7 +22,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         super.viewDidLoad()
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        cargarDatos()
+        //cargarDatos()
         definesPresentationContext = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -91,8 +91,9 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
                 case .success(dat: let dat):
                     if dat.count ?? 0 > 0{
                         self.notificaciones = dat.results?.filter({
-                            $0.tipo ?? 0 != 2
+                            $0.content_object?.tipo ?? 0 != 2
                         })
+                        print("the not",self.notificaciones)
                         self.tableView.reloadData()
                     }
                 case .failure(let e):
@@ -113,45 +114,46 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
             dateFormater.doesRelativeDateFormatting = true
             dateFormater.dateStyle = .medium
             dateFormater.timeStyle = .none
-            
             let dateString = dateFormater.string(from: date)
             cell.txtNotificacion.text = dateString//notificaciones?[indexPath.row].content_object?.body ?? ""
         }else{
             cell.txtNotificacion.text = ""//notificaciones?[indexPath.row].content_object?.body ?? ""
         }
         cell.btnAcciom.tag = indexPath.row
-       
-        cell.btnAcciom.setTitle("Chat", for: .normal)
-        cell.imgTipoNotificacion.tintColor = UIColor(named: "green") ?? .green
+       // cell.imgTipoNotificacion.tintColor = UIColor(named: "green") ?? .green
         //cell.imgTipoNotificacion.imageView?.image?.renderingMode = UIImage.RenderingMode.alwaysTemplate
-        if notificaciones?[indexPath.row].tipo == 1 {
+        if notificaciones?[indexPath.row].content_object?.tipo == 1 {
             cell.imgTipoNotificacion.setImage(#imageLiteral(resourceName: "heartGreen"), for: .normal)
             cell.btnAcciom.isHidden = true
              //cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
-        } else if notificaciones?[indexPath.row].tipo == 3 {
+        } else if notificaciones?[indexPath.row].content_object?.tipo == 3 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "img_mensaje"), for: .normal)
+            cell.btnAcciom.isHidden = false
             cell.btnAcciom.setTitle("Ver", for: .normal)
             cell.btnAcciom.addTarget(self, action: #selector(self.showComments(_:)), for: .touchUpInside)
-            cell.btnAcciom.isHidden = false
+            
             //cell.imgTipoNotificacion.image = UIImage(named: "img_mensaje")
-        } else if notificaciones?[indexPath.row].tipo == 4 {
+        } else if notificaciones?[indexPath.row].content_object?.tipo == 4 {
+            print("trueque")
             cell.imgTipoNotificacion.setImage(UIImage(named: "img_trueque_morado"), for: .normal)
+            cell.btnAcciom.isHidden = false
             cell.btnAcciom.setTitle("Ver", for: .normal)
-            cell.btnAcciom.addTarget(self, action: #selector(self.showTrueques(_:)), for: .primaryActionTriggered)
+            cell.btnAcciom.addTarget(self, action: #selector(self.showTrueques(_:)), for: .touchUpInside)
+        } else if notificaciones?[indexPath.row].content_object?.tipo == 5 {
+            cell.imgTipoNotificacion.setImage(#imageLiteral(resourceName: "dollar1") , for: .normal)
             cell.btnAcciom.isHidden = false
-        } else if notificaciones?[indexPath.row].tipo == 5 {
-            cell.imgTipoNotificacion.setImage( #imageLiteral(resourceName: "servicio_precio"), for: .normal)
-            cell.btnAcciom.isHidden = false
-            cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .primaryActionTriggered)
-        } else if notificaciones?[indexPath.row].tipo == 7 {
+            cell.btnAcciom.setTitle("chat", for: .normal)
+            cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
+        } else if notificaciones?[indexPath.row].content_object?.tipo == 7 {
             cell.imgTipoNotificacion.setImage(#imageLiteral(resourceName: "greenPencil"), for: .normal)
             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
             cell.btnAcciom.isHidden = false
-        } else if notificaciones?[indexPath.row].tipo == 8 {
+        } else if notificaciones?[indexPath.row].content_object?.tipo == 8 {
             cell.imgTipoNotificacion.setImage( #imageLiteral(resourceName: "servicio_precio"), for: .normal)
-             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
             cell.btnAcciom.isHidden = false
-        } else if notificaciones?[indexPath.row].tipo == 9 {
+             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
+            
+        } else if notificaciones?[indexPath.row].content_object?.tipo == 9 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "servicio_redes"), for: .normal)
             cell.btnAcciom.isHidden = true
              //cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
