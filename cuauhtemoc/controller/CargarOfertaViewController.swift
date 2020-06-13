@@ -83,6 +83,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             self.tableView.reloadData()
             self.title = "Editar post"
             saveButton.setTitle("Editar servicio", for: .normal)
+            loadPost()
         }
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -279,8 +280,14 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             //cell.imgServicio.image = UIImage(named: "servicio_imagen")
             let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell") as! PostTableViewCell
             print("should load and image")
-            let id = self.recursos[indexPath.row].orden
-            cell.imgPost.image = imageArray[id ?? 0]
+            if post != nil{
+                cell.imgPost.kf.setImage(with: URL(string: recursos[indexPath.row].valor)!)
+            }else{
+                let id = self.recursos[indexPath.row].orden
+                
+                cell.imgPost.image = imageArray[id ?? 0]
+            }
+            
             return cell
         }  else if(self.recursos[indexPath.row].tipo == 4){
             cell.imgServicio.image = UIImage(named: "servicio_video")
@@ -321,44 +328,41 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         }
     }
     //MARK: -   -
-//    func cargarHashTags(){
-//        txtHasTags.inputView = pickerViewHashTags
-//        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
-//        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
-//        toolBar.barStyle = UIBarStyle.black
-//        toolBar.tintColor = UIColor.white
-//        toolBar.backgroundColor = UIColor(red: 0.49411764705882, green: 0, blue: 0.49411764705882, alpha: 0)
-//        let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(donePressed2) )
-//        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
-//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width / 3, height: self.view.frame.size.height))
-//        label.font = UIFont(name: "Helvetica", size: 13)
-//        label.backgroundColor = UIColor.clear
-//        label.textColor = UIColor.white
-//        label.text = "Selecciona:"
-//        label.textAlignment = NSTextAlignment.center
-//        let textBtn = UIBarButtonItem(customView: label)
-//        toolBar.setItems([textBtn,flexSpace,doneButton], animated: true)
-//        txtHasTags.inputAccessoryView = toolBar
-//    }
-//
-//    @objc func donePressed2() {
-//         print("Ingreso")
-//        if let index = intereses.firstIndex(of: self.busqueda?[pickerViewHashTags.selectedRow(inComponent: 0)].id ?? 0){
-//            print("No hay")
-//            intereses.remove(at: index)
-//            guardado?.remove(at: index)
-//        } else {
-//            print("Agregando")
-//            if(self.intereses.count >= 5){
-//                self.showAlert(title: "Ups", message: "Solo puedes agregar 5 hashtags")
-//            } else {
-//                intereses.append(self.busqueda?[pickerViewHashTags.selectedRow(inComponent: 0)].id ?? 0)
-//            }
-//        }
-//        txtHasTags.resignFirstResponder()
-//        collectionView.reloadData()
-//    }
-    
+    func loadPost(){
+        NetworkLoader.loadData(url: "\(Api.singleContent.url)\(post?.id ?? 0)/", data: [:], method: .get, completion: { [weak self] (result: MyResult<PostCompleto>) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch result{
+                case .success(let data):
+                    if data.post != nil {
+                        self.recursos = data.recursos
+                        self.post = data.post
+                        if data.post?.establecimiento != nil{
+                            self.map.isHidden = false
+                            let marker = GMSMarker()
+                            marker.icon = #imageLiteral(resourceName: "markerIcon")
+                            let latStr = data.post?.establecimiento?.latitud ?? "0"
+                            let longstr = data.post?.establecimiento?.longitud ?? "0"
+                            let lat = Double(latStr)
+                            let lon = Double(longstr)
+                            marker.position = CLLocationCoordinate2D(latitude:lat ?? 0 , longitude: lon ?? 0)
+                            marker.map = self.map
+                            self.map.animate(toLocation: marker.position)
+                            self.txtEstablecimiento.isHidden = false
+                            self.txtEstablecimiento.text = data.post?.establecimiento?.nombre ?? ""
+                            self.txtEstablishmentLocation.isHidden = false
+                            self.txtEstablishmentLocation.text = data.post?.establecimiento?.direccion ?? ""
+                        }
+                        self.tableView.reloadData()
+                    }else{
+                        self.showAlert(title: "Ups!", message: "algo salio mál y no sabemos que fue")
+                    }
+                case .failure(let e):
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+        })
+    }
     func cargarServicio(){
         lblTipoServicio.inputView = pickerViewServicio
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
@@ -500,6 +504,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                         }
                     }
                     self.hideActivityIndicator()
+                    //NotificationCenter.default.post(name: NSNotification.Name("oferta"), object: nil)
                     let alert = UIAlertController(title: "Felicidades", message: "¡Tu oferta fue cargado con éxito!", preferredStyle: .alert)
                     let action = UIAlertAction(title: "Aceptar", style: .default, handler: {_ in
                         let vc = self.storyboard?.instantiateViewController(identifier: "CargarOfertaViewController") ?? CargarOfertaViewController()

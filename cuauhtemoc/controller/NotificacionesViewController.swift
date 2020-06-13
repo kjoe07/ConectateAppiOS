@@ -151,8 +151,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
         } else if notificaciones?[indexPath.row].content_object?.tipo == 8 {
             cell.imgTipoNotificacion.setImage( #imageLiteral(resourceName: "servicio_precio"), for: .normal)
             cell.btnAcciom.isHidden = false
-             cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
-            
+            cell.btnAcciom.addTarget(self, action: #selector(self.goChat(_:)), for: .touchUpInside)
         } else if notificaciones?[indexPath.row].content_object?.tipo == 9 {
             cell.imgTipoNotificacion.setImage(UIImage(named: "servicio_redes"), for: .normal)
             cell.btnAcciom.isHidden = true
@@ -182,7 +181,9 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        (cell as! NotificacionesTableViewCell).btnAcciom.removeTarget(nil, action: nil, for: .allEvents)
+    }
     
     @IBAction func goChat(_ sender: Any){
         let index = (sender as? UIButton)?.tag ?? 0
@@ -242,7 +243,7 @@ class NotificacionesViewController: UIViewController,  UITableViewDataSource, UI
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "trueques"{
             let vc = segue.destination as! SolicitudesTruequesViewController
-            vc.id = self.notificaciones?[(sender as? UIButton)?.tag ?? 0].content_object?.id
+            vc.id = self.notificaciones?[(sender as? UIButton)?.tag ?? 0].id//content_object?.id
         }
     }
 

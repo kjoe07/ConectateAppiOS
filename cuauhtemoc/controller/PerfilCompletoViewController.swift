@@ -40,18 +40,16 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
         self.tableView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-       
+        NotificationCenter.default.addObserver(self, selector: #selector(self.viewWillAppear(_:)), name: NSNotification.Name(rawValue: "ofertCreated"), object: nil)
+
         //imgPerfil.layer.cornerRadius = 48.0
         //imgPerfil.clipsToBounds = true
         //UserDefaults.standard.set(encoder, forKey: "usuario")
         guard let userData = UserDefaults.standard.object(forKey: "usuario") as? Data else {return}
         user = try? JSONDecoder().decode(Usuario.self, from: userData)
         print("ther user:",user)
-        cargarDatosPost()
-        cargarDatos()
         guard let imageData = UserDefaults.standard.object(forKey: "userImage") as? Data else {return}
         imgPerfil.image = UIImage(data: imageData)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.viewWillAppear(_:)), name: NSNotification.Name(rawValue: "ofertCreated"), object: nil)
     }
     
     //MARK: - Navigation
@@ -69,9 +67,8 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
             vc.perfil = perfil
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
-        guard let userData = UserDefaults.standard.object(forKey: "userImage") as? Data else {return}
-        imgPerfil.image = UIImage(data: userData)
         cargarDatosPost()
         cargarDatos()
     }

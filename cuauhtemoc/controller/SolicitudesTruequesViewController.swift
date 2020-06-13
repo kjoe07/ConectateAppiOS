@@ -18,7 +18,23 @@ class SolicitudesTruequesViewController: UIViewController, UITableViewDataSource
         formater.locale = Locale(identifier: "es_MX")
         formater.dateFormat = "yyyy-MM-dd HH:mm"
         formater.doesRelativeDateFormatting = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "fondo"), for: .any, barMetrics: .compactPrompt)
+        loadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+           //cargarDatos()
+           self.navigationController?.navigationBar.isTranslucent = true
+           self.navigationController?.navigationBar.tintColor = .white
+           self.navigationController?.navigationBar.barTintColor = .clear
+           //self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+           //self.navigationController?.navigationBar.topItem?.title = " "
+           //self.title = "Editar Perfil"
+          // self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for:.default)
+           self.navigationController?.navigationBar.shadowImage = UIImage()
+           self.navigationController?.navigationBar.layoutIfNeeded()
+       }
     /*
     // MARK: - Navigation
 
