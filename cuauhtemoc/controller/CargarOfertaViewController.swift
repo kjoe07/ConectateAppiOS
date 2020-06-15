@@ -70,6 +70,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             self?.map.animate(toLocation: loc)
             self?.map.animate(toZoom: 14)
         }
+        self.map.isUserInteractionEnabled = false
         let userData = UserDefaults.standard.value(forKey: "usuario") as? Data
         guard let user = try? JSONDecoder().decode(Usuario.self, from: userData ?? Data()) else {return}
         txtTelefono.text = user.celular ?? ""
@@ -352,6 +353,9 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                             self.txtEstablecimiento.text = data.post?.establecimiento?.nombre ?? ""
                             self.txtEstablishmentLocation.isHidden = false
                             self.txtEstablishmentLocation.text = data.post?.establecimiento?.direccion ?? ""
+                        }
+                        if self.recursos.count > 0 {
+                            self.tableView.isHidden = false
                         }
                         self.tableView.reloadData()
                     }else{
