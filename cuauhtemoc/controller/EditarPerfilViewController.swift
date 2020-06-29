@@ -205,6 +205,7 @@ class EditarPerfilViewController: UIViewController, UITextFieldDelegate, UIImage
             self.imgPerfil.image = image
             let data = image.jpegData(compressionQuality: 0.8)
             UserDefaults.standard.set(data, forKey: "userImage")
+            self.imagedChange = true
             //saveImage(imageName: user?.nombre ?? "")
         }
         self.dismiss(animated: true, completion: nil)
