@@ -109,6 +109,8 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                         self.tableView.reloadData()
                     }else{
                         self.showAlert(title: "¡Ups!", message: dat.error ?? "No encontramos coincidencias para esta búsqueda")
+                        self.isSearching = false
+                        self.searchController.isActive = false
                     }
                 case .failure(let e):
                     self.showAlert(title: "¡Ups!", message: e.localizedDescription)
@@ -147,6 +149,8 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                         self.tableView.reloadData()
                     }else{
                         self.showAlert(title: "¡Ups!", message: dat.error ?? "No encontramos coincidencias para esta búsqueda")
+                        self.isSearching = false
+                        self.searchController.isActive = false
                     }
                 case .failure(let e):
                     self.showAlert(title: "¡Ups!", message: e.localizedDescription)
