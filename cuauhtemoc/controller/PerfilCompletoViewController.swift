@@ -71,6 +71,12 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         cargarDatosPost()
         cargarDatos()
+        let data = UserDefaults.standard.value(forKey: "userImage") as? Data
+        if let data = data{
+            self.imgPerfil.image = UIImage(data: data)
+        }
+        //image.jpegData(compressionQuality: 0.8)
+                   
     }
     
     @IBAction func loadService(_ sender: UIButton){
