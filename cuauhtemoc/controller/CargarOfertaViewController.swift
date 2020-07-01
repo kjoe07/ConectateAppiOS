@@ -541,7 +541,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                         } else if(self.recursos[i].tipo == 10){
                             self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_precio", tipo: nil)
                         } else if(self.recursos[i].tipo == 11){
-                            //self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                             // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
                         } else if(self.recursos[i].tipo == 12){
                             //self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
