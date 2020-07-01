@@ -12,11 +12,16 @@ class NetworkLoader{
         var request: URLRequest!
         if method == .get{
             var components = URLComponents(string: url)!
-            components.queryItems = data.map { (key, value) in
-                    return URLQueryItem(name: key, value: String(describing: value ?? ""))
+            if data.count > 0{
+                components.queryItems = data.map { (key, value) in
+                        return URLQueryItem(name: key, value: String(describing: value ?? ""))
+                }
+                components.percentEncodedQuery = components.percentEncodedQuery?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)//replacingOccurrences(of: "+", with: "%2B")
+                request = URLRequest(url: components.url!)
+            }else{
+                request = URLRequest(url: URL(string: url)!)
             }
-            components.percentEncodedQuery = components.percentEncodedQuery?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)//replacingOccurrences(of: "+", with: "%2B")
-            request = URLRequest(url: components.url!)
+            
         }else{
             request = URLRequest(url: URL(string: url)!)
             let jsonDict = data

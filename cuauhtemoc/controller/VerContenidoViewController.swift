@@ -197,6 +197,7 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
     
     func cargarDatos(){
         showActivityIndicator(color: .green)
+        print( "\(Api.singleContent.url)\(contenido?.id ?? 0)/")
         NetworkLoader.loadData(url: "\(Api.singleContent.url)\(contenido?.id ?? 0)/", data: [:], method: .get, completion: {[weak self] (result: MyResult<PostCompleto?>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}
