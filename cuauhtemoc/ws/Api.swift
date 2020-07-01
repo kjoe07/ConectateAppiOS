@@ -45,6 +45,7 @@ enum Api {
     case addFile
     case recoverPassword
     case calificar
+    case updatePost(id: Int)
     var url:String{
         switch self {
         case .login:
@@ -93,6 +94,8 @@ enum Api {
             return "\(server.ws)/usuarios/resetPassword/"
         case .calificar:
             return "\(server.ws)/contenido/acciones/update/"
+        case .updatePost(let id):
+            return "\(server.ws)/contenido/update_post/\(id)/"
         }
     }
 }

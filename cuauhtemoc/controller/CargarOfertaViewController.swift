@@ -43,6 +43,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     var establistmnetLocation = false
     var phone: String?
     var post: Post?
+    var dict: [String:String] = [:]
     //MARK: - View Functions -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,11 +102,20 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     //MARK: - Actions -
     
     @IBAction func btnAgregar(_ sender: Any) {
-        if txtNombreServicio.text != "" && lblTipoServicio.text != "" && guardado?.count ?? 0 > 0{
-            sendRequest()
+        if post == nil{
+            if txtNombreServicio.text != "" && lblTipoServicio.text != "" && guardado?.count ?? 0 > 0{
+                sendRequest()
+            }else{
+                self.showAlert(title: "Ups!", message: "es necesario completar todos los campos para continuar")
+            }
         }else{
-            self.showAlert(title: "Ups!", message: "es necesario completar todos los campos para continuar")
+            if dict.count > 0{
+                updatePost()
+            }else{
+                 self.showAlert(title: "Ups!", message: "no has cambiado ningun elemento del post")
+            }
         }
+        
     }
     
     @IBAction func btnCalendario(_ sender: Any) {
@@ -288,7 +298,6 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                 
                 cell.imgPost.image = imageArray[id ?? 0]
             }
-            
             return cell
         }  else if(self.recursos[indexPath.row].tipo == 4){
             cell.imgServicio.image = UIImage(named: "servicio_video")
@@ -318,16 +327,31 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         return 1
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             self.recursos.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+    //MARK: - TextField Delgates -
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if post != nil {
+            if textField == txtNombreServicio{
+                dict["titulo"] = textField.text
+            }else if textField == lblTipoServicio{
+                dict["tipo"] = textField.text
+            }else if textField == txtDescripcion{
+                dict["body"] = textField.text
+            }else if textField == txtEstablecimiento{
+                dict[""] = ""
+            }
+        }
+    }
+    
     //MARK: -   -
     func loadPost(){
         NetworkLoader.loadData(url: "\(Api.singleContent.url)\(post?.id ?? 0)/", data: [:], method: .get, completion: { [weak self] (result: MyResult<PostCompleto>) in
@@ -461,6 +485,24 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                     }
                 case .failure(let e):
                     self.showAlert(title: "¡Ups!", message: e.localizedDescription)
+                }
+            }
+        })
+    }
+    func updatePost(){
+        showActivityIndicator(color:  UIColor(named: "green") ?? .green)
+        NetworkLoader.loadData(url: Api.updatePost(id: post?.id ?? 0).url
+            , data: dict, method: .patch, completion: {[weak self] (result: MyResult<ResponseAddPost>) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                self.hideActivityIndicator()
+                switch result{
+                case .success(let data):
+                    if data != nil{
+                        self.showAlert(title: "", message: "Contenido actualizado")
+                    }
+                case .failure(let e):
+                    self.showAlert(title: "Ups", message: e.localizedDescription)
                 }
             }
         })
@@ -608,6 +650,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         }else{
             txtTelefono.isUserInteractionEnabled = false
             txtTelefono.text = phone ?? ""
+            dict["telefono"] = phone ?? ""
         }
     }
     @IBAction func locationActivated(_ sender: Any) {
@@ -615,10 +658,12 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             txtEstablecimiento.isHidden = false
             txtEstablishmentLocation.isHidden = false
             map.isHidden = false
+            dict["establecimiento"] = "1"
         }else{
             txtEstablecimiento.isHidden = true
             txtEstablishmentLocation.isHidden = true
             map.isHidden = true
+            dict["establecimiento"] = "0"
         }        
     }
     
