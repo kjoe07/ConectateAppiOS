@@ -141,6 +141,8 @@ class VerContenidoViewController: UIViewController, UITableViewDataSource, UITab
         if self.recursos[indexPath.row].tipo == 3{
             let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell", for: indexPath) as! PostTableViewCell
             if let url = self.recursos[indexPath.row].valor.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed), let imageURL = URL(string: url){
+                print("imagen urlStrin:",url)
+                print("imagen url:",imageURL.description)
                 cell.imgPost.contentMode = .scaleToFill
                 cell.imgPost.kf.setImage(with: imageURL)//.af_setImage(withURL: imageURL)
             }
