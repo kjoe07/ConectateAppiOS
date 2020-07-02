@@ -47,6 +47,7 @@ enum Api {
     case calificar
     case updatePost(id: Int)
     case deleteResource(id: Int)
+    case deletePost(id: Int)
     var url:String{
         switch self {
         case .login:
@@ -99,6 +100,8 @@ enum Api {
             return "\(server.ws)/contenido/update_post/\(id)/"
         case .deleteResource(let id):
             return "\(server.ws)/contenido/delete_recurso/\(id)/"
+        case .deletePost(let id):
+                return "\(server.ws)/contenido/delete_post/\(id)/"
         }
     }
 }

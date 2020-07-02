@@ -167,6 +167,15 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
             }
         }
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if indexPath.section == 0{
+            if editingStyle == .delete{
+                deletePost(id: dato[indexPath.row].id ?? 0)
+                dato.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        }
+    }
         
     //MARK: - CollectionView functions -
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -245,7 +254,21 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
             }
         })
     }
-    //MARK: -
-   
+    //MARK: - delete post
+    func deletePost(id: Int){
+        NetworkLoader.loadData(url: Api.deletePost(id: id).url, data: [:], method: .delete, completion: {[weak self] (result:MyResult<Noresponse>) in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                switch result{
+                case .success(let dat):
+                    print("Dat:",dat)
+                    
+                case .failure(let e):
+                    self.showAlert(title: "Ups", message: e.localizedDescription)
+                }
+            }
+            
+        })
+    }
 
 }
