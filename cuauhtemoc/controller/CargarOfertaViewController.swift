@@ -44,6 +44,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     var phone: String?
     var post: Post?
     var dict: [String:String] = [:]
+    var resourcesCount = 0
     //MARK: - View Functions -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +113,34 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             if dict.count > 0{
                 updatePost()
             }else{
-                 self.showAlert(title: "Ups!", message: "no has cambiado ningun elemento del post")
+                if recursos.count > resourcesCount{
+                    for i in resourcesCount..<recursos.count {
+                        if(self.recursos[i].tipo == 3){
+                            for j in 0..<self.imageArray.count{
+                                //guard let image  =  else {return}
+                                self.uploadImages(post: self.post?.id ?? 0, valor: self.recursos[i].valor, Tipo: 3, image: self.imageArray[j] )
+                            }
+                        } else if(self.recursos[i].tipo == 6){
+                            self.subirURL(post: self.post?.id ?? 0, valor: self.recursos[i].valor, url: "add_url", tipo: nil)
+                        } else if(self.recursos[i].tipo == 8){
+                            self.subirURL(post: self.post?.id ?? 0, valor: self.recursos[i].valor, url: "add_fecha", tipo: nil)
+                        } else if(self.recursos[i].tipo == 9){
+                            self.subirURL(post: self.post?.id ?? 0, valor: self.recursos[i].valor, url: "add_ubicacion", tipo: nil)
+                        } else if(self.recursos[i].tipo == 10){
+                            self.subirURL(post: self.post?.id ?? 0, valor: self.recursos[i].valor, url: "add_precio", tipo: nil)
+                        } else if(self.recursos[i].tipo == 11){
+                            self.subirURL(post: self.post?.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                            // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
+                        } else if(self.recursos[i].tipo == 12){
+                            //self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                        } else if(self.recursos[i].tipo == 13){
+                            self.subirURL(post: self.post?.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                        }
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                }else{
+                    self.showAlert(title: "Ups!", message: "no has cambiado ningun elemento del post")
+                }
             }
         }
         
@@ -121,7 +149,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     @IBAction func btnCalendario(_ sender: Any) {
         FechaAlertView.instance.showAlert()
         FechaAlertView.instance.selected = { fecha,hora in
-            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: "\(fecha):\(hora)", tipo: 2))
+            self.recursos.append(Recurso(id: 0, orden: 0, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: "\(fecha):\(hora)", tipo: 2))
             self.tableView.reloadData()
         }
         tableView.isHidden = false
@@ -133,7 +161,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
             let answer = ac.textFields?[0].text ?? ""
             if answer != ""{
-                self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 6))
+                self.recursos.append(Recurso(id: 0, orden: 0, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: answer, tipo: 6))
                 self.tableView.reloadData()
             }else{
                 self.showAlert(title: "Ups!", message: "No es un enlace válido")
@@ -149,7 +177,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         let vc = self.storyboard?.instantiateViewController(identifier: "method") as! MethodViewController
         vc.selected = { vals in
             for val in vals{
-                self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: val, tipo: 11))
+                self.recursos.append(Recurso(id: 0, orden: 0, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: val, tipo: 11))
             }
             self.tableView.reloadData()
         }
@@ -164,7 +192,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             let answer = ac.textFields![0].text!
             print(answer)
             if answer != ""{
-                self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 13))
+                self.recursos.append(Recurso(id: 0, orden: 0, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: answer, tipo: 13))
                 self.tableView.reloadData()
             }
         }
@@ -193,7 +221,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             for i in 0..<(ac.textFields?.count ?? 0){
                 let answer = ac.textFields?[i].text ?? ""
                 if answer != "" {
-                    self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 12))
+                    self.recursos.append(Recurso(id: 0, orden: 0, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: answer, tipo: 12))
                 }
             }
             self.tableView.reloadData()
@@ -212,7 +240,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         ac.textFields?[0].keyboardType = .numberPad
         let submitAction = UIAlertAction(title: "Agregar", style: .default) { [unowned ac] _ in
             let answer = ac.textFields![0].text!
-            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: answer, tipo: 10))
+            self.recursos.append(Recurso(id: 0, orden: 0, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: answer, tipo: 10))
             self.tableView.reloadData()
         }
         ac.addAction(submitAction)
@@ -274,7 +302,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             let imageName = name?.lastPathComponent
             let ext = name?.pathExtension
             let imageNameExt = "\(imageName ?? "").\(ext ?? "")"
-            self.recursos.append(Recurso(id: 0, orden: imageArray.count, post: 0, valor: imageNameExt, tipo: 3))
+            self.recursos.append(Recurso(id: 0, orden: imageArray.count, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: imageNameExt, tipo: 3))
             imageArray.append(image)
             tableView.reloadData()
         }
@@ -291,11 +319,10 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             //cell.imgServicio.image = UIImage(named: "servicio_imagen")
             let cell = tableView.dequeueReusableCell(withIdentifier: "postTableViewCell") as! PostTableViewCell
             print("should load and image")
-            if post != nil{
+            if recursos[indexPath.row].valor.hasPrefix("http"){
                 cell.imgPost.kf.setImage(with: URL(string: recursos[indexPath.row].valor)!)
             }else{
                 let id = self.recursos[indexPath.row].orden
-                
                 cell.imgPost.image = imageArray[id ?? 0]
             }
             return cell
@@ -378,6 +405,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                             self.txtEstablishmentLocation.isHidden = false
                             self.txtEstablishmentLocation.text = data.post?.establecimiento?.direccion ?? ""
                         }
+                        self.resourcesCount = data.recursos?.count ?? 0
                         if self.recursos.count > 0 {
                             self.tableView.isHidden = false
                         }
@@ -611,18 +639,16 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
         let params = ["post":id.description,"tipo":Tipo.description] //as [String : Any]
         let imageData = image.pngData()
         //TODO: - Find tje codable value in this request.
-        NetworkLoader.sendPostFormData(formFields: params, url: Api.addFile.url, imageData: imageData, completion: {[weak self] (result:MyResult<Usuario>) in
+        NetworkLoader.sendPostFormData(formFields: params, url: Api.addFile.url, imageData: imageData, completion: {[weak self] (result:MyResult<Recurso>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}
                 switch result{
                 case .success(dat: let data):
-                    //FIXME: - verify the response and do proper responses
-                    print("success")
+                    self.showAlert(title: "", message: "Imagen agregada correctamente")
                 case .failure(let e):
                     self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }
             }
-            
         })
     }
      //MARK: - Navigation -
@@ -684,7 +710,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
             marker.map = map
             map.animate(toLocation: location)
         }else{
-            self.recursos.append(Recurso(id: 0, orden: 0, post: 0, valor: place.formattedAddress, tipo: 9))
+            self.recursos.append(Recurso(id: 0, orden: 0, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: place.formattedAddress, tipo: 9))
             self.tableView.reloadData()
         }
         
