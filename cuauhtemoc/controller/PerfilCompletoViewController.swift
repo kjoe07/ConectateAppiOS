@@ -212,7 +212,8 @@ class PerfilCompletoViewController: UIViewController, UICollectionViewDelegate, 
                         self.todos.append(contentsOf: self.intereses)
                         self.todos.append(contentsOf: self.extras)
                         self.username.text = "\(data.perfil?.usuario?.nombre ?? "") \(data.perfil?.usuario?.apellido ?? "")"
-                        if let urlString = data.perfil?.foto{
+                        if let urlString = data.perfil?.foto?.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed){
+                            print("the url string for profile pic",urlString)
                             guard let url = URL(string: urlString) else {return}
                             self.imgPerfil.kf.setImage(with: url)
                         }
