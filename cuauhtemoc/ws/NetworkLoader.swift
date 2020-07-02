@@ -54,7 +54,14 @@ class NetworkLoader{
                 let value = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(dat: value))
             }catch{
-                completion(.failure(error))
+                if (response as? HTTPURLResponse)?.statusCode == 204{
+                    let val = Noresponse(value: true)
+                    let data = try? JSONEncoder().encode(val)
+                    let value = try? JSONDecoder().decode(T.self, from: data!)
+                    completion(.success(dat: value!))
+                }else{
+                     completion(.failure(error))
+                }               
             }
         }.resume()
         
@@ -132,6 +139,7 @@ enum Method {
     case get
     case patch
     case put
+    case delete
     var method: String{
         switch self {
         case .get:
@@ -142,6 +150,8 @@ enum Method {
             return "PATCH"
         case .put:
             return "PUT"
+        case .delete:
+            return "DELETE"
         }
     }
 }
@@ -154,4 +164,7 @@ class Delegate: NSObject, URLSessionDelegate{
 //            completionHandler(.performDefaultHandling, nil)
 //        }
     }
+}
+struct Noresponse:Codable{
+    var value: Bool
 }

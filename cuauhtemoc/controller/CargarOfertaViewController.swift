@@ -132,7 +132,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                             self.subirURL(post: self.post?.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                             // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
                         } else if(self.recursos[i].tipo == 12){
-                            //self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                            self.subirURL(post: self.post?.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                         } else if(self.recursos[i].tipo == 13){
                             self.subirURL(post: self.post?.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                         }
@@ -149,7 +149,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     @IBAction func btnCalendario(_ sender: Any) {
         FechaAlertView.instance.showAlert()
         FechaAlertView.instance.selected = { fecha,hora in
-            self.recursos.append(Recurso(id: 0, orden: 0, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: "\(fecha):\(hora)", tipo: 2))
+            self.recursos.append(Recurso(id: 0, orden: 0, post: self.post == nil ? 0 : self.post?.id ?? 0, valor: "\(fecha)T\(hora)", tipo: 8))
             self.tableView.reloadData()
         }
         tableView.isHidden = false
@@ -356,8 +356,11 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
+            if recursos[indexPath.row].id > 0{
+                deleteResource(id: recursos[indexPath.row].id)
+            }
             self.recursos.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.deleteRows(at: [indexPath], with: .automatic)            
         }
     }
     //MARK: - TextField Delgates -
@@ -572,7 +575,7 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                             self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                             // self.subirText(post: data.id ?? 0, valor: self.recursos[i].valor, tipo: self.recursos[i].tipo)
                         } else if(self.recursos[i].tipo == 12){
-                            //self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
+                            self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                         } else if(self.recursos[i].tipo == 13){
                             self.subirURL(post: data.id ?? 0, valor: self.recursos[i].valor, url: "add_texto", tipo: self.recursos[i].tipo.description)
                         }
@@ -594,6 +597,22 @@ class CargarOfertaViewController: UIViewController, UITextFieldDelegate, UIPicke
                    
                 case .failure(let e):
                     self.hideActivityIndicator()
+                    self.showAlert(title: "Ups!", message: e.localizedDescription)
+                }
+            }
+        })
+    }
+    func deleteResource(id: Int){
+        NetworkLoader.loadData(url: Api.deleteResource(id: id).url, data: [:], method: .delete, completion:{ [weak self] (result:MyResult<Noresponse>) in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch result{
+                case .success(let dat):
+                    print("success")
+                    if self.resourcesCount > 0{
+                        self.resourcesCount -= 1
+                    }
+                case .failure(let e):
                     self.showAlert(title: "Ups!", message: e.localizedDescription)
                 }
             }
