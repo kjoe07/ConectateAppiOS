@@ -77,6 +77,9 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
             self.navigationController?.view.layoutIfNeeded()
         }
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        NetworkLoader.cancel()
+    }
     override func viewWillAppear(_ animated: Bool) {
         //cargarDatos()
         self.navigationController?.navigationBar.isTranslucent = true

@@ -8,7 +8,8 @@
 
 import Foundation
 class NetworkLoader{
-     static func loadData<T: Codable>(url: String,data: [String: Any?],method: Method ,completion: @escaping (MyResult<T>) -> Void) {
+    static var task: URLSessionDataTask?
+    static func loadData<T: Codable>(url: String,data: [String: Any?],method: Method ,completion: @escaping (MyResult<T>) -> Void) {
         var request: URLRequest!
         if method == .get{
             var components = URLComponents(string: url)!
@@ -43,7 +44,7 @@ class NetworkLoader{
         }
         let delegate = Delegate()
         let session = URLSession(configuration: .default, delegate: delegate, delegateQueue:  .main)
-        session.dataTask(with: request){ data,response,error  in
+        task = session.dataTask(with: request){ data,response,error  in
 //        URLSession.shared.dataTask(with: request){ data,response,error  in
             print("response \(String(describing: response)): \(String(describing: data))")
             if error != nil {
@@ -63,8 +64,8 @@ class NetworkLoader{
                      completion(.failure(error))
                 }               
             }
-        }.resume()
-        
+        }//.resume()
+        task?.resume()
     }
     static func sendPostFormData<T:Codable>(formFields: [String: String]?,url: String, imageData: Data?,completion: @escaping (MyResult<T>) -> Void){
             let boundary = "Boundary-\(UUID().uuidString)"
@@ -102,6 +103,9 @@ class NetworkLoader{
                 }
             }.resume()
         }
+    static func cancel(){
+        task?.cancel()
+    }
     
 }
 func convertFormField(named name: String, value: String, using boundary: String) -> String {
