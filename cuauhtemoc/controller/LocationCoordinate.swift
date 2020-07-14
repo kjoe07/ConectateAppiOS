@@ -31,8 +31,8 @@ class LocationCoordinateDelegate:NSObject,CLLocationManagerDelegate{
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         print("update location")
-       // map.clear()
-       let location = locations.last! as CLLocation
+        // map.clear()
+        let location = locations.last! as CLLocation
         updated?(location.coordinate)
         locationManager?.stopUpdatingLocation()
     }

@@ -28,6 +28,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buscador: UITextField!
     
+    let group = DispatchGroup()
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -51,11 +52,18 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         locationDelegate.requestAuthorization()
         locationDelegate.updated = {[weak self] loc in
             guard let self = self else {return}
+            self.group.enter()
             self.cargarDatos(latitud: loc.latitude, longitud: loc.longitude, search: nil)
+            self.group.enter()
             self.cargarDatos2(latitud: loc.latitude, longitud: loc.longitude, search: nil)
         }
+        group.enter()
         self.cargarDatos(latitud: nil, longitud: nil,search: nil)
+        group.enter()
         self.cargarDatos2(latitud: nil, longitud: nil, search: nil)
+        group.notify(queue: .main){
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func btnBuscarContenido(_ sender: Any) {
@@ -97,6 +105,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result: MyResult<PostResponse>) in
             DispatchQueue.main.async {
                 guard let self = self else {return}
+                self.group.leave()
                 self.hideActivityIndicator()
                 switch result{
                 case .success(let dat):
@@ -106,7 +115,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                         }else{
                             self.busqueda = dat.results
                         }
-                        self.tableView.reloadData()
+                        //self.tableView.reloadData()
                     }else{
                         self.showAlert(title: "¡Ups!", message: dat.error ?? "No encontramos coincidencias para esta búsqueda")
                         self.isSearching = false
@@ -132,8 +141,9 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
         }
         self.showActivityIndicator(color: UIColor(named: "green") ?? .green)
         NetworkLoader.loadData(url: Api.listContent.url, data: params, method: .get, completion: {[weak self] (result: MyResult<PostResponse>) in
+            self?.group.leave()
             DispatchQueue.main.async {
-                guard let self = self else {return}
+                guard let self = self else {return}                
                 print("result:",result)
                 self.hideActivityIndicator()
                 switch result{
@@ -146,7 +156,7 @@ class ContenidoViewController: UIViewController, UITableViewDataSource, UITableV
                             print("not search Empleo")
                             self.employ = dat.results
                         }
-                        self.tableView.reloadData()
+                       // self.tableView.reloadData()
                     }else{
                         self.showAlert(title: "¡Ups!", message: dat.error ?? "No encontramos coincidencias para esta búsqueda")
                         self.isSearching = false
